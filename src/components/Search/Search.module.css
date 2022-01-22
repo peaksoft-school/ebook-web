@@ -1,0 +1,23 @@
+.formSearch {
+    display: flex;
+    align-items: center;
+    width: 896px;
+    margin: 0 auto;
+    padding: 8px 18px;
+    height: 30px;
+    border: 1px solid black;
+}
+.formSearchActive {
+    display: flex;
+    align-items: center;
+    width: 896px;
+    margin: 0 auto;
+    padding: 8px 18px;
+    height: 30px;
+    border: 1px solid #FE6F33;
+}
+.input {
+    width: 100%;
+    outline: none;
+    border: 0.1px solid white;
+}
