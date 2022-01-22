@@ -4,6 +4,7 @@ import { useEffect, useState} from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { getLibraryData } from '../../store/LibrarySlice'
+import SearchList from '../SearchList/SearchList'
 const Search =()=> {
     const [color,setColor] = useState(false)
     const [searchValue,setSearchValue] = useState('')
@@ -40,25 +41,15 @@ const Search =()=> {
             return classes.formSearch
         }
     }
-    function filterListHundler() {
-        if(filteredData) {
-            return (
-                <ul>
-                    {filteredData.map((user) => {
-                       return <li key={user.id}>{user.login}</li>
-                    })}
-                </ul>
-            )
-        } else {
-            return ''
-        }
-    }
-    return<div>
-        <form onClick={changeClickValue} action="#" className={ColorInput()}>
-        <input onChange={changeColorInput} placeholder={color? '' : 'Искать жанр, книги, авторов, издательства... '} className={classes.input} type="text"/>
-        <SearchIcon onColor={color}/>
-    </form>
-    {filterListHundler()}
-    </div> 
+    return <div className={classes.box}>
+            <div>
+                <form onClick={changeClickValue} action="#" className={ColorInput()}>
+                    <input onChange={changeColorInput} placeholder={color? '' : 'Искать жанр, книги, авторов, издательства... '} className={classes.input} type="text"/>
+                    <SearchIcon onColor={color}/>
+                </form>
+        </div> 
+        <SearchList filteredData={filteredData}/>
+    </div>
+
 }
 export default Search
