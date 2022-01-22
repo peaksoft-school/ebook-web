@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getLibraryData = createAsyncThunk(
-  'posts/getLibraryData',
+  'list/getLibraryData',
   async (args, { dispatch, getState }) => {
-    return fetch(
+     const response = await fetch(
       `https://api.github.com/users`
-    ).then(res => res.json());
+    )
+    const data = response.json()
+    return data
   }
 );
 
