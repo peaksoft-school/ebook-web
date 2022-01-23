@@ -6,7 +6,6 @@ export const getUserList = createAsyncThunk(
      const response = await fetch(
       `https://reqres.in/api/users?page=2`
     )
-    console.log(response.json())
     const data = response.json()
     return data
   }
@@ -23,7 +22,7 @@ const postsSlice = createSlice({
       state.status = 'loading';
     },
     [getUserList.fulfilled]: (state, action) => {
-      state.list = action.payload;
+      state.userlist = action.payload;
       state.status = 'success';
     },
     [getUserList.rejected]: (state, action) => {
