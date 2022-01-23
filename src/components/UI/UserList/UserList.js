@@ -5,11 +5,11 @@ import { getUserList } from '../../../store/UserListReducer';
 import { useEffect } from 'react';
 
 const UserList = () => {
-    const userlist = useSelector(state => state.library.userlist);
+    const userlist = useSelector(state => state.userlist.userlist);
+    console.log(userlist)
     const dispatch = useDispatch()
     useEffect(() => {
       dispatch(getUserList());
-      console.log('sddfsd')
     }, [dispatch]);
   return <div className={classes.box}>
       <div className={classes.containerTitle}>

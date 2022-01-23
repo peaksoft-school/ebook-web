@@ -6,13 +6,14 @@ export const getUserList = createAsyncThunk(
      const response = await fetch(
       `https://reqres.in/api/users?page=2`
     )
-    const data = response.data.json()
+    console.log(response.json())
+    const data = response.json()
     return data
   }
 );
 
 const postsSlice = createSlice({
-  name: 'libraryData',
+  name: 'userlist',
   initialState: {
     userlist: [],
     status: null
