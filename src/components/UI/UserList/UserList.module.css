@@ -1,0 +1,7 @@
+.box {
+    width: 1130px;
+}
+.containerTitle {
+    display: flex;
+    justify-content: space-between;
+}
