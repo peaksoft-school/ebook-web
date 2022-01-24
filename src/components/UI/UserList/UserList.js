@@ -35,6 +35,7 @@ const UserList = () => {
       <p className={classes.mediumBox}><b>Почта</b></p>
       <p className={classes.mediumBox}><b>Количество книг</b></p>
       </div>
+      <hr className={classes.line}/>
       <div className={classes.containerList}>
           {showUserList()}
       </div>
