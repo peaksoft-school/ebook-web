@@ -13,7 +13,11 @@
     justify-content: flex-end;
 }
 .smallBox {
-    width: 350px;
+    width: 450px;
+    height: 100px;
+}
+.smallAutoBox {
+    width: 100%;
     height: 100px;
 }
 .title {
