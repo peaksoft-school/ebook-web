@@ -1,12 +1,27 @@
 .profileContainer {
-    width: 600px;
+    width: 1360px;
     height: 300px;
 }.informationContainer {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     flex-wrap: wrap;
+    height: 200px;
+}
+.deleteContainer {
+    display: flex;
+    justify-content: flex-end;
 }
 .smallBox {
-    width: 180px;
+    width: 350px;
     height: 100px;
+}
+.title {
+    color: #898989;
+}
+.deleteBtn {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    color: red;
 }
