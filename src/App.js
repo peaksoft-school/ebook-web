@@ -1,8 +1,11 @@
 import './App.css';
-
+import DeleteProfile from './components/DeleteProfile/DeleteProfile';
 function App() {
+  
   return (
-    <div className="App"></div>
+    <div className="App">
+      <DeleteProfile/>
+    </div>
   );
 }
 

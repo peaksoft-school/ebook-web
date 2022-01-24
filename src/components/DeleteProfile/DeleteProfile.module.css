@@ -1,0 +1,12 @@
+.profileContainer {
+    width: 600px;
+    height: 300px;
+}.informationContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.smallBox {
+    width: 180px;
+    height: 100px;
+}
