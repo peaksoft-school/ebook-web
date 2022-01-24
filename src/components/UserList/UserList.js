@@ -1,9 +1,9 @@
 import classes from './UserList.module.css'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getUserList } from '../../../store/UserListReducer';
+import { getUserList } from '../../store/UserListReducer';
 import { useEffect } from 'react';
-import DeleteIcon from '../../DeleteIcon/DeleteIcon';
+import DeleteIcon from '../DeleteIcon/DeleteIcon';
 
 const UserList = () => {
     const userlist = useSelector(state => state.userlist.userlist.data);
