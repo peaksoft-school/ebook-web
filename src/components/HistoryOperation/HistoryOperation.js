@@ -1,85 +1,33 @@
 import classes from './HistoryOperation.module.css'
 import { useState } from 'react';
-// import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-// import { useSelector } from 'react-redux';
-// import { getHistoryOperationData } from '../../store/HistoryOperationSlice';
+import useHttp from '../../hooks/use-http';
 const HistoryOperation = () => {
-    // const history = useSelector(state => state.history.list);
+    const data = {hello:'hello'}
+    const config = {
+        url:'https://jsonplaceholder.typicode.com/posts',
+        options:{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+        },
+        
+    }
+    const {response, error} = useHttp(config);
+    console.log(response, error);
+    //   const res = useHttp(`'https://jsonplaceholder.typicode.com/todos/1'`,{})
     const [location,setLocation] = useState()
-    const dispatch = useDispatch()
     const [colorOrangeBtn,setColorOrangeBtn] = useState()
-    const history = [
-        {
-            "author":"Bayba",
-            "bookName":"Harry Poter",
-            "promocode":"20",
-            "discount":"20",
-            "price":"356",
-            "data":"12.09.22",
-            "state":'завершен',
-            "location":"parchased",
-            "id":1,
-        },
-        {
-            "author":"Bayba",
-            "bookName":"Harry Poter",
-            "promocode":"20",
-            "discount":"20",
-            "price":"356",
-            "data":"12.09.22",
-            "state":'завершен',
-            "location":"basket",
-            "id":2,
-        },
-        {
-            "author":"Bayba",
-            "bookName":"Harry Poter",
-            "promocode":"20",
-            "discount":"20",
-            "price":"356",
-            "data":"12.09.22",
-            "state":'завершен',
-            "location":"favorites",
-            "id":3,
-        },
-        {
-            "author":"Bayba",
-            "bookName":"Harry Poter",
-            "promocode":"20",
-            "discount":"20",
-            "price":"356",
-            "data":"12.09.22",
-            "state":'завершен',
-            "location":"favorites",
-            "id":4,
-        },
-        {
-            "author":"Bayba",
-            "bookName":"Harry Poter",
-            "promocode":"20",
-            "discount":"20",
-            "price":"356",
-            "data":"12.09.22",
-            "state":'завершен',
-            "location":"parchased",
-            "id":5,
-        },
-
-    ]
-    // useEffect(() => {
-    //   dispatch(getHistoryOperationData());
-    //   console.log('sddfsd')
-    // }, [dispatch]);
+    // const [array,setArray] = useState(history)
     const changeToParchased=()=> {
         setColorOrangeBtn('parchased')
         setLocation('parchased')
         showHistory()
     }
+
     const changeToFavorites=()=> {
         setColorOrangeBtn('favorites')
         setLocation('favorites')
-        showHistory()
+        // showHistory()
     }
     const changeToBasket=()=> {
         setColorOrangeBtn('basket')
@@ -87,12 +35,12 @@ const HistoryOperation = () => {
         showHistory()
     }
     const showHistory=()=> {
-        if(history) {
-            history.filter((item) => item.location === location)
-              return console.log(history)
-        }
+        // if(history) {
+        //     // const data = history.filter((book) => book.location === location)
+        //     // setArray(data)
+        // }
+        // return history
     }
-    console.log(location)
   return <div className={classes.HistoryOperationContainer}>
       <div className={classes.HistoryOperationTitles}>
       <p>Очистить историю</p>
@@ -128,8 +76,7 @@ const HistoryOperation = () => {
         </button>
         </div>
           <div className={classes.BooksList}>
-              {
-               history && history.map((item) => {
+              {/* {.map((item) => {
                   return <ul key={item.id} className={classes.bookLi}>
                   <img className={classes.historyImage} src='https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1637008457' alt='dsdfdf'/>
                   <div >
@@ -144,7 +91,8 @@ const HistoryOperation = () => {
                   <p>12.12.21</p>
                   <p>Завершен</p>
               </ul>
-              })}
+              })
+            } */}
           </div>
       </div>
   </div>;
