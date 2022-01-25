@@ -5,12 +5,7 @@ const HistoryOperation = () => {
     const data = {hello:'hello'}
     const config = {
         url:'https://jsonplaceholder.typicode.com/posts',
-        options:{
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(data)
-        },
-        
+        data: data        
     }
     const {response, error} = useHttp(config);
     console.log(response, error);

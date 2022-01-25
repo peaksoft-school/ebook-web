@@ -6,7 +6,14 @@ const useHttp = (config) => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch(config.url, config.options);
+          const res = await fetch(config.url, config.data? 
+            {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(config.data)
+            }
+            : {method: 'GET'}
+        );
           const json = await res.json();
           setResponse(json);
         } catch (error) {
