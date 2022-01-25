@@ -1,8 +1,11 @@
 import './App.css';
+import SideDrawer from './layout/navbar/SideDrawer';
 
 function App() {
   return (
-    <div className="App"></div>
+    <div className="App">
+      <SideDrawer/>
+    </div>
   );
 }
 
