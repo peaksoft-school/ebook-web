@@ -1,32 +1,26 @@
 import classes from './UserList.module.css'
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { getUserList } from '../../store/UserListReducer';
-import { useEffect } from 'react';
 import DeleteIcon from '../DeleteIcon/DeleteIcon';
-
+import useHttp from '../../hooks/use-http';
 const UserList = () => {
-    const userlist = useSelector(state => state.userlist.userlist.data);
-    console.log(userlist)
-    const dispatch = useDispatch()
-    useEffect(() => {
-      dispatch(getUserList());
-    }, [dispatch]);
-    function showUserList() {
-        if(userlist) {
-            return <ol className={classes.list}>
-                {userlist.map((user)=> {
-                    return <li className={classes.li} key={user.id}>
-                        <p className={classes.mediumBoxForFIO}>{user.first_name} {user.last_name}</p>
-                        <p className={classes.mediumBox}>{user.email}</p>
-                        <p className={classes.mediumBox}>{user.email}</p>
-                        <p className={classes.numberOfBooks}>{user.id}</p>
-                        <DeleteIcon id={user.id}/>
-                    </li>
-                })}
-            </ol>
-        }
-     }
+    const config= {
+        url:'//https:/jsonplaceholder.typicode.com/users'
+    }
+    const userlist = useHttp(config)
+    // function showUserList() {
+    //     if(userlist) {
+    //         return <ol className={classes.list}>
+    //             {userlist.map((user)=> {
+    //                 return <li className={classes.li} key={user.id}>
+    //                     <p className={classes.mediumBoxForFIO}>{user.first_name} {user.last_name}</p>
+    //                     <p className={classes.mediumBox}>{user.email}</p>
+    //                     <p className={classes.mediumBox}>{user.email}</p>
+    //                     <p className={classes.numberOfBooks}>{user.id}</p>
+    //                     <DeleteIcon id={user.id}/>
+    //                 </li>
+    //             })}
+    //         </ol>
+    //     }
+    //  }
   return <div className={classes.box}>
       <div className={classes.containerTitle}>
       <p><b>№</b></p>
@@ -37,7 +31,7 @@ const UserList = () => {
       </div>
       <hr className={classes.line}/>
       <div className={classes.containerList}>
-          {showUserList()}
+          {/* {showUserList()} */}
       </div>
   </div>;
 };
