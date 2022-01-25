@@ -1,22 +1,16 @@
 import classes from './Search.module.css'
 import SearchIcon from '../Search-icon/SearchIcon'
-import { useEffect, useState} from 'react'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { getLibraryData } from '../../store/LibrarySlice'
 import SearchList from '../SearchList/SearchList'
+import useHttp from '../../hooks/use-http'
+import {useState} from 'react'
 const Search =()=> {
     const [color,setColor] = useState(false)
     const [searchValue,setSearchValue] = useState('')
     const [filteredData,setFilteredData] = useState()
-    const list = useSelector(state => state.library.list);
-    const dispatch = useDispatch();
-  
-    useEffect(() => {
-      dispatch(getLibraryData());
-    }, [dispatch]);
-  
-
+    const config = {
+        url:"https://jsonplaceholder.typicode.com/users"
+    }
+    const list = useHttp(config)
     function changeClickValue() {
         if(searchValue === '') {
             setColor(!color)
@@ -29,7 +23,7 @@ const Search =()=> {
             setFilteredData([])
         } else if(event.target.value) {
             setColor(true)
-            const filterData = list.filter(item => item.login.includes(event.target.value))
+            const filterData = list.response.filter(item => item.name.includes(event.target.value))
             setFilteredData(filterData)
         }
 
