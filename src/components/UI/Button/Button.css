@@ -91,6 +91,7 @@
     
     }
     
+
     .btn--btn5 {
         background: #F34901;
         padding: 10px 24px;
@@ -107,3 +108,44 @@
         justify-content: space-evenly;
     }
     
+
+
+    .btn--btn6{
+        width: 242px;
+        height: 40px;
+        left: 16px;
+        top: 16px;
+        background: #F8F8F8;
+        border: 1px solid #C4C4C4;
+        box-sizing: border-box;
+        font-family: Open Sans, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 130%;
+    }
+
+    .btn--btn6:hover{
+        background: #F8F8F8;
+        border: 1px solid #F34901;
+        box-sizing: border-box;
+        color: #F34901;
+    }
+
+
+    .btn--btn7{
+        width: 177px;
+        height: 42px;
+        left: 80px;
+        top: 125px;
+        border: 1px solid #FF4C00;
+        box-sizing: border-box;
+        background: #fafafa;
+        font-family: Open Sans, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 22px;
+        color: #FF4C00;
+
+    }

@@ -8,6 +8,7 @@ const STYLES = [
   "btn--btn4",
   "btn--btn5",
   "btn--btn6",
+  "btn--btn7"
 ]
 
 const Button = ({
