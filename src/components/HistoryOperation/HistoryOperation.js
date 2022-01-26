@@ -4,12 +4,10 @@ import useHttp from '../../hooks/use-http';
 const HistoryOperation = () => {
     const data = {hello:'hello'}
     const config = {
-        url:'https://jsonplaceholder.typicode.com/posts',
-        data: data        
+        url:'https://jsonplaceholder.typicode.com/users',
     }
-    const {response, error} = useHttp(config);
-    console.log(response, error);
-    //   const res = useHttp(`'https://jsonplaceholder.typicode.com/todos/1'`,{})
+    const history = useHttp(config);
+    // console.log(history)
     const [location,setLocation] = useState()
     const [colorOrangeBtn,setColorOrangeBtn] = useState()
     // const [array,setArray] = useState(history)
@@ -38,13 +36,13 @@ const HistoryOperation = () => {
     }
   return <div className={classes.HistoryOperationContainer}>
       <div className={classes.HistoryOperationTitles}>
-      <p>Очистить историю</p>
-      <p>Фото</p>
-      <p>Название/Автор</p>
-      <p>Количество</p>
-      <p>Цена</p>
-      <p>Дата</p>
-      <p>Состояние</p>
+        <p className={classes.cleanHistory}>Очистить историю</p>
+        <p>Фото</p>
+        <p>Название/Автор</p>
+        <p>Количество</p>
+        <p>Цена</p>
+        <p>Дата</p>
+        <p>Состояние</p>
       </div>
       <div className={classes.showHistoryContainer}>
           <div className={classes.BooksLocationBar}>
@@ -71,23 +69,23 @@ const HistoryOperation = () => {
         </button>
         </div>
           <div className={classes.BooksList}>
-              {/* {.map((item) => {
-                  return <ul key={item.id} className={classes.bookLi}>
+              {history && history.map((item) => {
+                  return <div key={item.id} className={classes.bookLi}>
                   <img className={classes.historyImage} src='https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1637008457' alt='dsdfdf'/>
                   <div >
                       <p className={classes.bookNameInformation}>{item.login}</p>
                       <p className={classes.bookNameInformation}>Роулинг Джоан Кэтлин</p>
                   </div>
-                  <p>1 шт</p>
+                  <p className={classes.smallBox}>1 шт</p>
                   <div>
                       <p className={classes.promocode}>Промокод 20%</p>
                       <p><span className={classes.discount}>545 c</span>345 c</p>
                   </div>
-                  <p>12.12.21</p>
+                  <p className={classes.smallBox}>12.12.21</p>
                   <p>Завершен</p>
-              </ul>
+              </div>
               })
-            } */}
+            }
           </div>
       </div>
   </div>;
