@@ -7,10 +7,9 @@ const HistoryOperation = () => {
         url:'https://jsonplaceholder.typicode.com/users',
     }
     const history = useHttp(config);
-    // console.log(history)
     const [location,setLocation] = useState()
     const [colorOrangeBtn,setColorOrangeBtn] = useState()
-    // const [array,setArray] = useState(history)
+    const [array,setArray] = useState(history)
     const changeToParchased=()=> {
         setColorOrangeBtn('parchased')
         setLocation('parchased')
@@ -20,7 +19,7 @@ const HistoryOperation = () => {
     const changeToFavorites=()=> {
         setColorOrangeBtn('favorites')
         setLocation('favorites')
-        // showHistory()
+        showHistory() 
     }
     const changeToBasket=()=> {
         setColorOrangeBtn('basket')
@@ -28,11 +27,11 @@ const HistoryOperation = () => {
         showHistory()
     }
     const showHistory=()=> {
-        // if(history) {
-        //     // const data = history.filter((book) => book.location === location)
-        //     // setArray(data)
-        // }
-        // return history
+        if(history) {
+            const data = history.filter((book) => book.location === location)
+            setArray(data)
+        }
+        return history
     }
   return <div className={classes.HistoryOperationContainer}>
       <div className={classes.HistoryOperationTitles}>
