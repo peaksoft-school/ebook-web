@@ -22,6 +22,7 @@ const useHttp = (config) => {
       };
       fetchData();
     }, []);
+    console.log(response)
     return { response, error };
   };
   
