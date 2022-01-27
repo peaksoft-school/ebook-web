@@ -24,3 +24,10 @@ export const NAVICON = {
     BOOKS: BOOKS,
     BOOK: BOOK
 }
+
+export const SIDE = {
+    App: 'application',
+    Sell: 'sellers',
+    User: 'users',
+    Books: 'books'
+}
