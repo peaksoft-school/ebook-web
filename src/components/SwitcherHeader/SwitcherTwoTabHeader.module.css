@@ -1,0 +1,52 @@
+.header {
+    background-color: rgb(162, 180, 194);
+}
+
+.header nav {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header ul {
+    display: flex;
+    height: 33px;
+    width: 400px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.header li {
+    margin: 0 1rem;
+    width: 100%;
+    padding-bottom: 12px;
+    cursor: pointer;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.header a:hover,
+.header li:active,
+.header a.liactive {
+    color: #FF4C00;
+}
+.liActive {
+    color: #FF4C00;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #FF4C00;
+}
+.aActive {
+    color: #FF4C00;
+}
+
+
+.noActive {
+    color: white;
+    text-decoration: none;
+}

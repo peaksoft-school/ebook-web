@@ -1,8 +1,11 @@
 import './App.css';
+import { SwitcherTwoTab } from './layout/switcherTwoTab/SwitcherTwoTab' 
 
 function App() {
   return (
-    <div className="App"></div>
+    <div className="App">
+      <SwitcherTwoTab/>
+    </div>
   );
 }
 
