@@ -1,41 +1,68 @@
 import classes from './HistoryOperation.module.css'
-import { useState } from 'react';
 import useHttp from '../../hooks/use-http';
+import { useState } from 'react';
 const HistoryOperation = () => {
-    const data = {hello:'hello'}
+    const [location,setLocation] = useState('parchased')
     const config = {
-        url:'https://jsonplaceholder.typicode.com/users',
+        url:'https://ebook-api-e48c7-default-rtdb.firebaseio.com/books.json',
     }
-    const history = useHttp(config);
-    const [location,setLocation] = useState()
-    const [colorOrangeBtn,setColorOrangeBtn] = useState()
-    const [array,setArray] = useState(history)
+    const getHistory = useHttp(config);
+    let history = []
+    if(getHistory.response !== []){
+      for (const key in getHistory.response) {
+        for (let i = 0; i < getHistory.response[key].length; i++) {
+          const element = getHistory.response[key][i];
+          history.push({
+            id: element.id,
+            author:element.author,
+            book_name:element.book_name,
+            booksum:element.booksum,
+            promocode:element.promocode,
+            discount:element.discount,
+            price:element.price,
+            data_registration:element.data_registration,
+            location:element.location,
+            state:element.state
+            })
+        }
+      }
+    }
+
     const changeToParchased=()=> {
-        setColorOrangeBtn('parchased')
         setLocation('parchased')
-        showHistory()
     }
 
     const changeToFavorites=()=> {
-        setColorOrangeBtn('favorites')
-        setLocation('favorites')
-        showHistory() 
+        setLocation('favorites') 
     }
     const changeToBasket=()=> {
-        setColorOrangeBtn('basket')
         setLocation('basket')
-        showHistory()
     }
-    const showHistory=()=> {
-        if(history) {
-            const data = history.filter((book) => book.location === location)
-            setArray(data)
-        }
-        return history
+    const cleanHistory=()=> {
+        // there will be some function, which delete data from server
+    }
+    const showBooks=()=> {
+        history = history.filter((book) => book.location === location)
+        return history.map((item) => {
+            return <div key={item.id} className={classes.bookLi}>
+            <img className={classes.historyImage} src='https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1637008457' alt='dsdfdf'/>
+            <div >
+                <p className={classes.bookNameInformation}>{item.book_name}</p>
+                <p className={classes.bookNameInformation}>{item.author}</p>
+            </div>
+            <p className={classes.smallBox}>{item.booksum} шт</p>
+            <div>
+                <p className={classes.promocode}>промокод {item.promocode}%</p>
+                <p><span className={classes.withoutDiscount}>{item.price} c</span>{item.discount} c</p>
+            </div>
+            <p className={classes.smallBox}>{item.data_registration}</p>
+            <p className={classes.state}>{item.state}</p>
+        </div>
+        })      
     }
   return <div className={classes.HistoryOperationContainer}>
       <div className={classes.HistoryOperationTitles}>
-        <p className={classes.cleanHistory}>Очистить историю</p>
+        <p onClick={cleanHistory} className={classes.cleanHistory}>Очистить историю</p>
         <p>Фото</p>
         <p>Название/Автор</p>
         <p>Количество</p>
@@ -47,44 +74,28 @@ const HistoryOperation = () => {
           <div className={classes.BooksLocationBar}>
           <button
             onClick={changeToParchased} 
-            className={colorOrangeBtn === 'parchased'? 
+            className={location === 'parchased'? 
             classes.historyOperationOrangeBtn 
             : classes.historyOperationBtn}>
             Купленные ()
         </button>
         <button
             onClick={changeToFavorites} 
-            className={colorOrangeBtn === 'favorites'? 
+            className={location === 'favorites'? 
             classes.historyOperationOrangeBtn 
             : classes.historyOperationBtn}>
             Избранные ()
         </button>
         <button
             onClick={changeToBasket} 
-            className={colorOrangeBtn === 'basket'? 
+            className={location === 'basket'? 
             classes.historyOperationOrangeBtn 
             : classes.historyOperationBtn}>
             В корзине ()
         </button>
         </div>
           <div className={classes.BooksList}>
-              {history && history.map((item) => {
-                  return <div key={item.id} className={classes.bookLi}>
-                  <img className={classes.historyImage} src='https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1637008457' alt='dsdfdf'/>
-                  <div >
-                      <p className={classes.bookNameInformation}>{item.login}</p>
-                      <p className={classes.bookNameInformation}>Роулинг Джоан Кэтлин</p>
-                  </div>
-                  <p className={classes.smallBox}>1 шт</p>
-                  <div>
-                      <p className={classes.promocode}>Промокод 20%</p>
-                      <p><span className={classes.discount}>545 c</span>345 c</p>
-                  </div>
-                  <p className={classes.smallBox}>12.12.21</p>
-                  <p>Завершен</p>
-              </div>
-              })
-            }
+              {showBooks()}
           </div>
       </div>
   </div>;

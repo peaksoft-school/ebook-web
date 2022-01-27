@@ -22,7 +22,7 @@ const useHttp = (config) => {
       };
       fetchData();
     }, []);
-    return response;
+    return {response,error};
   };
   
 export default useHttp

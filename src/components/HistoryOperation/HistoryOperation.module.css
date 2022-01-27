@@ -62,14 +62,19 @@
 .promocode {
     color: red;
 }
-.discount {
+.withoutDiscount {
     color: #a3a3a3d3;
     text-decoration: line-through solid #a3a3a37a;
     margin-right: 20px;
 }
 .cleanHistory {
     color: #a3a3a3c5;
+    cursor: pointer;
 }
 .smallBox {
     width: 100px;
+}
+.state {
+    width: 75px;
+    text-align: end;
 }
