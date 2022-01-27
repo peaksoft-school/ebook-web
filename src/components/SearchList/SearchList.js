@@ -2,7 +2,6 @@ import WhiteWrapper from "../UI/WhiteWrapper/WhiteWrapper"
 import classes from './SearchList.module.css'
 const SearchList =(props)=> {
     const checkfilteredData=()=> {
-        console.log(props)
         if(props.filteredData) {
             return (
                 <div className={classes.list}>
