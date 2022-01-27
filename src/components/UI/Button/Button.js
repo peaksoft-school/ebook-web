@@ -2,13 +2,13 @@ import React from 'react';
 import  './Button.css'
 
 const STYLES = [
-  "btn--btn1",
-  "btn--btn2",
-  "btn--btn3",
-  "btn--btn4",
-  "btn--btn5",
-  "btn--btn6",
-  "btn--btn7"
+  "btn--primary",
+  "btn--secondary",
+  "btn--tertiary",
+  "btn--load",
+  "btn--contained",
+  "btn--select",
+  "btn--light"
 ]
 
 const Button = ({
@@ -17,12 +17,12 @@ const Button = ({
   onClick, 
   disabled, 
   children,
-  buttonStyle,
+  variant,
   ...restProps
  }) => {
 
- const checkButtonStyle = STYLES.includes(buttonStyle)
-     ? buttonStyle
+ const checkButtonStyle = STYLES.includes(variant)
+     ? variant
      : STYLES[0]
 
   return (

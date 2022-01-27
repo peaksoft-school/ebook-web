@@ -7,7 +7,7 @@
     
     
     /* Button color and styles */
-    .btn--btn1 {
+    .btn--primary {
         background-color: #1C1C1C;
         padding: 10px 24px;
         color:#FFFFFF;
@@ -19,17 +19,17 @@
         line-height: 22px;
        
     }
-    .btn--btn1:hover {
+    .btn--primary:hover {
         background: #484848;
     }
-    .btn--btn1:active{
+    .btn--primary:active{
         background: #F34901;
         
     }
     
     
     
-    .btn--btn2 {
+    .btn--secondary {
         background-color: #F34901;
         padding: 8px 40px;
         color:#FFFFFF;
@@ -40,15 +40,15 @@
         font-size: 14px;
         line-height: 120%;
     }
-    .btn--btn2:hover {
+    .btn--secondary:hover {
         background: #FE6F33;
     }
-    .btn--btn2:active{
+    .btn--secondary:active{
         background: #E54400;
     }
     
     
-    .btn--btn3 {
+    .btn--tertiary {
         background-color: #F8F8F8;
         padding: 10px 24px;
         color: #C4C4C4;
@@ -62,17 +62,17 @@
         box-sizing: border-box;
     }
     
-    .btn--btn3:hover{
+    .btn--tertiary:hover{
         background: #FE6F33;
         color: #FFFFFF;
     }
     
-    .btn--btn3:active{
+    .btn--tertiary:active{
         color: #FFFFFF;
         background: #E54400;
     }
     
-    .btn--btn4 {
+    .btn--load {
         background-color: #F8F8F8;
         border: 1px solid #C4C4C4;
         box-sizing: border-box;
@@ -85,14 +85,14 @@
         line-height: 22px;
     }
     
-    .btn--btn4:hover{
+    .btn--load:hover{
         background: #F34901;  
         color: #F8F8F8;
     
     }
     
 
-    .btn--btn5 {
+    .btn--contained {
         background: #F34901;
         padding: 10px 24px;
         width: 209px;
@@ -110,7 +110,7 @@
     
 
 
-    .btn--btn6{
+    .btn--select{
         width: 242px;
         height: 40px;
         left: 16px;
@@ -125,7 +125,7 @@
         line-height: 130%;
     }
 
-    .btn--btn6:hover{
+    .btn--select:hover{
         background: #F8F8F8;
         border: 1px solid #F34901;
         box-sizing: border-box;
@@ -133,7 +133,7 @@
     }
 
 
-    .btn--btn7{
+    .btn--light{
         width: 177px;
         height: 42px;
         left: 80px;
