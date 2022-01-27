@@ -2,13 +2,13 @@ import React from 'react';
 import  './Button.css'
 
 const STYLES = [
-  "btn--primary",
-  "btn--secondary",
-  "btn--tertiary",
-  "btn--load",
-  "btn--contained",
-  "btn--select",
-  "btn--light"
+  "primary",
+  "secondary",
+  "tertiary",
+  "load",
+  "contained",
+  "select",
+  "light"
 ]
 
 const Button = ({

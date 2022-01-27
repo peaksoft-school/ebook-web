@@ -7,7 +7,7 @@
     
     
     /* Button color and styles */
-    .btn--primary {
+    .primary {
         background-color: #1C1C1C;
         padding: 10px 24px;
         color:#FFFFFF;
@@ -19,17 +19,17 @@
         line-height: 22px;
        
     }
-    .btn--primary:hover {
+    .primary:hover {
         background: #484848;
     }
-    .btn--primary:active{
+    .primary:active{
         background: #F34901;
         
     }
     
     
     
-    .btn--secondary {
+    .secondary {
         background-color: #F34901;
         padding: 8px 40px;
         color:#FFFFFF;
@@ -40,15 +40,15 @@
         font-size: 14px;
         line-height: 120%;
     }
-    .btn--secondary:hover {
+    .secondary:hover {
         background: #FE6F33;
     }
-    .btn--secondary:active{
+    .secondary:active{
         background: #E54400;
     }
     
     
-    .btn--tertiary {
+    .tertiary {
         background-color: #F8F8F8;
         padding: 10px 24px;
         color: #C4C4C4;
@@ -62,17 +62,17 @@
         box-sizing: border-box;
     }
     
-    .btn--tertiary:hover{
+    .tertiary:hover{
         background: #FE6F33;
         color: #FFFFFF;
     }
     
-    .btn--tertiary:active{
+    .tertiary:active{
         color: #FFFFFF;
         background: #E54400;
     }
     
-    .btn--load {
+    .load {
         background-color: #F8F8F8;
         border: 1px solid #C4C4C4;
         box-sizing: border-box;
@@ -85,14 +85,14 @@
         line-height: 22px;
     }
     
-    .btn--load:hover{
+    .load:hover{
         background: #F34901;  
         color: #F8F8F8;
     
     }
     
 
-    .btn--contained {
+    .contained {
         background: #F34901;
         padding: 10px 24px;
         width: 209px;
@@ -110,7 +110,7 @@
     
 
 
-    .btn--select{
+    .select{
         width: 242px;
         height: 40px;
         left: 16px;
@@ -125,7 +125,7 @@
         line-height: 130%;
     }
 
-    .btn--select:hover{
+    .select:hover{
         background: #F8F8F8;
         border: 1px solid #F34901;
         box-sizing: border-box;
@@ -133,7 +133,7 @@
     }
 
 
-    .btn--light{
+    .light{
         width: 177px;
         height: 42px;
         left: 80px;
