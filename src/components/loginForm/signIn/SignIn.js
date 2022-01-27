@@ -1,11 +1,11 @@
-import InputField from '../../ReusebleInput/ReusableLabel/InputField'
-import AuthButton from '../../ReusebleInput/ReusableButton/AuthButton'
-import eye from '../../../assets/img/eye.png'
-import isEye from '../../../assets/img/isEye.png'
+import InputField from '../../UI/inputField/InputField'
+import AuthButton from '../../UI/authButton/AuthButton'
+import eye from '../../../assets/png/eye.png'
+import isEye from '../../../assets/png/isEye.png'
 import classes from './SignIn.module.css'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { email, password } from '../../../utils/constants'
+import { email, password} from '../../../utils/constants'
 
 const SignIn = () => {
 

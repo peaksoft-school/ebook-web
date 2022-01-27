@@ -1,8 +1,8 @@
 import classes from './ClientRegistration.module.css'
-import AuthButton from '../../ReusebleInput/ReusableButton/AuthButton'
-import InputField from '../../ReusebleInput/ReusableLabel/InputField'
-import eye from '../../../assets/img/eye.png'
-import isEye from '../../../assets/img/isEye.png'
+import AuthButton from '../../UI/authButton/AuthButton'
+import InputField from '../../UI/inputField/InputField'
+import eye from '../../../assets/png/eye.png'
+import isEye from '../../../assets/png/isEye.png'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {

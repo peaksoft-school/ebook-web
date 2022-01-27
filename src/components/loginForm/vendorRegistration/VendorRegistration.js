@@ -1,9 +1,9 @@
-import AuthButton from '../../ReusebleInput/ReusableButton/AuthButton'
-import InputField from '../../ReusebleInput/ReusableLabel/InputField'
+import AuthButton from '../../UI/authButton/AuthButton'
+import InputField from '../../UI/inputField/InputField'
 import classes from './VendorRegistration.module.css'
 import { useForm } from 'react-hook-form'
-import isEye from '../../../assets/img/isEye.png'
-import eye from '../../../assets/img/eye.png'
+import isEye from '../../../assets/png/isEye.png'
+import eye from '../../../assets/png/eye.png'
 import { useState } from 'react'
 import {
 	confirmPassword,

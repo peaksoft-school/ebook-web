@@ -1,9 +1,9 @@
-import ClientRegistration from '../ClientRegistration/ClientRegistration'
-import SignIn from '../SignIn/SignIn'
-import VendorRegistration from '../VendorRegistration/VendorRegistration'
+import ClientRegistration from '../clientRegistration/ClientRegistration'
+import SignIn from '../signIn/SignIn'
+import VendorRegistration from '../vendorRegistration/VendorRegistration'
 import classes from './LoginForm.module.css'
 import { useState } from 'react'
-import { isLogin, isVendor, isUser } from '../../../utils/constants'
+import { isLogin,isVendor,isUser } from '../../../utils/constants'
 
 const AuthForm = () => {
     
