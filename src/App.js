@@ -1,5 +1,5 @@
 import './App.css';
-import { SwitcherTwoTab } from './layout/Switcher/SwitcherTwoTab' 
+import { SwitcherTwoTab } from './layout/switcherTwoTab/SwitcherTwoTab' 
 
 function App() {
   return (
