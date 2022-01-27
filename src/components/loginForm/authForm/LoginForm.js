@@ -3,10 +3,10 @@ import SignIn from '../signIn/SignIn'
 import VendorRegistration from '../vendorRegistration/VendorRegistration'
 import classes from './LoginForm.module.css'
 import { useState } from 'react'
-import { isLogin,isVendor,isUser } from '../../../utils/constants'
+import { isLogin, isVendor, isUser } from '../../../utils/constants'
 
 const AuthForm = () => {
-    
+	
 	const [typeOfRegistration, setTypeOfRegistration] = useState(isLogin)
 
 	const showSignInFormRegistration = typeOfRegistration === isLogin
@@ -29,14 +29,21 @@ const AuthForm = () => {
 		<section className={classes.authformbox}>
 			<div className={classes.authbuttons}>
 				<button
-					className={`${isLogin ? classes.active : classes.loginBtn}`}
+					className={`${
+						showSignInFormRegistration
+							? classes.active
+							: classes.loginBtn
+					}`}
 					onClick={signUpFromChangeHandler}
 				>
 					Войти
 				</button>
 				<button
 					className={`${
-						isVendor || isUser ? classes.active : classes.loginBtn
+						showNewVendorFormRegistration ||
+						showNewUserFormRegistration
+							? classes.active
+							: classes.loginBtn
 					}`}
 					onClick={userFormChangeHandler}
 				>
