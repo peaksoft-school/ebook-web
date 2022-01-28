@@ -1,29 +1,32 @@
 import classes from './HistoryOperation.module.css'
 import useHttp from '../../hooks/use-http';
 import { useState } from 'react';
+
 const HistoryOperation = () => {
     const [location,setLocation] = useState('parchased')
     const config = {
         url:'https://ebook-api-e48c7-default-rtdb.firebaseio.com/books.json',
     }
     const getHistory = useHttp(config);
+
     let history = []
+
     if(getHistory.response !== []){
       for (const key in getHistory.response) {
         for (let i = 0; i < getHistory.response[key].length; i++) {
           const element = getHistory.response[key][i];
           history.push({
-            id: element.id,
-            author:element.author,
-            book_name:element.book_name,
-            booksum:element.booksum,
-            promocode:element.promocode,
-            discount:element.discount,
-            price:element.price,
-            data_registration:element.data_registration,
-            location:element.location,
-            state:element.state
-            })
+              id: element.id,
+              author:element.author,
+              book_name:element.book_name,
+              booksum:element.booksum,
+              promocode:element.promocode,
+              discount:element.discount,
+              price:element.price,
+              data_registration:element.data_registration,
+              location:element.location,
+              state:element.state
+          })
         }
       }
     }
@@ -35,12 +38,15 @@ const HistoryOperation = () => {
     const changeToFavorites=()=> {
         setLocation('favorites') 
     }
+
     const changeToBasket=()=> {
         setLocation('basket')
     }
+
     const cleanHistory=()=> {
         // there will be some function, which delete data from server
     }
+
     const showBooks=()=> {
         history = history.filter((book) => book.location === location)
         return history.map((item) => {
@@ -60,6 +66,7 @@ const HistoryOperation = () => {
         </div>
         })      
     }
+    
   return <div className={classes.HistoryOperationContainer}>
       <div className={classes.HistoryOperationTitles}>
         <p onClick={cleanHistory} className={classes.cleanHistory}>Очистить историю</p>
