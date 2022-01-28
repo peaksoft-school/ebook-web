@@ -6,7 +6,6 @@ const UserList = () => {
     url:'https://ebook-api-e48c7-default-rtdb.firebaseio.com/users.json',
   }
   const getUserList = useHttp(config)
-  console.log(getUserList)
 
   const userlist = []
   if(getUserList.response !== []){
@@ -24,22 +23,23 @@ const UserList = () => {
       }
     }
   }
-  console.log(userlist)
-    function showUserList() {
-        if(userlist) {
-            return <ol className={classes.list}>
-                {userlist !== [] && userlist.map((user)=> {
-                    return <li className={classes.li} key={user.id}>
-                        <p className={classes.mediumBoxForFIO}>{user.first_name} {user.last_name}</p>
-                        <p className={classes.mediumBox}>{user.phone_number}</p>
-                        <p className={classes.mediumBox}>{user.email}</p>
-                        <p className={classes.numberOfBooks}>{user.booksum}</p>
-                        <DeleteIcon id={user.id}/>
-                    </li>
-                })}
-            </ol>
-        }
-     }
+
+  function showUserList() {
+      if(userlist) {
+          return <ol className={classes.list}>
+              {userlist !== [] && userlist.map((user)=> {
+                  return <li className={classes.li} key={user.id}>
+                    <p className={classes.mediumBoxForFIO}>{user.first_name} {user.last_name}</p>
+                    <p className={classes.mediumBox}>{user.phone_number}</p>
+                    <p className={classes.mediumBox}>{user.email}</p>
+                    <p className={classes.numberOfBooks}>{user.booksum}</p>
+                    <DeleteIcon id={user.id}/>
+                </li>
+            })}
+      </ol>
+    }
+  }
+  
   return <div className={classes.box}>
       <div className={classes.containerTitle}>
         <p><b>№</b></p>
