@@ -13,13 +13,12 @@ import {
 } from '../../../utils/constants'
 
 const ClientRegistration = () => {
-
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
 		watch,
-	} = useForm({ mode: 'onBlur' })
+	} = useForm({ mode: 'onTouched' })
 
 	const isPassworIsSame = watch('password')
 
@@ -34,11 +33,11 @@ const ClientRegistration = () => {
 	const togglePassword = () => {
 		setIsPasswordShown(!isPasswordShown)
 	}
-    
+
 	const toggleisConfirmPasswordShown = () => {
 		setisConfirmPasswordShown(!isConfirmPasswordShown)
 	}
-
+	console.log(Boolean)
 	return (
 		<form onSubmit={handleSubmit(onSubmitClientSignUp)}>
 			<InputField
@@ -57,6 +56,7 @@ const ClientRegistration = () => {
 				{...register(email, {
 					required: true,
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+					disabled: Boolean(errors.name)
 				})}
 			/>
 			<div className={classes.forAbsolute}>
@@ -65,11 +65,15 @@ const ClientRegistration = () => {
 					placeholder='Напишите пароль'
 					label='Пароль'
 					autoComplete='off'
-					{...register(password, { required: true, minLength: 5 })}
+					{...register(password, {
+						required: true,
+						minLength: 5,
+						disabled: Boolean(errors.email),
+					})}
 				/>
 				<img
 					className={classes.pngOfPassword}
-					src={isPasswordShown ? eye : isEye}
+					src={isPasswordShown ? isEye : eye}
 					alt=''
 					onClick={togglePassword}
 				/>
@@ -81,11 +85,12 @@ const ClientRegistration = () => {
 					{...register(confirmPassword, {
 						required: true,
 						validate: (value) => value === isPassworIsSame,
+						disabled: Boolean(errors.password),
 					})}
 				/>
 				<img
 					className={classes.pngOfPassword}
-					src={isConfirmPasswordShown ? eye : isEye}
+					src={isConfirmPasswordShown ? isEye : eye}
 					alt=''
 					onClick={toggleisConfirmPasswordShown}
 				/>

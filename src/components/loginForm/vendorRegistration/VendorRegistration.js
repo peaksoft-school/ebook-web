@@ -15,7 +15,6 @@ import {
 } from '../../../utils/constants'
 
 const VendorRegistration = () => {
-
 	const {
 		register,
 		handleSubmit,
@@ -49,21 +48,28 @@ const VendorRegistration = () => {
 				type='text'
 				placeholder='Напишите ваше имя'
 				label='Ваше имя'
-				{...register(name, { required: true, validate: value=> value.trim().length !== 0 })}
+				{...register(name, {
+					required: true,
+					validate: (value) => value.trim().length !== 0,
+				})}
 			/>
 			<InputField
 				type='text'
 				placeholder='Напишите вашу фамилию'
 				label='Ваша фамилия'
-				{...register(surname, { required: true })}
+				{...register(surname, { required: true ,disabled: Boolean(errors.name)})}
 			/>
 			<InputField
 				type='tel'
 				placeholder='+996 (_ _ _) _ _  _ _  _ _'
 				label='Номер вашего телефона'
 				onFocus={(e) => (e.target.value = '+996')}
-				maxLength= '13'
-				{...register(phone, { required: true ,pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/})}
+				maxLength='13'
+				{...register(phone, {
+					required: true,
+					pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
+					disabled: Boolean(errors.surname)
+				})}
 			/>
 			<InputField
 				type='email'
@@ -72,6 +78,7 @@ const VendorRegistration = () => {
 				{...register(email, {
 					required: true,
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+					disabled: Boolean(errors.phone)
 				})}
 			/>
 			<div className={classes.forAbsolute}>
@@ -80,7 +87,11 @@ const VendorRegistration = () => {
 					placeholder='Напишите пароль'
 					label='Пароль'
 					autoComplete='off'
-					{...register(password, { required: true, validate: value => value.trim() > 5 })}
+					{...register(password, {
+						required: true,
+						validate: (value) => value.trim() > 5,
+						disabled: Boolean(errors.email)
+					})}
 				/>
 				<img
 					className={classes.pngOfPassword}
@@ -97,6 +108,7 @@ const VendorRegistration = () => {
 					{...register(confirmPassword, {
 						required: true,
 						validate: (value) => value === isSamePassword,
+						disabled: Boolean(errors.password)
 					})}
 				/>
 				<img

@@ -13,7 +13,7 @@ const SignIn = () => {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
-	} = useForm({ mode: 'onChange' })
+	} = useForm({ mode: 'onBlur' })
 
 	const onSubmitClientSignUp = (data) => {
 		console.log(data)
@@ -26,6 +26,7 @@ const SignIn = () => {
 	const togglePassword = () => {
 		setIsPasswordShown(!isPasswordShown)
 	}
+	console.log(errors);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmitClientSignUp)}>
@@ -37,6 +38,7 @@ const SignIn = () => {
 					required: true,
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
 				})}
+				disabled={errors.password ? true : false}
 			/>
 			<div>
 				<InputField
@@ -46,12 +48,13 @@ const SignIn = () => {
 					autoComplete='off'
 					{...register(password, {
 						required: true,
-						validate: (value) => value > 4,
+						validate: (value) => value.length > 4,
 					})}
+					disabled={errors.email ? true : false}
 				/>
 				<img
 					className={classes.pngOfPassword}
-					src={isPasswordShown ? eye : isEye}
+					src={isPasswordShown ? isEye : eye}
 					alt=''
 					onClick={togglePassword}
 				/>
