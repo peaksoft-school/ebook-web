@@ -3,6 +3,9 @@
     width: 100%;
     height: 260px;
     color: #ffff;
+    position:fixed;
+    bottom:0;
+    
 }
 
 .logo {
@@ -22,10 +25,11 @@
     text-align: left; 
     width: 1133px;
     height: 110px;
-    padding-top: 75px;
     margin-bottom: 75px;
+    margin-top: 70px;
     padding-left: 80px;
     margin-right: 227px;
+    
 }
 
 .first{
@@ -37,6 +41,7 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 22px;
+    
 
 }
 
