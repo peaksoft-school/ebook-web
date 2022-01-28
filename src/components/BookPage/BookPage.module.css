@@ -1,0 +1,109 @@
+.ContainerForBook {
+    width: 1194px;
+    margin: 60px;
+}
+.containerForSmallInformation {
+    display: flex;
+    margin-bottom: 100px;
+}
+.containerForInformation {
+    margin-left: 100px;
+    width: 505px;
+    height: 430px;
+}
+.containerForBriefInformation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 270px;
+}
+.containerForBtn {
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+}
+.smallContainerForBriefInformation {
+    width: 230px;
+    text-align: start;
+}
+.containerForInformationAboutBook {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 50px;
+}
+.containerForAboutBookAndFragment {
+    width: 620px;
+    height: 100%;
+}
+.containerForSwitch {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    margin-bottom: 70px;
+}
+.textAbout {
+    word-wrap: break-word;
+    height: 300px;
+}
+.textFragment {
+    word-wrap: break-word;
+    height: 670px;
+    overflow-y: scroll;
+}
+.textFragment::-webkit-scrollbar {
+    width: 4px;
+    height: auto;
+}
+.textFragment::-webkit-scrollbar-track {
+    background: #f1f1f100;
+}
+.textFragment::-webkit-scrollbar-thumb {
+    background: #C4C4C4;
+}
+.textFragment::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.price {
+    color: red;
+}
+.button {
+    width: 230px;
+    height: 40px;
+}
+.redirectButton {
+    border: 0.1px solid rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    color:#C4C4C4;
+    font-size: 18px;
+}
+.redirectActiveButton {
+    border: 0.1px solid rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    color:#F34901;
+    font-size: 18px;
+}
+.firstImage {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 351px;
+    height: 571px;
+}
+.secondImage {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 201px;
+    height: 321px;
+    margin-left: 20px;
+}
+.thirdImage {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 385px;
+    height: 614px;
+}
+.container {
+    display: flex;
+}
