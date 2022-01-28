@@ -33,10 +33,6 @@ function SideDrawer() {
                 <li className={isActive === SIDE.Books ? classes.liActive : classes.noActive} onClick={onClickBooksHandler}> 
                     <img alt='' src={isActive === SIDE.Books ? NAVICON.BOOK : NAVICON.BOOKS}/>Книги
                 </li>
-                    {isActive === SIDE.App && <h1>APPLICATION</h1>}
-                    {isActive === SIDE.Sell && <h1>SELLER</h1>}
-                    {isActive === SIDE.User && <h1>USER</h1>}
-                    {isActive === SIDE.Books && <h1>BOOK</h1>}
             </ul>
         </div>
     )
