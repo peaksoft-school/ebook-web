@@ -1,7 +1,26 @@
 import classes from './BookPage.module.css'
 import { useState } from 'react';
+import useHttp from '../../hooks/useHttp';
+import Button from '../UI/Button/Button';
 const BookPage = () => {
   const [transiton,setTransition] = useState('about')
+  const config = {
+    url:"https://ebook-api-e48c7-default-rtdb.firebaseio.com/book.json"
+  }
+  const bookPagedata = useHttp(config)
+  console.log(bookPagedata)
+
+  let booklist = {}
+  console.log(booklist)
+  if(bookPagedata.response !== []){
+    for (const key in bookPagedata.response) {
+      console.log(bookPagedata.response[key])
+      booklist = bookPagedata.response[key]
+      console.log(booklist)
+    }
+  }
+  console.log(booklist)
+  
   const redirectToAbout=()=> {
     setTransition('about')
   }
@@ -13,22 +32,11 @@ const BookPage = () => {
       <img className={classes.firstImage} src='https://pbs.twimg.com/media/EKvrgoOX0AM1_oz.jpg' alt='some images'/>
       <img className={classes.secondImage} src='https://pbs.twimg.com/media/EKvrgoOX0AM1_oz.jpg' alt='some images'/>
       <div className={classes.containerForInformation}>
-        <h1>Book name</h1>
+        <h1 className={classes.title}>{booklist.book_name}</h1>
         <div className={classes.container}>
-          <p className={classes.price}>price</p>
-          <audio src='https://sgi1.beeline-kz.vkuseraudio.net/p13/a094def19932e8.mp3?extra=nLFinFtz4cKRlWhxbzu-1s0PY055QRDgwuHXwYbOMOwN2wlGg17S8eWL4lRcJL7qCo_NqDwUtyaZcAxGpbjbyqTrpPzp49zLgdL6xvlxh6-FyY9WdvFeFpNsflBIZOOplkGEs89NPX8xpEP1Tfvc12wilw' 
-          alt='there have to will be some music' />
+          <p className={classes.price}>{booklist.price} c</p>
         </div>
         <div className={classes.containerForBriefInformation}>
-          <div>
-            <p>Автор</p>
-            <p>Жанр</p>
-            <p>Язык</p>
-            <p>Издательство</p>
-            <p>Год выпуска</p>
-            <p>Обьем</p>
-            <p>Длительность</p>
-          </div>
           <div className={classes.smallContainerForBriefInformation}>
             <p>Автор</p>
             <p>Жанр</p>
@@ -38,10 +46,19 @@ const BookPage = () => {
             <p>Обьем</p>
             <p>Длительность</p>
           </div>
+          <div className={classes.smallContainerForBriefInformation}>
+            <p>{booklist.author}</p>
+            <p>{booklist.genre}</p>
+            <p>{booklist.language}</p>
+            <p>{booklist.publishing_house}</p>
+            <p>{booklist.year_of_issue}</p>
+            <p>{booklist.volume} стр</p>
+            {/* <p>Длительность</p> */}
+          </div>
         </div>
         <div className={classes.containerForBtn}>
-          <button className={classes.button}>sdfsd</button>
-          <button className={classes.button}>sdfsdaf</button>
+          <Button variant={'light'} className={classes.button}>Отклонить</Button>
+          <Button variant={'secondary'} className={classes.button}>Принять</Button>
         </div>
       </div>
     </div>
@@ -65,12 +82,12 @@ const BookPage = () => {
         </div>
         {
           transiton === 'about' && <p className={classes.textAbout}>
-          loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem
+          loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem
         </p>
         }
         {
           transiton === 'fragment' && <p className={classes.textFragment}>
-          loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem
+          loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem
         </p>
         }
       </div>
