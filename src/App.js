@@ -4,9 +4,7 @@ import Footer from './layout/footer';
 
 function App() {
   return (
-    <div className="App">
-     <Footer/>
-    </div>
+    <div className="App"></div>
   );
 }
 
