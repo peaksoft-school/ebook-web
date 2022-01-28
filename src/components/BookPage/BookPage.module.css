@@ -48,7 +48,7 @@
 }
 .textFragment {
     word-wrap: break-word;
-    height: 670px;
+    height: 770px;
     overflow-y: scroll;
 }
 .textFragment::-webkit-scrollbar {
