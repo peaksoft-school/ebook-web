@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import classes from './WaveformPlayer.module.css'
+import classes from './AudioPlayer.module.css'
 import WaveSurfer from "wavesurfer.js";
-import PauseIcon from "../UI/PauseButton/PauseIcon";
-import PlayIcon from "../UI/PlayIcon/PlayButton";
+import PauseButton from "./PauseButton/PauseButton";
+import PlayButton from "./PlayButton/PlayButton";
 
 const formWaveSurferOptions = ref => ({
   container: ref,
@@ -17,7 +17,7 @@ const formWaveSurferOptions = ref => ({
   partialRender: true
 });
 
-const WaveformPlayer =({ url, time })=> {
+const AudioPlayer =({ url, time })=> {
   const waveformPlayerRef = useRef(null);
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false);
@@ -49,8 +49,8 @@ const WaveformPlayer =({ url, time })=> {
 
   return <div className={classes.containerForAudioPlayer}>
     <div className="controls">
-      {playing && <PauseIcon onClick={pauseHundler}/>}
-      {!playing &&<PlayIcon onClick={playHundler}/>}
+      {playing && <PauseButton onClick={pauseHundler}/>}
+      {!playing &&<PlayButton onClick={playHundler}/>}
     </div>
     <div className={classes.waveformContainer}>
       <div id="waveformPlayer" ref={waveformPlayerRef} />
@@ -59,4 +59,4 @@ const WaveformPlayer =({ url, time })=> {
   </div>
 
 }
-export default WaveformPlayer
+export default AudioPlayer
