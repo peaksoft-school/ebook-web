@@ -2,79 +2,14 @@
     width: 1360px;
     height: 100%;
 }
-.HistoryOperationTitles {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 0.1px solid #a3a3a37a;
-    padding-left: 52px;
-}
+
 .showHistoryContainer {
     display: flex;
 }
-.BooksLocationBar {
-    width: 290px;
-    display: flex;
-    flex-direction: column;
-    border-right:  0.1px solid #a3a3a37a;
-    padding-bottom: 100%;
-    padding-top: 20px;
-}
-.historyOperationBtn {
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
-    padding-top: 20px;
-    font-size: 16px;
-}
-.historyOperationOrangeBtn {
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
-    padding-top: 20px;
-    font-size: 16px;
-    color: #F34901;
-}
+
 .BooksList {
     width: 100%;
     margin-left: 50px;
     margin-top: 30px;
 }
-.bookLi {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 30px;
-    border-bottom: 0.1px solid #a3a3a37a;
-    margin-bottom: 30px;
-    margin-left: 18px;
-}
-.historyImage {
-    width: 82px;
-    height: 132px;
-}
-.bookNameInformation {
-    width: 218px;
-    height: 30px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap
-}
-.promocode {
-    color: red;
-}
-.withoutDiscount {
-    color: #a3a3a3d3;
-    text-decoration: line-through solid #a3a3a37a;
-    margin-right: 20px;
-}
-.cleanHistory {
-    color: #a3a3a3c5;
-    cursor: pointer;
-}
-.smallBox {
-    width: 100px;
-}
-.state {
-    width: 75px;
-    text-align: end;
-}
+
