@@ -1,0 +1,13 @@
+.containerForAudioPlayer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 270px;
+}
+.waveformContainer {
+    width: 186px;
+}
+.time {
+    color: #969696;
+    font-size: 14px
+}
