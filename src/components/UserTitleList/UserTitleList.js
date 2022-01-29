@@ -1,5 +1,6 @@
 import classes from './UserTitleList.module.css'
 import UserList from '../UserList/UserList';
+import { userlist } from '../../utils/constants/mock-data';
 
 const UserTitleList = () => {
   return <div className={classes.box}>
@@ -12,7 +13,7 @@ const UserTitleList = () => {
       </div>
       <hr className={classes.line}/>
       <div className={classes.containerList}>
-        <UserList/>
+        <UserList userlist={userlist}/>
       </div>
   </div>;
 };
