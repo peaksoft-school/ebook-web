@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from './WaveformPlayer.module.css'
 import WaveSurfer from "wavesurfer.js";
-import PauseIcon from "../PauseIcon/PauseIcon";
-import PlayIcon from "../PlayIcon/PlayIcon";
+import PauseIcon from "../UI/PauseButton/PauseIcon";
+import PlayIcon from "../UI/PlayIcon/PlayButton";
 
 const formWaveSurferOptions = ref => ({
   container: ref,
