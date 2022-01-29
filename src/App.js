@@ -1,11 +1,8 @@
 import './App.css';
-import UserTitleList from './components/UserTableHeader/UserTableHeader';
 function App() {
   return (
-    <div className="App">
-      <UserTitleList/>
-    </div>
+    <div className="App"></div>
   );
 }
 
-export default App
+export default App;
