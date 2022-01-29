@@ -1,5 +1,5 @@
 import classes from './SearchItem.module.css'
-import WhiteWrapper from "../../../UI/WhiteWrapper/WhiteWrapper";
+import WhiteWrapper from "../../../WhiteWrapper/WhiteWrapper";
 
 const SearchItem = ({name}) => {
     return <div>
