@@ -1,5 +1,5 @@
 import classes from './UserList.module.css'
-import UserItem from '../UserItem/UserItem';
+import UserItem from '../../UserList/UserItem/UserItem';
 
 const UserList = ({userlist}) => {
   return <div>
