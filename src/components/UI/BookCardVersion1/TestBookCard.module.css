@@ -1,0 +1,15 @@
+.books {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card img{
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 243px;
+    height:367px;
+}
