@@ -5,7 +5,7 @@ import useHttp from '../../hooks/useHttp';
 
 const BookPage = () => {
   const config = {
-    url:"https://ebook-api-e48c7-default-rtdb.firebaseio.com/electronic_book.json"
+    url:"https://ebook-api-e48c7-default-rtdb.firebaseio.com/book.json"
   }
   const bookPagedata = useHttp(config)
 
