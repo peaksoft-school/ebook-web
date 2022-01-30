@@ -1,5 +1,5 @@
-import searchIcon from '../../../assets/icons/searchIcon.svg'
-import orangeSearchIcon from '../../../assets/icons/orangeSearchIcon.svg'
+import searchIcon from '../../../../assets/icons/searchIcon.svg'
+import orangeSearchIcon from '../../../../assets/icons/orangeSearchIcon.svg'
 const SearchIcon = (props) => {
     const color = props.onColor
   return <div>
