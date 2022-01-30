@@ -1,0 +1,37 @@
+.mediumBox {
+    width: 124px;
+    text-align: start;
+    padding-left: 30px;
+    white-space: nowrap
+}
+
+.mediumBoxForFIO {
+    width: 163px;
+    text-align: start;
+    white-space: nowrap
+}
+
+.numberOfBooks {
+    width: 30px;
+    padding-right: 60px;
+    padding-left: 30px;
+}
+
+.li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 30px;
+    padding-left: 20px;
+}
+
+.li::before {
+    content: counter(my-counter); 
+    counter-increment: my-counter; 
+    color: #000000; 
+    margin-right: 0.5em;
+}
+
+.li:hover {
+    background-color: #ff4d0017;
+}

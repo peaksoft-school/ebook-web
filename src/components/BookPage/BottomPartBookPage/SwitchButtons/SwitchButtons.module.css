@@ -1,0 +1,20 @@
+.containerForSwitch {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    margin-bottom: 70px;
+}
+.redirectButton {
+    border: 0.1px solid rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    color:#C4C4C4;
+    font-size: 18px;
+}
+.redirectActiveButton {
+    border: 0.1px solid rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    color:#F34901;
+    font-size: 18px;
+}
