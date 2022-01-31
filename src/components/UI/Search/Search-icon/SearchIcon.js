@@ -1,10 +1,10 @@
-import searchIcon from '../../../../assets/icons/searchIcon.svg'
-import orangeSearchIcon from '../../../../assets/icons/orangeSearchIcon.svg'
-const SearchIcon = (props) => {
-    const color = props.onColor
-  return <div>
-      <img src={color? orangeSearchIcon : searchIcon} alt='search-icon'/>
-  </div> 
+// import searchIcon from '../../../../assets/icons/searchIcon.svg'
+import classes from './Search-icon.module.css'
+import{ ReactComponent as OrangeSearchIcon } from '../../../../assets/icons/orangeSearchIcon.svg'
+
+const SearchIcon = ({ isActive }) => {
+    const className = isActive ? classes.searchIconOrange : classes.searchIconGray
+  return <OrangeSearchIcon className={className} /> 
 };
 
 export default SearchIcon;
