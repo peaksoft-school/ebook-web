@@ -1,6 +1,7 @@
-import classes from './ProfileInAdmin.module.css'
+import Button from '../UI/Button/Button'
+import classes from './ProfileUserOrSeller.module.css'
 
-const ProfileInAdmin = () => {
+const ProfileUserOrSeller = () => {
     const person = {
         "id": 7,
         "email": "michael.lawson@reqres.in",
@@ -45,9 +46,9 @@ const ProfileInAdmin = () => {
         <div className={classes.smallAutoBox}></div>
         </div>
         <div className={classes.deleteContainer}>
-        <button className={classes.deleteBtn}>Удалить профиль</button>
+        <Button variant={"deleteProfile"} >Удалить профиль</Button>
         </div>
   </div>;
 };
 
-export default ProfileInAdmin;
+export default ProfileUserOrSeller;

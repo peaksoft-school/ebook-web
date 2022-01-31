@@ -1,7 +1,10 @@
 import './App.css';
+import ProfileUserOrSeller from './components/ProfileUserOrSeller/ProfileUserOrSeller';
 function App() {
   return (
-    <div className="App"></div>
+    <div className="App">
+      <ProfileUserOrSeller/>
+    </div>
   );
 }
 

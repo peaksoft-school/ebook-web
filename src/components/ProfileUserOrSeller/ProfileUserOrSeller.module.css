@@ -1,6 +1,8 @@
 .profileContainer {
-    width: 1360px;
-    height: 300px;
+    width: 1130px;
+    height: 420px;
+    padding: 20px;
+    margin: auto;
 }.informationContainer {
     display: flex;
     flex-direction: column;
@@ -13,19 +15,10 @@
     justify-content: flex-end;
 }
 .smallBox {
-    width: 450px;
+    width: 440px;
     height: 100px;
 }
-.smallAutoBox {
-    width: 100%;
-    height: 100px;
-}
+
 .title {
     color: #898989;
-}
-.deleteBtn {
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
-    color: red;
 }
