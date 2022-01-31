@@ -1,6 +1,6 @@
-import classes from './DeleteProfile.module.css'
+import classes from './ProfileInAdmin.module.css'
 
-const DeleteProfile = () => {
+const ProfileInAdmin = () => {
     const person = {
         "id": 7,
         "email": "michael.lawson@reqres.in",
@@ -9,14 +9,6 @@ const DeleteProfile = () => {
         'number':'+996705889125',
         "data_redistration":"03.06.2005"
     }
-    //эти данные в будущем будут приходить с бекенда
-    //поменяте данные если хотите увидеть данные продавца или пользователя 
-    // const person = {
-    //     "id": 7,
-    //     "email": "michael.lawson@reqres.in",
-    //     "first_name": "Michael",
-    //     "data_redistration":"03.06.2005"
-    // }
     
     const showAdditionalInformation=()=> {
         if(person.last_name && person.number) {
@@ -58,4 +50,4 @@ const DeleteProfile = () => {
   </div>;
 };
 
-export default DeleteProfile;
+export default ProfileInAdmin;
