@@ -5,13 +5,17 @@ import HistoryOperationTitles from './HistoryOperationTitles/HistoryOperationTit
 import useHttp from '../../hooks/use-http';
 import { useState } from 'react';
 
+let numberOfParchased;
+let numberOfFavorites;
+let numberOfBasket;
+
 const HistoryOperation = () => {
     const [location,setLocation] = useState('parchased')
     const config = {
         url:'https://ebook-api-e48c7-default-rtdb.firebaseio.com/books.json',
     }
     const getHistory = useHttp(config);
-
+    
     let history = []
 
     if(getHistory.response !== []){
@@ -51,6 +55,10 @@ const HistoryOperation = () => {
     }
 
     const showBooks=()=> {
+        numberOfParchased = history.filter((book) => book.location === 'parchased').length
+        numberOfFavorites = history.filter((book) => book.location === 'favorites').length
+        numberOfBasket = history.filter((book) => book.location === 'basket').length
+
         history = history.filter((book) => book.location === location)
         return <HistoryOperationBooksList history={history}/>
     }
@@ -63,6 +71,9 @@ const HistoryOperation = () => {
             changeToFavorites={changeToFavorites}
             changeToBasket={changeToBasket}
             location={location}
+            numberOfParchased={numberOfParchased}
+            numberOfFavorites={numberOfFavorites}
+            numberOfBasket={numberOfBasket}
             />
             <div className={classes.BooksList}>
                 {showBooks()}
