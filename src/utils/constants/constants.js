@@ -6,12 +6,14 @@ import USERS from '../../assets/icons/users.svg'
 import USER from '../../assets/icons/user.svg'
 import BOOKS from '../../assets/icons/books.svg'
 import BOOK from '../../assets/icons/book.svg'
+import ORANGESEARCH from '../../assets/icons/orangeSearchIcon.svg'
+import SEARCH from '../../assets/icons/searchIcon.svg'
 
 export const ROUTES = {
-    APPLICATIONS: '/applications',
-    SELLERS: '/sellers',
-    USERS: '/users',
-    BOOKS: '/books'
+    APPLICATIONS: '/admin/applications',
+    SELLERS: '/admin/sellers',
+    USERS: '/admin/users',
+    BOOKS: '/admin/books'
 }
 
 export const NAVICON = {
@@ -30,4 +32,9 @@ export const SIDE = {
     Sell: 'sellers',
     User: 'users',
     Books: 'books'
+}
+
+export const Search = {
+    orangeSearchIcon: ORANGESEARCH,
+    searchIcon: SEARCH
 }
