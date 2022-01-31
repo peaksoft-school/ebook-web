@@ -1,0 +1,48 @@
+.container{
+    display: flex;
+    height: 100%;
+    width: 284.5px;
+    margin: 0;
+    background-color: #F34901;
+}
+
+.ul{
+    list-style: none;
+    padding: 0;
+    margin-top: 159px;
+}
+
+.ul li {
+    display: flex;
+    padding-left: 75px;
+    padding-right: 100%;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    cursor: pointer;
+}
+
+.ul img {
+    margin-right: 15px;
+}
+
+a {
+    color: #FFFF;
+    text-decoration: none;
+}
+.noActive {
+    background-color: #F34901;
+    color: white;
+}
+
+.liActive {
+    background-color: white;
+    color: #F34901;
+}
+
+.ul li:hover, 
+.ul li:active,
+.ul li.active {
+    background-color: white;
+    color: #F34901;
+    transition-duration: 0.8s;
+} 
