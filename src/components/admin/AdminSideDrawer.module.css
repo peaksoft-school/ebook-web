@@ -1,0 +1,62 @@
+.container{
+    height: 100%;
+    width: 250px;
+    margin: 0;
+    background-color: #F34901;
+}
+
+.eb{
+    margin-left: 50px;
+}
+
+.ul{
+    list-style: none;
+    padding: 0;
+    margin-top: 159px;
+}
+
+.ul li {
+    display: flex;
+    padding-left: 42px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    cursor: pointer;
+}
+
+a {
+    color: #FFFF;
+    text-decoration: none;
+}
+.noActive {
+    background-color: #F34901;
+    color: white;
+}
+
+.liActive {
+    background-color: white;
+    color: #F34901;
+}
+
+.ul li:hover, 
+.ul li:active,
+.ul li.active {
+    background-color: white;
+    color: #F34901;
+    transition-duration: 0.8s;
+} 
+
+.app {
+    margin-right: 15.14px;
+}
+
+.sell {
+    margin-right: 14.83px;
+}
+
+.user {
+    margin-right: 19.33px;
+}
+
+.book {
+    margin-right: 17.5px;
+}
