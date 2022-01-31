@@ -1,6 +1,6 @@
-import classes from './ChangeText.module.css'
+import classes from './TextInBottomPart.module.css'
 
-const ChangeText = (props) => {
+const TextInBottomPart = (props) => {
     const {booklist, transition} = props
     return <div>
         {
@@ -18,4 +18,4 @@ const ChangeText = (props) => {
     </div>;
 };
 
-export default ChangeText;
+export default TextInBottomPart;

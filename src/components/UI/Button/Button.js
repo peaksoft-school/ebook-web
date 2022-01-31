@@ -8,7 +8,9 @@ const STYLES = [
   "load",
   "contained",
   "select",
-  "light"
+  "light",
+  "redirectActiveButton",
+  "redirectButton"
 ]
 
 const Button = ({

@@ -1,6 +1,6 @@
 import classes from './BottomPartBookPage.module.css'
 import SwitchButtons from './SwitchButtons/SwitchButtons';
-import ChangeText from './ChangeText/ChangeText';
+import TextInBottomPart from './TextInBottomPart/TextInBottomPart';
 import { useState } from 'react';
 
 const BottomPartBookPage = ({booklist}) => {
@@ -9,6 +9,7 @@ const BottomPartBookPage = ({booklist}) => {
     const redirectToAbout=()=> {
         setTransition('about')
       }
+      
       const redirectToFragment=()=> {
         setTransition('fragment')
       }
@@ -21,7 +22,7 @@ const BottomPartBookPage = ({booklist}) => {
             booklist={booklist}
             transition={transition}
             />
-            <ChangeText
+            <TextInBottomPart
             booklist={booklist}
             transition={transition}
             />
