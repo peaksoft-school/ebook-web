@@ -1,5 +1,5 @@
 import classes from './UserItem.module.css'
-import DeleteButton from '../../UI/DeleteButton/DeleteButton';
+import DeleteButton from '../../../UI/DeleteButton/DeleteButton';
 
 const UserItem = (props) => {
     const {id,first_name,last_name,phone_number,email,booksum} = props
