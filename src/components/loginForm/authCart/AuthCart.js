@@ -1,5 +1,5 @@
-import Modal from '../../UI/modal/ModalWindow'
 import AuthForm from '../../loginForm/authForm/LoginForm'
+import Modal from '../../../'
 
 const AuthCart = (props) => {
 
