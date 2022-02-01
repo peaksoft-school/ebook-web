@@ -1,32 +1,28 @@
 .box {
-    width: 1130px;
+    width: 100%;
+    margin-left: 20px;
 }
 
 .containerTitle {
     display: flex;
     justify-content: space-between;
-    width: 991px;
-    padding-left: 20px;
+    padding-left: 10px;
+    padding-right: 170px;
+    margin-top: 80px;
 }
 
 .mediumBox {
     width: 124px;
     text-align: start;
-    padding-left: 30px;
     white-space: nowrap
 }
 
-.mediumBoxForFIO {
+.mediumAndLongBox {
     width: 163px;
     text-align: start;
     white-space: nowrap
 }
 
-.numberOfBooks {
-    width: 30px;
-    padding-right: 60px;
-    padding-left: 30px;
-}
 
 .line {
     border: 0.1px solid rgba(0, 0, 0, 0.041);

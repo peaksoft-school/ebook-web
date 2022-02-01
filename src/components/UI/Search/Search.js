@@ -5,7 +5,7 @@ import useHttp from '../../../hooks/use-http'
 import {useState} from 'react'
 const Search =()=> {
     const [isFocused,setFocused] = useState(false)
-    // const [searchValue,setSearchValue] = useState('')
+    const [searchValue,setSearchValue] = useState('')
     const [filteredData,setFilteredData] = useState()
 
     const config = {
@@ -36,7 +36,9 @@ const Search =()=> {
     }
 
     const blurHandler = () => {
-        setFocused(false)
+        if(searchValue === '') {
+            setFocused(false)
+        }
     }
 
     return <div className={classes.box}>

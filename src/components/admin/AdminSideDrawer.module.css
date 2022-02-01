@@ -1,10 +1,12 @@
 .container{
     height: 100%;
     width: 250px;
-    margin: 0;
     background-color: #F34901;
 }
-
+.containerForEbookLogo{
+    display: flex;
+    justify-content: center;
+}
 .eb{
     margin-left: 50px;
 }
@@ -17,9 +19,7 @@
 
 .ul li {
     display: flex;
-    padding-left: 42px;
-    padding-bottom: 15px;
-    padding-top: 15px;
+    padding: 15px 55px;
     cursor: pointer;
 }
 
