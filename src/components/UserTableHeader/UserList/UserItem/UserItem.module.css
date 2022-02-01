@@ -29,7 +29,6 @@
     content: counter(my-counter); 
     counter-increment: my-counter; 
     color: #000000; 
-    margin-right: 0.5em;
 }
 
 .li:hover {

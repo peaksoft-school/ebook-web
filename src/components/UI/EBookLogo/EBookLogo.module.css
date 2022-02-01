@@ -1,0 +1,11 @@
+.ebookbox {
+    width: 148px;
+    height: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ebookLogo {
+    width: 93px;
+    height: 20px;
+}

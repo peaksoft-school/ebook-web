@@ -1,9 +1,8 @@
 import './App.css'
-import UserTableHeader from './components/UserTableHeader/UserTableHeader'
-
+import AdminPage from './components/admin/AdminPage'
 function App() {
   return <div className="App">
-    <UserTableHeader/>
+    <AdminPage/>
   </div>
 }
 

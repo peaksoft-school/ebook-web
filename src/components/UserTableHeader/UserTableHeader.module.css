@@ -1,11 +1,11 @@
 .box {
-    width: 1130px;
+    width: 100%;
+    margin-left: 20px;
 }
 
 .containerTitle {
     display: flex;
     justify-content: space-between;
-    width: 991px;
     padding-left: 20px;
 }
 
