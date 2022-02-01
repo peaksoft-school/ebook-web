@@ -1,11 +1,7 @@
-import './App.css';
-import BookPage from './components/BookPage/BookPage';
+import './App.css'
+
 function App() {
-  return (
-    <div className="App">
-      <BookPage/>
-    </div>
-  );
+	return <div className='App'></div>
 }
 
-export default App;
+export default App
