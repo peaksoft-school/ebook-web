@@ -7,7 +7,7 @@ function AdminPage() {
     return (
         <div className={classes.adminPage}>
             <SideDrawer/>
-            <div>
+            <div className={classes.box}>
                 <HeaderAdmin/>
                 <AdminPageRoute/>
             </div>

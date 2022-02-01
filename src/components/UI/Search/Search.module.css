@@ -1,5 +1,6 @@
 .box {
-    width: 896px;
+    width: 996px;
+    z-index: 1;
 }
 .formSearch {
     display: flex;
@@ -7,7 +8,7 @@
     margin: 0 auto;
     padding: 8px 18px;
     height: 30px;
-    border: 1px solid black;
+    border: 1px solid #d6d6d6;
     background-color: #FAFAFA;
 }
 .formSearchActive {

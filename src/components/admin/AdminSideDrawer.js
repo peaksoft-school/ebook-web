@@ -22,7 +22,9 @@ const SideDrawer = () => {
 
 return (
     <div className={classes.container}>
-            <EBookLogo className={classes.eb}/>
+        <div className={classes.containerForEbookLogo}>
+            <EBookLogo/>
+        </div>
         <div className={classes.ul}>
             <NavLink activeClassName={classes.active} to={ROUTES.APPLICATIONS}>
                 <li className={isActive === SIDE.App ? classes.liActive : classes.noActive} onClick={onClickApplicationHandler}> 
