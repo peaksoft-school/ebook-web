@@ -1,3 +1,7 @@
 .adminPage {
     display: flex;
 }
+
+.box {
+    width: 1192px;
+}

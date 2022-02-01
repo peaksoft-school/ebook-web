@@ -1,25 +1,4 @@
 .App {
-<<<<<<< HEAD
-  height: 100%;
   display: flex;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-=======
->>>>>>> 385a12f3fb48a9fd0ff1cbaa8533292eda92565a
-  display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 }

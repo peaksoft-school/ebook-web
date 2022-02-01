@@ -1,6 +1,5 @@
-// import AdminPageRoute from "../../routes/AdminPage";
 import AdminIcon from "../UI/adminIcon/AdminIcon";
-import Search from "../UI/Search/Search";
+import Search from "../UI/search/Search";
 import classes from './HeaderAdmin.module.css'
 
 const HeaderAdmin = () => {

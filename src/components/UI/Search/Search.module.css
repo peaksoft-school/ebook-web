@@ -1,5 +1,6 @@
 .box {
-    width: 896px;
+    width: 100%;
+    z-index: 1;
 }
 .formSearch {
     display: flex;
