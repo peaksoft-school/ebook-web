@@ -6,10 +6,10 @@ const UserItem = (props) => {
 
   return <div>
         <li className={classes.li}>
-            <p className={classes.mediumBoxForFIO}>{first_name} {last_name}</p>
+            <p className={classes.mediumAndLongBox}>{first_name} {last_name}</p>
             <p className={classes.mediumBox}>{phone_number}</p>
-            <p className={classes.mediumBox}>{email}</p>
-            <p className={classes.numberOfBooks}>{booksum}</p>
+            <p className={classes.mediumAndLongBox}>{email}</p>
+            <p className={classes.mediumBox}>{booksum}</p>
             <DeleteButton id={id}/>
         </li>
   </div>;
