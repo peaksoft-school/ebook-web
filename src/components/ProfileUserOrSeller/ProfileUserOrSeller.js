@@ -1,6 +1,7 @@
-import classes from './DeleteProfile.module.css'
+import Button from '../UI/Button/Button'
+import classes from './ProfileUserOrSeller.module.css'
 
-const DeleteProfile = () => {
+const ProfileUserOrSeller = () => {
     const person = {
         "id": 7,
         "email": "michael.lawson@reqres.in",
@@ -9,14 +10,6 @@ const DeleteProfile = () => {
         'number':'+996705889125',
         "data_redistration":"03.06.2005"
     }
-    //эти данные в будущем будут приходить с бекенда
-    //поменяте данные если хотите увидеть данные продавца или пользователя 
-    // const person = {
-    //     "id": 7,
-    //     "email": "michael.lawson@reqres.in",
-    //     "first_name": "Michael",
-    //     "data_redistration":"03.06.2005"
-    // }
     
     const showAdditionalInformation=()=> {
         if(person.last_name && person.number) {
@@ -53,9 +46,9 @@ const DeleteProfile = () => {
         <div className={classes.smallAutoBox}></div>
         </div>
         <div className={classes.deleteContainer}>
-        <button className={classes.deleteBtn}>Удалить профиль</button>
+        <Button variant={"deleteProfile"} >Удалить профиль</Button>
         </div>
   </div>;
 };
 
-export default DeleteProfile;
+export default ProfileUserOrSeller;
