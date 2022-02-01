@@ -5,10 +5,9 @@ import isEye from '../../../assets/png/isEye.png'
 import classes from './SignIn.module.css'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { email, password} from '../../../utils/constants'
+import { email, password } from '../../../utils/constants'
 
 const SignIn = () => {
-
 	const {
 		register,
 		handleSubmit,
@@ -21,12 +20,15 @@ const SignIn = () => {
 
 	const signInError = errors.email || errors.password
 
+	let errorMessage = signInError && (
+		<p className={classes.message}>Неправильно указан Email и/или пароль</p>
+	)
+
 	const [isPasswordShown, setIsPasswordShown] = useState(false)
 
 	const togglePassword = () => {
 		setIsPasswordShown(!isPasswordShown)
 	}
-	console.log(errors);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmitClientSignUp)}>
@@ -59,11 +61,7 @@ const SignIn = () => {
 					onClick={togglePassword}
 				/>
 			</div>
-			{signInError && (
-				<p className={classes.message}>
-					Неправильно указан Email и/или пароль
-				</p>
-			)}
+			{errorMessage}
 			<AuthButton type='submit' disabled={!isValid}>
 				Войти
 			</AuthButton>

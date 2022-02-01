@@ -39,6 +39,28 @@ const VendorRegistration = () => {
 		setisConfirmPasswordShown(!isConfirmPasswordShown)
 	}
 
+	let isHasErrorMessage =
+		(errors.name && (
+			<p className={classes.message}>Забыли заполнить имя </p>
+		)) ||
+		(errors.email && (
+			<p className={classes.message}>Введите коррекный Email</p>
+		)) ||
+		(errors.password && (
+			<p className={classes.message}>
+				Длина пароля должна быть не менее 5 символов
+			</p>
+		)) ||
+		(errors.confirmPassword && (
+			<p className={classes.message}>Пороли не совподают</p>
+		)) ||
+		(errors.phone && (
+			<p className={classes.message}>Введите корретный номер</p>
+		)) ||
+		(errors.surname && (
+			<p className={classes.message}>Забыли заполнить фамилию</p>
+		))
+
 	return (
 		<form
 			className={classes.form}
@@ -57,7 +79,10 @@ const VendorRegistration = () => {
 				type='text'
 				placeholder='Напишите вашу фамилию'
 				label='Ваша фамилия'
-				{...register(surname, { required: true ,disabled: Boolean(errors.name)})}
+				{...register(surname, {
+					required: true,
+					disabled: Boolean(errors.name),
+				})}
 			/>
 			<InputField
 				type='tel'
@@ -68,7 +93,7 @@ const VendorRegistration = () => {
 				{...register(phone, {
 					required: true,
 					pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-					disabled: Boolean(errors.surname)
+					disabled: Boolean(errors.surname),
 				})}
 			/>
 			<InputField
@@ -78,7 +103,7 @@ const VendorRegistration = () => {
 				{...register(email, {
 					required: true,
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-					disabled: Boolean(errors.phone)
+					disabled: Boolean(errors.phone),
 				})}
 			/>
 			<div className={classes.forAbsolute}>
@@ -90,7 +115,7 @@ const VendorRegistration = () => {
 					{...register(password, {
 						required: true,
 						validate: (value) => value.trim() > 5,
-						disabled: Boolean(errors.email)
+						disabled: Boolean(errors.email),
 					})}
 				/>
 				<img
@@ -108,7 +133,7 @@ const VendorRegistration = () => {
 					{...register(confirmPassword, {
 						required: true,
 						validate: (value) => value === isSamePassword,
-						disabled: Boolean(errors.password)
+						disabled: Boolean(errors.password),
 					})}
 				/>
 				<img
@@ -118,26 +143,7 @@ const VendorRegistration = () => {
 					onClick={toggleisConfirmPasswordShown}
 				/>
 			</div>
-			{errors.name && (
-				<p className={classes.message}>Забыли заполнить имя </p>
-			)}
-			{errors.email && (
-				<p className={classes.message}>Введите коррекный Email</p>
-			)}
-			{errors.password && (
-				<p className={classes.message}>
-					Длина пароля должна быть не менее 5 символов
-				</p>
-			)}
-			{errors.confirmPassword && (
-				<p className={classes.message}>Пороли не совподают</p>
-			)}
-			{errors.phone && (
-				<p className={classes.message}>Введите корретный номер</p>
-			)}
-			{errors.surname && (
-				<p className={classes.message}>Забыли заполнить фамилию</p>
-			)}
+			{isHasErrorMessage}
 			<AuthButton type='submit' disabled={!isValid}>
 				Создать аккаунт
 			</AuthButton>

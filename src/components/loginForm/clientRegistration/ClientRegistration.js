@@ -37,7 +37,23 @@ const ClientRegistration = () => {
 	const toggleisConfirmPasswordShown = () => {
 		setisConfirmPasswordShown(!isConfirmPasswordShown)
 	}
-	console.log(Boolean)
+
+	let errorMessage =
+		(errors.name && (
+			<p className={classes.message}>Введите коррекное имя </p>
+		)) ||
+		(errors.email && (
+			<p className={classes.message}>Введите коррекный Email</p>
+		)) ||
+		(errors.password && (
+			<p className={classes.message}>
+				Длина пароля должна быть не менее 5 символов
+			</p>
+		)) ||
+		(errors.confirmPassword && (
+			<p className={classes.message}>Пороли не совподают</p>
+		))
+
 	return (
 		<form onSubmit={handleSubmit(onSubmitClientSignUp)}>
 			<InputField
@@ -56,7 +72,7 @@ const ClientRegistration = () => {
 				{...register(email, {
 					required: true,
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-					disabled: Boolean(errors.name)
+					disabled: Boolean(errors.name),
 				})}
 			/>
 			<div className={classes.forAbsolute}>
@@ -95,20 +111,6 @@ const ClientRegistration = () => {
 					onClick={toggleisConfirmPasswordShown}
 				/>
 			</div>
-			{errors.name && (
-				<p className={classes.message}>Введите коррекное имя </p>
-			)}
-			{errors.email && (
-				<p className={classes.message}>Введите коррекный Email</p>
-			)}
-			{errors.password && (
-				<p className={classes.message}>
-					Длина пароля должна быть не менее 5 символов
-				</p>
-			)}
-			{errors.confirmPassword && (
-				<p className={classes.message}>Пороли не совподают</p>
-			)}
 			<div className={classes.subscribe}>
 				<input
 					type='checkbox'
@@ -117,7 +119,7 @@ const ClientRegistration = () => {
 				/>
 				<p>Подпишитесь на рассылку, чтобы получать новости от eBook </p>
 			</div>
-
+			{errorMessage}
 			<AuthButton type='submit' disabled={!isValid}>
 				Создать аккаунт
 			</AuthButton>

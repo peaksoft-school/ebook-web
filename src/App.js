@@ -1,9 +1,10 @@
 import './App.css';
 import AuthCart from './components/loginForm/authCart/AuthCart';
 function App() {
+  let close = true
   return (
     <div className="App">
-      <AuthCart/>
+      {close && <AuthCart/>}
     </div>
   );
 }
