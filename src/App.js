@@ -1,12 +1,7 @@
-import './App.css';
-import AuthCart from './components/loginForm/authCart/AuthCart';
+import './App.css'
+
 function App() {
-  let close = true
-  return (
-    <div className="App">
-      {close && <AuthCart/>}
-    </div>
-  );
+	return <div className='App'></div>
 }
 
-export default App;
+export default App
