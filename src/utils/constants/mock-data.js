@@ -1,16 +1,16 @@
 export const userlist = [
     {
       id:1,
-      first_name:'Baybolot',
-      last_name:'Janybekov',
+      first_name:'Dima',
+      last_name:'Babkin',
       phone_number:'+996 705 889 125',
       email: 'ieye7531@gmail.com',
       booksum:18,
     },
     {
       id:2,
-      first_name:'Baybolot',
-      last_name:'Janybekov',
+      first_name:'Eldiyar',
+      last_name:'Maksutov',
       phone_number:'+996 705 889 125',
       email: 'ieye7531@gmail.com',
       booksum:18,

@@ -2,7 +2,6 @@ import SideDrawer from "./AdminSideDrawer"
 import HeaderAdmin from "./HeaderAdmin"
 import classes from './AdminPage.module.css'
 import AdminPageRoute from '../../routes/AdminPage'
-import ModalForDelete from "../ModalForDelete/ModalForDelete"
 
 function AdminPage() {
     return (
@@ -11,7 +10,6 @@ function AdminPage() {
             <div className={classes.box}>
                 <HeaderAdmin/>
                 <AdminPageRoute/>
-                <ModalForDelete/>
             </div>
         </div>
     )

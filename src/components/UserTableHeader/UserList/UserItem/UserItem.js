@@ -10,7 +10,7 @@ const UserItem = (props) => {
             <p className={classes.mediumBox}>{phone_number}</p>
             <p className={classes.mediumAndLongBox}>{email}</p>
             <p className={classes.mediumBox}>{booksum}</p>
-            <DeleteButton id={id}/>
+            <DeleteButton full_name={`${first_name} ${last_name}`} id={id}/>
         </li>
   </div>;
 };
