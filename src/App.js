@@ -1,11 +1,7 @@
-import './App.css';
-import HistoryOperation from './components/HistoryOperation/HistoryOperation';
+import './App.css'
+
 function App() {
-  return (
-    <div className="App">
-      <HistoryOperation/>
-    </div>
-  );
+	return <div className='App'></div>
 }
 
-export default App;
+export default App
