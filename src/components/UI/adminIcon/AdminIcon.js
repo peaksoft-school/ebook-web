@@ -14,7 +14,7 @@ const AdminIcon = () => {
             <div className={classes.modal}>
             {state && <WhiteWrapper className={classes.logout}>Выйти</WhiteWrapper>}
             </div>
-            <img src={Admin} alt=''></img>
+            <img className={classes.img} src={Admin} alt=''></img>
             <span className={classes.title}>Administrator</span>
         </div>
     )
