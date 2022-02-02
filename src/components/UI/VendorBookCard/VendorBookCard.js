@@ -1,9 +1,9 @@
 import React from 'react';
-import classes from './BookCardVersion2.module.css'
+import classes from './VendorBookCard.module.css'
 import {ReactComponent as Icon} from '../../../assets/icons/Controls Icon.svg'
 
 
-const BookCardVersion2 = ({book, isOpen, isPopUp, className, children}) => {
+const VendorBookCard = ({book, isOpen, isPopUp, className, children}) => {
   
 
   return <div>
@@ -28,4 +28,4 @@ const BookCardVersion2 = ({book, isOpen, isPopUp, className, children}) => {
   </div>;
 };
 
-export default BookCardVersion2;
+export default VendorBookCard;
