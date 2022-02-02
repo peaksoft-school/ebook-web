@@ -1,6 +1,7 @@
 import classes from './UserTableHeader.module.css'
 import UserList from './UserList/UserList';
 import { userlist } from '../../utils/constants/mock-data';
+import Button from '../UI/Button/Button';
 
 const UserTableHeader = () => {
   return <div className={classes.box}>

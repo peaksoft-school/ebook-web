@@ -1,11 +1,11 @@
 import classes from './ModalForDelete.module.css'
 import Modal from '../UI/modal/ModalWindow';
 import Button from '../UI/Button/Button'
-import { useState } from 'react';
 
-const ModalForDelete = ({id,full_name,ExitHundler}) => {
-    const [isShowModal,setShowModal]= useState(ExitHundler)
-    console.log(isShowModal)
+const ModalForDelete = ({id,full_name,onCloseModal}) => {
+    const onCloseModalHundler=()=> {
+        onCloseModal(false)
+    }
   return <Modal>
       <div className={classes.containerForContent}>
           <div className={classes.containerForText}>
@@ -15,8 +15,8 @@ const ModalForDelete = ({id,full_name,ExitHundler}) => {
           <div className={classes.containerForButtons}>
               <Button 
               className={classes.selectButton} 
+              onClick={onCloseModalHundler}
               variant={"select"}
-            //   onClick={onExitHundler}
               >Отменить
               </Button>
               <Button>Удалить</Button>
