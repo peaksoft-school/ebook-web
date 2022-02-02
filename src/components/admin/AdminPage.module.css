@@ -1,7 +1,5 @@
 .adminPage {
     display: flex;
-    margin: auto;
-    width: 1440px;
     height: 1000px;
 }
 .box {
