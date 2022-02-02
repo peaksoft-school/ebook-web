@@ -1,20 +1,19 @@
 import React from 'react';
-import  classes from './BookCardVersion1.module.css'
+import  classes from './ClientBookCard.module.css'
 
-const BookCardVersion1 = ({book, className, ...restProps}) => {
+const ClientBookCard = ({book, className, onAddButton}) => {
 
 
 return (  
 <div >
        <ul className={classes.styles}>
         <li>
-            <div className={`${classes.card} ${className}`} >
+            <div className={`${classes.card} ${className}`} onClick={onAddButton}>
                 <img src={book.url}/>
                 <div className={classes.info}>
                     <p className={classes.title}>{book.title}</p>
                     <p className={classes.author}>{book.author}</p>
                     <p className={classes.price}>{book.price} с</p>
-                
                 </div>
             </div>
         </li>
@@ -23,4 +22,4 @@ return (
 )
 }
 
-export default BookCardVersion1;
+export default ClientBookCard;
