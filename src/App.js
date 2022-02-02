@@ -1,11 +1,7 @@
-import './App.css';
-import ProfileUserOrSeller from './components/ProfileUserOrSeller/ProfileUserOrSeller';
+import './App.css'
+
 function App() {
-  return (
-    <div className="App">
-      <ProfileUserOrSeller/>
-    </div>
-  );
+	return <div className='App'></div>
 }
 
-export default App;
+export default App
