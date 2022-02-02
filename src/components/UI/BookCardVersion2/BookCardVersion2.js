@@ -3,15 +3,15 @@ import classes from './BookCardVersion2.module.css'
 import {ReactComponent as Icon} from '../../../assets/icons/Controls Icon.svg'
 
 
-const BookCardVersion2 = ({book, onClick, className, children}) => {
+const BookCardVersion2 = ({book, isOpen, isPopUp, className, children}) => {
   
 
   return <div>
            <ul className={classes.styles}>
             <li>
-                <div className={`${classes.card} ${className}` }>
+                <div className={`${classes.card} ${className}`} onClick={isOpen}>
                     {children}
-                    <Icon className={classes.vector} onClick={onClick}/>
+                    <Icon className={classes.vector} onClick={isPopUp}/>
                     <img src={book.url}/>
                     <div className={classes.info}>
                         <div>
