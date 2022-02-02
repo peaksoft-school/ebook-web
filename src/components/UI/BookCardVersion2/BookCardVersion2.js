@@ -3,7 +3,7 @@ import classes from './BookCardVersion2.module.css'
 import {ReactComponent as Icon} from '../../../assets/icons/Controls Icon.svg'
 
 
-const BookCardVersion2 = ({book, onClick, className, children, ...restProps}) => {
+const BookCardVersion2 = ({book, onClick, className, children}) => {
   
 
   return <div>
