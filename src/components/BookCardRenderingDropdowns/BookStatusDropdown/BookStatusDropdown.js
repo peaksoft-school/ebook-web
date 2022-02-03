@@ -23,7 +23,7 @@ import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
                         {selectedOption||'Все'} 
                         <SelectIcon className={classes.icon}/>
                 </div>
-                {isOpen && 
+                  {isOpen && 
                 <div  className={classes.container2}> 
                     <div className={classes.context}>
                         {options.map(option => (
