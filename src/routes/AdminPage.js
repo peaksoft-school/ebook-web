@@ -5,7 +5,7 @@ function AdminPageRoute() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Navigate to={ROUTES.APPLICATIONS}/>}/>
+                <Route path={ROUTES.HOME} element={<Navigate to={ROUTES.APPLICATIONS}/>}/>
                 <Route path={ROUTES.APPLICATIONS} element={<h1>App</h1>}/>
                 <Route path={ROUTES.SELLERS} element={<h1>Seller</h1>}/>
                 <Route path={ROUTES.USERS} element={<h1>Users</h1>}/>

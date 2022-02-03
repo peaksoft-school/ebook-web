@@ -10,6 +10,7 @@ import ORANGESEARCH from '../../assets/icons/orangeSearchIcon.svg'
 import SEARCH from '../../assets/icons/searchIcon.svg'
 
 export const ROUTES = {
+    HOME: '/admin',
     APPLICATIONS: '/admin/applications',
     SELLERS: '/admin/sellers',
     USERS: '/admin/users',
