@@ -19,9 +19,9 @@ const AudioBook = () => {
 		{ value: 'f3', title: 'English' },
 	]
 
-	const arrayValueChanges = (item) => item.value
+	const getOptionLabel = (item) => item.value.toString()
 
-	const arrayLabelChanges = (item) => item.title
+	const getOptionValue = (item) => item.title.toString()
 
 	return (
 		<WrapperOfForms>
@@ -45,8 +45,8 @@ const AudioBook = () => {
 					data={genres}
 					className={classes.rightSectionSelect}
 					initialstate={'Литература, роман, стихи... '}
-					arrayValueChanges={arrayValueChanges}
-					arrayLabelChanges={arrayLabelChanges}
+					getOptionValue={getOptionValue}
+					getOptionLabel={getOptionLabel}
 				/>
 				<CustomTextarea
 					label='O книге'
@@ -63,8 +63,8 @@ const AudioBook = () => {
 						initialstate='Русский'
 						label='Язык'
 						className={classes.leftSideSelect}
-						arrayValueChanges={arrayValueChanges}
-						arrayLabelChanges={arrayLabelChanges}
+						getOptionValue={getOptionValue}
+						getOptionLabel={getOptionLabel}
 					/>
 					<Input
 						label='Длительность'

@@ -5,28 +5,28 @@ import Papperbook from '../addPapperBook/AddPapperBook'
 import classes from './AddBookForm.module.css'
 import UploadImageCart from '../imageUploader/UploadImageCart'
 import {
-	isAudioBook,
-	isPapperBook,
-	isElectroBook,
+	ISAUDIOBOOK,
+	ISPAPPERBOOK,
+	ISELECTROBOOK,
 } from '../../../utils/constants'
 
 const AddBookForm = () => {
-	const [typeOfBook, setTypeOfBook] = useState(isPapperBook)
+	const [typeOfBook, setTypeOfBook] = useState(ISPAPPERBOOK)
 
 	const isAudioChangeHandler = () => {
-		setTypeOfBook(isAudioBook)
+		setTypeOfBook(ISAUDIOBOOK)
 	}
 
-	const isElectroBookChangeHandler = () => {
-		setTypeOfBook(isElectroBook)
+	const ISELECTROBOOKChangeHandler = () => {
+		setTypeOfBook(ISELECTROBOOK)
 	}
 	const isBookChangeHandler = () => {
-		setTypeOfBook(isPapperBook)
+		setTypeOfBook(ISPAPPERBOOK)
 	}
 
-	const electroBook = typeOfBook === isElectroBook
-	const papperBook = typeOfBook === isPapperBook
-	const audioBook = typeOfBook === isAudioBook
+	const electroBook = typeOfBook === ISELECTROBOOK
+	const papperBook = typeOfBook === ISPAPPERBOOK
+	const audioBook = typeOfBook === ISAUDIOBOOK
 
 	const onPaperBookSubmit = (data) => {
 		console.log(data)
@@ -66,7 +66,7 @@ const AddBookForm = () => {
 							<input
 								type='radio'
 								name='type'
-								onChange={isElectroBookChangeHandler}
+								onChange={ISELECTROBOOKChangeHandler}
 								defaultChecked={electroBook}
 								defaultValue={electroBook}
 								className={classes.radioBtn}

@@ -18,9 +18,9 @@ const ElectroBook = () => {
 		{ id: 'f3', name: 'English' },
 	]
 
-	const arrayValueChanges = (item) => item.value
+	const getOptionLabel = (item) => item.value.toString()
 
-	const arrayLabelChanges = (item) => item.title
+	const getOptionValue = (item) => item.title.toString()
 
 	return (
 		<WrapperOfForms>
@@ -44,8 +44,8 @@ const ElectroBook = () => {
 					data={options}
 					className={classes.rightSectionSelect}
 					initialstate={'Литература, роман, стихи... '}
-					arrayValueChanges={arrayValueChanges}
-					arrayLabelChanges={arrayLabelChanges}
+					getOptionValue={getOptionValue}
+					getOptionLabel={getOptionLabel}
 				/>
 				<Input
 					label='Издательство'
@@ -75,8 +75,8 @@ const ElectroBook = () => {
 						initialstate='Русский'
 						label='Язык'
 						className={classes.leftSideSelect}
-						arrayValueChanges={arrayValueChanges}
-						arrayLabelChanges={arrayLabelChanges}
+						getOptionValue={getOptionValue}
+						getOptionLabel={getOptionLabel}
 					/>
 					<Input
 						label='Объем'

@@ -2,22 +2,15 @@ import React, { forwardRef } from 'react'
 import './CustomSelect.css'
 
 const CustomSelect = forwardRef((props, ref) => {
-	const options = props.data.map((item) => (
+
+	const { getOptionLabel , getOptionValue} = props
+
+	const options = props.data.map((item,index) => (
 		<option
-			key={
-				props.arrayValueChanges
-					? props.arrayValueChanges(item)
-					: item.id
-			}
-			id={
-				props.arrayValueChanges
-					? props.arrayValueChanges(item)
-					: item.id
-			}
+			key={index}
+			id={getOptionValue ? getOptionValue(item) : item.id}
 		>
-			{props.arrayLabelChanges
-				? props.arrayLabelChanges(item)
-				: item.name}
+			{getOptionLabel ? getOptionLabel(item) : item.name}
 		</option>
 	))
 

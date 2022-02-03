@@ -29,9 +29,9 @@ const Papperbook = (props) => {
 		{ value: 'f3', title: 'English' },
 	]
 
-	const arrayValueChanges = (item) => item.value
+	const getOptionLabel = (item) => item.value.toString()
 
-	const arrayLabelChanges = (item) => item.title
+	const getOptionValue = (item) => item.title.toString()
 
 	return (
 		<WrapperOfForms>
@@ -60,8 +60,8 @@ const Papperbook = (props) => {
 				<CustomSelect
 					label={'Выберите жанр'}
 					data={genres}
-					arrayValueChanges={arrayValueChanges}
-					arrayLabelChanges={arrayLabelChanges}
+					getOptionLabel={getOptionLabel}
+					getOptionValue={getOptionValue}
 					className={classes.rightSectionSelect}
 					initialstate={'Литература, роман, стихи... '}
 					{...register('janr', { required: true })}
@@ -98,8 +98,8 @@ const Papperbook = (props) => {
 						{...register('lang')}
 						required
 						data={languagesFromApi}
-						arrayValueChanges={arrayValueChanges}
-						arrayLabelChanges={arrayLabelChanges}
+						getOptionLabel={getOptionLabel}
+						getOptionValue={getOptionValue}
 						initialstate='Русский'
 						label='Язык'
 						className={classes.leftSideSelect}
