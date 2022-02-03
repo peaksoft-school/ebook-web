@@ -6,21 +6,21 @@ import CustomTextarea from '../../UI/customTextarea/CustomTextarea'
 import CustomCheckbox from '../../UI/customCheckbox/CustomCheckbox'
 import { ReactComponent as Uploadsvg } from '../../../assets/icons/upload.svg'
 const ElectroBook = () => {
-	const options = [
-		{ id: 'chocolate', name: 'Литература' },
-		{ id: 'strawberry', name: 'Роман' },
-		{ id: 'vanilla', name: 'Трагедия' },
+	const genres = [
+		{ value: 'chocolate', title: 'Литература' },
+		{ value: 'strawberry', title: 'Роман' },
+		{ value: 'vanilla', title: 'Трагедия' },
 	]
 
 	const languagesFromApi = [
-		{ id: 'f1', name: 'Русский' },
-		{ id: 'f2', name: 'Немецкий' },
-		{ id: 'f3', name: 'English' },
+		{ value: 'f1', title: 'Русский' },
+		{ value: 'f2', title: 'Немецкий' },
+		{ value: 'f3', title: 'English' },
 	]
 
-	const getOptionLabel = (item) => item.value.toString()
+	const getOptionLabel = (item) => item.title
 
-	const getOptionValue = (item) => item.title.toString()
+	const getOptionValue = (item) => item.value
 
 	return (
 		<WrapperOfForms>
@@ -41,7 +41,7 @@ const ElectroBook = () => {
 				/>
 				<CustomSelect
 					label={'Выберите жанр'}
-					data={options}
+					data={genres}
 					className={classes.rightSectionSelect}
 					initialstate={'Литература, роман, стихи... '}
 					getOptionValue={getOptionValue}

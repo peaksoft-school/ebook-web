@@ -17,7 +17,7 @@ const AddBookForm = () => {
 		setTypeOfBook(ISAUDIOBOOK)
 	}
 
-	const ISELECTROBOOKChangeHandler = () => {
+	const isElectroChangeHandler = () => {
 		setTypeOfBook(ISELECTROBOOK)
 	}
 	const isBookChangeHandler = () => {
@@ -66,7 +66,7 @@ const AddBookForm = () => {
 							<input
 								type='radio'
 								name='type'
-								onChange={ISELECTROBOOKChangeHandler}
+								onChange={isElectroChangeHandler}
 								defaultChecked={electroBook}
 								defaultValue={electroBook}
 								className={classes.radioBtn}

@@ -19,9 +19,9 @@ const AudioBook = () => {
 		{ value: 'f3', title: 'English' },
 	]
 
-	const getOptionLabel = (item) => item.value.toString()
+	const getOptionLabel = (item) => item.title
 
-	const getOptionValue = (item) => item.title.toString()
+	const getOptionValue = (item) => item.value
 
 	return (
 		<WrapperOfForms>

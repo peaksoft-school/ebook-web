@@ -2,12 +2,19 @@ import React, { forwardRef } from 'react'
 import './CustomSelect.css'
 
 const CustomSelect = forwardRef((props, ref) => {
+	const {
+		getOptionLabel,
+		getOptionValue,
+		className,
+		initialstate,
+		label,
+		id,
+		...rest
+	} = props
 
-	const { getOptionLabel , getOptionValue} = props
-
-	const options = props.data.map((item,index) => (
+	const options = props.data.map((item) => (
 		<option
-			key={index}
+			key={getOptionValue ? getOptionValue(item) : item.id}
 			id={getOptionValue ? getOptionValue(item) : item.id}
 		>
 			{getOptionLabel ? getOptionLabel(item) : item.name}
@@ -17,18 +24,18 @@ const CustomSelect = forwardRef((props, ref) => {
 	return (
 		<div className='customBox'>
 			<label id={props.id} className='customSelect'>
-				{props.label}
+				{label}
 			</label>
 			<select
 				ref={ref}
-				{...props}
+				{...rest}
 				name='customSearch'
-				className={`select ${props.className}`}
+				className={`select ${className}`}
 				required
 				defaultValue=''
 			>
 				<option className='option' value='' disabled hidden>
-					{props.initialstate}
+					{initialstate}
 				</option>
 				{options}
 			</select>
