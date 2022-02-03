@@ -3,26 +3,26 @@ import SignIn from '../signIn/SignIn'
 import VendorRegistration from '../vendorRegistration/VendorRegistration'
 import classes from './LoginForm.module.css'
 import { useState } from 'react'
-import { isLogin, isVendor, isUser } from '../../../utils/constants'
+import { ISLOGIN, ISVENDOR, ISUSER } from '../../../utils/constants'
 
 const AuthForm = () => {
 	
-	const [typeOfRegistration, setTypeOfRegistration] = useState(isLogin)
+	const [typeOfRegistration, setTypeOfRegistration] = useState(ISLOGIN)
 
-	const showSignInFormRegistration = typeOfRegistration === isLogin
-	const showNewUserFormRegistration = typeOfRegistration === isUser
-	const showNewVendorFormRegistration = typeOfRegistration === isVendor
+	const showSignInFormRegistration = typeOfRegistration === ISLOGIN
+	const showNewUserFormRegistration = typeOfRegistration === ISUSER
+	const showNewVendorFormRegistration = typeOfRegistration === ISVENDOR
 
 	const vendorFormChangeHandler = () => {
-		setTypeOfRegistration(isVendor)
+		setTypeOfRegistration(ISVENDOR)
 	}
 
 	const signUpFromChangeHandler = () => {
-		setTypeOfRegistration(isLogin)
+		setTypeOfRegistration(ISLOGIN)
 	}
 
 	const userFormChangeHandler = () => {
-		setTypeOfRegistration(isUser)
+		setTypeOfRegistration(ISUSER)
 	}
 
 	return (

@@ -6,10 +6,10 @@ import isEye from '../../../assets/png/isEye.png'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
-	email,
-	name,
-	confirmPassword,
-	password,
+	EMAIL,
+	NAME,
+	CONFIRMPASSWORD,
+	PASSWORD,
 } from '../../../utils/constants'
 
 const ClientRegistration = () => {
@@ -20,7 +20,7 @@ const ClientRegistration = () => {
 		watch,
 	} = useForm({ mode: 'onTouched' })
 
-	const isPassworIsSame = watch('password')
+	const isPassworIsSame = watch(PASSWORD)
 
 	const onSubmitClientSignUp = (data) => {
 		console.log(data)
@@ -39,18 +39,18 @@ const ClientRegistration = () => {
 	}
 
 	let errorMessage =
-		(errors.name && (
+		(errors.NAME && (
 			<p className={classes.message}>Введите коррекное имя </p>
 		)) ||
-		(errors.email && (
+		(errors.EMAIL && (
 			<p className={classes.message}>Введите коррекный Email</p>
 		)) ||
-		(errors.password && (
+		(errors.PASSWORD && (
 			<p className={classes.message}>
 				Длина пароля должна быть не менее 5 символов
 			</p>
 		)) ||
-		(errors.confirmPassword && (
+		(errors.CONFIRMPASSWORD && (
 			<p className={classes.message}>Пороли не совподают</p>
 		))
 
@@ -60,7 +60,7 @@ const ClientRegistration = () => {
 				type='name'
 				placeholder='Напишите ваше имя'
 				label='Ваше имя'
-				{...register(name, {
+				{...register(NAME, {
 					required: true,
 					validate: (value) => value.trim().length !== 0,
 				})}
@@ -69,7 +69,7 @@ const ClientRegistration = () => {
 				type='email'
 				placeholder='Напишите ваш email'
 				label='Email'
-				{...register(email, {
+				{...register(EMAIL, {
 					required: true,
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
 					disabled: Boolean(errors.name),
@@ -81,7 +81,7 @@ const ClientRegistration = () => {
 					placeholder='Напишите пароль'
 					label='Пароль'
 					autoComplete='off'
-					{...register(password, {
+					{...register(PASSWORD, {
 						required: true,
 						minLength: 5,
 						disabled: Boolean(errors.email),
@@ -98,7 +98,7 @@ const ClientRegistration = () => {
 					placeholder='Подтвердите пароль'
 					label='Подтвердите пароль'
 					autoComplete='off'
-					{...register(confirmPassword, {
+					{...register(CONFIRMPASSWORD, {
 						required: true,
 						validate: (value) => value === isPassworIsSame,
 						disabled: Boolean(errors.password),
