@@ -18,10 +18,10 @@ import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
       setIsOpen(false);
     }
   
-    return <div className={classes.content}>
+    return <div>
                 <div onClick={toggling} className={classes.selected}>
                         {selectedOption||'Все'} 
-                        <SelectIcon/>
+                        <SelectIcon className={classes.icon}/>
                 </div>
                 {isOpen && 
                 <div  className={classes.container2}> 
