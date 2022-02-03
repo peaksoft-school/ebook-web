@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import classes from './BookTypeDropdown.module.css'
+import classes from './BookGenreDropdown.module.css'
 import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
 const genre = [
     {
@@ -41,8 +41,16 @@ const genre = [
       id: 'id8',
       title :'Увлечения',
       amount: "1234"
+    },{
+      id: 'id9',
+      title :'Красота. Здоровье.Спорт',
+      amount: "1234"
     },
-    
+    {
+      id: 'id10',
+      title :'Увлечения',
+      amount: "1234"
+    },
     ]
     
     
@@ -51,7 +59,7 @@ const genre = [
         const toggling = () => setIsOpen(!isOpen)
         const [selectedOption, setSelectedOption] = useState(null)
         const onOptionClicked = value =>() => {
-          setSelectedOption(value);
+          setSelectedOption(value.title);
           setIsOpen(false);
         }
       
@@ -67,8 +75,12 @@ const genre = [
                             <ul>
                                     <li 
                                         onClick={onOptionClicked(option)} 
-                                        key={option}>
-                                            {option}
+                                        key={option.id}>
+                                            {
+                                              <div className={classes.items} key ={option.id}>
+                                            <p className={classes.title}>{option.title}</p> 
+                                            <p className={classes.amount}>{option.amount}</p>
+                                            </div> }
                                     </li>
                             </ul>
                             ))} 
@@ -79,14 +91,4 @@ const genre = [
       
     export default BookGenreDropdown;
 
-    // export const BookGenrePopUp = props => {
-    //   return <div className={classes.frame}>
-    //     <div className={`${classes.scroll} ${classes.content}`}>
-    //         {genre.map (item => 
-    //         <div className={classes.items} key ={item.id}>
-    //           <p className={classes.title}>{item.title}</p> 
-    //           <p className={classes.amount}>{item.amount}</p>
-    //         </div>)}
-    //         </div>
-    //     </div>;
-    // };
+    
