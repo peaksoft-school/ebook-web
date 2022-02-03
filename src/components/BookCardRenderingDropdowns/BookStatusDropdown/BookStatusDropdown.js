@@ -28,8 +28,15 @@ import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
                     <div className={classes.context}>
                         {options.map(option => (
                         <ul>
-                                <li onClick={onOptionClicked(option)} key={option}>{option}</li>
-                                {option == 'Со скидками'? !<hr className={classes.line2}/> : <hr className={classes.line2}/> }
+                                <li 
+                                    onClick={onOptionClicked(option)} 
+                                    key={option}>
+                                    {option}
+                                </li>
+                                {option == 'Со скидками'
+                                    ? !<hr className={classes.line2}/> 
+                                    : <hr className={classes.line2}/> 
+                                }
                         </ul>
                         ))} 
                     </div>

@@ -19,7 +19,7 @@ import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
   
     return <div>
                 <div onClick={toggling} className={classes.selected}>
-                        {selectedOption||'Все'} 
+                        {selectedOption||'Аудиокниги'} 
                         <SelectIcon className={classes.icon}/>
                 </div>
                   {isOpen && 
@@ -27,8 +27,15 @@ import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
                     <div className={classes.context}>
                         {options.map(option => (
                         <ul>
-                                <li onClick={onOptionClicked(option)} key={option}>{option}</li>
-                                {option == 'Электронные книги'? !(<hr className={classes.line2}/>) : <hr className={classes.line2}/> }
+                                <li 
+                                    onClick={onOptionClicked(option)} 
+                                    key={option}>
+                                        {option}
+                                </li>
+                                {option == 'Электронные книги'
+                                    ? !(<hr className={classes.line2}/>) 
+                                    : <hr className={classes.line2}/> 
+                                }
                         </ul>
                         ))} 
                     </div>
