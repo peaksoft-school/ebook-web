@@ -1,7 +1,7 @@
 import React from 'react';
 
-const icon = () => {
+const joker = () => {
   return <div></div>;
 };
 
-export default icon;
+export default joker;
