@@ -12,10 +12,9 @@ import {ReactComponent as Delete} from '../../assets/icons/Delete.svg'
         </div>
         <hr className={classes.line}/>
         <div className={classes.delete} onClick={props.onDelete}>
-           <Delete/>
-           <p>Удалить</p>
+            <Delete/>
+            <p>Удалить</p>
         </div>
-        
     </div>
   );
 };
