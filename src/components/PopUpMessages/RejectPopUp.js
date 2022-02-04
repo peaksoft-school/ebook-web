@@ -3,8 +3,7 @@ import classes from './RejectPopUp.module.css'
 import {ReactComponent as Edit} from '../../assets/icons/Edit.svg'
 import {ReactComponent as Reject} from '../../assets/icons/Reject.svg'
 
-
-export const RejectPopUp = props => {
+ const RejectPopUp = props => {
     return (
       <div className={classes.container} onClick={props.onEdit}>
           <div className={classes.edit}>
@@ -21,3 +20,4 @@ export const RejectPopUp = props => {
     );
   };
   
+  export default RejectPopUp

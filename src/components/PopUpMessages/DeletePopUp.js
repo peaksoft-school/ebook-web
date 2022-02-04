@@ -3,8 +3,7 @@ import classes from './DeletePopUp.module.css'
 import {ReactComponent as Edit} from '../../assets/icons/Edit.svg'
 import {ReactComponent as Delete} from '../../assets/icons/Delete.svg'
 
-
-export const DeletePopUp = props => {
+ const DeletePopUp = props => {
   return (
     <div className={classes.container} onClick={props.onEdit}>
         <div className={classes.edit}>
@@ -20,3 +19,5 @@ export const DeletePopUp = props => {
     </div>
   );
 };
+
+export default DeletePopUp;
