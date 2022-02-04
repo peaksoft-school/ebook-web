@@ -1,0 +1,22 @@
+import classes from './SellerTableHeader.module.css'
+import { getSellers } from '../../utils/constants/mock-data';
+import SellerList from './SellerList/SellerList';
+
+const SellerTableHeader = () => {
+  let sellerlist = getSellers()
+  return <div className={classes.box}>
+      <div className={classes.containerTitle}>
+        <p><b>№</b></p>
+        <p className={classes.mediumAndLongBox}><b>Ф.И.</b></p>
+        <p className={classes.mediumBox}><b>Номер телефона</b></p>
+        <p className={classes.mediumAndLongBox}><b>Почта</b></p>
+        <p className={classes.mediumBox}><b>Количество книг</b></p>
+      </div>
+      <hr className={classes.line}/>
+      <div className={classes.containerList}>
+        <SellerList sellerList={sellerlist}/>
+      </div>
+  </div>;
+};
+
+export default SellerTableHeader;
