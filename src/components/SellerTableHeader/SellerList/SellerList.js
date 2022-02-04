@@ -1,8 +1,5 @@
 import classes from './SellerList.module.css'
 import SellerItem from './SellerItem/SellerItem';
-import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-import { userlist } from '../../../utils/constants/mock-data';
 
 const SellerList = ({sellerList}) => {
   return <div>
@@ -20,7 +17,6 @@ const SellerList = ({sellerList}) => {
             })}
         </ol>
         }
-    <Outlet />
   </div>;
 };
 
