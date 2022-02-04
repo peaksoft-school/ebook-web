@@ -65,21 +65,19 @@ const genre = [
       
         return <div>
                     <div onClick={toggling} className={classes.selected}>
-                            {selectedOption||'Genre'} 
+                            {selectedOption||'Жанры'} 
                             <SelectIcon className={classes.icon}/>
                     </div>
                       {isOpen && 
                     <div  className={classes.frame}> 
                         <div className={`${classes.scroll} ${classes.content}`}>
                             {genre.map(option => (
-                            <ul>
-                                    <li 
-                                        onClick={onOptionClicked(option)} 
-                                        key={option.id}>
+                            <ul key={option.id}>
+                                    <li onClick={onOptionClicked(option)}>
                                             {
                                               <div className={classes.items} key ={option.id}>
-                                            <p className={classes.title}>{option.title}</p> 
-                                            <p className={classes.amount}>{option.amount}</p>
+                                                <p className={classes.title}>{option.title}</p> 
+                                                <p className={classes.amount}>{option.amount}</p>
                                             </div> }
                                     </li>
                             </ul>

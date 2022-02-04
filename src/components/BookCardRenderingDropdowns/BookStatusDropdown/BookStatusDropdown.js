@@ -27,10 +27,8 @@ import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
                 <div  className={classes.container2}> 
                     <div className={classes.context}>
                         {options.map(option => (
-                        <ul>
-                                <li 
-                                    onClick={onOptionClicked(option)} 
-                                    key={option}>
+                        <ul key={option}>
+                                <li onClick={onOptionClicked(option)}>
                                     {option}
                                 </li>
                                 {option == 'Со скидками'
