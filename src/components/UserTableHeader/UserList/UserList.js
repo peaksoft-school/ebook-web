@@ -1,8 +1,5 @@
 import classes from './UserList.module.css'
 import UserItem from './UserItem/UserItem'
-import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-
 const UserList = ({userlist}) => {
   return <div>
         {
@@ -16,7 +13,6 @@ const UserList = ({userlist}) => {
             })}
         </ol>
         }
-    <Outlet />
   </div>;
 };
 
