@@ -1,12 +1,20 @@
 import Button from '../UI/Button/Button'
 import classes from './UserProfile.module.css'
+import ModalForDelete from '../ModalForDelete/ModalForDelete';
 import { useParams } from "react-router-dom";
 import { getUser } from '../../utils/constants/mock-data';
+import { useState } from 'react';
+
 
 const UserProfile = () => {
+    const [isShowModal,setIsShowModal] = useState(false)
+
     const params = useParams();
     const person = getUser(parseInt(params.userId, 10))
     
+    const showModalForDelete=()=> {
+        setIsShowModal(!isShowModal)
+    }
   return <div className={classes.profileContainer}>
       <div className={classes.informationContainer}>
          <div className={classes.smallBox}>
@@ -24,8 +32,16 @@ const UserProfile = () => {
         <div className={classes.smallAutoBox}></div>
         </div>
         <div className={classes.deleteContainer}>
-        <Button variant={"deleteProfile"} >Удалить профиль</Button>
+        <Button onClick={showModalForDelete} variant={"deleteProfile"} >Удалить профиль</Button>
         </div>
+        {
+        isShowModal 
+        && <ModalForDelete
+        onCloseModal={showModalForDelete} 
+        full_name={`${person.first_name} ${person.last_name}`}
+        id={person.id}
+        />
+        }
   </div>;
 };
 

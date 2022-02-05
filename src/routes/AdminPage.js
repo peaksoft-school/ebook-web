@@ -8,13 +8,11 @@ function AdminPageRoute() {
     return (
         <>
             <Routes>
-                <Route path={ROUTES.APPLICATIONS} element={<h1>App</h1>}/>
-                <Route path={ROUTES.SELLERS} element={<SellerTableHeader/>}>
-                    <Route path=":sellerId" element={<SellerProfile/>} />
-                </Route>
-                <Route path={ROUTES.USERS} element={<UserTableHeader/>}>
-                <Route path=":userId" element={<UserProfile/>} />
-                    </Route>
+                <Route path={ROUTES.APPLICATIONS} index element={<h1>App</h1>}/>
+                <Route path={ROUTES.SELLERS} element={<SellerTableHeader/>}/>
+                <Route path="/admin/sellers/:sellerId" element={<SellerProfile/>} />
+                <Route path={ROUTES.USERS} element={<UserTableHeader/>}/>
+                <Route path='/admin/users/:userId' element={<UserProfile/>} />
                 <Route path={ROUTES.BOOKS} element={<h1>book</h1>}/>
             </Routes>
         </>

@@ -7,22 +7,15 @@
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
-    padding-right: 602px;
+    padding-right: 671px;
     margin-top: 80px;
 }
 
 .mediumBox {
-    width: 163px;
+    width: 170px;
     text-align: start;
     white-space: nowrap
 }
-
-.mediumAndLongBox {
-    width: 143px;
-    text-align: start;
-    white-space: nowrap
-}
-
 
 .line {
     border: 0.1px solid rgba(0, 0, 0, 0.041);

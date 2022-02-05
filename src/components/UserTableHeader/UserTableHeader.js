@@ -8,7 +8,7 @@ const UserTableHeader = () => {
       <div className={classes.containerTitle}>
         <p><b>№</b></p>
         <p className={classes.mediumBox}><b>Ф.И.</b></p>
-        <p className={classes.mediumAndLongBox}><b>Почта</b></p>
+        <p className={classes.mediumBox}><b>Почта</b></p>
       </div>
       <hr className={classes.line}/>
       <div className={classes.containerList}>

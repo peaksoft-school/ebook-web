@@ -1,12 +1,20 @@
 import Button from '../UI/Button/Button'
 import classes from './SellerProfile.module.css'
+import ModalForDelete from '../ModalForDelete/ModalForDelete';
 import { useParams } from "react-router-dom";
 import { getSeller } from '../../utils/constants/mock-data';
+import { useState } from 'react';
 
 const SellerProfile = () => {
+    const [isShowModal,setIsShowModal] = useState(false)
+
     const params = useParams();
-    console.log(params.sellerId)
     const person = getSeller(parseInt(params.sellerId, 10))
+
+
+    const showModalForDelete=()=> {
+      setIsShowModal(!isShowModal)
+    }
     
   return <div className={classes.profileContainer}>
       <div className={classes.informationContainer}>
@@ -33,8 +41,16 @@ const SellerProfile = () => {
         <div className={classes.smallAutoBox}></div>
         </div>
         <div className={classes.deleteContainer}>
-        <Button variant={"deleteProfile"} >Удалить профиль</Button>
+        <Button onClick={showModalForDelete} variant={"deleteProfile"} >Удалить профиль</Button>
         </div>
+        {
+        isShowModal 
+        && <ModalForDelete
+        onCloseModal={showModalForDelete} 
+        full_name={`${person.first_name} ${person.last_name}`}
+        id={person.id}
+        />
+        }
   </div>;
 };
 

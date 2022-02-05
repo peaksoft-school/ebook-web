@@ -1,37 +1,33 @@
 .mediumBox {
-    width: 163px;
+    width: 170px;
     text-align: start;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
-.mediumAndLongBox {
-    width: 143px;
-    text-align: start;
-    white-space: nowrap;
-    margin-right: 404px;
-}
-
-.numberOfBooks {
-    padding-right: 60px;
-    padding-left: 30px;
-    text-align: start;
+.containerLiFor {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-right: 30px;
+    padding-left: 10px;
 }
 
 .li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 30px;
-    padding-left: 20px;
-    color: #000000; 
+    width: 510px;
+    color: #000000;
+    margin-right: 600px; 
 }
 
 .li::before {
     content: counter(my-counter); 
     counter-increment: my-counter; 
     color: #000000; 
+    width: 20px;
 }
 
-.li:hover {
+.containerLiFor:hover {
     background-color: #ff4d0017;
 }

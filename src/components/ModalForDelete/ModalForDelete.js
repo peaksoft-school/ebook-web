@@ -19,7 +19,10 @@ const ModalForDelete = ({id,full_name,onCloseModal}) => {
               variant={"select"}
               >Отменить
               </Button>
-              <Button>Удалить</Button>
+              <Button
+              onClick={onCloseModalHundler}
+              >Удалить
+              </Button>
           </div>
       </div>
   </Modal>
