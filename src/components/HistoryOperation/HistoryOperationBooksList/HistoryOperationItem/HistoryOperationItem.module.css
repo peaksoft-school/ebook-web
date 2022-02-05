@@ -1,0 +1,41 @@
+.bookLi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 0.1px solid #a3a3a37a;
+    margin-bottom: 30px;
+    margin-left: 18px;
+}
+
+.historyImage {
+    width: 82px;
+    height: 132px;
+}
+
+.bookNameInformation {
+    width: 218px;
+    height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.promocode {
+    color: red;
+}
+
+.withoutDiscount {
+    color: #a3a3a3d3;
+    text-decoration: line-through solid #a3a3a37a;
+    margin-right: 20px;
+}
+
+.smallBox {
+    width: 100px;
+}
+
+.state {
+    width: 75px;
+    text-align: end;
+}

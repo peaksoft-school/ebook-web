@@ -15,7 +15,6 @@ const Search =()=> {
     const list = useHttp(config)
 
     function changeColorInput(event) {
-        setSearchValue(event.target.value)
         if(event.target.value === '') {
             setFilteredData([])
         } else if(event.target.value) {

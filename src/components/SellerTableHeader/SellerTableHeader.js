@@ -4,6 +4,7 @@ import SellerList from './SellerList/SellerList';
 
 const SellerTableHeader = () => {
   let sellerlist = getSellers()
+  
   return <div className={classes.box}>
       <div className={classes.containerTitle}>
         <p><b>№</b></p>

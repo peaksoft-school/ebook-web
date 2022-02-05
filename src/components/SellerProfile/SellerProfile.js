@@ -11,7 +11,6 @@ const SellerProfile = () => {
     const params = useParams();
     const person = getSeller(parseInt(params.sellerId, 10))
 
-
     const showModalForDelete=()=> {
       setIsShowModal(!isShowModal)
     }

@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { getUser } from '../../utils/constants/mock-data';
 import { useState } from 'react';
 
-
 const UserProfile = () => {
     const [isShowModal,setIsShowModal] = useState(false)
 
@@ -15,6 +14,7 @@ const UserProfile = () => {
     const showModalForDelete=()=> {
         setIsShowModal(!isShowModal)
     }
+    
   return <div className={classes.profileContainer}>
       <div className={classes.informationContainer}>
          <div className={classes.smallBox}>

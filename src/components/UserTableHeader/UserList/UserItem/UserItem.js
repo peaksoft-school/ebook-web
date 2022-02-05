@@ -9,10 +9,10 @@ const UserItem = (props) => {
         <Link 
         to={`/admin/users/${id}`}
         >
-        <li className={classes.li}>
-            <p className={classes.mediumBox}>{first_name}</p>
-            <p className={classes.mediumBox}>{email}</p>
-        </li>
+          <li className={classes.li}>
+              <p className={classes.mediumBox}>{first_name}</p>
+              <p className={classes.mediumBox}>{email}</p>
+          </li>
         </Link>
         <DeleteButton full_name={`${first_name}`} id={id}/>
   </div>;

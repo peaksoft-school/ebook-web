@@ -1,5 +1,6 @@
 .container{
     height: 100%;
+    position: fixed;
     width: 250px;
     background-color: #F34901;
 }
