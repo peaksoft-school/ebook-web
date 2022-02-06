@@ -3,7 +3,7 @@ import AuthButton from '../../UI/authButton/AuthButton'
 import InputField from '../../UI/inputField/InputField'
 import eye from '../../../assets/png/eye.png'
 import isEye from '../../../assets/png/isEye.png'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
 	EMAIL,
@@ -11,8 +11,14 @@ import {
 	CONFIRMPASSWORD,
 	PASSWORD,
 } from '../../../utils/constants'
+import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
+import { useDispatch, useSelector } from 'react-redux'
+import { clientRegistration } from '../../../store/authReducer/signInSetting'
 
 const ClientRegistration = () => {
+	const { status, error } = useSelector((state) => state.authorization)
+	const dispatch = useDispatch()
+
 	const {
 		register,
 		handleSubmit,
@@ -22,9 +28,12 @@ const ClientRegistration = () => {
 
 	const isPassworIsSame = watch(PASSWORD)
 
-	const onSubmitClientSignUp = (data) => {
-		console.log(data)
-	}
+	const onSubmitClientSignUp = useCallback(
+		(data) => {
+			dispatch(clientRegistration(data))
+		},
+		[dispatch],
+	)
 
 	const [isPasswordShown, setIsPasswordShown] = useState(false)
 
@@ -39,20 +48,21 @@ const ClientRegistration = () => {
 	}
 
 	let errorMessage =
-		(errors.NAME && (
+		(errors.name && (
 			<p className={classes.message}>Введите коррекное имя </p>
 		)) ||
-		(errors.EMAIL && (
+		(errors.email && (
 			<p className={classes.message}>Введите коррекный Email</p>
 		)) ||
-		(errors.PASSWORD && (
+		(errors.password && (
 			<p className={classes.message}>
 				Длина пароля должна быть не менее 5 символов
 			</p>
 		)) ||
-		(errors.CONFIRMPASSWORD && (
+		(errors.confirmpassword && (
 			<p className={classes.message}>Пороли не совподают</p>
-		))
+		)) ||
+		(error && <p className={classes.message}>An error occured: {error}</p>)
 
 	return (
 		<form onSubmit={handleSubmit(onSubmitClientSignUp)}>
@@ -120,6 +130,7 @@ const ClientRegistration = () => {
 				<p>Подпишитесь на рассылку, чтобы получать новости от eBook </p>
 			</div>
 			{errorMessage}
+			{status === 'loading' && <LoadingSpinner />}
 			<AuthButton type='submit' disabled={!isValid}>
 				Создать аккаунт
 			</AuthButton>

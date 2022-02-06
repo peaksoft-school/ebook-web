@@ -4,15 +4,11 @@ import classes from './VendorRegistration.module.css'
 import { useForm } from 'react-hook-form'
 import isEye from '../../../assets/png/isEye.png'
 import eye from '../../../assets/png/eye.png'
-import { useState } from 'react'
-import {
-	CONFIRMPASSWORD,
-	EMAIL,
-	NAME,
-	PASSWORD,
-	PHONE,
-	SURNAME,
-} from '../../../utils/constants'
+import { useCallback, useState } from 'react'
+import { CONFIRMPASSWORD, EMAIL, PASSWORD } from '../../../utils/constants'
+import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
+import { useDispatch, useSelector } from 'react-redux'
+import { vendorRegistration } from '../../../store/authReducer/signInSetting'
 
 const VendorRegistration = () => {
 	const {
@@ -20,13 +16,19 @@ const VendorRegistration = () => {
 		handleSubmit,
 		formState: { errors, isValid },
 		watch,
-	} = useForm({ mode: 'onTouched' })
+	} = useForm({ mode: 'onBlur' })
 
-	const isSamePassword = watch('PASSWORD')
+	const isSamePassword = watch('password')
 
-	const onSubmitClientSignUp = (data) => {
-		console.log(data)
-	}
+	const dispatch = useDispatch()
+	const { status, error } = useSelector((state) => state.authorization)
+
+	const onSubmitClientSignUp = useCallback(
+		(data) => {
+			dispatch(vendorRegistration(data))
+		},
+		[dispatch],
+	)
 
 	const [isPasswordShown, setIsPasswordShown] = useState(false)
 
@@ -35,31 +37,35 @@ const VendorRegistration = () => {
 	const togglePassword = () => {
 		setIsPasswordShown(!isPasswordShown)
 	}
+
 	const toggleisConfirmPasswordShown = () => {
 		setisConfirmPasswordShown(!isConfirmPasswordShown)
 	}
 
 	let isHasErrorMessage =
-		(errors.NAME && (
-			<p className={classes.message}>Забыли заполнить имя </p>
+		(errors.firstName && (
+			<p className={classes.message}>
+				Забыли заполнить имя {console.log(errors.NAME)}
+			</p>
 		)) ||
-		(errors.EMAIL && (
+		(errors.email && (
 			<p className={classes.message}>Введите коррекный Email</p>
 		)) ||
-		(errors.PASSWORD && (
+		(errors.password && (
 			<p className={classes.message}>
 				Длина пароля должна быть не менее 5 символов
 			</p>
 		)) ||
-		(errors.CONFIRMPASSWORD && (
+		(errors.confrimpassword && (
 			<p className={classes.message}>Пороли не совподают</p>
 		)) ||
-		(errors.PHONE && (
+		(errors.phoneNumer && (
 			<p className={classes.message}>Введите корретный номер</p>
 		)) ||
-		(errors.SURNAME && (
+		(errors.lastName && (
 			<p className={classes.message}>Забыли заполнить фамилию</p>
-		))
+		)) ||
+		(error && <p className={classes.message}>An error occured: {error}</p>)
 
 	return (
 		<form
@@ -70,7 +76,7 @@ const VendorRegistration = () => {
 				type='text'
 				placeholder='Напишите ваше имя'
 				label='Ваше имя'
-				{...register(NAME, {
+				{...register('firstName', {
 					required: true,
 					validate: (value) => value.trim().length !== 0,
 				})}
@@ -79,7 +85,7 @@ const VendorRegistration = () => {
 				type='text'
 				placeholder='Напишите вашу фамилию'
 				label='Ваша фамилия'
-				{...register(SURNAME, {
+				{...register('lastName', {
 					required: true,
 					disabled: Boolean(errors.name),
 				})}
@@ -90,7 +96,7 @@ const VendorRegistration = () => {
 				label='Номер вашего телефона'
 				onFocus={(e) => (e.target.value = '+996')}
 				maxLength='13'
-				{...register(PHONE, {
+				{...register('phoneNumer', {
 					required: true,
 					pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
 					disabled: Boolean(errors.surname),
@@ -120,7 +126,7 @@ const VendorRegistration = () => {
 				/>
 				<img
 					className={classes.pngOfPassword}
-					src={isPasswordShown ? eye : isEye}
+					src={isPasswordShown ? isEye : eye}
 					alt=''
 					onClick={togglePassword}
 				/>
@@ -138,12 +144,13 @@ const VendorRegistration = () => {
 				/>
 				<img
 					className={classes.pngOfPassword}
-					src={isConfirmPasswordShown ? eye : isEye}
+					src={isConfirmPasswordShown ? isEye : eye}
 					alt=''
 					onClick={toggleisConfirmPasswordShown}
 				/>
 			</div>
 			{isHasErrorMessage}
+			{status === 'loading' && <LoadingSpinner />}
 			<AuthButton type='submit' disabled={!isValid}>
 				Создать аккаунт
 			</AuthButton>

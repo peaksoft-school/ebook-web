@@ -4,25 +4,39 @@ import eye from '../../../assets/png/eye.png'
 import isEye from '../../../assets/png/isEye.png'
 import classes from './SignIn.module.css'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
+import { signIn } from '../../../store/authReducer/signInSetting'
 import { EMAIL, PASSWORD } from '../../../utils/constants'
+import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const SignIn = () => {
+	const { status, error } = useSelector((state) => state.authorization)
+	const dispatch = useDispatch()
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
 	} = useForm({ mode: 'onBlur' })
 
-	const onSubmitClientSignUp = (data) => {
-		console.log(data)
-	}
-
-	const signInError = errors.EMAIL || errors.PASSWORD
-
-	let errorMessage = signInError && (
-		<p className={classes.message}>Неправильно указан Email и/или пароль</p>
+	const onSubmitClientSignUp = useCallback(
+		(data) => {
+			dispatch(signIn(data))
+		},
+		[dispatch],
 	)
+
+	const signInError = errors.email || errors.password
+
+	let errorMessage =
+		(signInError && (
+			<p className={classes.message}>
+				Неправильно указан Email и/или пароль
+			</p>
+		)) ||
+		(error && <p className={classes.message}>An error occured: {error}</p>)
 
 	const [isPasswordShown, setIsPasswordShown] = useState(false)
 
@@ -50,7 +64,7 @@ const SignIn = () => {
 					autoComplete='off'
 					{...register(PASSWORD, {
 						required: true,
-						validate: (value) => value.length > 4,
+						validate: (value) => value.length > 3,
 					})}
 					disabled={errors.email ? true : false}
 				/>
@@ -60,8 +74,9 @@ const SignIn = () => {
 					alt=''
 					onClick={togglePassword}
 				/>
+				{errorMessage}
+				{status === 'loading' && <LoadingSpinner />}
 			</div>
-			{errorMessage}
 			<AuthButton type='submit' disabled={!isValid}>
 				Войти
 			</AuthButton>
