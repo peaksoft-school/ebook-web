@@ -4,6 +4,7 @@ import UserTableHeader from '../components/UserTableHeader/UserTableHeader'
 import UserProfile from "../components/UserProfile/UserProfile";
 import SellerTableHeader from "../components/SellerTableHeader/SellerTableHeader";
 import SellerProfile from "../components/SellerProfile/SellerProfile";
+
 function AdminPageRoute() {
     return (
         <>
