@@ -24,18 +24,18 @@ import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
                 </div>
                   {isOpen && 
                 <div  className={classes.container2}> 
-                    <div className={classes.context}>
+                    <div className={classes.context}>   
+                        <ul>
                         {options.map(option => (
-                        <ul key={option}>
-                                <li onClick={onOptionClicked(option)}>
+                                <li key={option} onClick={onOptionClicked(option)}>
                                         {option}
-                                </li>
-                                {option == 'Электронные книги'
+                                    {option == 'Электронные книги'
                                     ? !(<hr className={classes.line2}/>) 
                                     : <hr className={classes.line2}/> 
-                                }
+                                    }
+                                </li>
+                                ))} 
                         </ul>
-                        ))} 
                     </div>
                 </div>}
          </div>;

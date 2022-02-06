@@ -9,17 +9,6 @@
     margin-left: 12px;
 }
 
-.container2 p {
-    margin-left:30px ;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-family: Open Sans, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 130%;
-    color: #232323;
-}
 
 .context {
     width: 151px;
@@ -31,8 +20,7 @@
 
 .line2 {
     width: 151px;
-    margin-left: -19px;
-    margin-top: -10px;
+    margin-left: -6px;
     margin-bottom: -7px;
     display: flex;
     align-self: center; 
@@ -63,7 +51,7 @@
  }
 .context li {
     padding-bottom: 20px;
-    margin-left: -5px;
+    margin-left: -15px;
     font-family: Open Sans, sans-serif;
     font-style: normal;
     font-weight: normal;

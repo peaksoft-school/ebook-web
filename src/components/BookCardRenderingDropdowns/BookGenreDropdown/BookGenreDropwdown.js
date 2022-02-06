@@ -71,17 +71,20 @@ const genre = [
                       {isOpen && 
                     <div  className={classes.frame}> 
                         <div className={`${classes.scroll} ${classes.content}`}>
-                            {genre.map(option => (
-                            <ul key={option.id}>
-                                    <li onClick={onOptionClicked(option)}>
+                            <ul>
+                               {genre.map(option => (
+                                      <li 
+                                        onClick={onOptionClicked(option)} 
+                                        key={option.id}>
                                             {
                                               <div className={classes.items} key ={option.id}>
                                                 <p className={classes.title}>{option.title}</p> 
                                                 <p className={classes.amount}>{option.amount}</p>
                                             </div> }
                                     </li>
+                                     ))} 
                             </ul>
-                            ))} 
+                           
                         </div>
                     </div>}
              </div>;
