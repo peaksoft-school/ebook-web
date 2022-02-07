@@ -3,12 +3,12 @@ import classes from './BookTypeDropdown.module.css'
 import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
   
   const options = [
-    'Бумажные книги',
-    'Аудиокниги',
-    'Электронные книги',
+   {title: 'Бумажные книги', value: 'PAPER'},
+   {title: 'Аудиокниги', value: 'AUDIO'},
+   {title: 'Электронные книги', value:'EBOOK'},
   ]
 
- const BookTypeDropdown = () => {
+ const BookTypeDropdown = props => {
     const [isOpen, setIsOpen] = useState(false)
     const toggling = () => setIsOpen(!isOpen)
     const [selectedOption, setSelectedOption] = useState(null)
@@ -27,9 +27,13 @@ import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
                     <div className={classes.context}>   
                         <ul>
                         {options.map(option => (
-                                <li key={option} onClick={onOptionClicked(option)}>
-                                        {option}
-                                    {option == 'Электронные книги'
+                                <li 
+                                 key={option.value}
+                                 value={option.value} 
+                                 onClick={onOptionClicked(option.title)} 
+                                 onSelect={props.onSelectOption}>
+                                        {option.title}
+                                    {option.title == 'Электронные книги'
                                     ? !(<hr className={classes.line2}/>) 
                                     : <hr className={classes.line2}/> 
                                     }
