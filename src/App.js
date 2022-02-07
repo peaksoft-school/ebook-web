@@ -1,8 +1,8 @@
 import './App.css'
-// import AdminPage from './components/admin/AdminPage'
-import AuthCart from './components/loginForm/authCart/AuthCart'
+/// import AuthCart from './components/loginForm/authCart/AuthCart'
+import AddBookFrom from './components/adminAddBook/addBookForm/AddBookForm'
 function App() {
-	return <div className='App'><AuthCart/></div>
+	return <div className='App'><AddBookFrom/></div>
 }
 
 export default App

@@ -10,17 +10,13 @@ import Popup from '../UI/popUp/Popup'
 
 const BooksCratLayout = (props) => {
 	const { status, error } = useSelector((state) => state.bookCrat)
+	// const state = useSelector(state => console.log();)
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(fetchBooks())
 	}, [dispatch])
 	const [buttonPopupGenres, setButtonPopupGenres] = useState(true)
-	const [buttonPopupBookType, setButtonPopupBookType] = useState(false)
-	const genres = [
-		{ id: 'f1', title: 'Бумажные книги' },
-		{ id: 'f2', title: 'Аудиокниги' },
-		{ id: 'f3', title: 'Электронные книги' },
-	]
+	// const [buttonPopupBookType, setButtonPopupBookType] = useState(false)
 	return (
 		<div className={classes.bookCratBox}>
 			{status === 'loading' && <h2>Loading...</h2>}
@@ -34,11 +30,9 @@ const BooksCratLayout = (props) => {
 				<button className={classes.buttonforGenres}>
 					Аудиокниги <Arrow className={classes.arrowforGenres} />
 				</button>
-				<p>Всего : 343</p>
 				<Popup
 					trigger={buttonPopupGenres}
 					setTrigger={setButtonPopupGenres}
-					genres={genres}
 				/>
 			</div>
 			<div>
