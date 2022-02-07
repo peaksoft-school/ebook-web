@@ -57,31 +57,72 @@ const AudioBook = () => {
 			</section>
 			<section className={classes.leftSection}>
 				<section className={classes.settingOfBook}>
-					<CustomSelect
-						required
-						data={languagesFromApi}
-						initialstate='Русский'
-						label='Язык'
-						className={classes.leftSideSelect}
-						getOptionValue={getOptionValue}
-						getOptionLabel={getOptionLabel}
-					/>
-					<Input
-						label='Длительность'
-						onFocus={(e) => (e.target.type = 'time')}
-						step='1'
-						placeholder='___ ч ___ мин ___ сек'
-						className={classes.leftSideInput}
-						id='time'
-					/>
-
-					<Input
-						label='Стоимость'
-						type='number'
-						placeholder='сом'
-						className={classes.leftSideInput}
-						id='price'
-					/>
+					<div className={classes.languages}>
+						<CustomSelect
+							required
+							data={languagesFromApi}
+							initialstate='Русский'
+							label='Язык'
+							className={classes.leftSideSelect}
+							getOptionValue={getOptionValue}
+							getOptionLabel={getOptionLabel}
+						/>
+						<Input
+							type='number'
+							maxLength='4'
+							step='1'
+							placeholder='гг'
+							label='Год выпуска'
+							className={classes.leftSideDate}
+							id='year'
+						/>
+					</div>
+					<div className={classes.timecontrol}>
+						<Input
+							label='Длительность'
+							onFocus={(e) => (e.target.type = 'time')}
+							step='1'
+							placeholder='ч'
+							className={classes.leftSideInputTimeFirst}
+							id='time'
+						/>
+						<Input
+							label='Длительность'
+							step='1'
+							placeholder='мин'
+							className={classes.leftSideInputTime}
+							id='time'
+						/>
+						<Input
+							label='Длительность'
+							step='1'
+							placeholder='сек'
+							className={classes.leftSideInputTime}
+							id='time'
+						/>
+					</div>
+					<div className={classes.bestsellerControll}>
+						<CustomCheckbox
+							label='Бестселлер'
+							className={classes.bestseller}
+						/>
+					</div>
+					<div className={classes.priceControl}>
+						<Input
+							label='Стоимость'
+							type='number'
+							placeholder='сом'
+							className={classes.leftSideInput}
+							id='price'
+						/>
+						<Input
+							label='Скидка'
+							type='number'
+							placeholder='%'
+							className={classes.leftSideInput}
+							id='discount'
+						/>
+					</div>
 					<div className={classes.uploadFrag}>
 						<h1 className={classes.uploadFragText}>
 							Загрузите фрагмент аудиозаписи
@@ -111,28 +152,6 @@ const AudioBook = () => {
 						/>
 						<Uploadsvg className={classes.uploadSvg} />
 					</div>
-				</section>
-				<section className={classes.rightSectionControl}>
-					<Input
-						type='number'
-						maxLength='4'
-						step='1'
-						placeholder='гг'
-						label='Год выпуска'
-						className={classes.leftSideDate}
-						id='year'
-					/>
-					<CustomCheckbox
-						label='Бестселлер'
-						className={classes.bestseller}
-					/>
-					<Input
-						label='Скидка'
-						type='number'
-						placeholder='%'
-						className={classes.leftSideInput}
-						id='discount'
-					/>
 					<button className={classes.submitButton}>Отправить</button>
 				</section>
 			</section>

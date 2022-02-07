@@ -129,7 +129,7 @@ const ElectroBook = () => {
 						className={classes.leftSideInput}
 						id='discount'
 					/>
-					<button className={classes.submitButton}>Отправить</button>
+					<button className={classes.submitButton}>Добавить</button>
 				</div>
 			</div>
 		</WrapperOfForms>

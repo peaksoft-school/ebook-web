@@ -34,7 +34,7 @@ import {ReactComponent as SelectIcon} from '../../../assets/icons/Vector.svg'
                                  onClick={onOptionClicked(option.title)} 
                                  onSelect={props.onSelectOption}>
                                         {option.title}
-                                    {option.title == 'Со скидками'
+                                    {option.title === 'Со скидками'
                                     ? !<hr className={classes.line2}/> 
                                     : <hr className={classes.line2}/> 
                                 }

@@ -35,7 +35,7 @@ const AddBookForm = () => {
 	return (
 		<form onSubmit={onPaperBookSubmit}>
 			<main className={classes.adminBlog}>
-				<p className={classes.uploadthreeBooks}>Загрузите 3 фото *</p>
+				<p className={classes.uploadthreeBooks}>Загрузите 3 фото <span className={classes.zvezda}>*</span></p>
 				<UploadImageCart />
 				<section className={classes.changeTypeofBook}>
 					<h2 className={classes.type}>Тип</h2>

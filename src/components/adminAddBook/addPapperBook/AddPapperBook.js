@@ -154,7 +154,7 @@ const Papperbook = (props) => {
 						id='discount'
 					/>
 					<button type='submit' className={classes.submitButton}>
-						Отправить
+						Добавить
 						{/* Изменю как возьму custom button  */}
 					</button>
 				</div>

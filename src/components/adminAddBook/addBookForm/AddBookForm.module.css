@@ -6,7 +6,9 @@
 	width: auto;
 	background-color: red;
 }
-
+.zvezda{
+	color: red;
+}
 input[type='file'] {
 	display: none;
 }

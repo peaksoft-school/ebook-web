@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-.rightSection{
+.rightSection {
 	font-weight: 400;
 }
 .sideLabel {
@@ -34,20 +34,6 @@
 	right: 225px;
 }
 
-.buttonForAdminPage {
-	position: absolute;
-	top: 380px;
-	left: 300px;
-	padding: 10px 24px;
-	width: 137px;
-	height: 42px;
-	background: #f34901;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 22px;
-	color: #ffffff;
-}
 
 .rightSection {
 	display: flex;
@@ -85,6 +71,11 @@
 
 .leftSideInput {
 	margin-bottom: 30px;
+	padding-right: 39px;
+}
+
+.leftSideDate{
+	margin-left: 20px;
 }
 
 .leftSideDate input {
@@ -92,9 +83,7 @@
 	text-align: start;
 	margin-bottom: 30px;
 }
-.submitButton {
-	position: relative;
-}
+
 
 .rightSectionControl .leftSideDate {
 	margin-bottom: 70px;
@@ -106,10 +95,59 @@
 
 .submitButton {
 	position: relative;
-	right: 15px;
-	top: 400px;
+	left: 250px;
+	top: 350px;
+	padding: 10px 24px 10px 24px;
+	background-color: #f34901;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 22px;
+	color: #ffffff;
+	border: none;
+	cursor: pointer;
+}
+.submitButton:hover{
+	background-color: #d35924;
 }
 
+.languages {
+	display: flex;
+	flex-direction: row;
+}
+
+.leftSideInputTimeFirst{
+	width: 118px;
+	height: 41px;
+}
+
+.leftSideInputTimeFirst input {
+	text-align: end;
+}
+.leftSideInputTime input {
+	text-align: end;
+}
+
+.leftSideInputTime {
+	width: 118px;
+	height: 41px;
+	padding-left: 29px;
+}
+.timecontrol{
+	display: flex;
+	flex-direction: row;
+}
+.priceControl{
+	display: flex;
+	flex-direction: row;
+}
+.bestsellerControll{
+	margin-top: 60px;
+
+}
+.leftSideInputTime label{
+	opacity: 0;
+}
 .fix {
 	border: 1px solid #c4c4c4;
 	box-sizing: border-box;
@@ -135,6 +173,7 @@
 
 .uploadFrag {
 	position: absolute;
+	margin-top: 8px;
 }
 
 .uploadFrag .uploadFragText {
@@ -167,6 +206,6 @@
 	color: #a3a3a3;
 	padding-left: 14px;
 }
-.fix:hover{
+.fix:hover {
 	background-color: green;
 }

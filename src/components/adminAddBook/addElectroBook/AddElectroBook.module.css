@@ -107,9 +107,21 @@
 	bottom: 30px;
 	left: 45px;
 }
+.submitButton:hover{
+	background-color: #d35924;
+}
 
 .submitButton {
 	position: relative;
 	left: 20px;
 	top: 800px;
+	padding: 10px 24px 10px 24px;
+	background-color: #f34901;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 22px;
+	color: #ffffff;
+	border: none;
+	cursor: pointer;
 }

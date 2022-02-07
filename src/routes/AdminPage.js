@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from "react-router";
-// import AddBookForm from "../components/adminAddBook/addBookForm/AddBookForm";
+import AddBookForm from "../components/adminAddBook/addBookForm/AddBookForm";
 import BooksCratLayout from "../components/adminsBookCrat/BooksCrat";
 import { ROUTES } from '../utils/constants/constants' 
 
@@ -12,6 +12,7 @@ function AdminPageRoute() {
                 <Route path={ROUTES.SELLERS} element={<h1>Seller</h1>}/>
                 <Route path={ROUTES.USERS} element={<h1>Users</h1>}/>
                 <Route path={ROUTES.BOOKS} element={<BooksCratLayout/>}/>
+                <Route path={ROUTES.ADDBOOKS} element={<AddBookForm/>}/>
             </Routes>
         </>
     )
