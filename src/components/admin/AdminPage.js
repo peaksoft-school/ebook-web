@@ -4,6 +4,8 @@ import classes from './AdminPage.module.css'
 import AdminPageRoute from '../../routes/AdminPage'
 
 function AdminPage() {
+
+    
     return (
         <div className={classes.adminPage}>
             <SideDrawer/>
