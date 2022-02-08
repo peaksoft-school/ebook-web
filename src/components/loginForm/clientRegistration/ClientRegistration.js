@@ -13,7 +13,7 @@ import {
 } from '../../../utils/constants'
 import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
 import { useDispatch, useSelector } from 'react-redux'
-import { clientRegistration } from '../../../store/authReducer/signInSetting'
+import { clientRegistration } from '../../../store/authReducer/signInSlice'
 
 const ClientRegistration = () => {
 	const { status, error } = useSelector((state) => state.authorization)
@@ -28,7 +28,7 @@ const ClientRegistration = () => {
 
 	const isPassworIsSame = watch(PASSWORD)
 
-	const onSubmitClientSignUp = useCallback(
+	const onSubmitHadnler = useCallback(
 		(data) => {
 			dispatch(clientRegistration(data))
 		},
@@ -47,25 +47,19 @@ const ClientRegistration = () => {
 		setisConfirmPasswordShown(!isConfirmPasswordShown)
 	}
 
-	let errorMessage =
-		(errors.name && (
-			<p className={classes.message}>Введите коррекное имя </p>
-		)) ||
-		(errors.email && (
-			<p className={classes.message}>Введите коррекный Email</p>
-		)) ||
-		(errors.password && (
-			<p className={classes.message}>
-				Длина пароля должна быть не менее 5 символов
-			</p>
-		)) ||
-		(errors.confirmpassword && (
-			<p className={classes.message}>Пороли не совподают</p>
-		)) ||
-		(error && <p className={classes.message}>An error occured: {error}</p>)
+	const getErrorMessage = () => {
+		const errorMessage =
+			(errors.name && 'Введите коррекное имя ') ||
+			(errors.email && 'Введите коррекный Email') ||
+			(errors.password &&
+				'Длина пароля должна быть не менее 5 символов') ||
+			(errors.confirmpassword && 'Пороли не совподают') ||
+			(error && `An error occured: ${error}`)
+		return errorMessage
+	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmitClientSignUp)}>
+		<form onSubmit={handleSubmit(onSubmitHadnler)}>
 			<InputField
 				type='name'
 				placeholder='Напишите ваше имя'
@@ -74,6 +68,7 @@ const ClientRegistration = () => {
 					required: true,
 					validate: (value) => value.trim().length !== 0,
 				})}
+				hasError={errors.name}
 			/>
 			<InputField
 				type='email'
@@ -84,6 +79,7 @@ const ClientRegistration = () => {
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
 					disabled: Boolean(errors.name),
 				})}
+				hasError={errors.email}
 			/>
 			<div className={classes.forAbsolute}>
 				<InputField
@@ -96,6 +92,7 @@ const ClientRegistration = () => {
 						minLength: 5,
 						disabled: Boolean(errors.email),
 					})}
+					hasError={errors.password}
 				/>
 				<img
 					className={classes.pngOfPassword}
@@ -113,6 +110,7 @@ const ClientRegistration = () => {
 						validate: (value) => value === isPassworIsSame,
 						disabled: Boolean(errors.password),
 					})}
+					hasError={errors.confirmpassword}
 				/>
 				<img
 					className={classes.pngOfPassword}
@@ -129,7 +127,7 @@ const ClientRegistration = () => {
 				/>
 				<p>Подпишитесь на рассылку, чтобы получать новости от eBook </p>
 			</div>
-			{errorMessage}
+			<p className={classes.message}>{getErrorMessage()}</p>
 			{status === 'loading' && <LoadingSpinner />}
 			<AuthButton type='submit' disabled={!isValid}>
 				Создать аккаунт

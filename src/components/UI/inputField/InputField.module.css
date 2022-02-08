@@ -16,7 +16,9 @@
 	outline: none;
 }
 
-
+.hasEror{
+	border-color: red;
+}
 
 .reusableLabel {
 	font-weight: bolder;

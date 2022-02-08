@@ -5,12 +5,15 @@ import { useForm } from 'react-hook-form'
 import isEye from '../../../assets/png/isEye.png'
 import eye from '../../../assets/png/eye.png'
 import { useCallback, useState } from 'react'
-import { CONFIRMPASSWORD, EMAIL, PASSWORD } from '../../../utils/constants'
+import { EMAIL, PASSWORD } from '../../../utils/constants'
 import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
 import { useDispatch, useSelector } from 'react-redux'
-import { vendorRegistration } from '../../../store/authReducer/signInSetting'
+import { vendorRegistration } from '../../../store/authReducer/signInSlice'
 
 const VendorRegistration = () => {
+	const dispatch = useDispatch()
+	const { status, error } = useSelector((state) => state.authorization)
+
 	const {
 		register,
 		handleSubmit,
@@ -20,10 +23,7 @@ const VendorRegistration = () => {
 
 	const isSamePassword = watch('password')
 
-	const dispatch = useDispatch()
-	const { status, error } = useSelector((state) => state.authorization)
-
-	const onSubmitClientSignUp = useCallback(
+	const submitHadnler = useCallback(
 		(data) => {
 			dispatch(vendorRegistration(data))
 		},
@@ -42,35 +42,23 @@ const VendorRegistration = () => {
 		setisConfirmPasswordShown(!isConfirmPasswordShown)
 	}
 
-	let isHasErrorMessage =
-		(errors.firstName && (
-			<p className={classes.message}>
-				Забыли заполнить имя {console.log(errors.NAME)}
-			</p>
-		)) ||
-		(errors.email && (
-			<p className={classes.message}>Введите коррекный Email</p>
-		)) ||
-		(errors.password && (
-			<p className={classes.message}>
-				Длина пароля должна быть не менее 5 символов
-			</p>
-		)) ||
-		(errors.confrimpassword && (
-			<p className={classes.message}>Пороли не совподают</p>
-		)) ||
-		(errors.phoneNumer && (
-			<p className={classes.message}>Введите корретный номер</p>
-		)) ||
-		(errors.lastName && (
-			<p className={classes.message}>Забыли заполнить фамилию</p>
-		)) ||
-		(error && <p className={classes.message}>An error occured: {error}</p>)
+	const getErrorMessage = () => {
+		const isHasErrorMessage =
+			(errors.firstName && 'Забыли заполнить имя') ||
+			(errors.email && 'Введите коррекный Email') ||
+			(errors.password &&
+				'Длина пароля должна быть не менее 5 символов') ||
+			(errors.confrimpassword && 'Пороли не совподают') ||
+			(errors.phoneNumer && 'Введите корретный номер') ||
+			(errors.lastName && 'Забыли заполнить фамилию') ||
+			(error && `An error occured: ${error}`)
+		return isHasErrorMessage
+	}
 
 	return (
 		<form
 			className={classes.form}
-			onSubmit={handleSubmit(onSubmitClientSignUp)}
+			onSubmit={handleSubmit(submitHadnler)}
 		>
 			<InputField
 				type='text'
@@ -80,6 +68,7 @@ const VendorRegistration = () => {
 					required: true,
 					validate: (value) => value.trim().length !== 0,
 				})}
+				hasError={errors.firstName}
 			/>
 			<InputField
 				type='text'
@@ -87,8 +76,9 @@ const VendorRegistration = () => {
 				label='Ваша фамилия'
 				{...register('lastName', {
 					required: true,
-					disabled: Boolean(errors.name),
+					disabled: Boolean(errors.firstName),
 				})}
+				hasError={errors.lastName}
 			/>
 			<InputField
 				type='tel'
@@ -99,8 +89,9 @@ const VendorRegistration = () => {
 				{...register('phoneNumer', {
 					required: true,
 					pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-					disabled: Boolean(errors.surname),
+					disabled: Boolean(errors.lastName),
 				})}
+				hasError={errors.phoneNumer}
 			/>
 			<InputField
 				type='email'
@@ -111,6 +102,7 @@ const VendorRegistration = () => {
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
 					disabled: Boolean(errors.phone),
 				})}
+				hasError={errors.email}
 			/>
 			<div className={classes.forAbsolute}>
 				<InputField
@@ -123,6 +115,7 @@ const VendorRegistration = () => {
 						validate: (value) => value.trim() > 5,
 						disabled: Boolean(errors.email),
 					})}
+					hasError={errors.password}
 				/>
 				<img
 					className={classes.pngOfPassword}
@@ -136,11 +129,12 @@ const VendorRegistration = () => {
 					placeholder='Подтвердите пароль'
 					label='Подтвердите пароль'
 					autoComplete='off'
-					{...register(CONFIRMPASSWORD, {
+					{...register('confrimpassword', {
 						required: true,
 						validate: (value) => value === isSamePassword,
 						disabled: Boolean(errors.password),
 					})}
+					hasError={errors.confrimpassword}
 				/>
 				<img
 					className={classes.pngOfPassword}
@@ -149,7 +143,7 @@ const VendorRegistration = () => {
 					onClick={toggleisConfirmPasswordShown}
 				/>
 			</div>
-			{isHasErrorMessage}
+			<p className={classes.message}>{getErrorMessage()}</p>
 			{status === 'loading' && <LoadingSpinner />}
 			<AuthButton type='submit' disabled={!isValid}>
 				Создать аккаунт

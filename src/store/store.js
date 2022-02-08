@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import LibrarySlice from './LibrarySlice'
-import authSettings from './authReducer/signInSetting'
+import signInSlice from './authReducer/signInSlice'
 
 const store = configureStore({
 	reducer: {
-		authorization: authSettings,
+		authorization: signInSlice,
 		library: LibrarySlice,
 	},
 })

@@ -117,7 +117,7 @@ const setFulfilled = (state, action) => {
 	state.role = authority
 }
 
-const authSettings = createSlice({
+const signInSlice = createSlice({
 	name: 'Auth',
 	initialState: { token: '', role: '', status: null, error: null },
 	reducers: {
@@ -144,5 +144,5 @@ const authSettings = createSlice({
 	},
 })
 
-export const setAuth = authSettings.actions
-export default authSettings.reducer
+export const setAuth = signInSlice.actions
+export default signInSlice.reducer

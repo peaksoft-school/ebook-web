@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
+
+.errorBorder{
+	border-color: red;
+}
 .pngOfPassword {
 	position: relative;
 	float: right;

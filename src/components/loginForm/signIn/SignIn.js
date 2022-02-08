@@ -5,7 +5,7 @@ import isEye from '../../../assets/png/isEye.png'
 import classes from './SignIn.module.css'
 import { useForm } from 'react-hook-form'
 import { useState, useCallback } from 'react'
-import { signIn } from '../../../store/authReducer/signInSetting'
+import { signIn } from '../../../store/authReducer/signInSlice'
 import { EMAIL, PASSWORD } from '../../../utils/constants'
 import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
 import { useDispatch } from 'react-redux'
@@ -21,7 +21,7 @@ const SignIn = () => {
 		formState: { errors, isValid },
 	} = useForm({ mode: 'onBlur' })
 
-	const onSubmitClientSignUp = useCallback(
+	const submitHandler = useCallback(
 		(data) => {
 			dispatch(signIn(data))
 		},
@@ -30,13 +30,12 @@ const SignIn = () => {
 
 	const signInError = errors.email || errors.password
 
-	let errorMessage =
-		(signInError && (
-			<p className={classes.message}>
-				Неправильно указан Email и/или пароль
-			</p>
-		)) ||
-		(error && <p className={classes.message}>An error occured: {error}</p>)
+	const getErrorMessage = () => {
+		const errorMessage =
+			(signInError && 'Неправильно указан Email и/или пароль') ||
+			(error && `An error occured: ${error}`)
+		return errorMessage
+	}
 
 	const [isPasswordShown, setIsPasswordShown] = useState(false)
 
@@ -45,7 +44,7 @@ const SignIn = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmitClientSignUp)}>
+		<form onSubmit={handleSubmit(submitHandler)}>
 			<InputField
 				type='email'
 				placeholder='Напишите email'
@@ -55,6 +54,7 @@ const SignIn = () => {
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
 				})}
 				disabled={errors.password ? true : false}
+				hasError={errors.email}
 			/>
 			<div>
 				<InputField
@@ -67,6 +67,7 @@ const SignIn = () => {
 						validate: (value) => value.length > 3,
 					})}
 					disabled={errors.email ? true : false}
+					hasError={errors.password}
 				/>
 				<img
 					className={classes.pngOfPassword}
@@ -74,7 +75,7 @@ const SignIn = () => {
 					alt=''
 					onClick={togglePassword}
 				/>
-				{errorMessage}
+				<p className={classes.message}>{getErrorMessage()}</p>
 				{status === 'loading' && <LoadingSpinner />}
 			</div>
 			<AuthButton type='submit' disabled={!isValid}>

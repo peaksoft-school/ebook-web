@@ -6,7 +6,6 @@ import { useState } from 'react'
 import { ISLOGIN, ISVENDOR, ISUSER } from '../../../utils/constants'
 
 const AuthForm = () => {
-	
 	const [typeOfRegistration, setTypeOfRegistration] = useState(ISLOGIN)
 
 	const showSignInFormRegistration = typeOfRegistration === ISLOGIN
