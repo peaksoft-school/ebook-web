@@ -6,12 +6,12 @@ import isEye from '../../../assets/png/isEye.png'
 import eye from '../../../assets/png/eye.png'
 import { useState } from 'react'
 import {
-	confirmPassword,
-	email,
-	name,
-	password,
-	phone,
-	surname,
+	CONFIRMPASSWORD,
+	EMAIL,
+	NAME,
+	PASSWORD,
+	PHONE,
+	SURNAME,
 } from '../../../utils/constants'
 
 const VendorRegistration = () => {
@@ -22,7 +22,7 @@ const VendorRegistration = () => {
 		watch,
 	} = useForm({ mode: 'onTouched' })
 
-	const isSamePassword = watch('password')
+	const isSamePassword = watch('PASSWORD')
 
 	const onSubmitClientSignUp = (data) => {
 		console.log(data)
@@ -40,24 +40,24 @@ const VendorRegistration = () => {
 	}
 
 	let isHasErrorMessage =
-		(errors.name && (
+		(errors.NAME && (
 			<p className={classes.message}>Забыли заполнить имя </p>
 		)) ||
-		(errors.email && (
+		(errors.EMAIL && (
 			<p className={classes.message}>Введите коррекный Email</p>
 		)) ||
-		(errors.password && (
+		(errors.PASSWORD && (
 			<p className={classes.message}>
 				Длина пароля должна быть не менее 5 символов
 			</p>
 		)) ||
-		(errors.confirmPassword && (
+		(errors.CONFIRMPASSWORD && (
 			<p className={classes.message}>Пороли не совподают</p>
 		)) ||
-		(errors.phone && (
+		(errors.PHONE && (
 			<p className={classes.message}>Введите корретный номер</p>
 		)) ||
-		(errors.surname && (
+		(errors.SURNAME && (
 			<p className={classes.message}>Забыли заполнить фамилию</p>
 		))
 
@@ -70,7 +70,7 @@ const VendorRegistration = () => {
 				type='text'
 				placeholder='Напишите ваше имя'
 				label='Ваше имя'
-				{...register(name, {
+				{...register(NAME, {
 					required: true,
 					validate: (value) => value.trim().length !== 0,
 				})}
@@ -79,7 +79,7 @@ const VendorRegistration = () => {
 				type='text'
 				placeholder='Напишите вашу фамилию'
 				label='Ваша фамилия'
-				{...register(surname, {
+				{...register(SURNAME, {
 					required: true,
 					disabled: Boolean(errors.name),
 				})}
@@ -90,7 +90,7 @@ const VendorRegistration = () => {
 				label='Номер вашего телефона'
 				onFocus={(e) => (e.target.value = '+996')}
 				maxLength='13'
-				{...register(phone, {
+				{...register(PHONE, {
 					required: true,
 					pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
 					disabled: Boolean(errors.surname),
@@ -100,7 +100,7 @@ const VendorRegistration = () => {
 				type='email'
 				placeholder='Напишите ваш email'
 				label='Email'
-				{...register(email, {
+				{...register(EMAIL, {
 					required: true,
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
 					disabled: Boolean(errors.phone),
@@ -112,7 +112,7 @@ const VendorRegistration = () => {
 					placeholder='Напишите пароль'
 					label='Пароль'
 					autoComplete='off'
-					{...register(password, {
+					{...register(PASSWORD, {
 						required: true,
 						validate: (value) => value.trim() > 5,
 						disabled: Boolean(errors.email),
@@ -130,7 +130,7 @@ const VendorRegistration = () => {
 					placeholder='Подтвердите пароль'
 					label='Подтвердите пароль'
 					autoComplete='off'
-					{...register(confirmPassword, {
+					{...register(CONFIRMPASSWORD, {
 						required: true,
 						validate: (value) => value === isSamePassword,
 						disabled: Boolean(errors.password),

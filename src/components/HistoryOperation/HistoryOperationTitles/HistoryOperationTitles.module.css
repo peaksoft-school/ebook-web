@@ -1,0 +1,11 @@
+.HistoryOperationTitles {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.1px solid #a3a3a37a;
+    padding-left: 52px;
+}
+
+.cleanHistory {
+    color: #a3a3a3c5;
+    cursor: pointer;
+}
