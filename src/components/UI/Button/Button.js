@@ -9,7 +9,9 @@ const STYLES = [
   "contained",
   "select",
   "light",
-  "deleteProfile"
+  "deleteProfile",
+  "tabSwitcher",
+  "btnActive"
 ]
 
 const Button = ({
