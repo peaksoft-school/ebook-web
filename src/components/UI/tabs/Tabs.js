@@ -2,16 +2,16 @@ import React from "react";
 import classes from './Tabs.module.css'
 import Button from "../Button/Button";
 
-export const Tab = ({ label, mainf, IsActive}) => {
-    const fuunc = () => {
-        mainf(label)
+export const Tab = ({ label, changeTab, isActive}) => {
+    const onTabSelect = () => {
+        changeTab(label)
     }
 
     return (
         <Button
-            variant={IsActive === label ? 'btnActive' : 'tabSwitcher'}
+            variant={isActive === label ? 'btnActive' : 'tabSwitcher'}
             className={classes.tab}
-            onClick={fuunc}
+            onClick={onTabSelect}
         >
         {label}</Button>
     )
@@ -24,12 +24,12 @@ export const Tabs = ({children}) => {
 }
 
 export const TabPanel = ({children, check, value}) => {
-    function de() {
+    function checkValue() {
         if(check === value) {
             return children
         }
     }
     return  <div>
-                {de()}
+                {checkValue()}
             </div>
 }
