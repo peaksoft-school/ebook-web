@@ -1,27 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { signInFetch } from '../../api/authorizationApi/authService'
 
 export const signIn = createAsyncThunk(
 	'EbookUser/signIn',
 	async function (EbookUserInfo, { rejectWithValue }) {
 		try {
 			const { password, email } = EbookUserInfo
-			const response = await fetch(
-				'http://3.123.114.41/api/authentication',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({ password, email }),
-				},
-			)
+			const response = await signInFetch(password, email)
+			const data = await response.json()
 
 			if (!response.ok) {
-				throw new Error('Missing valid credentials.')
+				throw new Error(data.message)
 			}
-
-			const data = await response.json()
-			localStorage.setItem('EbookUser', JSON.stringify(data))
 			return data
 		} catch (error) {
 			return rejectWithValue(error.message)
@@ -34,7 +24,6 @@ export const clientRegistration = createAsyncThunk(
 	async function (EbookUserInfo, { rejectWithValue }) {
 		try {
 			const { email, password, name } = EbookUserInfo
-			console.log(EbookUserInfo)
 			const response = await fetch(
 				'http://3.123.114.41/api/client/signup/client',
 				{
@@ -117,9 +106,21 @@ const setFulfilled = (state, action) => {
 	state.role = authority
 }
 
+const setFulfilledClient = (state, action) => {
+	state.error = null
+	state.status = 'resolved'
+	state.userRegCredential = action.payload
+}
+
 const signInSlice = createSlice({
 	name: 'Auth',
-	initialState: { token: '', role: '', status: null, error: null },
+	initialState: {
+		token: '',
+		role: '',
+		status: null,
+		error: null,
+		userRegCredential: {},
+	},
 	reducers: {
 		authenticateUser(state, action) {
 			const { token, authority } = action.payload
@@ -136,10 +137,10 @@ const signInSlice = createSlice({
 		[signIn.fulfilled]: setFulfilled,
 		[signIn.rejected]: setError,
 		[clientRegistration.pending]: isPending,
-		[clientRegistration.fulfilled]: setFulfilled,
+		[clientRegistration.fulfilled]: setFulfilledClient,
 		[clientRegistration.rejected]: setError,
 		[vendorRegistration.pending]: isPending,
-		[vendorRegistration.fulfilled]: setFulfilled,
+		[vendorRegistration.fulfilled]: setFulfilledClient,
 		[vendorRegistration.rejected]: setError,
 	},
 })

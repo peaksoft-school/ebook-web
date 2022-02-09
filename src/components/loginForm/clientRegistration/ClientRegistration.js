@@ -14,7 +14,7 @@ import {
 import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
 import { useDispatch, useSelector } from 'react-redux'
 import { clientRegistration } from '../../../store/authReducer/signInSlice'
-
+	
 const ClientRegistration = () => {
 	const { status, error } = useSelector((state) => state.authorization)
 	const dispatch = useDispatch()

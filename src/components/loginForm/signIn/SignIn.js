@@ -33,7 +33,7 @@ const SignIn = () => {
 	const getErrorMessage = () => {
 		const errorMessage =
 			(signInError && 'Неправильно указан Email и/или пароль') ||
-			(error && `An error occured: ${error}`)
+			(error && `An occured  ${error}`)
 		return errorMessage
 	}
 

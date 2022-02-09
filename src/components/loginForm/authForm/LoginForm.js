@@ -2,8 +2,9 @@ import ClientRegistration from '../clientRegistration/ClientRegistration'
 import SignIn from '../signIn/SignIn'
 import VendorRegistration from '../vendorRegistration/VendorRegistration'
 import classes from './LoginForm.module.css'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ISLOGIN, ISVENDOR, ISUSER } from '../../../utils/constants'
+import { useSelector } from 'react-redux'
 
 const AuthForm = () => {
 	const [typeOfRegistration, setTypeOfRegistration] = useState(ISLOGIN)
@@ -11,6 +12,20 @@ const AuthForm = () => {
 	const showSignInFormRegistration = typeOfRegistration === ISLOGIN
 	const showNewUserFormRegistration = typeOfRegistration === ISUSER
 	const showNewVendorFormRegistration = typeOfRegistration === ISVENDOR
+
+	const userRegCredential = useSelector(
+		(state) => state.authorization.userRegCredential,
+	)
+
+	const redirectToSignIn = useCallback(() => {
+		if (userRegCredential) {
+			signUpFromChangeHandler()
+		}
+	}, [userRegCredential])
+
+	useEffect(() => {
+		redirectToSignIn()
+	}, [redirectToSignIn])
 
 	const vendorFormChangeHandler = () => {
 		setTypeOfRegistration(ISVENDOR)
