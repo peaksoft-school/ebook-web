@@ -13,6 +13,7 @@ const UserDetails = () => {
     const handleChange =(value)=> {
         setActiveTab(value)
     }
+    
   return <div className={classes.userDetailsContainerForContent}>
       <BreadCrumbs/>
       <Tabs >
@@ -27,6 +28,7 @@ const UserDetails = () => {
         label='Книги'
         />
       </Tabs>
+
       <TabPanel check='Профиль'
       value={activeTab}
       ><UserProfile/>

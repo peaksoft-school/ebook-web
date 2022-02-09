@@ -12,6 +12,7 @@ const SellerDetails = () => {
     const handleChange =(value)=> {
         setActiveTab(value)
     }
+
   return <div className={classes.constainerForSellerDetailscontent}>
     <BreadCrumbs/>
       <Tabs >
@@ -26,6 +27,7 @@ const SellerDetails = () => {
         label='books'
         />
       </Tabs>
+      
       <TabPanel check='profile'
       value={activeTab}
       ><SellerProfile/>

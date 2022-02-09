@@ -23,6 +23,7 @@ const SellerItem = (props) => {
     const senBreadCrumbs =()=> {
       updateBreadCrumbs(breadcrumbs)
     }
+    
   return <div className={classes.containerForLi}>
         <Link  
         to={`/admin/sellers/${id}`}
