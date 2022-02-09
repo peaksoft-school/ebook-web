@@ -1,7 +1,7 @@
 import Button from '../UI/Button/Button'
 import classes from './UserProfile.module.css'
 import ModalForDelete from '../ModalForDelete/ModalForDelete';
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getUser } from '../../utils/constants/mock-data';
 import { useState } from 'react';
 import BreadCrumbs from '../UI/BreadCrumbs/BreadCrumbs'
@@ -17,8 +17,6 @@ const UserProfile = () => {
 
   return <div className={classes.profileContainer}>
       <BreadCrumbs/>
-      <Link to={'/admin/users'}><button>dfgdf</button></Link>
-
       <div className={classes.informationContainer}>
          <div className={classes.smallBox}>
             <p className={classes.title}>Имя</p>

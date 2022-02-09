@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit"
-import BreadCrumbsReducer from "./BreadCrumbsSlice"
+import LibrarySlice from "./LibrarySlice"
 const store = configureStore({
     reducer: {
-        bread: BreadCrumbsReducer.reducer
+        library: LibrarySlice,
     }
 })
 export default store
