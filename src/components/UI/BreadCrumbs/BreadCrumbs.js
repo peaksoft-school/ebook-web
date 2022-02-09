@@ -8,6 +8,7 @@ const BreadCrumbs = () => {
     {breadcrumbs && breadcrumbs.map((breadcrumb)=> {
       return breadcrumb.route?
       <Link
+      key={breadcrumb.route_name}
       to={breadcrumb.route}>
       <p 
       className={classes.previousLocation}
@@ -15,7 +16,8 @@ const BreadCrumbs = () => {
       </p>
       </Link>
       :
-      <p 
+      <p
+      key={breadcrumb.route_name}
       className={classes.currentLocation}
       >{breadcrumb.route_name}
       </p>

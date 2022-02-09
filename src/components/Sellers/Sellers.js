@@ -1,8 +1,8 @@
-import classes from './SellerTableHeader.module.css'
+import classes from './Sellers.module.css'
 import { getSellers } from '../../utils/constants/mock-data';
 import SellerList from './SellerList/SellerList';
 
-const SellerTableHeader = () => {
+const Sellers = () => {
   let sellerlist = getSellers()
   
   return <div className={classes.box}>
@@ -20,4 +20,4 @@ const SellerTableHeader = () => {
   </div>;
 };
 
-export default SellerTableHeader;
+export default Sellers;

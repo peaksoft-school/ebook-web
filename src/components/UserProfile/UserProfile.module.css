@@ -1,8 +1,7 @@
 .profileContainer {
     width: 1130px;
     height: 420px;
-    padding: 20px;
-    margin: auto;
+    padding: 60px 30px;
 }.informationContainer {
     display: flex;
     flex-direction: column;

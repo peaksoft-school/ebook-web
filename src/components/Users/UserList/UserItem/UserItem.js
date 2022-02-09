@@ -25,9 +25,11 @@ const UserItem = (props) => {
     return <div className={classes.containerLiFor}>
         <Link 
         to={`/admin/users/${id}`}
-        onClick={senBreadCrumbs}
         >
-          <li className={classes.li}>
+          <li 
+          className={classes.li}
+          onClick={senBreadCrumbs}
+          >
               <p className={classes.mediumBox}>{first_name}</p>
               <p className={classes.mediumBox}>{email}</p>
           </li>

@@ -1,8 +1,8 @@
-import classes from './UserTableHeader.module.css'
-import UserList from './UserList/UserList';
+import classes from './Users.module.css'
+import UserList from '../Users/UserList/UserList';
 import { getUsers } from '../../utils/constants/mock-data'
 
-const UserTableHeader = () => {
+const Users = () => {
   let userlist = getUsers()
   
   return <div className={classes.box}>
@@ -18,4 +18,4 @@ const UserTableHeader = () => {
   </div>;
 };
 
-export default UserTableHeader;
+export default Users;

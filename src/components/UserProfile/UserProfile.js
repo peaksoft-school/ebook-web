@@ -4,7 +4,6 @@ import ModalForDelete from '../ModalForDelete/ModalForDelete';
 import { useParams } from "react-router-dom";
 import { getUser } from '../../utils/constants/mock-data';
 import { useState } from 'react';
-import BreadCrumbs from '../UI/BreadCrumbs/BreadCrumbs'
 const UserProfile = () => {
     const [isShowModal,setIsShowModal] = useState(false)
 
@@ -16,7 +15,6 @@ const UserProfile = () => {
     }
 
   return <div className={classes.profileContainer}>
-      <BreadCrumbs/>
       <div className={classes.informationContainer}>
          <div className={classes.smallBox}>
             <p className={classes.title}>Имя</p>
