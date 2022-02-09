@@ -5,7 +5,7 @@ import isEye from '../../../assets/png/isEye.png'
 import classes from './SignIn.module.css'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { email, password } from '../../../utils/constants'
+import { EMAIL, PASSWORD } from '../../../utils/constants'
 
 const SignIn = () => {
 	const {
@@ -18,7 +18,7 @@ const SignIn = () => {
 		console.log(data)
 	}
 
-	const signInError = errors.email || errors.password
+	const signInError = errors.EMAIL || errors.PASSWORD
 
 	let errorMessage = signInError && (
 		<p className={classes.message}>Неправильно указан Email и/или пароль</p>
@@ -36,7 +36,7 @@ const SignIn = () => {
 				type='email'
 				placeholder='Напишите email'
 				label='Email'
-				{...register(email, {
+				{...register(EMAIL, {
 					required: true,
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
 				})}
@@ -48,7 +48,7 @@ const SignIn = () => {
 					placeholder='Напишите пароль'
 					label='Password'
 					autoComplete='off'
-					{...register(password, {
+					{...register(PASSWORD, {
 						required: true,
 						validate: (value) => value.length > 4,
 					})}

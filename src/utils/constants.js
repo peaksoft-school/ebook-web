@@ -1,21 +1,29 @@
-const isLogin = 'isLogin'
-const isVendor = 'isVendor'
-const isUser = 'isUser'
-const name = 'name'
-const email = 'email'
-const password = 'password'
-const confirmPassword = 'confirmPassword'
-const phone = 'phone'
-const surname = 'surname'
+const ISLOGIN = 'ISLOGIN'
+const ISVENDOR = 'ISVENDOR'
+const ISUSER = 'ISUSER'
+const NAME = 'NAME'
+const EMAIL = 'EMAIL'
+const PASSWORD = 'PASSWORD'
+const CONFIRMPASSWORD = 'CONFIRMPASSWORD'
+const PHONE = 'PHONE'
+const SURNAME = 'SURNAME'
+const PICTURE = 'PICTURE'
+const ISAUDIOBOOK = 'ISAUDIOBOOK'
+const ISPAPPERBOOK = 'ISPAPPERBOOK'
+const ISELECTROBOOK = 'ISELECTROBOOK'
 
 export { 
-    isLogin,
-    isUser,
-    isVendor,
-    name,
-    email,
-    password,
-    confirmPassword,
-    phone,
-    surname
+    ISLOGIN,
+    ISUSER,
+    ISVENDOR,
+    NAME,
+    EMAIL,
+    PASSWORD,
+    CONFIRMPASSWORD,
+    PHONE,
+    SURNAME,
+    PICTURE,
+    ISAUDIOBOOK,
+    ISPAPPERBOOK,
+    ISELECTROBOOK
 }

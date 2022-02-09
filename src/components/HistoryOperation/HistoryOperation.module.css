@@ -1,0 +1,15 @@
+.HistoryOperationContainer {
+    width: 1360px;
+    height: 100%;
+}
+
+.showHistoryContainer {
+    display: flex;
+}
+
+.BooksList {
+    width: 100%;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
