@@ -15,7 +15,6 @@ export const ROUTES = {
     USERS: '/admin/users',
     BOOKS: '/admin/books'
 }
-
 export const NAVICON = {
     APPLICATIONS: APPLICATIONS,
     APPLICATION: APPLICATION,

@@ -13,19 +13,19 @@ export const userlist = [
     },
     {
       id:3,
-      first_name:'Baybolot',
+      first_name:'Baybologfhfgt',
       email: 'ieye7531@gmail.com',
       data_redistration:"03.06.2005"
     },
     {
       id:4,
-      first_name:'Baybolot',
+      first_name:'Baygfhfgbolot',
       email: 'ieye7531@gmail.com',
       data_redistration:"03.06.2005"
     },
     {
       id:5,
-      first_name:'Baybolot',
+      first_name:'Baybortertlot',
       email: 'ieye7531@gmail.com',
       data_redistration:"03.06.2005"
     }
@@ -73,7 +73,7 @@ export const userlist = [
     },
     {
       id:4,
-      first_name:'Baybolot',
+      first_name:'fghfg',
       last_name:'Janybekov',
       phone_number:'+996 705 889 125',
       email: 'ieye7531@gmail.com',
@@ -83,7 +83,7 @@ export const userlist = [
     },
     {
       id:5,
-      first_name:'Baybolot',
+      first_name:'Baytrrwolot',
       last_name:'Janybekov',
       phone_number:'+996 705 889 125',
       email: 'ieye7531@gmail.com',

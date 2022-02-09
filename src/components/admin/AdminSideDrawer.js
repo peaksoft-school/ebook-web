@@ -3,18 +3,37 @@ import classes from './AdminSideDrawer.module.css'
 import { ROUTES, NAVICON, SIDE } from '../../utils/constants/constants'
 import { NavLink } from 'react-router-dom'
 import EBookLogo from '../../components/UI/EBookLogo/EBookLogo'
+import { useDispatch } from 'react-redux'
+import { BreadCrumbsReducerActions } from '../../store/BreadCrumbsSlice'
 
 const SideDrawer = () => {
+    const dispatch = useDispatch()
+
     const [isActive, setIsActive] = useState(SIDE.App)
 
     const onClickApplicationHandler = () => {
         setIsActive(SIDE.App)
+        dispatch(BreadCrumbsReducerActions.addNewBreadCrumb( {
+            id: 0,
+            path_name: 'Заявки',
+            route: ROUTES.APPLICATIONS,
+          }))
     }
     const onClickSellersHandler = () => {
         setIsActive(SIDE.Sell)
+        dispatch(BreadCrumbsReducerActions.addNewBreadCrumb( {
+            id: 0,
+            path_name: 'Продавцы',
+            route: ROUTES.SELLERS,
+          }))
     }
     const onClickUsersHandler = () => {
         setIsActive(SIDE.User)
+        dispatch(BreadCrumbsReducerActions.addNewBreadCrumb( {
+            id: 0,
+            path_name: 'Users',
+            route: ROUTES.USERS,
+          }))
     }
     const onClickBooksHandler = () => {
         setIsActive(SIDE.Books)
