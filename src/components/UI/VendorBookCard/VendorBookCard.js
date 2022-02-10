@@ -45,11 +45,11 @@ const VendorBookCard = ({ book, isOpen, className, children }) => {
 						/>
 						<div className={classes.info}>
 							<div>
-								<p className={classes.title}>История Книги</p>
-								<p className={classes.date}>20 февраля</p>
+								<p className={classes.title}>{book.bookName}</p>
+								<p className={classes.date}>date</p>
 							</div>
 							<div className={classes.pricel}>
-								<p className={classes.price}> 255с</p>
+								<p className={classes.price}>{book.netPrice}</p>
 							</div>
 						</div>
 					</div>

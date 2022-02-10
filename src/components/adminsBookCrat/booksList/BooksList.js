@@ -2,12 +2,12 @@ import { useSelector } from 'react-redux'
 import VendorBookCard from '../../UI/VendorBookCard/VendorBookCard'
 import classes from './BooksList.module.css'
 const BooksList = () => {
-	const book = useSelector((state) => state.bookCrat.books)
-
+	const books = useSelector((state) => state.bookCrat.books)
+	console.log(books);
 
 	return (
 		<div className={classes.bookslistbox}>
-			{book.map((item) => (
+			{books.map((item) => (
 				<VendorBookCard book={item} key={item.id}/>
 			))}
 		</div>
