@@ -1,8 +1,9 @@
 import classes from './BreadCrumbs.module.css'
-import { breadcrumbs } from '../../../utils/constants/breadCrumbsConstans';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const BreadCrumbs = () => {
+  const breadcrumbs = useSelector(state => state.bread.breadCrumbsData)
 
   return <div className={classes.containerForLocations}>
     {breadcrumbs && breadcrumbs.map((breadcrumb)=> {

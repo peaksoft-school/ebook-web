@@ -3,7 +3,7 @@ import UserList from '../Users/UserList/UserList';
 import { getUsers } from '../../utils/constants/mock-data'
 
 const Users = () => {
-  let userlist = getUsers()
+  const userlist = getUsers()
   
   return <div className={classes.box}>
       <div className={classes.containerTitle}>

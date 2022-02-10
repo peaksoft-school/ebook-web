@@ -1,25 +1,46 @@
 import classes from './UserItem.module.css'
 import DeleteButton from '../../../UI/DeleteButton/DeleteButton';
+import ModalForDelete from '../../../UI/ModalForDelete/ModalForDelete';
+import { breadCrumbsReducerActions } from '../../../../store/BreadCrumbsSlice';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { updateBreadCrumbs } from '../../../../utils/constants/breadCrumbsConstans';
-const UserItem = (props) => {
-    const {id,
-      first_name,
-      email
-    } = props;
+import { useState } from 'react';
 
-    const breadcrumbs = [
-      {
-        route_name: 'Пользователи',
-        route: '/admin/users'
-      },
-      {
-        route_name: first_name
-      }
-    ]
+const UserItem = (props) => {
+  const {id,
+    first_name,
+    email
+  } = props;
+  
+  const breadcrumbs = [
+    {
+      route_name: 'Пользователи',
+      route: '/admin/users'
+    },
+    {
+      route_name: first_name
+    }
+  ]
+  
+  const [isShowModal,setIsShowModal] = useState(false)
+  const dispatch = useDispatch()
+
+    const onOpenHundler =()=> {
+        setIsShowModal(isShowModal => !isShowModal)
+    }
+  
+    const onCloseHundler =()=> {
+      setIsShowModal(isShowModal => !isShowModal)
+    }
+  
+    const onDeleteHundler =()=> {
+      setIsShowModal(isShowModal => !isShowModal)
+      //there will be dispatch function
+    }
+
 
     const senBreadCrumbs =()=> {
-      updateBreadCrumbs(breadcrumbs)
+      dispatch(breadCrumbsReducerActions.updateBreadCrumbs(breadcrumbs))
     }
 
     return <div className={classes.containerLiFor}>
@@ -34,7 +55,16 @@ const UserItem = (props) => {
               <p className={classes.mediumBox}>{email}</p>
           </li>
         </Link>
-        <DeleteButton full_name={`${first_name}`} id={id}/>
+        <DeleteButton onClick={onOpenHundler}/>
+        {
+        isShowModal 
+        && <ModalForDelete
+          full_name={first_name}
+          id={id}
+          onClose={onCloseHundler}
+          onDelete={onDeleteHundler} 
+          />
+        }
     </div>;
 };
 

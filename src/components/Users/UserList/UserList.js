@@ -4,8 +4,8 @@ import UserItem from './UserItem/UserItem'
 const UserList = ({userlist}) => {
   return <div>
         {
-        userlist && <ol className={classes.list}>
-            {userlist !== [] && userlist.map((user)=> {
+        <ol className={classes.list}>
+            {userlist && userlist !== [] && userlist.map((user)=> {
                 return <UserItem 
                   first_name={user.first_name}
                   email={user.email}

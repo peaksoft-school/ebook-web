@@ -1,12 +1,15 @@
 import classes from './SellerItem.module.css'
 import DeleteButton from '../../../UI/DeleteButton/DeleteButton';
+import ModalForDelete from '../../../UI/ModalForDelete/ModalForDelete';
+import { breadCrumbsReducerActions } from '../../../../store/BreadCrumbsSlice';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { updateBreadCrumbs } from '../../../../utils/constants/breadCrumbsConstans';
+import { useState } from 'react';
 
 const SellerItem = (props) => {
-    const {
-      id,first_name,
-      last_name,phone_number,
+  const {
+    id,first_name,
+    last_name,phone_number,
       email,booksum
     } = props
 
@@ -20,8 +23,25 @@ const SellerItem = (props) => {
       }
     ]
 
+    const dispatch = useDispatch()
+    const [isShowModal,setIsShowModal] = useState(false)
+
+    const onOpenHundler =()=> {
+        setIsShowModal(isShowModal => !isShowModal)
+    }
+  
+    const onCloseHundler =()=> {
+      setIsShowModal(isShowModal => !isShowModal)
+    }
+  
+    const onDeleteHundler =()=> {
+      setIsShowModal(isShowModal => !isShowModal)
+      //there will be dispatch function
+    }
+  
+
     const senBreadCrumbs =()=> {
-      updateBreadCrumbs(breadcrumbs)
+      dispatch(breadCrumbsReducerActions.updateBreadCrumbs(breadcrumbs))
     }
     
   return <div className={classes.containerForLi}>
@@ -39,7 +59,16 @@ const SellerItem = (props) => {
         <p className={classes.mediumBox}>{booksum}</p>
       </li>
       </Link>
-      <DeleteButton full_name={`${first_name} ${last_name}`} id={id}/>
+      <DeleteButton onClick={onOpenHundler}/>
+      {
+      isShowModal 
+      && <ModalForDelete
+        full_name={`${first_name} ${last_name}`}
+        id={id}
+        onClose={onCloseHundler}
+        onDelete={onDeleteHundler} 
+        />
+      }
   </div>;
 };
 

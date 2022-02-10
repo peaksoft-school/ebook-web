@@ -3,7 +3,7 @@ import { getSellers } from '../../utils/constants/mock-data';
 import SellerList from './SellerList/SellerList';
 
 const Sellers = () => {
-  let sellerlist = getSellers()
+  const sellerlist = getSellers()
   
   return <div className={classes.box}>
       <div className={classes.containerTitle}>

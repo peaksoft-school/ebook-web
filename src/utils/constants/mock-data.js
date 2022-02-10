@@ -34,7 +34,8 @@ export const userlist = [
   export function getUsers() {
     return userlist;
   }
-  export function getUser(userId) {
+
+  export function findUserById(userId) {
     return userlist.find(
       userlist => userlist.id === userId
     );
@@ -96,7 +97,8 @@ export const userlist = [
   export function getSellers() {
     return sellerlist;
   }
-  export function getSeller(userId) {
+  
+  export function findSellerById(userId) {
     return sellerlist.find(
       sellerlist => sellerlist.id === userId
     );
