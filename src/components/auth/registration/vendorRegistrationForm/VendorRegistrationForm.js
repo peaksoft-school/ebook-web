@@ -1,6 +1,6 @@
 import AuthButton from '../../../UI/authButton/AuthButton'
 import InputField from '../../../UI/inputField/InputField'
-import classes from './VendorRegistration.module.css'
+import classes from './VendorRegistrationForm.module.css'
 import { useForm } from 'react-hook-form'
 import isEye from '../../../../assets/png/isEye.png'
 import eye from '../../../../assets/png/eye.png'
@@ -9,6 +9,19 @@ import { EMAIL, PASSWORD } from '../../../../utils/constants'
 import LoadingSpinner from '../../../UI/loadingSpinner/LoadingSpinner'
 import { useDispatch, useSelector } from 'react-redux'
 import { authFetch } from '../../../../store/authReducer/signInSlice'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+
+const phoneRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/
+
+const schema = yup.object().shape({
+	firstName: yup.string().required("First Name should be required please"),
+	lastName: yup.string().required(),
+	phoneNumber: yup.string().matches(phoneRegex, "Invalid phone."),
+	email: yup.string().email().required(),
+	password: yup.string().min(6).max(15).required(),
+	confrimpassword: yup.string().oneOf([yup.ref("password"), null]),
+  });
 
 const VendorRegistration = () => {
 	const dispatch = useDispatch()
@@ -19,16 +32,14 @@ const VendorRegistration = () => {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
-		watch,
-	} = useForm({ mode: 'all' })
+	} = useForm({ mode: 'all', resolver: yupResolver(schema) })
 
-	const isSamePassword = watch('password')
 
 	const submitHadnler = useCallback(
-		(EbookUser) => {
-			delete EbookUser.confrimpassword
-			const EbookUserInfo = {EbookUser,url: vendorRegistrationUrl}
-			dispatch(authFetch(EbookUserInfo))
+		(ebookUser) => {
+			delete ebookUser.confrimpassword
+			const ebookUserInfo = {ebookUser,url: vendorRegistrationUrl}
+			dispatch(authFetch(ebookUserInfo))
 		},
 		[dispatch],
 	)
@@ -64,20 +75,14 @@ const VendorRegistration = () => {
 				type='text'
 				placeholder='Напишите ваше имя'
 				label='Ваше имя'
-				{...register('firstName', {
-					required: true,
-					validate: (value) => value.trim().length !== 0,
-				})}
+				{...register('firstName')}
 				hasError={errors.firstName}
 			/>
 			<InputField
 				type='text'
 				placeholder='Напишите вашу фамилию'
 				label='Ваша фамилия'
-				{...register('lastName', {
-					required: true,
-					disabled: Boolean(errors.firstName),
-				})}
+				{...register('lastName')}
 				hasError={errors.lastName}
 			/>
 			<InputField
@@ -86,22 +91,14 @@ const VendorRegistration = () => {
 				label='Номер вашего телефона'
 				onFocus={(e) => (e.target.value = '+996')}
 				maxLength='13'
-				{...register('phoneNumber', {
-					required: true,
-					pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-					disabled: Boolean(errors.lastName),
-				})}
+				{...register('phoneNumber')}
 				hasError={errors.phoneNumber}
 			/>
 			<InputField
 				type='email'
 				placeholder='Напишите ваш email'
 				label='Email'
-				{...register(EMAIL, {
-					required: true,
-					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-					disabled: Boolean(errors.phone),
-				})}
+				{...register(EMAIL)}
 				hasError={errors.email}
 			/>
 			<div className={classes.forAbsolute}>
@@ -110,11 +107,7 @@ const VendorRegistration = () => {
 					placeholder='Напишите пароль'
 					label='Пароль'
 					autoComplete='off'
-					{...register(PASSWORD, {
-						required: true,
-						validate: (value) => value.trim() > 5,
-						disabled: Boolean(errors.email),
-					})}
+					{...register(PASSWORD)}
 					hasError={errors.password}
 				/>
 				<img
@@ -129,11 +122,7 @@ const VendorRegistration = () => {
 					placeholder='Подтвердите пароль'
 					label='Подтвердите пароль'
 					autoComplete='off'
-					{...register('confrimpassword', {
-						required: true,
-						validate: (value) => value === isSamePassword,
-						disabled: Boolean(errors.password),
-					})}
+					{...register('confrimpassword')}
 					hasError={errors.confrimpassword}
 				/>
 				<img

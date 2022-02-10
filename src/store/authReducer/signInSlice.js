@@ -4,9 +4,9 @@ import { saveToLocalStorage } from '../../utils/helpers'
 
 export const authFetch = createAsyncThunk(
 	'EbookUser/signIn',
-	async function (EbookUserInfo, { rejectWithValue }) {
+	async function (ebookUserInfo, { rejectWithValue }) {
 		try {
-			const response = await authorizationFetch(EbookUserInfo)
+			const response = await authorizationFetch(ebookUserInfo)
 			const data = await response.json()
 			if (!response.ok) {
 				throw new Error(data.message)

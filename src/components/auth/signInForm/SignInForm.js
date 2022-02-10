@@ -2,7 +2,7 @@ import InputField from '../../UI/inputField/InputField'
 import AuthButton from '../../UI/authButton/AuthButton'
 import eye from '../../../assets/png/eye.png'
 import isEye from '../../../assets/png/isEye.png'
-import classes from './SignIn.module.css'
+import classes from './SignInForm.module.css'
 import { useForm } from 'react-hook-form'
 import { useState, useCallback } from 'react'
 import { authFetch } from '../../../store/authReducer/signInSlice'
@@ -22,9 +22,9 @@ const SignIn = () => {
 	} = useForm({ mode: 'all' })
 
 	const submitHandler = useCallback(
-		(EbookUser) => {
-			const EbookUserInfo = { EbookUser, url: authentication }
-			dispatch(authFetch(EbookUserInfo))
+		(ebookUser) => {
+			const ebookUserInfo = { ebookUser, url: authentication }
+			dispatch(authFetch(ebookUserInfo))
 		},
 		[dispatch],
 	)

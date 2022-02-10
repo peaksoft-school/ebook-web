@@ -1,6 +1,6 @@
-import ClientRegistration from '../registration/clientRegistration/ClientRegistration'
-import SignIn from '../signIn/SignIn'
-import VendorRegistration from '../registration/vendorRegistration/VendorRegistration'
+import ClientRegistrationForm from '../registration/clientRegistrationForm/ClientRegistrationForm'
+import SignInForm from '../signInForm/SignInForm'
+import VendorRegistrationForm from '../registration/vendorRegistrationForm/VendorRegistrationForm'
 import classes from './AuthForm.module.css'
 import { useCallback, useEffect, useState } from 'react'
 import { IS_LOGIN, IS_VENDOR, IS_USER } from '../../../utils/constants'
@@ -64,10 +64,10 @@ const AuthForm = () => {
 					Регистрация
 				</button>
 			</div>
-			{showSignInFormRegistration && <SignIn />}
+			{showSignInFormRegistration && <SignInForm />}
 			{showNewUserFormRegistration && (
 				<>
-					<ClientRegistration />
+					<ClientRegistrationForm />
 					<button
 						className={classes.sallerOnEbook}
 						onClick={vendorFormChangeHandler}
@@ -76,7 +76,7 @@ const AuthForm = () => {
 					</button>
 				</>
 			)}
-			{showNewVendorFormRegistration && <VendorRegistration />}
+			{showNewVendorFormRegistration && <VendorRegistrationForm />}
 		</section>
 	)
 }

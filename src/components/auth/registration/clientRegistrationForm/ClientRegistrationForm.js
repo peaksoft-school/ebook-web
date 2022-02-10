@@ -1,4 +1,4 @@
-import classes from './ClientRegistration.module.css'
+import classes from './ClientRegistrationForm.module.css'
 import AuthButton from '../../../UI/authButton/AuthButton'
 import InputField from '../../../UI/inputField/InputField'
 import eye from '../../../../assets/png/eye.png'
@@ -14,25 +14,33 @@ import {
 import LoadingSpinner from '../../../UI/loadingSpinner/LoadingSpinner'
 import { useDispatch, useSelector } from 'react-redux'
 import { authFetch } from '../../../../store/authReducer/signInSlice'
-	
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+
+const schema = yup.object().shape({
+	name: yup.string().required('First Name should be required please'),
+	email: yup.string().email().required(),
+	password: yup.string().min(6).max(10).required(),
+	confirmpassword: yup.string().oneOf([yup.ref('password'), null]),
+})
+
 const ClientRegistration = () => {
 	const { status, error } = useSelector((state) => state.authorization)
 	const dispatch = useDispatch()
+
 	const clientRegistrationUrl = 'client/signup/client'
+	
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
-		watch,
-	} = useForm({ mode: 'all' })
-
-	const isPassworIsSame = watch(PASSWORD)
+	} = useForm({ mode: 'all', resolver: yupResolver(schema) })
 
 	const onSubmitHadnler = useCallback(
-		(EbookUser) => {
-			delete EbookUser.confirmpassword
-			const EbookUserInfo = {EbookUser,url:clientRegistrationUrl}
-			dispatch(authFetch(EbookUserInfo))
+		(ebookUser) => {
+			delete ebookUser.confirmpassword
+			const ebookUserInfo = { ebookUser, url: clientRegistrationUrl }
+			dispatch(authFetch(ebookUserInfo))
 		},
 		[dispatch],
 	)
@@ -42,11 +50,11 @@ const ClientRegistration = () => {
 	const [isConfirmPasswordShown, setisConfirmPasswordShown] = useState(false)
 
 	const togglePassword = () => {
-		setIsPasswordShown(prevState => !prevState)
+		setIsPasswordShown((prevState) => !prevState)
 	}
 
 	const toggleisConfirmPasswordShown = () => {
-		setisConfirmPasswordShown(prevState => !prevState)
+		setisConfirmPasswordShown((prevState) => !prevState)
 	}
 
 	const getErrorMessage = () => {
@@ -66,22 +74,15 @@ const ClientRegistration = () => {
 				type='name'
 				placeholder='Напишите ваше имя'
 				label='Ваше имя'
-				{...register(NAME, {
-					required: true,
-					validate: (value) => value.trim().length !== 0,
-				})}
+				{...register(NAME)}
 				hasError={errors.name}
 			/>
 			<InputField
 				type='email'
 				placeholder='Напишите ваш email'
 				label='Email'
-				{...register(EMAIL, {
-					required: true,
-					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-					disabled: Boolean(errors.name),
-				})}
 				hasError={errors.email}
+				{...register(EMAIL)}
 			/>
 			<div className={classes.forAbsolute}>
 				<InputField
@@ -89,11 +90,7 @@ const ClientRegistration = () => {
 					placeholder='Напишите пароль'
 					label='Пароль'
 					autoComplete='off'
-					{...register(PASSWORD, {
-						required: true,
-						minLength: 5,
-						disabled: Boolean(errors.email),
-					})}
+					{...register(PASSWORD)}
 					hasError={errors.password}
 				/>
 				<img
@@ -107,11 +104,7 @@ const ClientRegistration = () => {
 					placeholder='Подтвердите пароль'
 					label='Подтвердите пароль'
 					autoComplete='off'
-					{...register(CONFIRMPASSWORD, {
-						required: true,
-						validate: (value) => value === isPassworIsSame,
-						disabled: Boolean(errors.password),
-					})}
+					{...register(CONFIRMPASSWORD)}
 					hasError={errors.confirmpassword}
 				/>
 				<img

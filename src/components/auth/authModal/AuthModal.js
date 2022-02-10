@@ -10,14 +10,3 @@ const AuthModal = (props) => {
 }
 
 export default AuthModal
-
-
-// components/Auth/SignIn/SignIn.js
-//                /Registration
-//                             /VendorRegistration
-//                                                
-//                             /ClientRegistrtaion
-//                 /AuthForm
-//           /Auth.js
-//
-//
