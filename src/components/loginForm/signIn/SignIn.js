@@ -5,7 +5,7 @@ import isEye from '../../../assets/png/isEye.png'
 import classes from './SignIn.module.css'
 import { useForm } from 'react-hook-form'
 import { useState, useCallback } from 'react'
-import { signIn } from '../../../store/authReducer/signInSlice'
+import { authFetch } from '../../../store/authReducer/signInSlice'
 import { EMAIL, PASSWORD } from '../../../utils/constants'
 import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
 import { useDispatch } from 'react-redux'
@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux'
 const SignIn = () => {
 	const { status, error } = useSelector((state) => state.authorization)
 	const dispatch = useDispatch()
-
+	const authentication = 'authentication'
 	const {
 		register,
 		handleSubmit,
@@ -22,8 +22,9 @@ const SignIn = () => {
 	} = useForm({ mode: 'onBlur' })
 
 	const submitHandler = useCallback(
-		(data) => {
-			dispatch(signIn(data))
+		(EbookUser) => {
+			const EbookUserInfo = {EbookUser,url:authentication}
+			dispatch(authFetch(EbookUserInfo))
 		},
 		[dispatch],
 	)

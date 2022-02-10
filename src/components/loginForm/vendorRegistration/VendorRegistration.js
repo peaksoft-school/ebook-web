@@ -8,11 +8,12 @@ import { useCallback, useState } from 'react'
 import { EMAIL, PASSWORD } from '../../../utils/constants'
 import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
 import { useDispatch, useSelector } from 'react-redux'
-import { vendorRegistration } from '../../../store/authReducer/signInSlice'
+import { authFetch } from '../../../store/authReducer/signInSlice'
 
 const VendorRegistration = () => {
 	const dispatch = useDispatch()
 	const { status, error } = useSelector((state) => state.authorization)
+	const vendorRegistrationUrl = 'signup/vendor'
 
 	const {
 		register,
@@ -24,8 +25,10 @@ const VendorRegistration = () => {
 	const isSamePassword = watch('password')
 
 	const submitHadnler = useCallback(
-		(data) => {
-			dispatch(vendorRegistration(data))
+		(EbookUser) => {
+			delete EbookUser.confrimpassword
+			const EbookUserInfo = {EbookUser,url: vendorRegistrationUrl}
+			dispatch(authFetch(EbookUserInfo))
 		},
 		[dispatch],
 	)

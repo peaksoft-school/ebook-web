@@ -1,54 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import {
-	clientRegistrationFetch,
-	signInFetch,
-	vendorRegistrationFetch,
-} from '../../api/authService'
+import { authorizationFetch } from '../../api/authService'
 import { saveToLocalStorage } from '../../utils/helpers'
 
-export const signIn = createAsyncThunk(
+export const authFetch = createAsyncThunk(
 	'EbookUser/signIn',
 	async function (EbookUserInfo, { rejectWithValue }) {
 		try {
-			const response = await signInFetch(EbookUserInfo)
+			const response = await authorizationFetch(EbookUserInfo)
 			const data = await response.json()
-
+			console.log(data)
 			if (!response.ok) {
 				throw new Error(data.message)
 			}
-			saveToLocalStorage('EbookUser',data)
-			return data
-		} catch (error) {
-			return rejectWithValue(error.message)
-		}
-	},
-)
-
-export const clientRegistration = createAsyncThunk(
-	'EbookUser/clientRegistration',
-	async function (EbookUserInfo, { rejectWithValue }) {
-		try {
-			const response = await clientRegistrationFetch(EbookUserInfo)
-			const data = await response.json()
-
-			if (!response.ok) {
-				throw new Error(data.message)
-			}
-			return data
-		} catch (error) {
-			return rejectWithValue(error.message)
-		}
-	},
-)
-
-export const vendorRegistration = createAsyncThunk(
-	'EbookUser/vendorRegistration',
-	async function (EbookUserInfo, { rejectWithValue }) {
-		try {
-			const response = await vendorRegistrationFetch(EbookUserInfo)
-			const data = await response.json()
-			if (!response.ok) {
-				throw new Error(data.message)
+			if (data.token) {
+				saveToLocalStorage('EbookUser', data)
 			}
 			return data
 		} catch (error) {
@@ -70,15 +35,14 @@ const isPending = (state) => {
 const setFulfilled = (state, action) => {
 	state.error = null
 	state.status = 'resolved'
-	const { token, authority } = action.payload
-	state.token = token
-	state.role = authority
-}
+	if(action.payload.token) {
+		const { token, authority } = action.payload
+		state.token = token
+		state.role = authority
+	}else{
+		state.userRegCredential = action.payload
+	}
 
-const setFulfilledClient = (state, action) => {
-	state.error = null
-	state.status = 'resolved'
-	state.userRegCredential = action.payload
 }
 
 const signInSlice = createSlice({
@@ -102,15 +66,9 @@ const signInSlice = createSlice({
 		},
 	},
 	extraReducers: {
-		[signIn.pending]: isPending,
-		[signIn.fulfilled]: setFulfilled,
-		[signIn.rejected]: setError,
-		[clientRegistration.pending]: isPending,
-		[clientRegistration.fulfilled]: setFulfilledClient,
-		[clientRegistration.rejected]: setError,
-		[vendorRegistration.pending]: isPending,
-		[vendorRegistration.fulfilled]: setFulfilledClient,
-		[vendorRegistration.rejected]: setError,
+		[authFetch.pending]: isPending,
+		[authFetch.fulfilled]: setFulfilled,
+		[authFetch.rejected]: setError,
 	},
 })
 
