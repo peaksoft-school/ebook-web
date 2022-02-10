@@ -1,11 +1,7 @@
 import './App.css'
-import AuthCart from './components/loginForm/authCart/AuthCart'
-import { useSelector } from 'react-redux'
+import AuthCart from './components/auth/authModal/AuthModal'
 function App() {
-	const userRegCredential = useSelector(
-		(state) => state.authorization.userRegCredential,
-	)
-	console.log(userRegCredential);
+
 	return (
 		<div className='App'>
 			<AuthCart />

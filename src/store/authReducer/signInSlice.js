@@ -8,7 +8,6 @@ export const authFetch = createAsyncThunk(
 		try {
 			const response = await authorizationFetch(EbookUserInfo)
 			const data = await response.json()
-			console.log(data)
 			if (!response.ok) {
 				throw new Error(data.message)
 			}
@@ -35,14 +34,13 @@ const isPending = (state) => {
 const setFulfilled = (state, action) => {
 	state.error = null
 	state.status = 'resolved'
-	if(action.payload.token) {
+	if (action.payload.token) {
 		const { token, authority } = action.payload
 		state.token = token
 		state.role = authority
-	}else{
-		state.userRegCredential = action.payload
+	} else {
+		state.userRegCredential = 'successful'
 	}
-
 }
 
 const signInSlice = createSlice({

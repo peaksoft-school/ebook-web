@@ -1,6 +1,6 @@
-const ISLOGIN = 'isLogin'
-const ISVENDOR = 'isVendor'
-const ISUSER = 'isUser'
+const IS_LOGIN = 'isLogin'
+const IS_VENDOR = 'isVendor'
+const IS_USER = 'isUser'
 const NAME = 'name'
 const EMAIL = 'email'
 const PASSWORD = 'password'
@@ -8,14 +8,14 @@ const CONFIRMPASSWORD = 'confirmpassword'
 const PHONE = 'phone'
 const SURNAME = 'surname'
 const PICTURE = 'PICTURE'
-const ISAUDIOBOOK = 'ISAUDIOBOOK'
-const ISPAPPERBOOK = 'ISPAPPERBOOK'
-const ISELECTROBOOK = 'ISELECTROBOOK'
+const IS_AUDIOBOOK = 'ISAUDIOBOOK'
+const IS_PAPPERBOOK = 'ISPAPPERBOOK'
+const IS_ELECTROBOOK = 'ISELECTROBOOK'
 
 export { 
-    ISLOGIN,
-    ISUSER,
-    ISVENDOR,
+    IS_LOGIN,
+    IS_USER,
+    IS_VENDOR,
     NAME,
     EMAIL,
     PASSWORD,
@@ -23,7 +23,7 @@ export {
     PHONE,
     SURNAME,
     PICTURE,
-    ISAUDIOBOOK,
-    ISPAPPERBOOK,
-    ISELECTROBOOK
+    IS_AUDIOBOOK,
+    IS_PAPPERBOOK,
+    IS_ELECTROBOOK
 }
