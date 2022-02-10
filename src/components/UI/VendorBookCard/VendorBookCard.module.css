@@ -1,23 +1,19 @@
 .styles { 
-    list-style-type: none
+    margin-left: 20px;
+    margin-top: 20px;
 }
 .vector {
     display:flex;
     width: 20px;
     height: 20px;
-    left: 88.81%;
-    right: 3.73%;
-    top: 2.45%;
-    bottom: 92.65%;
     padding-top: 10px;
-    padding-left: 238px;
     align-self: flex-end;
     cursor: pointer;
     
 }
 
 .card{
-    width: 267px;
+    width: 260px;
     height: 408px;
     background: #EDEDED;
 }
@@ -28,7 +24,7 @@
     padding-top: 5px;
     background-size: 100%;
     background-repeat: no-repeat;
-
+    margin: 0px 35px;
 }
 
 .info{
