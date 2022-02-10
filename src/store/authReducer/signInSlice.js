@@ -3,7 +3,7 @@ import {
 	clientRegistrationFetch,
 	signInFetch,
 	vendorRegistrationFetch,
-} from '../../api/authorizationApi/authService'
+} from '../../api/authService'
 import { saveToLocalStorage } from '../../utils/helpers'
 
 export const signIn = createAsyncThunk(

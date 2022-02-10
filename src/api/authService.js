@@ -1,4 +1,4 @@
-export const signInFetch = async (data) => {
+export const signInFetch = async (data, optino) => {
 	const { password, email } = data
 
 	const response = await fetch('http://3.123.114.41/api/authentication', {
