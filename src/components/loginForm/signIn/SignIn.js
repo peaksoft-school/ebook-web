@@ -23,17 +23,16 @@ const SignIn = () => {
 
 	const submitHandler = useCallback(
 		(EbookUser) => {
-			const EbookUserInfo = {EbookUser,url:authentication}
+			const EbookUserInfo = { EbookUser, url: authentication }
 			dispatch(authFetch(EbookUserInfo))
 		},
 		[dispatch],
 	)
 
-	const signInError = errors.email || errors.password
-
 	const getErrorMessage = () => {
 		const errorMessage =
-			(signInError && 'Неправильно указан Email и/или пароль') ||
+			((errors.email || errors.password) &&
+				'Неправильно указан Email и/или пароль') ||
 			(error && `An occured  ${error}`)
 		return errorMessage
 	}
