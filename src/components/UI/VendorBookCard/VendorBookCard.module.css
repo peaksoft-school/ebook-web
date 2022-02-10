@@ -1,63 +1,28 @@
-.styles { 
-    margin-left: 20px;
-    margin-top: 20px;
-}
-.vector {
-    display:flex;
-    width: 20px;
-    height: 20px;
-    padding-top: 10px;
-    align-self: flex-end;
-    cursor: pointer;
-    
+.styles {
+    list-style-type: none;
+    margin: 0;
+    padding-bottom: 20px;
+    margin: 10px 10px;
 }
 
-.card{
+.vedorbookcardimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card {
     width: 260px;
     height: 408px;
     background: #EDEDED;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-.card img{
+.card img {
     width: 197px;
     height: 297px;
     padding-top: 5px;
     background-size: 100%;
     background-repeat: no-repeat;
-    margin: 0px 35px;
 }
 
-.info{
-    width: 197px;
-    height:41px;
-    font-family: Open Sans, sans-serif;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 35px;
-}
-.title{
-    text-transform: uppercase;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 120%;
-    color: #222222;
-}
-
-.date{
-    color: #8A8A8A;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 120%;
-    
-}
-.price{
-    color: #FF4C00;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 120%;
-    padding-top: 25px;
-   
-}
