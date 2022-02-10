@@ -5,7 +5,7 @@ export const fetchBooks = createAsyncThunk(
 	async function (_, { rejectWithValue }) {
 		try {
 			const response = await fetch(
-				'http://3.123.114.41/api/admin/get/book/requests',
+				'https://jsonplaceholder.typicode.com/photos?_limit=10',
 			)
 			if (!response.ok) {
 				throw new Error('BackEnd is just a weak brother ')
