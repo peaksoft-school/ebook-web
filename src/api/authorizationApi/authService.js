@@ -1,4 +1,6 @@
-export const signInFetch = async (password, email) => {
+export const signInFetch = async (data) => {
+	const { password, email } = data
+
 	const response = await fetch('http://3.123.114.41/api/authentication', {
 		method: 'POST',
 		headers: {
@@ -9,7 +11,9 @@ export const signInFetch = async (password, email) => {
 	return response
 }
 
-export const clientRegistrationFetch = async (name, email, password) => {
+export const clientRegistrationFetch = async (data) => {
+	const { name, email, password } = data
+
 	const response = await fetch(
 		'http://3.123.114.41/api/client/signup/client',
 		{
@@ -21,43 +25,24 @@ export const clientRegistrationFetch = async (name, email, password) => {
 		},
 	)
 
-	if (!response.ok) {
-		throw new Error(
-			'This username or email already exists.Please try another option',
-		)
-	}
-
-	const data = await response.json()
-	return data
+	return response
 }
 
-export const vendorRegistrationFetch = async (
-	email,
-	password,
-	firstName,
-	lastName,
-	phoneNumer,
-) => {
+export const vendorRegistrationFetch = async (data) => {
+	const { password, email, firstName, lastName, phoneNumber } = data
 	const response = await fetch('http://3.123.114.41/api/signup/vendor', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			password,
-			email,
 			firstName,
 			lastName,
-			phoneNumer,
+			phoneNumber,
+			email,
+			password,
 		}),
 	})
 
-	if (!response.ok) {
-		throw new Error(
-			'This username or email already exists.Please try another option',
-		)
-	}
-
-	const data = await response.json()
-	return data
+	return response
 }

@@ -49,17 +49,14 @@ const VendorRegistration = () => {
 			(errors.password &&
 				'Длина пароля должна быть не менее 5 символов') ||
 			(errors.confrimpassword && 'Пороли не совподают') ||
-			(errors.phoneNumer && 'Введите корретный номер') ||
+			(errors.phoneNumber && 'Введите корретный номер') ||
 			(errors.lastName && 'Забыли заполнить фамилию') ||
 			(error && `An error occured: ${error}`)
 		return isHasErrorMessage
 	}
 
 	return (
-		<form
-			className={classes.form}
-			onSubmit={handleSubmit(submitHadnler)}
-		>
+		<form className={classes.form} onSubmit={handleSubmit(submitHadnler)}>
 			<InputField
 				type='text'
 				placeholder='Напишите ваше имя'
@@ -86,12 +83,12 @@ const VendorRegistration = () => {
 				label='Номер вашего телефона'
 				onFocus={(e) => (e.target.value = '+996')}
 				maxLength='13'
-				{...register('phoneNumer', {
+				{...register('phoneNumber', {
 					required: true,
 					pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
 					disabled: Boolean(errors.lastName),
 				})}
-				hasError={errors.phoneNumer}
+				hasError={errors.phoneNumber}
 			/>
 			<InputField
 				type='email'

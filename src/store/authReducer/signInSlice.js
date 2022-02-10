@@ -1,12 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { signInFetch } from '../../api/authorizationApi/authService'
+import {
+	clientRegistrationFetch,
+	signInFetch,
+	vendorRegistrationFetch,
+} from '../../api/authorizationApi/authService'
 
 export const signIn = createAsyncThunk(
 	'EbookUser/signIn',
 	async function (EbookUserInfo, { rejectWithValue }) {
 		try {
-			const { password, email } = EbookUserInfo
-			const response = await signInFetch(password, email)
+			const response = await signInFetch(EbookUserInfo)
 			const data = await response.json()
 
 			if (!response.ok) {
@@ -23,26 +26,12 @@ export const clientRegistration = createAsyncThunk(
 	'EbookUser/clientRegistration',
 	async function (EbookUserInfo, { rejectWithValue }) {
 		try {
-			const { email, password, name } = EbookUserInfo
-			const response = await fetch(
-				'http://3.123.114.41/api/client/signup/client',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({ name, email, password }),
-				},
-			)
+			const response = await clientRegistrationFetch(EbookUserInfo)
+			const data = await response.json()
 
 			if (!response.ok) {
-				throw new Error(
-					'This username or email already exists.Please try another option',
-				)
+				throw new Error(data.message)
 			}
-
-			const data = await response.json()
-			localStorage.setItem('EbookUser', JSON.stringify(data))
 			return data
 		} catch (error) {
 			return rejectWithValue(error.message)
@@ -54,33 +43,11 @@ export const vendorRegistration = createAsyncThunk(
 	'EbookUser/vendorRegistration',
 	async function (EbookUserInfo, { rejectWithValue }) {
 		try {
-			const { email, password, firstName, lastName, phoneNumer } =
-				EbookUserInfo
-			const response = await fetch(
-				'http://3.123.114.41/api/signup/vendor',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						password,
-						email,
-						firstName,
-						lastName,
-						phoneNumer,
-					}),
-				},
-			)
-
-			if (!response.ok) {
-				throw new Error(
-					'This username or email already exists.Please try another option',
-				)
-			}
-
+			const response = await vendorRegistrationFetch(EbookUserInfo)
 			const data = await response.json()
-			localStorage.setItem('EbookUser', JSON.stringify(data))
+			if (!response.ok) {
+				throw new Error(data.message)
+			}
 			return data
 		} catch (error) {
 			return rejectWithValue(error.message)
