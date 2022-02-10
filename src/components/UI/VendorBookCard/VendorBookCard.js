@@ -12,7 +12,7 @@ const VendorBookCard = ({book, isOpen, isPopUp, className, children}) => {
                 <div className={`${classes.card} ${className}`} onClick={isOpen}>
                     {children}
                     <Icon className={classes.vector} onClick={isPopUp}/>
-                    <img src={book.url}/>
+                    <img src={book.url} alt='there will be svg'/>
                     <div className={classes.info}>
                         <div>
                             <p className={classes.title}>{book.title}</p>
