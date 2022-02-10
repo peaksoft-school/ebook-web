@@ -4,6 +4,7 @@ import {
 	signInFetch,
 	vendorRegistrationFetch,
 } from '../../api/authorizationApi/authService'
+import { saveToLocalStorage } from '../../utils/helpers'
 
 export const signIn = createAsyncThunk(
 	'EbookUser/signIn',
@@ -15,6 +16,7 @@ export const signIn = createAsyncThunk(
 			if (!response.ok) {
 				throw new Error(data.message)
 			}
+			saveToLocalStorage('EbookUser',data)
 			return data
 		} catch (error) {
 			return rejectWithValue(error.message)

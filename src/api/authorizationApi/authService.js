@@ -24,7 +24,6 @@ export const clientRegistrationFetch = async (data) => {
 			body: JSON.stringify({ name, email, password }),
 		},
 	)
-
 	return response
 }
 
