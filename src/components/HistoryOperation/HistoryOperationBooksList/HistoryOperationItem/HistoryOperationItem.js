@@ -7,12 +7,12 @@ const HistoryOperationItem = (props) => {
             <p className={classes.bookNameInformation}>{props.book_name}</p>
             <p className={classes.bookNameInformation}>{props.author}</p>
         </div>
-        <p className={classes.smallBox}>{props.booksum} шт</p>
-        <div>
+        <p className={classes.numberOfBoook}>{props.booksum} шт</p>
+        <div className={classes.aboutPrice} >
             <p className={classes.promocode}>промокод {props.promocode}%</p>
             <p><span className={classes.withoutDiscount}>{props.price} c</span>{props.discount} c</p>
         </div>
-        <p className={classes.smallBox}>{props.data_registration}</p>
+        <p className={classes.dataRegistration}>{props.data_registration}</p>
         <p className={classes.state}>{props.state}</p>
     </div>
 };

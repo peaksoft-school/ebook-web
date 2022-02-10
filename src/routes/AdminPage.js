@@ -1,15 +1,20 @@
-import { Route, Routes, Navigate } from "react-router-dom";
-import AddBookForm from "../components/adminAddBook/addBookForm/AddBookForm";
+import { Route, Routes} from "react-router-dom";
 import { ROUTES } from '../utils/constants/constants' 
+import AddBookForm from "../components/adminAddBook/addBookForm/AddBookForm";
+import Users from "../components/Users/Users";
+import Sellers from "../components/Sellers/Sellers";
+import SellersDetails from "../components/SellersDetails/SellersDetails";
+import UserDetails from "../components/UserDetails/UserDetails";
 
 function AdminPageRoute() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Navigate replace to={ROUTES.APPLICATIONS}/>}/>
-                <Route path={ROUTES.APPLICATIONS} element={<h1>App</h1>}/>
-                <Route path={ROUTES.SELLERS} element={<h1>Seller</h1>}/>
-                <Route path={ROUTES.USERS} element={<h1>Users</h1>}/>
+                <Route path={ROUTES.APPLICATIONS} index element={<h1>App</h1>}/>
+                <Route path={ROUTES.SELLERS} element={<Sellers/>}/>
+                <Route path={ROUTES.SEllERBYID} element={<SellersDetails/>} />
+                <Route path={ROUTES.USERS} element={<Users/>}/>
+                <Route path={ROUTES.USERBYID} element={<UserDetails/>} />
                 <Route path={ROUTES.BOOKS} element={<AddBookForm/>}/>
             </Routes>
         </>

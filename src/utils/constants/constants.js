@@ -13,7 +13,9 @@ export const ROUTES = {
     HOME: '/admin',
     APPLICATIONS: '/admin/applications',
     SELLERS: '/admin/sellers',
+    SEllERBYID:"/admin/sellers/:sellerId",
     USERS: '/admin/users',
+    USERBYID:'/admin/users/:userId',
     BOOKS: '/admin/books',
     SIDEDRAWERDATA: [
         {
@@ -46,7 +48,6 @@ export const ROUTES = {
         }
     ]
 }
-
 export const NAVICON = {
     APPLICATIONS: APPLICATIONS,
     APPLICATION: APPLICATION,
