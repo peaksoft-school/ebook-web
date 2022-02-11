@@ -47,4 +47,5 @@ const VendorBookCard = (props) => {
         </div>
     )
 }
+
 export default VendorBookCard

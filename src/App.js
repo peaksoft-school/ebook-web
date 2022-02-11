@@ -1,9 +1,9 @@
 import './App.css'
-import VendorBooksInAdmin from './components/VendorBooksInAdmin/VendorBooksInAdmin'
+import AdminPage from './components/admin/AdminPage'
 
 function App() {
 	return <div className='App'>
-		<VendorBooksInAdmin/>
+		<AdminPage/>
 	</div>
 }
 

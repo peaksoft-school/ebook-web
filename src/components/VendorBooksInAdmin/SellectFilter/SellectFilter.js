@@ -3,13 +3,14 @@ import { ReactComponent as ArrowIcon } from '../../../assets/icons/arrow.svg'
 import { useState } from 'react';
 import Option from './Option/Option';
 
-const SellectFilter = () => {
-    const [keyName,setKeyName] = useState('Все')
+const SellectFilter = ({selectedСategory}) => {
+    const [keyName,setKeyName] = useState('All')
     const [showOptions,setShowOptions] = useState(false)
 
-    const changeKeyName=(newKeyName)=> {
+    const changeKeyName=(newKeyName,category)=> {
         setKeyName(newKeyName)
         setShowOptions((showOptions)=> !showOptions)
+        // selectedСategory(category)
     }
 
     const changeShowOptions=()=> {
@@ -17,9 +18,16 @@ const SellectFilter = () => {
     }
 
     return <div>
-        <div onClick={changeShowOptions} className={classes.select}>
+        <div 
+        onClick={changeShowOptions} 
+        className={classes.select}
+        >
             <p className={classes.optionWithoutLine}>{keyName}</p>
-            <ArrowIcon className={classes.arrowIcon}/>
+            <ArrowIcon 
+            className={showOptions? 
+            classes.arrowUpIcon 
+            : classes.arrowDownIcon}
+            />
         </div>
         {
             showOptions 
