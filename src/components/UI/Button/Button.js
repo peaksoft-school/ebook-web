@@ -9,6 +9,8 @@ const STYLES = [
   "contained",
   "select",
   "light",
+  "redirectActiveButton",
+  "redirectButton",
   "deleteProfile",
   "tabSwitcher",
   "btnActive"

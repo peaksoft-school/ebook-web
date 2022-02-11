@@ -26,7 +26,7 @@
 }
 
 .tabSwitcher {
-    background-color: white;
+    background-color: #FAFAFA;
     padding: 8px 40px;
     color:#222222;
     border:none;
@@ -44,7 +44,7 @@
 }
 
 .btnActive {
-    background-color: white;
+    background-color: #FAFAFA;
     padding: 8px 40px;
     color:#FF4C00;
     border:none;
@@ -139,8 +139,6 @@
 
 
 .select{
-    width: 242px;
-    height: 40px;
     left: 16px;
     top: 16px;
     background: #F8F8F8;
@@ -183,4 +181,18 @@
     border:rgba(0, 0, 0, 0) ;
     margin-top: 80px;
     cursor: pointer;
+}
+.redirectButton {
+    border: 0.1px solid rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    color:#C4C4C4;
+    font-size: 18px;
+}
+.redirectActiveButton {
+    border: 0.1px solid rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    color:#F34901;
+    font-size: 18px;
 }
