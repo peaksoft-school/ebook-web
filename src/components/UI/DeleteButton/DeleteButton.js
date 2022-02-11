@@ -1,9 +1,12 @@
 import classes from './DeleteButton.module.css'
 import deleteIcon from '../../../assets/icons/deleteIcon.svg'
 
-const DeleteButton = () => {
-  return <div className={classes.borderDeleteIcon}>
-    <img src={deleteIcon} alt='delete icon' />
+const DeleteButton = (props) => {
+
+  return <div>
+      <div onClick={props.onClick} className={classes.borderDeleteIcon}>
+      <img src={deleteIcon} alt='delete icon' />
+    </div>
   </div>
 };
 

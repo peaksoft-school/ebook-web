@@ -9,7 +9,14 @@ const STYLES = [
   "contained",
   "select",
   "light",
-  "deleteProfile"
+<<<<<<< HEAD
+  "redirectActiveButton",
+  "redirectButton"
+=======
+  "deleteProfile",
+  "tabSwitcher",
+  "btnActive"
+>>>>>>> a9702fa88e0435f901e13d195da69a9cf18f0d1a
 ]
 
 const Button = ({
