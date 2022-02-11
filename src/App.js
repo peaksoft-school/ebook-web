@@ -1,9 +1,9 @@
 import './App.css'
-import AdminPage from './components/admin/AdminPage'
+import VendorMainPage from './components/VendorMainPage/VendorMainPage'
 
 function App() {
 	return <div className='App'>
-		<AdminPage/>
+		<VendorMainPage/>
 	</div>
 }
 
