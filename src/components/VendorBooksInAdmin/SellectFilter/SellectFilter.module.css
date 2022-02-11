@@ -1,0 +1,18 @@
+.select {
+    display: flex;
+    align-items: center;
+    width: 150px;
+    justify-content: end;
+    cursor: pointer;
+}
+
+.arrowIcon {
+    margin-left: 10px;
+}
+
+.containerForOptions {
+    background-color: #FFFFFF;
+    padding: 20px;
+    position: absolute;
+    width: 130px;
+}

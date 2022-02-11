@@ -1,13 +1,14 @@
 import classes from './VendorBooksInAdmin.module.css'
 import Button from '../UI/Button/Button'
 import VendorBookCard from '../UI/VendorBookCard/VendorBookCard';
+import SellectFilter from './SellectFilter/SellectFilter';
 import { vendorBooks } from '../../utils/constants/mock-data';
 
 const VendorBooksInAdmin = () => {
   return <div className={classes.containerForVendorBookContent}>
       <div className={classes.containerForTopPartInVendorBooks}>
           <p className={classes.numberOfBooks}>всего 23 книг</p>
-          {/* there will be pop up with text all */}
+          <SellectFilter/>
       </div>
       <hr className={classes.lineInVendorBooks}/>
       <div className={classes.containerForbookContnet}>
