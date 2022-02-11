@@ -12,12 +12,22 @@ export const deleteFromLocalStorage = (key) => {
 const DEFAULT_URL = 'http://3.123.114.41/'
 
 export const sendRequest = async (requestConfig) => {
-	const { url, method, headers, body } = requestConfig
-	const response = await fetch(DEFAULT_URL + url, {
-		method: method ? method : 'GET',
-		headers: headers ? headers : { 'Content-Type': 'application/json' },
-		body: body ? JSON.stringify(body) : null,
-	})
+	const postRequest =
+		requestConfig.method !== 'GET'
+			? {
+					method: requestConfig.method,
+					headers: requestConfig.headers
+						? requestConfig.headers
+						: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(requestConfig.body),
+			  }
+			: {
+					method: 'GET',
+					headers: { 'Content-Type': 'application/json' },
+			  }
+
+	const response = await fetch(DEFAULT_URL + requestConfig.url, postRequest)
+
 	if (!response.ok) {
 		throw new Error(response.message)
 	}
