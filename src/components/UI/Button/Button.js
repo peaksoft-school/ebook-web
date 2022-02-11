@@ -14,7 +14,8 @@ const STYLES = [
   "deleteProfile",
   "tabSwitcher",
   "btnActive",
-  'variantBecomeToSeller'
+  'variantBecomeToSeller',
+  "btnActive"
 ]
 
 const Button = ({
