@@ -1,22 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { authorizationFetch } from '../../api/authService'
 import { saveToLocalStorage } from '../../utils/helpers'
+import { sendRequest } from '../../../src/utils/helpers'
 
 export const authFetch = createAsyncThunk(
 	'EbookUser/signIn',
 	async function (ebookUserInfo, { rejectWithValue }) {
 		try {
-			const response = await authorizationFetch(ebookUserInfo)
-			const data = await response.json()
-			if (!response.ok) {
-				throw new Error(data.message)
+			const response = await sendRequest(ebookUserInfo)
+			if (response.token) {
+				saveToLocalStorage('EbookUserToken', response)
 			}
-			if (data.token) {
-				saveToLocalStorage('EbookUser', data)
-			}
-			return data
+			return response
 		} catch (error) {
-			return rejectWithValue(error.message)
+			return rejectWithValue(error.message || 'Something went wrong')
 		}
 	},
 )

@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux'
 const SignIn = () => {
 	const { status, error } = useSelector((state) => state.authorization)
 	const dispatch = useDispatch()
-	const authentication = 'authentication'
+	const authentication = 'api/authentication'
 	const {
 		register,
 		handleSubmit,
@@ -23,7 +23,11 @@ const SignIn = () => {
 
 	const submitHandler = useCallback(
 		(ebookUser) => {
-			const ebookUserInfo = { ebookUser, url: authentication }
+			const ebookUserInfo = {
+				url: authentication,
+				method: 'POST',
+				body: ebookUser,
+			}
 			dispatch(authFetch(ebookUserInfo))
 		},
 		[dispatch],
@@ -33,7 +37,7 @@ const SignIn = () => {
 		const errorMessage =
 			((errors.email || errors.password) &&
 				'Неправильно указан Email и/или пароль') ||
-			(error && `An occured  ${error}`)
+			(error && `${error}`)
 		return errorMessage
 	}
 

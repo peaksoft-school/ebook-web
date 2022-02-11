@@ -26,7 +26,7 @@ const schema = yup.object().shape({
 const VendorRegistration = () => {
 	const dispatch = useDispatch()
 	const { status, error } = useSelector((state) => state.authorization)
-	const vendorRegistrationUrl = 'signup/vendor'
+	const vendorRegistrationUrl = 'api/vendor/signup/vendor'
 
 	const {
 		register,
@@ -38,7 +38,11 @@ const VendorRegistration = () => {
 	const submitHadnler = useCallback(
 		(ebookUser) => {
 			delete ebookUser.confrimpassword
-			const ebookUserInfo = {ebookUser,url: vendorRegistrationUrl}
+			const ebookUserInfo = {
+				url: vendorRegistrationUrl,
+				method: 'POST',
+				body: ebookUser,
+			}
 			dispatch(authFetch(ebookUserInfo))
 		},
 		[dispatch],

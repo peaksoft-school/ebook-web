@@ -28,18 +28,22 @@ const ClientRegistration = () => {
 	const { status, error } = useSelector((state) => state.authorization)
 	const dispatch = useDispatch()
 
-	const clientRegistrationUrl = 'client/signup/client'
-	
+	const clientRegistrationUrl = 'api/client/signup/client'
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
 	} = useForm({ mode: 'all', resolver: yupResolver(schema) })
 
-	const onSubmitHadnler = useCallback(
+	const submitHandler = useCallback(
 		(ebookUser) => {
 			delete ebookUser.confirmpassword
-			const ebookUserInfo = { ebookUser, url: clientRegistrationUrl }
+			const ebookUserInfo = {
+				url: clientRegistrationUrl,
+				method: 'POST',
+				body: ebookUser,
+			}
 			dispatch(authFetch(ebookUserInfo))
 		},
 		[dispatch],
@@ -69,7 +73,7 @@ const ClientRegistration = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmitHadnler)}>
+		<form onSubmit={handleSubmit(submitHandler)}>
 			<InputField
 				type='name'
 				placeholder='Напишите ваше имя'
