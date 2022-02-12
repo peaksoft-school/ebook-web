@@ -2,27 +2,44 @@ import InputField from '../../UI/inputField/InputField'
 import AuthButton from '../../UI/authButton/AuthButton'
 import eye from '../../../assets/png/eye.png'
 import isEye from '../../../assets/png/isEye.png'
-import classes from './SignIn.module.css'
+import classes from './SignInForm.module.css'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
+import { authFetch } from '../../../store/authReducer/signInSlice'
 import { EMAIL, PASSWORD } from '../../../utils/constants'
+import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const SignIn = () => {
+	const { status, error } = useSelector((state) => state.authorization)
+	const dispatch = useDispatch()
+	const authentication = 'api/authentication'
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
-	} = useForm({ mode: 'onBlur' })
+	} = useForm({ mode: 'all' })
 
-	const onSubmitClientSignUp = (data) => {
-		console.log(data)
-	}
-
-	const signInError = errors.EMAIL || errors.PASSWORD
-
-	let errorMessage = signInError && (
-		<p className={classes.message}>Неправильно указан Email и/или пароль</p>
+	const submitHandler = useCallback(
+		(ebookUser) => {
+			const ebookUserInfo = {
+				url: authentication,
+				method: 'POST',
+				body: ebookUser,
+			}
+			dispatch(authFetch(ebookUserInfo))
+		},
+		[dispatch],
 	)
+
+	const getErrorMessage = () => {
+		const errorMessage =
+			((errors.email || errors.password) &&
+				'Неправильно указан Email и/или пароль') ||
+			(error && `${error}`)
+		return errorMessage
+	}
 
 	const [isPasswordShown, setIsPasswordShown] = useState(false)
 
@@ -31,7 +48,7 @@ const SignIn = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmitClientSignUp)}>
+		<form onSubmit={handleSubmit(submitHandler)}>
 			<InputField
 				type='email'
 				placeholder='Напишите email'
@@ -41,6 +58,7 @@ const SignIn = () => {
 					pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
 				})}
 				disabled={errors.password ? true : false}
+				hasError={errors.email}
 			/>
 			<div>
 				<InputField
@@ -50,9 +68,10 @@ const SignIn = () => {
 					autoComplete='off'
 					{...register(PASSWORD, {
 						required: true,
-						validate: (value) => value.length > 4,
+						validate: (value) => value.length > 3,
 					})}
 					disabled={errors.email ? true : false}
+					hasError={errors.password}
 				/>
 				<img
 					className={classes.pngOfPassword}
@@ -60,8 +79,9 @@ const SignIn = () => {
 					alt=''
 					onClick={togglePassword}
 				/>
+				<p className={classes.message}>{getErrorMessage()}</p>
+				{status === 'loading' && <LoadingSpinner />}
 			</div>
-			{errorMessage}
 			<AuthButton type='submit' disabled={!isValid}>
 				Войти
 			</AuthButton>

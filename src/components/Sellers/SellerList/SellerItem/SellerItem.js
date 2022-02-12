@@ -1,7 +1,7 @@
 import classes from './SellerItem.module.css'
 import DeleteButton from '../../../UI/DeleteButton/DeleteButton';
 import ModalForDelete from '../../../UI/ModalForDelete/ModalForDelete';
-import { breadCrumbsReducerActions } from '../../../../store/BreadCrumbsSlice';
+import { breadCrumbsReducerActions } from '../../../../store/breadCrumbsSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';

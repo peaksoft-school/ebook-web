@@ -1,8 +1,7 @@
-import AuthForm from '../../loginForm/authForm/LoginForm'
+import AuthForm from '../authForm/AuthForm'
 import Modal from '../../UI/modal-window/ModalWindow'
 
-const AuthCart = (props) => {
-
+const AuthModal = (props) => {
 	return (
 		<Modal onClose={props.onClose}>
 			<AuthForm />
@@ -10,4 +9,4 @@ const AuthCart = (props) => {
 	)
 }
 
-export default AuthCart
+export default AuthModal

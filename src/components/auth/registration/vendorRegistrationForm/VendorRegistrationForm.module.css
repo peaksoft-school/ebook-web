@@ -1,21 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
-.justBgColor{
-    background: #1C1C1C;
-}
 
+.errorBorder{
+	border-color: red;
+}
 .pngOfPassword {
 	position: relative;
-    float: right;
-    bottom: 39px;
-    left: 0;
-    width: 18px;
-    height: 15px;
-    padding-right: 18px;
-    cursor: pointer;
-    margin: 0;
+	float: right;
+	bottom: 39px;
+	left: 0;
+	width: 18px;
+	height: 15px;
+	padding-right: 18px;
+	cursor: pointer;
+	margin: 0;
 }
-
 .message {
 	text-align: center;
 	color: red;
@@ -23,8 +22,9 @@
 	font-weight: normal;
 	font-size: 14px;
 	line-height: 19px;
-    font-family: 'Nunito', sans-serif;
-    display: flex;
+	color: #f10000;
+	font-family: 'Nunito', sans-serif;
+	display: flex;
 	justify-content: center;
 	margin-left: auto;
 	margin-right: auto;
