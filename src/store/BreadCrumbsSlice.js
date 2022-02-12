@@ -12,4 +12,4 @@ const breadCrumbsReducer = createSlice({
     }
 })
 export const breadCrumbsReducerActions = breadCrumbsReducer.actions;
-export default breadCrumbsReducer
+export default breadCrumbsReducer.reducer

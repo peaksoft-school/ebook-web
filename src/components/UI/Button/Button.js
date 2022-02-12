@@ -13,6 +13,8 @@ const STYLES = [
   "redirectButton",
   "deleteProfile",
   "tabSwitcher",
+  "btnActive",
+  'variantBecomeToSeller',
   "btnActive"
 ]
 
