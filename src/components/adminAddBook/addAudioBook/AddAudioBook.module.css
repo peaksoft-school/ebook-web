@@ -47,6 +47,11 @@
 	width: 636px;
 }
 
+.rightSectionTextArea{
+	width: 636px;
+	resize: none;
+}
+
 .rightSectionInput {
 	padding-bottom: 20px;
 }

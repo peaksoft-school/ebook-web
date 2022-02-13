@@ -53,6 +53,7 @@ const AudioBook = () => {
 					placeholder='Напишите о книге'
 					maxlengthofletters='1234'
 					maxLength='1234'
+					className={classes.rightSectionTextArea}
 				/>
 			</section>
 			<section className={classes.leftSection}>
