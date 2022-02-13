@@ -1,4 +1,5 @@
 .styles {
+<<<<<<< HEAD
 	list-style-type: none;
 	margin: 0;
 	padding-left: 20px;
@@ -113,3 +114,32 @@
 	padding-left: 22px;
 	padding-right: 11.5px;
 }
+=======
+    list-style-type: none;
+    margin: 0;
+    padding-bottom: 20px;
+    margin: 10px 10px;
+}
+
+.vedorbookcardimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card {
+    width: 260px;
+    height: 408px;
+    background: #EDEDED;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card img {
+    width: 197px;
+    height: 297px;
+    padding-top: 5px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+>>>>>>> d10bd4d3e5f0882a0c9196a1a012d33d8a9f7e83

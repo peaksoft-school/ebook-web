@@ -5,28 +5,28 @@ import Papperbook from '../addPapperBook/AddPapperBook'
 import classes from './AddBookForm.module.css'
 import UploadImageCart from '../imageUploader/UploadImageCart'
 import {
-	ISAUDIOBOOK,
-	ISPAPPERBOOK,
-	ISELECTROBOOK,
+	IS_AUDIOBOOK,
+	IS_PAPPERBOOK,
+	IS_ELECTROBOOK,
 } from '../../../utils/constants'
 
 const AddBookForm = () => {
-	const [typeOfBook, setTypeOfBook] = useState(ISPAPPERBOOK)
+	const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
 
 	const isAudioChangeHandler = () => {
-		setTypeOfBook(ISAUDIOBOOK)
+		setTypeOfBook(IS_AUDIOBOOK)
 	}
 
 	const isElectroChangeHandler = () => {
-		setTypeOfBook(ISELECTROBOOK)
+		setTypeOfBook(IS_ELECTROBOOK)
 	}
 	const isBookChangeHandler = () => {
-		setTypeOfBook(ISPAPPERBOOK)
+		setTypeOfBook(IS_PAPPERBOOK)
 	}
 
-	const electroBook = typeOfBook === ISELECTROBOOK
-	const papperBook = typeOfBook === ISPAPPERBOOK
-	const audioBook = typeOfBook === ISAUDIOBOOK
+	const electroBook = typeOfBook === IS_ELECTROBOOK
+	const papperBook = typeOfBook === IS_PAPPERBOOK
+	const audioBook = typeOfBook === IS_AUDIOBOOK
 
 	const onPaperBookSubmit = (data) => {
 		console.log(data)

@@ -1,12 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit"
-import LibrarySlice from "./LibrarySlice"
-import bookCratSlice from "./cratReducer/bookCratSlice"
-import genresSlice from "./bookGenresReducer/genresSlice"
+import { configureStore } from '@reduxjs/toolkit'
+import signInSlice from './authReducer/signInSlice'
+import breadCrumbsReducer from './breadCrumbsSlice'
+
 const store = configureStore({
-    reducer: {
-        library: LibrarySlice,
-        bookCrat: bookCratSlice,
-        genres: genresSlice,
-    }
+	reducer: {
+		bread: breadCrumbsReducer,
+		authorization: signInSlice,
+	},
 })
 export default store

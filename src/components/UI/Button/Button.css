@@ -25,7 +25,38 @@
 
 }
 
+.tabSwitcher {
+    background-color: #FAFAFA;
+    padding: 8px 40px;
+    color:#222222;
+    border:none;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 130%;
+    padding-bottom: 12px;
+    text-decoration: none;
+}
+.tabSwitcher:hover {
+    cursor: pointer;
+    color: #FF4C00;;
+}
 
+.btnActive {
+    background-color: #FAFAFA;
+    padding: 8px 40px;
+    color:#FF4C00;
+    border:none;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 130%;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #FF4C00;
+    text-decoration: none;
+}
 
 .secondary {
     background-color: #F34901;
@@ -108,8 +139,6 @@
 
 
 .select{
-    width: 242px;
-    height: 40px;
     left: 16px;
     top: 16px;
     background: #F8F8F8;
@@ -151,5 +180,30 @@
     font-weight: 600;
     border:rgba(0, 0, 0, 0) ;
     margin-top: 80px;
+    cursor: pointer;
+}
+.redirectButton {
+    border: 0.1px solid rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    color:#C4C4C4;
+    font-size: 18px;
+}
+.redirectActiveButton {
+    border: 0.1px solid rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    color:#F34901;
+    font-size: 18px;
+}
+.variantBecomeToSeller {
+    display: flex;
+    justify-content: center;
+    border: 0.1px solid rgba(0, 0, 0, 0);
+    background-color: #F8DF00;
+    padding: 10px 0px;
+    font-weight: 600;
+    font-size: 16px;
+    color:#222222;
     cursor: pointer;
 }
