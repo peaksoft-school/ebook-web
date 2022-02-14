@@ -1,10 +1,12 @@
 import './App.css'
-import HowToBecomeVendorContainer from './components/HowToBecomeVendorContainer/HowToBecomeVendorContainer'
+import AdminLayoute from './components/admin/AdminLayout'
 
 function App() {
-	return <div className='App'>
-		<HowToBecomeVendorContainer/>
-	</div>
+   return (
+      <div className="App">
+         <AdminLayoute />
+      </div>
+   )
 }
 
 export default App
