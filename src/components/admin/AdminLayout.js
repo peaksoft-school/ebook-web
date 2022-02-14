@@ -1,20 +1,19 @@
 import SideDrawer from "./AdminSideDrawer"
 import HeaderAdmin from "./HeaderAdmin"
-import classes from './AdminPage.module.css'
-import AdminPageRoute from '../../routes/AdminPage'
+import classes from './AdminLayout.module.css'
+import AdminRoutes from '../../routes/AdminRoutes'
 
-function AdminPage() {
+function AdminLayout() {
 
-    
     return (
         <div className={classes.adminPage}>
             <SideDrawer/>
             <div className={classes.box}>
                 <HeaderAdmin/>
-                <AdminPageRoute/>
+                <AdminRoutes/>
             </div>
         </div>
     )
 }
 
-export default AdminPage
+export default AdminLayout

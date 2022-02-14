@@ -6,9 +6,8 @@ import Sellers from "../components/Sellers/Sellers";
 import SellersDetails from "../components/SellersDetails/SellersDetails";
 import UserDetails from "../components/UserDetails/UserDetails";
 
-function AdminPageRoute() {
+function AdminRoutes() {
     return (
-        <>
             <Routes>
                 <Route path={ROUTES.APPLICATIONS} index element={<h1>App</h1>}/>
                 <Route path={ROUTES.SELLERS} element={<Sellers/>}/>
@@ -17,8 +16,7 @@ function AdminPageRoute() {
                 <Route path={ROUTES.USERBYID} element={<UserDetails/>} />
                 <Route path={ROUTES.BOOKS} element={<AddBookForm/>}/>
             </Routes>
-        </>
     )
 }
 
-export default AdminPageRoute 
+export default AdminRoutes 
