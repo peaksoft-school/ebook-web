@@ -17,6 +17,10 @@ export const ROUTES = {
     USERS: '/admin/users',
     USERBYID:'/admin/users/:userId',
     BOOKS: '/admin/books',
+    VENDORAREA: '/vendor/vendorarea',
+    BOOKPAGE: '/vendor/bookpage',
+    BOOKADD: '/vendor/bookadd',
+    PROFILE: '/vendor/profile',
     SIDEDRAWERDATA: [
         {
             route_Activeicon: APPLICATION,
