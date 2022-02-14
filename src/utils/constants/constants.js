@@ -17,11 +17,11 @@ export const ROUTES = {
     USERS: '/admin/users',
     USERBYID:'/admin/users/:userId',
     BOOKS: '/admin/books',
-    VENDORAREA: '/vendor/vendorarea',
-    BOOKPAGE: '/vendor/bookpage',
-    BOOKADD: '/vendor/bookadd',
+    VENDOR_AREA: '/vendor/vendorarea',
+    BOOK_PAGE: '/vendor/bookpage',
+    ADD_BOOK: '/vendor/bookadd',
     PROFILE: '/vendor/profile',
-    SIDEDRAWERDATA: [
+    SIDE_DRAWER_DATA: [
         {
             route_Activeicon: APPLICATION,
             route_icon: APPLICATIONS,
