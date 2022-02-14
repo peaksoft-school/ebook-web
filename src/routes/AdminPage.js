@@ -8,23 +8,19 @@ import BooksCratLayout from '../components/adminsBookCrat/BooksCrat'
 import AddBookForm from '../components/adminAddBook/addBookForm/AddBookForm'
 
 function AdminPageRoute() {
-	return (
-		<>
-			<Routes>
-				<Route
-					path={ROUTES.APPLICATIONS}
-					index
-					element={<h1>App</h1>}
-				/>
-				<Route path={ROUTES.SELLERS} element={<Sellers />} />
-				<Route path={ROUTES.SEllERBYID} element={<SellersDetails />} />
-				<Route path={ROUTES.USERS} element={<Users />} />
-				<Route path={ROUTES.USERBYID} element={<UserDetails />} />
-				<Route path={ROUTES.BOOKS} element={<BooksCratLayout />} />
-				<Route path={ROUTES.ADDBOOKS} element={<AddBookForm />} />
-			</Routes>
-		</>
-	)
+   return (
+      <>
+         <Routes>
+            <Route path={ROUTES.APPLICATIONS} index element={<h1>App</h1>} />
+            <Route path={ROUTES.SELLERS} element={<Sellers />} />
+            <Route path={ROUTES.SEllERBYID} element={<SellersDetails />} />
+            <Route path={ROUTES.USERS} element={<Users />} />
+            <Route path={ROUTES.USERBYID} element={<UserDetails />} />
+            <Route path={ROUTES.BOOKS} element={<BooksCratLayout />} />
+            <Route path={ROUTES.ADDBOOKS} element={<AddBookForm />} />
+         </Routes>
+      </>
+   )
 }
 
 export default AdminPageRoute
