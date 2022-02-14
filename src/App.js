@@ -1,8 +1,12 @@
 import './App.css'
-import AuthForm from './components/auth/authForm/AuthForm'
+import AdminLayoute from './components/admin/AdminLayout'
 
 function App() {
-	return <div className='App'> <AuthForm/></div>
+   return (
+      <div className="App">
+         <AdminLayoute />
+      </div>
+   )
 }
 
 export default App

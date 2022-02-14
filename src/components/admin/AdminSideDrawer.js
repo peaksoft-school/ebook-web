@@ -17,7 +17,7 @@ return (
             <EBookLogo/>
         </div>
         <div className={classes.ul}>
-                {ROUTES.SIDEDRAWERDATA.map((item) => 
+                {ROUTES.SIDE_DRAWER_DATA.map((item) => 
                 <SideDrawerItem 
                 key={item.route_name}
                 activeKey={item.activeKey}
