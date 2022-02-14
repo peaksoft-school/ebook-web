@@ -3,10 +3,12 @@ import VendorHeaderInMainPage from './VendorHeaderInMainPage/VendorHeaderInMainP
 import ContentInTopPartVendorMainPage from './ContentInTopPartVendorMainPage/ContentInTopPartVendorMainPage'
 
 const TopPartVendorMainPage = () => {
-  return <div className={classes.topPartVendorMainPageContainer}>
-    <VendorHeaderInMainPage/>
-    <ContentInTopPartVendorMainPage/>
-  </div>;
-};
+   return (
+      <div className={classes.topPartVendorMainPageContainer}>
+         <VendorHeaderInMainPage />
+         <ContentInTopPartVendorMainPage />
+      </div>
+   )
+}
 
-export default TopPartVendorMainPage;
+export default TopPartVendorMainPage

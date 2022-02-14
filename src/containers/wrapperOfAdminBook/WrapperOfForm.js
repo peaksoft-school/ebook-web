@@ -1,12 +1,11 @@
 import styles from './WrapperOfForm.module.css'
-const WrapperOfForms = (props) => {
-	return (
-			<div
-				className={`${styles.mainBlogOfPapperBook} ${props.className}`}
-			>
-				{props.children}
-			</div>
-	)
+
+const WrapperOfForms = ({ className, children }) => {
+   return (
+      <div className={`${styles.mainBlogOfPapperBook} ${className}`}>
+         {children}
+      </div>
+   )
 }
 
 export default WrapperOfForms
