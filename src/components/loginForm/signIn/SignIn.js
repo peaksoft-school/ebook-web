@@ -12,24 +12,25 @@ const SignIn = () => {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
-	} = useForm({ mode: 'onBlur' })
-
+	} = useForm({ mode: 'onTouched' })
+	
 	const onSubmitClientSignUp = (data) => {
 		console.log(data)
+		
 	}
-
+	
 	const signInError = errors.email || errors.password
-
+	
 	let errorMessage = signInError && (
 		<p className={classes.message}>Неправильно указан Email и/или пароль</p>
-	)
-
-	const [isPasswordShown, setIsPasswordShown] = useState(false)
-
-	const togglePassword = () => {
-		setIsPasswordShown(!isPasswordShown)
-	}
-
+		)
+		
+		const [isPasswordShown, setIsPasswordShown] = useState(false)
+		
+		const togglePassword = () => {
+			setIsPasswordShown(!isPasswordShown)
+		}
+		
 	return (
 		<form onSubmit={handleSubmit(onSubmitClientSignUp)}>
 			<InputField
@@ -62,7 +63,7 @@ const SignIn = () => {
 				/>
 			</div>
 			{errorMessage}
-			<AuthButton type='submit' disabled={!isValid}>
+			<AuthButton type='submit'  disabled={!isValid}> 
 				Войти
 			</AuthButton>
 		</form>

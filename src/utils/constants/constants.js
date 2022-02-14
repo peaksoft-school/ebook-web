@@ -13,7 +13,8 @@ export const ROUTES = {
     APPLICATIONS: '/admin/applications',
     SELLERS: '/admin/sellers',
     USERS: '/admin/users',
-    BOOKS: '/admin/books'
+    BOOKS: '/admin/books',
+    MAIN: '/main',
 }
 
 export const NAVICON = {
