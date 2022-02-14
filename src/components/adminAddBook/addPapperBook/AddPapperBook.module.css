@@ -7,6 +7,11 @@
 	height: 1160px;
 }
 
+.customTextarea{
+	width: 636px;
+	resize: none;
+}
+
 .leftSection {
 	display: flex;
 	padding-left: 42px;

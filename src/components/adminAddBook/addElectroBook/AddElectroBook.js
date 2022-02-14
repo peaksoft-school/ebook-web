@@ -59,12 +59,14 @@ const ElectroBook = () => {
 					placeholder='Напишите о книге'
 					maxlengthofletters='1234'
 					maxLength='1234'
+					className={classes.customTextareaBox}
 				/>
 				<CustomTextarea
 					label='Фрагмент книги'
 					placeholder='Напишите фрагмент книги'
 					maxlengthofletters='9234'
 					maxLength='9234'
+					className={classes.customTextareaBox}
 				/>
 			</div>
 			<div className={classes.containerOfSideBox}>

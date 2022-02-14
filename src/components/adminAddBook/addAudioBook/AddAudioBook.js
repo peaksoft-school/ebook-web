@@ -81,8 +81,7 @@ const AudioBook = () => {
 					<div className={classes.timecontrol}>
 						<Input
 							label='Длительность'
-							onFocus={(e) => (e.target.type = 'time')}
-							step='1'
+							type='number'
 							placeholder='ч'
 							className={classes.leftSideInputTimeFirst}
 							id='time'
@@ -93,6 +92,7 @@ const AudioBook = () => {
 							placeholder='мин'
 							className={classes.leftSideInputTime}
 							id='time'
+							type='number'
 						/>
 						<Input
 							label='Длительность'
@@ -100,6 +100,7 @@ const AudioBook = () => {
 							placeholder='сек'
 							className={classes.leftSideInputTime}
 							id='time'
+							type='number'
 						/>
 					</div>
 					<div className={classes.bestsellerControll}>

@@ -25,6 +25,9 @@
 .textarea:invalid {
 	color: #c4c4c4;
 }
+.hasError{
+	border-color: red;
+}
 
 .letterCss {
 	font-style: normal;

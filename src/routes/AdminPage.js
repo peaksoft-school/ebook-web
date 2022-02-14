@@ -1,10 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
 import { ROUTES } from '../utils/constants/constants'
-import AddBookForm from '../components/adminAddBook/addBookForm/AddBookForm'
 import Users from '../components/Users/Users'
 import Sellers from '../components/Sellers/Sellers'
 import SellersDetails from '../components/SellersDetails/SellersDetails'
 import UserDetails from '../components/UserDetails/UserDetails'
+import BooksCratLayout from '../components/adminsBookCrat/BooksCrat'
+import AddBookForm from '../components/adminAddBook/addBookForm/AddBookForm'
 
 function AdminPageRoute() {
 	return (
@@ -19,7 +20,8 @@ function AdminPageRoute() {
 				<Route path={ROUTES.SEllERBYID} element={<SellersDetails />} />
 				<Route path={ROUTES.USERS} element={<Users />} />
 				<Route path={ROUTES.USERBYID} element={<UserDetails />} />
-				<Route path={ROUTES.BOOKS} element={<AddBookForm />} />
+				<Route path={ROUTES.BOOKS} element={<BooksCratLayout />} />
+				<Route path={ROUTES.ADDBOOKS} element={<AddBookForm />} />
 			</Routes>
 		</>
 	)
