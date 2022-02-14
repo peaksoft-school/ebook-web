@@ -1,9 +1,9 @@
-import classes from './VendorHeaderInMainPage.module.css'
+import classes from './HowToBecomeVendorPageHeader.module.css'
 import EBookLogo from '../../../UI/EBookLogo/EBookLogo'
 import Button from '../../../UI/Button/Button'
 
-const VendorHeaderInMainPage = () => {
-  return <div className={classes.vendorHeaderInMainPageContainer}>
+const HowToBecomeVendorPageHeader = () => {
+  return <div className={classes.howToBecomeVendorPageHeaderContainer}>
     <EBookLogo/>
     <Button 
     className={classes.buttonSize} 
@@ -13,4 +13,4 @@ const VendorHeaderInMainPage = () => {
   </div>;
 };
 
-export default VendorHeaderInMainPage;
+export default HowToBecomeVendorPageHeader;

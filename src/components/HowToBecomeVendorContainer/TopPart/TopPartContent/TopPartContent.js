@@ -1,10 +1,10 @@
-import classes from './ContentInTopPartVendorMainPage.module.css'
+import classes from './TopPartContent.module.css'
 import Button from '../../../UI/Button/Button'
 import {ReactComponent as GirlSitOnBooksImage} from '../../../../assets/icons/girlSitOnBook.svg'
 import {ReactComponent as PortalToBookWorldImage} from '../../../../assets/icons/portalToBookWorld.svg'
 
-const ContentInTopPartVendorMainPage = () => {
-  return <div className={classes.topPartVendorMainPageContentContainer}>
+const TopPartContent = () => {
+  return <div className={classes.topPartContentContentContainer}>
     <div className={classes.textContainer}>
       <PortalToBookWorldImage className={classes.portalToBookWorldImage}/>
       <p className={classes.text}>Начните продавать свои книги на eBook</p>
@@ -14,4 +14,4 @@ const ContentInTopPartVendorMainPage = () => {
   </div>;
 };
 
-export default ContentInTopPartVendorMainPage;
+export default TopPartContent;

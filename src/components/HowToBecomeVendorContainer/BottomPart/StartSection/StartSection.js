@@ -1,9 +1,9 @@
-import classes from './SectionHowToBecomeSeller.module.css'
+import classes from './StartSection.module.css'
 
-const SectionHowToBecomeSeller = () => {
-  return <div className={classes.sectionHowToBecomeSeller}>
+const StartSection = () => {
+  return <div className={classes.startSectionContiner}>
     <h2 className={classes.title}>Как начать продавать на eBook?</h2>
-    <div className={classes.sectionHowToBecomeSellerContent}>
+    <div className={classes.startSectionContent}>
       <div className={classes.cardBox}>
         <img 
         className={classes.cardImage}
@@ -29,4 +29,4 @@ const SectionHowToBecomeSeller = () => {
   </div>;
 };
 
-export default SectionHowToBecomeSeller;
+export default StartSection;

@@ -1,9 +1,9 @@
-import classes from './SectionInConditions.module.css'
+import classes from './Conditions.module.css'
 
-const SectionInConditions = () => {
-  return <div className={classes.sectionInConditions}>
+const Conditions = () => {
+  return <div className={classes.conditionsContainer}>
     <h2 className={classes.title}>Условия</h2>
-    <div className={classes.sectionInConditionsContent}>
+    <div className={classes.conditionsContent}>
       <div className={classes.cardBox}>
         <img 
         className={classes.cardImage}
@@ -29,4 +29,4 @@ const SectionInConditions = () => {
   </div>;
 };
 
-export default SectionInConditions;
+export default Conditions;
