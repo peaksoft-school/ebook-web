@@ -1,5 +1,6 @@
 .container{
     height: 100%;
+    position: fixed;
     width: 250px;
     background-color: #F34901;
 }
@@ -27,15 +28,6 @@ a {
     color: #FFFF;
     text-decoration: none;
 }
-.noActive {
-    background-color: #F34901;
-    color: white;
-}
-
-.liActive {
-    background-color: white;
-    color: #F34901;
-}
 
 .ul li:hover, 
 .ul li:active,
@@ -45,9 +37,7 @@ a {
     transition-duration: 0.8s;
 } 
 
-.app {
-    margin-right: 15.14px;
-}
+
 
 .sell {
     margin-right: 14.83px;

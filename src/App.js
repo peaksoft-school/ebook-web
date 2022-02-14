@@ -1,9 +1,8 @@
-import { useState } from 'react'
 import './App.css'
-// import AuthForm from './components/loginForm/authForm/LoginForm'
-import ClientPage from './components/client/ClientPage'
+import AuthForm from './components/auth/authForm/AuthForm'
+
 function App() {
-	return <div className='App'> <ClientPage/></div>
+	return <div className='App'> <AuthForm/></div>
 }
 
 export default App
