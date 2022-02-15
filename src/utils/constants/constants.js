@@ -10,67 +10,67 @@ import ORANGESEARCH from '../../assets/icons/orangeSearchIcon.svg'
 import SEARCH from '../../assets/icons/searchIcon.svg'
 
 export const ROUTES = {
-    HOME: '/admin',
-    APPLICATIONS: '/admin/applications',
-    SELLERS: '/admin/sellers',
-    SEllERBYID:"/admin/sellers/:sellerId",
-    USERS: '/admin/users',
-    USERBYID:'/admin/users/:userId',
-    BOOKS: '/admin/books',
-    VENDOR_AREA: '/vendor/vendorarea',
-    BOOK_PAGE: '/vendor/bookpage',
-    ADD_BOOK: '/vendor/bookadd',
-    PROFILE: '/vendor/profile',
-    SIDE_DRAWER_DATA: [
-        {
-            route_Activeicon: APPLICATION,
-            route_icon: APPLICATIONS,
-            route_name: 'Заявки',
-            route_path: '/admin/applications',
-            activeKey: 'application'
-        },
-        {
-            route_Activeicon: SELLER,
-            route_icon: SELLERS,
-            route_name: 'Продавцы',
-            route_path: '/admin/sellers',
-            activeKey: 'sellers'
-        },
-        {
-            route_Activeicon: USER,
-            route_icon: USERS,
-            route_name: 'Пользователи',
-            route_path: '/admin/users',
-            activeKey: 'users'
-        },
-        {
-            route_Activeicon: BOOK,
-            route_icon: BOOKS,
-            route_name: 'Книги',
-            route_path: '/admin/books',
-            activeKey: 'books'
-        }
-    ]
+   HOME: '/admin',
+   APPLICATIONS: '/admin/applications',
+   SELLERS: '/admin/sellers',
+   SEllERBYID: '/admin/sellers/:sellerId',
+   USERS: '/admin/users',
+   USERBYID: '/admin/users/:userId',
+   BOOKS: '/admin/books',
+   VENDOR_AREA: '/vendor/vendorarea',
+   BOOK_PAGE: '/vendor/bookpage',
+   ADD_BOOK: '/vendor/bookadd',
+   PROFILE: '/vendor/profile',
+   SIDE_DRAWER_DATA: [
+      {
+         route_Activeicon: APPLICATION,
+         route_icon: APPLICATIONS,
+         route_name: 'Заявки',
+         route_path: '/admin/applications',
+         activeKey: 'application',
+      },
+      {
+         route_Activeicon: SELLER,
+         route_icon: SELLERS,
+         route_name: 'Продавцы',
+         route_path: '/admin/sellers',
+         activeKey: 'sellers',
+      },
+      {
+         route_Activeicon: USER,
+         route_icon: USERS,
+         route_name: 'Пользователи',
+         route_path: '/admin/users',
+         activeKey: 'users',
+      },
+      {
+         route_Activeicon: BOOK,
+         route_icon: BOOKS,
+         route_name: 'Книги',
+         route_path: '/admin/books',
+         activeKey: 'books',
+      },
+   ],
 }
 export const NAVICON = {
-    APPLICATIONS: APPLICATIONS,
-    APPLICATION: APPLICATION,
-    SELLERS: SELLERS,
-    SELLER: SELLER,
-    USERS: USERS,
-    USER: USER,
-    BOOKS: BOOKS,
-    BOOK: BOOK
+   APPLICATIONS,
+   APPLICATION,
+   SELLERS,
+   SELLER,
+   USERS,
+   USER,
+   BOOKS,
+   BOOK,
 }
 
 export const SIDE = {
-    App: 'application',
-    Sell: 'sellers',
-    User: 'users',
-    Books: 'books'
+   App: 'application',
+   Sell: 'sellers',
+   User: 'users',
+   Books: 'books',
 }
 
 export const Search = {
-    orangeSearchIcon: ORANGESEARCH,
-    searchIcon: SEARCH
+   orangeSearchIcon: ORANGESEARCH,
+   searchIcon: SEARCH,
 }
