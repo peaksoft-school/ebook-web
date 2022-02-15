@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Tabs, Tab, TabPanel } from '../UI/Tabs/Tabs'
+import { Tabs, Tab, TabPanel } from '../UI/tabs/Tabs'
 
 import SellerProfile from '../SellerProfile/SellerProfile'
 import BreadCrumbs from '../UI/BreadCrumbs/BreadCrumbs'
