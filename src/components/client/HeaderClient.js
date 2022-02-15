@@ -1,31 +1,30 @@
-import React, { useState } from "react";
-import Button from "../UI/Button/Button";
-import EBookLogo from "../UI/EBookLogo/EBookLogo";
+import React, { useState } from 'react'
+import Button from '../UI/Button/Button'
+import EBookLogo from '../UI/EBookLogo/EBookLogo'
 import classes from './HeaderClient.module.css'
-import Modal from "../UI/modal/ModalWindow";
-import AuthForm from "../loginForm/authForm/LoginForm";
+import Modal from '../UI/modal/ModalWindow'
+import AuthForm from '../auth/authForm/AuthForm'
 
 export default function HeaderClient() {
-    const [auth, setAuth] = useState(false)
+   const [auth, setAuth] = useState(false)
 
-    const AuthFormHandler = () => {
-        setAuth(prevState => !prevState)
-    }
+   const AuthFormHandler = () => {
+      setAuth((prevState) => !prevState)
+   }
 
-
-    return (
+   return (
+      <div>
+         <div className={classes.header}>
+            <EBookLogo />
             <div>
-                <div className={classes.header}>
-                    <EBookLogo/>
-                    <div>
-                        <Button onClick={AuthFormHandler}>Войти</Button>
-                            {auth && (
-                            <Modal onClose={AuthFormHandler}>
-                                <AuthForm/>
-                            </Modal>
-                            )}
-                    </div>
-                </div>
-        </div>
-    )
+               <Button onClick={AuthFormHandler}>Войти</Button>
+               {auth && (
+                  <Modal onClose={AuthFormHandler}>
+                     <AuthForm />
+                  </Modal>
+               )}
+            </div>
+         </div>
+      </div>
+   )
 }

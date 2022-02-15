@@ -8,7 +8,7 @@ import isEye from '../../../assets/png/isEye.png'
 import classes from './SignInForm.module.css'
 import { authFetch } from '../../../store/authReducer/signInSlice'
 import { EMAIL, PASSWORD } from '../../../utils/constants'
-import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
+// import LoadingSpinner from '../../../components/UI/'
 
 const SignIn = () => {
    const { status, error } = useSelector((state) => state.authorization)
@@ -56,7 +56,7 @@ const SignIn = () => {
                required: true,
                pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
             })}
-            disabled={errors.password && true}
+            disabled={!!errors.password}
             hasError={errors.email}
          />
          <div>
@@ -69,7 +69,7 @@ const SignIn = () => {
                   required: true,
                   validate: (value) => value.length > 3,
                })}
-               disabled={errors.email && true}
+               disabled={!!errors.email}
                hasError={errors.password}
             />
             <img
@@ -80,7 +80,7 @@ const SignIn = () => {
                onClick={togglePassword}
             />
             <p className={classes.message}>{getErrorMessage()}</p>
-            {status === 'loading' && <LoadingSpinner />}
+            {/* {status === 'loading' && <LoadingSpinner />} */}
          </div>
          <AuthButton type="submit" disabled={!isValid}>
             Войти

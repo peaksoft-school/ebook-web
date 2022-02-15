@@ -1,27 +1,35 @@
 import classes from './SwitchButtons.module.css'
 import Button from '../../../UI/Button/Button'
+
 const SwitchButtons = (props) => {
-    const {booklist,transition,redirectToAbout,redirectToFragment} = props
+   const { booklist, transition, redirectToAbout, redirectToFragment } = props
 
-    return <div className={classes.containerForSwitch}>
-        <Button
-        variant={transition === 'about'? 
-        "redirectActiveButton" 
-        : "redirectButton"} 
-        onClick={redirectToAbout}>
+   return (
+      <div className={classes.containerForSwitch}>
+         <Button
+            variant={
+               transition === 'about'
+                  ? 'redirectActiveButton'
+                  : 'redirectButton'
+            }
+            onClick={redirectToAbout}
+         >
             О книге
-        </Button>
-        {
-            booklist.book_type === 'electronic' &&
+         </Button>
+         {booklist.book_type === 'electronic' && (
             <Button
-            variant={transition === 'fragment'? 
-            "redirectActiveButton" 
-            : "redirectButton"} 
-            onClick={redirectToFragment}>
-                Читать фрагмент
+               variant={
+                  transition === 'fragment'
+                     ? 'redirectActiveButton'
+                     : 'redirectButton'
+               }
+               onClick={redirectToFragment}
+            >
+               Читать фрагмент
             </Button>
-        }
-    </div>
-};
+         )}
+      </div>
+   )
+}
 
-export default SwitchButtons;
+export default SwitchButtons

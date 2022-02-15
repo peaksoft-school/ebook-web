@@ -60,14 +60,20 @@ const ElectroBook = () => {
                placeholder="Напишите о книге"
                maxlengthofletters="1234"
                maxLength="1234"
+<<<<<<< HEAD
                className={classes.customTextareaBox}
+=======
+>>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
             />
             <CustomTextarea
                label="Фрагмент книги"
                placeholder="Напишите фрагмент книги"
                maxlengthofletters="9234"
                maxLength="9234"
+<<<<<<< HEAD
                className={classes.customTextareaBox}
+=======
+>>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
             />
          </div>
          <div className={classes.containerOfSideBox}>
@@ -130,8 +136,13 @@ const ElectroBook = () => {
                   className={classes.leftSideInput}
                   id="discount"
                />
+<<<<<<< HEAD
                <button className={classes.submitButton} type="button">
                   Добавить
+=======
+               <button type="button" className={classes.submitButton}>
+                  Отправить
+>>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
                </button>
             </div>
          </div>

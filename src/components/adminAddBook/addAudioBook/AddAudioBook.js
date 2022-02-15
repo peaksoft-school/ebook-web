@@ -23,6 +23,13 @@ const AudioBook = () => {
 
    const getOptionValue = (item) => item.value
 
+<<<<<<< HEAD
+=======
+   const onFocusToDuration = (event) => {
+      event.target.type = 'time'
+   }
+
+>>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
    return (
       <WrapperOfForms>
          <section className={classes.rightSection}>
@@ -53,11 +60,15 @@ const AudioBook = () => {
                placeholder="Напишите о книге"
                maxlengthofletters="1234"
                maxLength="1234"
+<<<<<<< HEAD
                className={classes.rightSectionTextArea}
+=======
+>>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
             />
          </section>
          <section className={classes.leftSection}>
             <section className={classes.settingOfBook}>
+<<<<<<< HEAD
                <div className={classes.languages}>
                   <CustomSelect
                      required
@@ -125,6 +136,33 @@ const AudioBook = () => {
                      id="discount"
                   />
                </div>
+=======
+               <CustomSelect
+                  required
+                  data={languagesFromApi}
+                  initialstate="Русский"
+                  label="Язык"
+                  className={classes.leftSideSelect}
+                  getOptionValue={getOptionValue}
+                  getOptionLabel={getOptionLabel}
+               />
+               <Input
+                  label="Длительность"
+                  onFocus={onFocusToDuration}
+                  step="1"
+                  placeholder="___ ч ___ мин ___ сек"
+                  className={classes.leftSideInput}
+                  id="time"
+               />
+
+               <Input
+                  label="Стоимость"
+                  type="number"
+                  placeholder="сом"
+                  className={classes.leftSideInput}
+                  id="price"
+               />
+>>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
                <div className={classes.uploadFrag}>
                   <h1 className={classes.uploadFragText}>
                      Загрузите фрагмент аудиозаписи
@@ -154,6 +192,31 @@ const AudioBook = () => {
                   />
                   <Uploadsvg className={classes.uploadSvg} />
                </div>
+<<<<<<< HEAD
+=======
+            </section>
+            <section className={classes.rightSectionControl}>
+               <Input
+                  type="number"
+                  maxLength="4"
+                  step="1"
+                  placeholder="гг"
+                  label="Год выпуска"
+                  className={classes.leftSideDate}
+                  id="year"
+               />
+               <CustomCheckbox
+                  label="Бестселлер"
+                  className={classes.bestseller}
+               />
+               <Input
+                  label="Скидка"
+                  type="number"
+                  placeholder="%"
+                  className={classes.leftSideInput}
+                  id="discount"
+               />
+>>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
                <button type="button" className={classes.submitButton}>
                   Отправить
                </button>

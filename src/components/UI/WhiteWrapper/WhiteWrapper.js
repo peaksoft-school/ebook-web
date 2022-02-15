@@ -1,7 +1,8 @@
 import classes from './WhiteWrapper.module.css'
-const WhiteWrapper =(props)=> {
-    return <div className={`${classes.WhiteWrapper} ${props.className}`} >
-        {props.children}
-    </div>
+
+const WhiteWrapper = ({ children, className }) => {
+   return (
+      <div className={`${classes.WhiteWrapper} ${className}`}>{children}</div>
+   )
 }
 export default WhiteWrapper

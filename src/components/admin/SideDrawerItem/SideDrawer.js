@@ -3,12 +3,12 @@ import classes from './SideDrawer.module.css'
 
 export const SideDrawerItem = (props) => {
    const {
-      route_path,
+      routePath,
       activeKey,
       isActive,
-      route_Activeicon,
-      route_icon,
-      route_name,
+      routeActiveicon,
+      routeIcon,
+      routeName,
       onChangeHandler,
    } = props
 
@@ -17,19 +17,20 @@ export const SideDrawerItem = (props) => {
    }
 
    return (
-      <Link to={route_path}>
+      <Link to={routePath}>
          <li
+            onClick={onClick}
+            role="presentation"
             className={
                isActive === activeKey ? classes.liActive : classes.noActive
             }
-            onClick={onClick}
          >
             <img
                alt=""
                className={classes.app}
-               src={isActive === activeKey ? route_Activeicon : route_icon}
+               src={isActive === activeKey ? routeActiveicon : routeIcon}
             />
-            <span>{route_name}</span>
+            <span>{routeName}</span>
          </li>
       </Link>
    )

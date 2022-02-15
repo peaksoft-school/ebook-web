@@ -36,12 +36,11 @@ const VendorRegistration = () => {
 
    const submitHadnler = useCallback(
       (ebookUser) => {
-         const transformedForm = ebookUser
-         delete transformedForm.confrimpassword
+         delete ebookUser.confrimpassword
          const ebookUserInfo = {
             url: vendorRegistrationUrl,
             method: 'POST',
-            body: transformedForm,
+            body: ebookUser,
          }
          dispatch(authFetch(ebookUserInfo))
       },
@@ -92,7 +91,7 @@ const VendorRegistration = () => {
             type="tel"
             placeholder="+996 (_ _ _) _ _  _ _  _ _"
             label="Номер вашего телефона"
-            s
+            onFocus={(e) => (e.target.value = '+996')}
             maxLength="13"
             {...register('phoneNumber')}
             hasError={errors.phoneNumber}
@@ -118,7 +117,6 @@ const VendorRegistration = () => {
                src={isPasswordShown ? isEye : eye}
                alt=""
                onClick={togglePassword}
-               role="presentation"
             />
 
             <InputField
@@ -134,7 +132,6 @@ const VendorRegistration = () => {
                src={isConfirmPasswordShown ? isEye : eye}
                alt=""
                onClick={toggleisConfirmPasswordShown}
-               role="presentation"
             />
          </div>
          <p className={classes.message}>{getErrorMessage()}</p>

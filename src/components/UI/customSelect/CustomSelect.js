@@ -30,7 +30,11 @@ const CustomSelect = forwardRef((props, ref) => {
             ref={ref}
             {...rest}
             name="customSearch"
+<<<<<<< HEAD
             className={`selectted ${className}`}
+=======
+            className={`select ${className}`}
+>>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
             required
             defaultValue=""
          >

@@ -1,24 +1,28 @@
 import classes from './SellerList.module.css'
-import SellerItem from './SellerItem/SellerItem';
+import SellerItem from './SellerItem/SellerItem'
 
-const SellerList = ({sellerList}) => {
-  return <div>
-        {
-        <ol className={classes.list}>
-            {sellerList && sellerList !== [] && sellerList.map((seller)=> {
-                return <SellerItem
-                  first_name={seller.first_name}
-                  last_name={seller.last_name}
-                  phone_number={seller.phone_number}
-                  email={seller.email}
-                  booksum={seller.booksum}
-                  id={seller.id}
-                  key={seller.id}
-                  />
-            })}
-        </ol>
-        }
-  </div>;
-};
+const SellerList = ({ sellerList }) => {
+   return (
+      <div>
+         <ol className={classes.list}>
+            {sellerList &&
+               sellerList !== [] &&
+               sellerList.map((seller) => {
+                  return (
+                     <SellerItem
+                        firstName={seller.first_name}
+                        lastName={seller.last_name}
+                        phoneNumber={seller.phone_number}
+                        email={seller.email}
+                        booksum={seller.booksum}
+                        id={seller.id}
+                        key={seller.id}
+                     />
+                  )
+               })}
+         </ol>
+      </div>
+   )
+}
 
-export default SellerList;
+export default SellerList
