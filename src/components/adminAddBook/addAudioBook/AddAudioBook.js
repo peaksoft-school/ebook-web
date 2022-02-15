@@ -23,10 +23,6 @@ const AudioBook = () => {
 
    const getOptionValue = (item) => item.value
 
-   const onFocusToDuration = (event) => {
-      event.target.type = 'time'
-   }
-
    return (
       <WrapperOfForms>
          <section className={classes.rightSection}>
@@ -72,7 +68,6 @@ const AudioBook = () => {
                />
                <Input
                   label="Длительность"
-                  onFocus={onFocusToDuration}
                   step="1"
                   placeholder="___ ч ___ мин ___ сек"
                   className={classes.leftSideInput}
