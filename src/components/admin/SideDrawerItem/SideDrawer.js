@@ -19,11 +19,11 @@ export const SideDrawerItem = (props) => {
    return (
       <Link to={routePath}>
          <li
+            onClick={onClick}
             role="presentation"
             className={
                isActive === activeKey ? classes.liActive : classes.noActive
             }
-            onClick={onClick}
          >
             <img
                alt=""

@@ -11,8 +11,8 @@ const AdminIcon = () => {
    }
    return (
       <div
-         role="presentation"
          className={classes.admin}
+         role="presentation"
          onClick={onChangeHandler}
       >
          <div className={classes.modal}>

@@ -2,14 +2,14 @@ import { useState } from 'react'
 import classes from './BookGenreDropdown.module.css'
 import { ReactComponent as SelectIcon } from '../../../assets/icons/Vector.svg'
 
-const BookGenreDropdown = () => {
+const BookGenreDropdown = ({ onSelectOption, genre }) => {
    const [isOpen, setIsOpen] = useState(false)
    const toggling = () => setIsOpen(!isOpen)
-    const [selectedOption, setSelectedOption] = useState(null)
-    const onOptionClicked = (value) => () => {
-       setSelectedOption(value.title)
-       setIsOpen(false)
-    }
+   const [selectedOption, setSelectedOption] = useState(null)
+   const onOptionClicked = (value) => () => {
+      setSelectedOption(value.title)
+      setIsOpen(false)
+   }
 
    return (
       <div>
@@ -21,30 +21,27 @@ const BookGenreDropdown = () => {
             {selectedOption || 'Жанры'}
             <SelectIcon className={classes.icon} />
          </div>
-         {/* {isOpen && (
+         {isOpen && (
             <div className={classes.frame}>
                <div className={`${classes.scroll} ${classes.content}`}>
                   <ul>
-                     {props.genre.map((option) => (
+                     {genre.map((option) => (
                         <li
-                        role='presentation'
+                           role="presentation"
                            onClick={onOptionClicked(option)}
                            key={option.id}
-                           onSelect={props.onSelectOption}
+                           onSelect={onSelectOption}
                         >
                            <div className={classes.items}>
-                                                <p className={classes.title}>{option.title}</p> 
-                                                <p className={classes.amount}>{option.amount}</p>
-                                            </div>
-                                 </li>
-                              </div>
-                           }
+                              <p className={classes.title}>{option.title}</p>
+                              <p className={classes.amount}>{option.amount}</p>
+                           </div>
                         </li>
-                     )}
+                     ))}
                   </ul>
                </div>
             </div>
-         )} */}
+         )}
       </div>
    )
 }

@@ -2,9 +2,10 @@ import BlackWrapper from '../BlackWrapper/BlackWrapper'
 import classes from './EBookLogo.module.css'
 import ebookLogo from '../../../assets/icons/eBooK.svg'
 
-const EBookLogo = ({ className }) => {
+const EBookLogo = (props) => {
+   const { propsClassName } = props
    return (
-      <BlackWrapper className={`${classes.ebookbox} ${className}`}>
+      <BlackWrapper className={`${classes.ebookbox} ${propsClassName}`}>
          <img
             className={`${classes.ebookLogo} `}
             src={ebookLogo}

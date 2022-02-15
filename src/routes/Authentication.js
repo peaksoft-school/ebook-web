@@ -1,6 +1,5 @@
 import { Route, Routes, Navigate } from 'react-router-dom'
 import { ROUTES } from '../utils/constants/constants'
-// import AuthForm from '../components/loginForm/authForm/LoginForm'
 
 export default function AuthentificatioRoute() {
    return (
