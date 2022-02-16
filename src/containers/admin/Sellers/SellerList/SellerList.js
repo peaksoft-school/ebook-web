@@ -10,13 +10,13 @@ const SellerList = ({ sellerList }) => {
                sellerList.map((seller) => {
                   return (
                      <SellerItem
-                        firstName={seller.first_name}
-                        lastName={seller.last_name}
-                        phoneNumber={seller.phone_number}
+                        firstName={seller.firstName}
+                        lastName={seller.lastName}
+                        phoneNumber={seller.phoneNumber}
                         email={seller.email}
                         booksum={seller.booksum}
-                        id={seller.id}
-                        key={seller.id}
+                        id={seller.vendorId}
+                        key={seller.vendorId}
                      />
                   )
                })}

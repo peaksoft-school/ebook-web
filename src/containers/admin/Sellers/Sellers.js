@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react'
-import { getSellers } from '../../../utils/constants/mock-data'
-import sendRequest from '../../../utils/constants/'
+import { sendRequest } from '../../../utils/helpers'
 import classes from './Sellers.module.css'
 import SellerList from './SellerList/SellerList'
 
 const Sellers = () => {
-   const sellerlist = getSellers()
-
    const [sellers, setSellers] = useState([])
 
    const getAllSellers = async () => {
-      const url = { url: 'api/client/getAll' }
+      const url = { url: 'api/vendor/getAll' }
       const response = await sendRequest(url)
       await setSellers(response)
    }

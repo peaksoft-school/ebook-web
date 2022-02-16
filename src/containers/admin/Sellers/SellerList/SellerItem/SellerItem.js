@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { sendRequest } from '../../../../../utils/helpers'
+import { breadCrumbsReducerActions } from '../../../../../store/breadCrumbsSlice'
 import classes from './SellerItem.module.css'
 import DeleteButton from '../../../../../components/UI/DeleteButton/DeleteButton'
 import ModalForDelete from '../../../../../components/UI/ModalForDelete/ModalForDelete'
-import { breadCrumbsReducerActions } from '../../../../../store/breadCrumbsSlice'
 
 const SellerItem = (props) => {
    const { id, firstName, lastName, phoneNumber, email, booksum } = props
@@ -32,7 +33,8 @@ const SellerItem = (props) => {
 
    const onDeleteHundler = () => {
       setIsShowModal((isShowModal) => !isShowModal)
-      // there will be dispatch function
+      const sellerUrl = { url: `api/vendor/deleteById/${id}`, method: 'DELETE' }
+      sendRequest(sellerUrl)
    }
 
    const senBreadCrumbs = () => {
