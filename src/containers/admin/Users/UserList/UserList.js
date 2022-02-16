@@ -10,10 +10,10 @@ const UserList = ({ userlist }) => {
                userlist.map((user) => {
                   return (
                      <UserItem
-                        firstName={user.first_name}
+                        firstName={user.name}
                         email={user.email}
-                        id={user.id}
-                        key={user.id}
+                        id={user.clientId}
+                        key={user.clientId}
                      />
                   )
                })}

@@ -1,9 +1,20 @@
+import { useEffect, useState } from 'react'
+import { sendRequest } from '../../../utils/helpers'
 import classes from './Users.module.css'
 import UserList from './UserList/UserList'
-import { getUsers } from '../../../utils/constants/mock-data'
 
 const Users = () => {
-   const userlist = getUsers()
+   const [users, setUsers] = useState([])
+
+   const getAllUsers = async () => {
+      const url = { url: 'api/client/getAll' }
+      const response = await sendRequest(url)
+      await setUsers(response)
+   }
+
+   useEffect(() => {
+      getAllUsers()
+   }, [])
 
    return (
       <div className={classes.box}>
@@ -20,7 +31,7 @@ const Users = () => {
          </div>
          <hr className={classes.line} />
          <div className={classes.containerList}>
-            <UserList userlist={userlist} />
+            <UserList userlist={users} />
          </div>
       </div>
    )

@@ -1,10 +1,10 @@
 import './App.css'
-import AuthModal from './components/auth/authModal/AuthModal'
+import AdminLayout from './components/admin/AdminLayot/AdminLayout'
 
 function App() {
    return (
       <div className="App">
-         <AuthModal />
+         <AdminLayout />
       </div>
    )
 }
