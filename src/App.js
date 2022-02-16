@@ -1,12 +1,7 @@
 import './App.css'
-import AdminLayout from './components/admin/AdminLayot/AdminLayout'
 
 function App() {
-   return (
-      <div className="App">
-         <AdminLayout />
-      </div>
-   )
+   return <div className="App" />
 }
 
 export default App
