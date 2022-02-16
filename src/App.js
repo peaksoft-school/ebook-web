@@ -1,5 +1,4 @@
 import './App.css'
-// import AdminLayoute from './components/admin/AdminLayout'
 import AuthModal from './components/auth/authModal/AuthModal'
 
 function App() {

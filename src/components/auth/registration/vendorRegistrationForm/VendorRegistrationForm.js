@@ -8,9 +8,9 @@ import InputField from '../../../UI/inputField/InputField'
 import classes from './VendorRegistrationForm.module.css'
 import isEye from '../../../../assets/png/isEye.png'
 import eye from '../../../../assets/png/eye.png'
-import { EMAIL, PASSWORD } from '../../../../utils/constants'
-// import LoadingSpinner from '../../../UI/loadingSpinner/LoadingSpinner'
+import { EMAIL, PASSWORD } from '../../../../utils/constants/constants'
 import { authFetch } from '../../../../store/authReducer/signInSlice'
+import LoadingSpinner from '../../../UI/modal-window/loadingSpinner/LoadingSpinner'
 
 const phoneRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/
 
@@ -137,7 +137,7 @@ const VendorRegistration = () => {
             />
          </div>
          <p className={classes.message}>{getErrorMessage()}</p>
-         {/* {status === 'loading' && <LoadingSpinner />} */}
+         {status === 'loading' && <LoadingSpinner />}
          {status === 'loading' && <p>Loading....</p>}
          <AuthButton type="submit" disabled={!isValid}>
             Создать аккаунт

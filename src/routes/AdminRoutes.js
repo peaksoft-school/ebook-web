@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 import { ROUTES } from '../utils/constants/constants'
-import AddBookForm from '../components/adminAddBook/addBookForm/AddBookForm'
-import Users from '../components/Users/Users'
-import Sellers from '../components/Sellers/Sellers'
-import SellersDetails from '../components/SellersDetails/SellersDetails'
-import UserDetails from '../components/UserDetails/UserDetails'
+import AddBookForm from '../containers/admin/adminAddBook/addBookForm/AddBookForm'
+import Users from '../containers/admin/Users/Users'
+import Sellers from '../containers/admin/Sellers/Sellers'
+import SellersDetails from '../containers/admin/SellersDetails/SellersDetails'
+import UserDetails from '../containers/admin/UserDetails/UserDetails'
 
 function AdminRoutes() {
    return (

@@ -13,8 +13,8 @@ import {
    NAME,
    CONFIRMPASSWORD,
    PASSWORD,
-} from '../../../../utils/constants'
-// import LoadingSpinner from '../../../UI/loadingSpinner/LoadingSpinner'
+} from '../../../../utils/constants/constants'
+import LoadingSpinner from '../../../UI/modal-window/loadingSpinner/LoadingSpinner'
 import { authFetch } from '../../../../store/authReducer/signInSlice'
 
 const schema = yup.object().shape({
@@ -25,7 +25,7 @@ const schema = yup.object().shape({
 })
 
 const ClientRegistration = () => {
-   const { error } = useSelector((state) => state.authorization)
+   const { error, status } = useSelector((state) => state.authorization)
    const dispatch = useDispatch()
 
    const clientRegistrationUrl = 'api/client/signup/client'
@@ -129,7 +129,7 @@ const ClientRegistration = () => {
             <p>Подпишитесь на рассылку, чтобы получать новости от eBook </p>
          </div>
          <p className={classes.message}>{getErrorMessage()}</p>
-         {/* {status === 'loading' && <LoadingSpinner />} */}
+         {status === 'loading' && <LoadingSpinner />}
          <AuthButton type="submit" disabled={!isValid}>
             Создать аккаунт
          </AuthButton>
