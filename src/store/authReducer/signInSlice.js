@@ -3,11 +3,7 @@ import { saveToLocalStorage, sendRequest } from '../../utils/helpers'
 
 export const authFetch = createAsyncThunk(
    'EbookUser/signIn',
-<<<<<<< HEAD
-   async function authFetch(ebookUserInfo, { rejectWithValue }) {
-=======
    async (ebookUserInfo, { rejectWithValue }) => {
->>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
       try {
          const response = await sendRequest(ebookUserInfo)
          if (response.token) {

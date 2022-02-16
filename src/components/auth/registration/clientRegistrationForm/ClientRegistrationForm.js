@@ -1,8 +1,8 @@
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import classes from './ClientRegistrationForm.module.css'
 import AuthButton from '../../../UI/authButton/AuthButton'
 import InputField from '../../../UI/inputField/InputField'
@@ -13,8 +13,8 @@ import {
    NAME,
    CONFIRMPASSWORD,
    PASSWORD,
-} from '../../../../utils/constants'
-import LoadingSpinner from '../../../UI/loadingSpinner/LoadingSpinner'
+} from '../../../../utils/constants/constants'
+import LoadingSpinner from '../../../UI/modal-window/loadingSpinner/LoadingSpinner'
 import { authFetch } from '../../../../store/authReducer/signInSlice'
 
 const schema = yup.object().shape({
@@ -25,7 +25,7 @@ const schema = yup.object().shape({
 })
 
 const ClientRegistration = () => {
-   const { status, error } = useSelector((state) => state.authorization)
+   const { error, status } = useSelector((state) => state.authorization)
    const dispatch = useDispatch()
 
    const clientRegistrationUrl = 'api/client/signup/client'
@@ -38,12 +38,12 @@ const ClientRegistration = () => {
 
    const submitHandler = useCallback(
       (ebookUser) => {
-         const transformedForm = ebookUser
-         delete transformedForm.confirmpassword
+         const transformedData = ebookUser
+         delete transformedData.confirmpassword
          const ebookUserInfo = {
             url: clientRegistrationUrl,
             method: 'POST',
-            body: transformedForm,
+            body: ebookUser,
          }
          dispatch(authFetch(ebookUserInfo))
       },

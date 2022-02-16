@@ -7,11 +7,11 @@ import eye from '../../../assets/png/eye.png'
 import isEye from '../../../assets/png/isEye.png'
 import classes from './SignInForm.module.css'
 import { authFetch } from '../../../store/authReducer/signInSlice'
-import { EMAIL, PASSWORD } from '../../../utils/constants'
-// import LoadingSpinner from '../../../components/UI/'
+import { EMAIL, PASSWORD } from '../../../utils/constants/constants'
+import LoadingSpinner from '../../UI/modal-window/loadingSpinner/LoadingSpinner'
 
 const SignIn = () => {
-   const { status, error } = useSelector((state) => state.authorization)
+   const { error, status } = useSelector((state) => state.authorization)
    const dispatch = useDispatch()
    const authentication = 'api/authentication'
    const {
@@ -80,7 +80,7 @@ const SignIn = () => {
                onClick={togglePassword}
             />
             <p className={classes.message}>{getErrorMessage()}</p>
-            {/* {status === 'loading' && <LoadingSpinner />} */}
+            {status === 'loading' && <LoadingSpinner />}
          </div>
          <AuthButton type="submit" disabled={!isValid}>
             Войти

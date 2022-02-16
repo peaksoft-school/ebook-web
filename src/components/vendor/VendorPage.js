@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-import VendorPageRoute from '../../routes/VendorPageRoute '
-=======
-import VendorPageRoute from '../../routes/VendorRoutes'
->>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
+import VendorRoutes from '../../routes/VendorRoutes'
 
-export default function VendorPage() {
+export default function VendorLAyout() {
    return (
       <div>
-         <VendorPageRoute />
+         <VendorRoutes />
       </div>
    )
 }

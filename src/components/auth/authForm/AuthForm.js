@@ -4,7 +4,11 @@ import ClientRegistrationForm from '../registration/clientRegistrationForm/Clien
 import SignInForm from '../signInForm/SignInForm'
 import VendorRegistrationForm from '../registration/vendorRegistrationForm/VendorRegistrationForm'
 import classes from './AuthForm.module.css'
-import { IS_LOGIN, IS_VENDOR, IS_USER } from '../../../utils/constants'
+import {
+   IS_LOGIN,
+   IS_VENDOR,
+   IS_USER,
+} from '../../../utils/constants/constants'
 
 const AuthForm = () => {
    const [typeOfRegistration, setTypeOfRegistration] = useState(IS_LOGIN)
