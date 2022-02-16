@@ -25,7 +25,7 @@ const schema = yup.object().shape({
 
 const VendorRegistration = () => {
    const dispatch = useDispatch()
-   const { error } = useSelector((state) => state.authorization)
+   const { error, status } = useSelector((state) => state.authorization)
    const vendorRegistrationUrl = 'api/vendor/signup/vendor'
 
    const {
@@ -92,7 +92,6 @@ const VendorRegistration = () => {
             type="tel"
             placeholder="+996 (_ _ _) _ _  _ _  _ _"
             label="Номер вашего телефона"
-            onFocus={(e) => (e.target.value = '+996')}
             maxLength="13"
             {...register('phoneNumber')}
             hasError={errors.phoneNumber}
@@ -139,6 +138,7 @@ const VendorRegistration = () => {
          </div>
          <p className={classes.message}>{getErrorMessage()}</p>
          {/* {status === 'loading' && <LoadingSpinner />} */}
+         {status === 'loading' && <p>Loading....</p>}
          <AuthButton type="submit" disabled={!isValid}>
             Создать аккаунт
          </AuthButton>
