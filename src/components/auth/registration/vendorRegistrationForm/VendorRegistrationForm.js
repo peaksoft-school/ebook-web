@@ -8,9 +8,9 @@ import InputField from '../../../UI/inputField/InputField'
 import classes from './VendorRegistrationForm.module.css'
 import isEye from '../../../../assets/png/isEye.png'
 import eye from '../../../../assets/png/eye.png'
-import { EMAIL, PASSWORD } from '../../../../utils/constants'
-import LoadingSpinner from '../../../UI/loadingSpinner/LoadingSpinner'
+import { EMAIL, PASSWORD } from '../../../../utils/constants/constants'
 import { authFetch } from '../../../../store/authReducer/signInSlice'
+import LoadingSpinner from '../../../UI/modal-window/loadingSpinner/LoadingSpinner'
 
 const phoneRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/
 
@@ -25,7 +25,7 @@ const schema = yup.object().shape({
 
 const VendorRegistration = () => {
    const dispatch = useDispatch()
-   const { status, error } = useSelector((state) => state.authorization)
+   const { error, status } = useSelector((state) => state.authorization)
    const vendorRegistrationUrl = 'api/vendor/signup/vendor'
 
    const {
@@ -36,7 +36,8 @@ const VendorRegistration = () => {
 
    const submitHadnler = useCallback(
       (ebookUser) => {
-         delete ebookUser.confrimpassword
+         const transformedData = ebookUser
+         delete transformedData.confrimpassword
          const ebookUserInfo = {
             url: vendorRegistrationUrl,
             method: 'POST',
@@ -91,7 +92,6 @@ const VendorRegistration = () => {
             type="tel"
             placeholder="+996 (_ _ _) _ _  _ _  _ _"
             label="Номер вашего телефона"
-            onFocus={(e) => (e.target.value = '+996')}
             maxLength="13"
             {...register('phoneNumber')}
             hasError={errors.phoneNumber}
@@ -117,6 +117,7 @@ const VendorRegistration = () => {
                src={isPasswordShown ? isEye : eye}
                alt=""
                onClick={togglePassword}
+               role="presentation"
             />
 
             <InputField
@@ -132,10 +133,12 @@ const VendorRegistration = () => {
                src={isConfirmPasswordShown ? isEye : eye}
                alt=""
                onClick={toggleisConfirmPasswordShown}
+               role="presentation"
             />
          </div>
          <p className={classes.message}>{getErrorMessage()}</p>
          {status === 'loading' && <LoadingSpinner />}
+         {status === 'loading' && <p>Loading....</p>}
          <AuthButton type="submit" disabled={!isValid}>
             Создать аккаунт
          </AuthButton>

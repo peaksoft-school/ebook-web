@@ -11,7 +11,7 @@ import { EMAIL, PASSWORD } from '../../../utils/constants/constants'
 import LoadingSpinner from '../../UI/modal-window/loadingSpinner/LoadingSpinner'
 
 const SignIn = () => {
-   const { status, error } = useSelector((state) => state.authorization)
+   const { error, status } = useSelector((state) => state.authorization)
    const dispatch = useDispatch()
    const authentication = 'api/authentication'
    const {
