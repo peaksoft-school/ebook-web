@@ -7,8 +7,8 @@ import eye from '../../../assets/png/eye.png'
 import isEye from '../../../assets/png/isEye.png'
 import classes from './SignInForm.module.css'
 import { authFetch } from '../../../store/authReducer/signInSlice'
-import { EMAIL, PASSWORD } from '../../../utils/constants'
-import LoadingSpinner from '../../UI/loadingSpinner/LoadingSpinner'
+import { EMAIL, PASSWORD } from '../../../utils/constants/constants'
+import LoadingSpinner from '../../UI/modal-window/loadingSpinner/LoadingSpinner'
 
 const SignIn = () => {
    const { status, error } = useSelector((state) => state.authorization)
