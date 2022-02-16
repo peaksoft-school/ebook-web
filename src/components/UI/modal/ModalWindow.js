@@ -3,14 +3,14 @@ import { createPortal } from 'react-dom'
 import classes from './ModalWindow.module.css'
 
 const Backdrop = (props) => {
-   const onClose = props
+   const { onClose } = props
    return (
       <div role="presentation" className={classes.backdrop} onClick={onClose} />
    )
 }
 
 const ModalOverlay = (props) => {
-   const children = props
+   const { children } = props
    return (
       <div className={classes.modal}>
          <div className={classes.content}>{children}</div>
