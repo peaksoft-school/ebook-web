@@ -7,7 +7,7 @@ const Users = () => {
    const [users, setUsers] = useState([])
 
    const getAllUsers = async () => {
-      const url = { url: 'api/client/getAll' }
+      const url = { url: 'api/clients/getAll' }
       const response = await sendRequest(url)
       await setUsers(response)
    }
