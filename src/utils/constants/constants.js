@@ -17,6 +17,7 @@ export const ROUTES = {
    USERS: '/admin/users',
    USERBYID: '/admin/users/:userId',
    BOOKS: '/admin/books',
+   ADDBOOKS: '/admin/books/addBook',
    VENDOR_AREA: '/vendor/vendorarea',
    BOOK_PAGE: '/vendor/bookpage',
    ADD_BOOK: '/vendor/bookadd',

@@ -2,65 +2,19 @@ import { useState } from 'react'
 import classes from './BookGenreDropdown.module.css'
 import { ReactComponent as SelectIcon } from '../../../assets/icons/Vector.svg'
 
-<<<<<<< HEAD
 const BookGenreDropdown = (props) => {
-	const [isOpen, setIsOpen] = useState(false)
-
-	const toggling = () => setIsOpen(!isOpen)
-
-	const [selectedOption, setSelectedOption] = useState(null)
-
-	const onOptionClicked = (value) => () => {
-		setSelectedOption(value.name)
-		setIsOpen(false)
-	}
-
-	return (
-		<div>
-			<div onClick={toggling} className={classes.selected}>
-				{selectedOption || 'Жанры'}
-				<SelectIcon className={classes.icon} />
-			</div>
-			{isOpen && (
-				<div className={classes.frame}>
-					<div className={`${classes.scroll} ${classes.content}`}>
-						<ul>
-							{props.genres.map((option) => (
-								<li
-									onClick={onOptionClicked(option)}
-									key={option.id}
-									onSelect={props.onSelectOption}
-								>
-									{
-										<div className={classes.items}>
-											<p className={classes.title}>
-												{option.name}
-											</p>
-											<p className={classes.amount}>
-												{option.id}
-											</p>
-										</div>
-									}
-								</li>
-							))}
-						</ul>
-					</div>
-				</div>
-			)}
-		</div>
-	)
-=======
-const BookGenreDropdown = ({ onSelectOption, genre }) => {
+   const { onSelectOption, genres, getGenresBooksById, ...rest } = props
    const [isOpen, setIsOpen] = useState(false)
    const toggling = () => setIsOpen(!isOpen)
    const [selectedOption, setSelectedOption] = useState(null)
    const onOptionClicked = (value) => () => {
-      setSelectedOption(value.title)
+      getGenresBooksById(value.id)
+      setSelectedOption(value.genreName)
       setIsOpen(false)
    }
 
    return (
-      <div>
+      <div {...rest}>
          <div
             role="presentation"
             onClick={toggling}
@@ -73,7 +27,7 @@ const BookGenreDropdown = ({ onSelectOption, genre }) => {
             <div className={classes.frame}>
                <div className={`${classes.scroll} ${classes.content}`}>
                   <ul>
-                     {genre.map((option) => (
+                     {genres.map((option) => (
                         <li
                            role="presentation"
                            onClick={onOptionClicked(option)}
@@ -81,8 +35,12 @@ const BookGenreDropdown = ({ onSelectOption, genre }) => {
                            onSelect={onSelectOption}
                         >
                            <div className={classes.items}>
-                              <p className={classes.title}>{option.title}</p>
-                              <p className={classes.amount}>{option.amount}</p>
+                              <p className={classes.title}>
+                                 {option.genreName}
+                              </p>
+                              <p className={classes.amount}>
+                                 {option.quantityOfBooks}
+                              </p>
                            </div>
                         </li>
                      ))}
@@ -92,7 +50,6 @@ const BookGenreDropdown = ({ onSelectOption, genre }) => {
          )}
       </div>
    )
->>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
 }
 
 export default BookGenreDropdown

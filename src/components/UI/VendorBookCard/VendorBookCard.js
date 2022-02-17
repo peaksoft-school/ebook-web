@@ -6,9 +6,7 @@ import InformationInCardVendorBook from './InformationInCardVendorBook/Informati
 
 const VendorBookCard = (props) => {
    const { book, isOpen, className } = props
-
    const [popUpShown, setPopUpShown] = useState(false)
-
    const popUpChangeHandler = () => {
       setPopUpShown((prevState) => !prevState)
    }
@@ -29,7 +27,7 @@ const VendorBookCard = (props) => {
                {popUpShown && <PopUp />}
                <img
                   className={classes.vedorbookcardimg}
-                  src={book.url}
+                  src={`http://3.123.114.41/static/download/${book.image.id}`}
                   alt=""
                />
                <InformationInCardVendorBook
