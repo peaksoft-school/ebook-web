@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import signInSlice from './authReducer/signInSlice'
 import breadCrumbsReducer from './breadCrumbsSlice'
+import signInSlice from './authReducer/signInSlice'
 
 const store = configureStore({
    reducer: {

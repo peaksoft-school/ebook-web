@@ -121,15 +121,9 @@ const UploadImageCart = () => {
 
    const firstButton = mainPicture && (
       <button
-<<<<<<< HEAD
-         className={classes.deleteBtn}
-         onClick={deleteMainPictureHandler}
-         type="button"
-=======
          type="button"
          className={classes.deleteBtn}
          onClick={deleteMainPictureHandler}
->>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
       >
          Удалить
       </button>
@@ -147,15 +141,9 @@ const UploadImageCart = () => {
 
    const thirdButton = thirdPicture && (
       <button
-<<<<<<< HEAD
-         className={classes.deleteBtn}
-         onClick={deleteThirdPictureHandler}
-         type="button"
-=======
          type="button"
          className={classes.deleteBtn}
          onClick={deleteThirdPictureHandler}
->>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
       >
          Удалить
       </button>

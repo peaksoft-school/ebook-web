@@ -11,10 +11,16 @@ export const deleteFromLocalStorage = (key) => {
 
 const DEFAULT_URL = 'http://3.123.114.41/'
 
+const E_BOOK_USER_TOKEN = 'EbookUserToken'
+
 export const sendRequest = async (requestConfig) => {
+   const userInfo = getFromLocalStorage(E_BOOK_USER_TOKEN)
    const requestOptions = {
       method: requestConfig.method || 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+         'Content-Type': 'application/json',
+         Authorization: `Bearer ${userInfo.token}`,
+      },
    }
 
    if (requestConfig.method !== 'GET') {

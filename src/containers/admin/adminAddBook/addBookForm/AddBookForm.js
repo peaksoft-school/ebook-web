@@ -28,25 +28,14 @@ const AddBookForm = () => {
    const papperBook = typeOfBook === IS_PAPPERBOOK
    const audioBook = typeOfBook === IS_AUDIOBOOK
 
-<<<<<<< HEAD
-   const onPaperBookSubmit = (data) => {
-      console.log(data)
-=======
    const onPaperBookSubmit = () => {
       //   console.log(data)
->>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
    }
 
    return (
       <form onSubmit={onPaperBookSubmit}>
          <main className={classes.adminBlog}>
-<<<<<<< HEAD
-            <p className={classes.uploadthreeBooks}>
-               Загрузите 3 фото <span className={classes.zvezda}>*</span>
-            </p>
-=======
             <p className={classes.uploadthreeBooks}>Загрузите 3 фото *</p>
->>>>>>> 00e1760282605c68c399d1f95006cfc25549a178
             <UploadImageCart />
             <section className={classes.changeTypeofBook}>
                <h2 className={classes.type}>Тип</h2>
