@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import AudioBook from '../addAudioBook/AddAudioBook'
 import ElectroBook from '../addElectroBook/AddElectroBook'
 import Papperbook from '../addPapperBook/AddPapperBook'
 import classes from './AddBookForm.module.css'
 import UploadImageCart from '../imageUploader/UploadImageCart'
+import { sendRequest } from '../../../../utils/helpers'
 import {
    IS_AUDIOBOOK,
    IS_PAPPERBOOK,
@@ -12,6 +13,22 @@ import {
 
 const AddBookForm = () => {
    const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
+   const [getAllLanguages, setGetAllLanguages] = useState([])
+
+   const genresUrl = 'api/books/languages'
+
+   const getAllLanguagesApi = useCallback(async () => {
+      const requestConfig = {
+         url: genresUrl,
+         method: 'GET',
+      }
+      const response = await sendRequest(requestConfig)
+      return setGetAllLanguages(response)
+   }, [])
+
+   useEffect(() => {
+      getAllLanguagesApi()
+   }, [])
 
    const isAudioChangeHandler = () => {
       setTypeOfBook(IS_AUDIOBOOK)
@@ -76,7 +93,12 @@ const AddBookForm = () => {
                </div>
             </section>
             <section>
-               {papperBook && <Papperbook onSubmit={onPaperBookSubmit} />}
+               {papperBook && (
+                  <Papperbook
+                     onSubmit={onPaperBookSubmit}
+                     languagesFromApi={getAllLanguages}
+                  />
+               )}
                {audioBook && <AudioBook />}
                {electroBook && <ElectroBook />}
             </section>

@@ -1,5 +1,12 @@
 .customBox {
    margin-bottom: 30px;
+   text-transform: capitalize;
+}
+.languageOption {
+   text-transform: lowercase;
+}
+.languageOption::first-letter{
+   font-size: 200px;
 }
 
 .customSelect {
@@ -13,6 +20,7 @@
    display: block;
    text-align: start;
    padding-bottom: 10.6px;
+   text-transform: capitalize;
 }
 
 .selectted {
@@ -34,6 +42,7 @@
    line-height: 130%;
    color: #222222;
    background-color: #fafafa;
+   text-transform: capitalize;
 }
 .selectted.hasError {
    border-color: red;

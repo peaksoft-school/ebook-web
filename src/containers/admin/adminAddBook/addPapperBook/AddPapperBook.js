@@ -31,8 +31,7 @@ const schema = yup.object().shape({
 })
 
 const Papperbook = (props) => {
-   const { onSubmit } = props
-
+   const { onSubmit, languagesFromApi } = props
    const {
       register,
       handleSubmit,
@@ -48,21 +47,9 @@ const Papperbook = (props) => {
       handleSubmit(onSubmit)
    }
 
-   const genres = [
-      { value: 'chocolate', title: 'Литература' },
-      { value: 'strawberry', title: 'Роман' },
-      { value: 'vanilla', title: 'Трагедия' },
-   ]
+   const getOptionLabel = (item) => item
 
-   const languagesFromApi = [
-      { value: 'f1', title: 'Русский' },
-      { value: 'f2', title: 'Немецкий' },
-      { value: 'f3', title: 'English' },
-   ]
-
-   const getOptionLabel = (item) => item.title
-
-   const getOptionValue = (item) => item.value
+   const getOptionValue = (item) => item
 
    return (
       <WrapperOfForms>
@@ -87,13 +74,12 @@ const Papperbook = (props) => {
             />
             <CustomSelect
                label="Выберите жанр"
-               data={genres}
+               // data={genres}
                getOptionLabel={getOptionLabel}
                getOptionValue={getOptionValue}
                className={classes.rightSectionSelect}
                initialstate="Литература, роман, стихи... "
                {...register('genres')}
-               hasError={errors.genres}
             />
             <Input
                label="Издательство"

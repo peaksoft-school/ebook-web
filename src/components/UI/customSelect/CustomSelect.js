@@ -9,18 +9,21 @@ const CustomSelect = forwardRef((props, ref) => {
       initialstate,
       label,
       id,
-      hasError,
+      data,
       ...rest
    } = props
 
-   const options = props.data.map((item) => (
-      <option
-         key={getOptionValue ? getOptionValue(item) : item.id}
-         id={getOptionValue ? getOptionValue(item) : item.id}
-      >
-         {getOptionLabel ? getOptionLabel(item) : item.name}
-      </option>
-   ))
+   const options = data
+      ? data.map((item, index) => (
+           <option
+              key={getOptionValue ? getOptionValue(item) : index}
+              id={getOptionValue ? getOptionValue(item) : index}
+              className="languageOption"
+           >
+              {item}
+           </option>
+        ))
+      : ''
 
    return (
       <div className="customBox">
@@ -31,7 +34,7 @@ const CustomSelect = forwardRef((props, ref) => {
             ref={ref}
             {...rest}
             name="customSearch"
-            className={`selectted ${className} ${hasError ? 'hasError' : ''}`}
+            className={`selectted ${className}`}
             required
             defaultValue=""
          >
