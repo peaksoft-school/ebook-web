@@ -28,7 +28,7 @@ const ClientRegistration = () => {
    const { error, status } = useSelector((state) => state.authorization)
    const dispatch = useDispatch()
 
-   const clientRegistrationUrl = 'api/client/signup/client'
+   const clientRegistrationUrl = 'api/clients/signup/client'
 
    const {
       register,

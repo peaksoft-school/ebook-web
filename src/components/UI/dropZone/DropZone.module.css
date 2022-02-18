@@ -1,0 +1,14 @@
+.span {
+   color: #969696;
+   font-size: 14px;
+   line-height: 130%;
+   padding-left: 36px;
+   padding-right: 36px;
+   padding-bottom: 26px;
+   text-align: center;
+   font-family: 'Open Sans', sans-serif;
+}
+.uploadedBook {
+   width: 235px;
+   height: 312px;
+}
