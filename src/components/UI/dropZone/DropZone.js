@@ -16,33 +16,41 @@ export default function DropZone({ avatar, setAvatar }) {
    })
 
    return (
-      <span {...getRootProps()} className={classes.uploadedBook}>
-         <input
-            type="file"
-            accept="image/png, image/gif, image/jpeg"
-            {...getInputProps()}
-         />
-         <span className={classes.span}>
-            Нажмите на иконку чтобы загрузить или перетащите фото
+      <div className={classes.dropZoneBox}>
+         <span {...getRootProps()} className={classes.uploadedBook}>
+            <input
+               type="file"
+               accept="image/png, image/gif, image/jpeg"
+               {...getInputProps()}
+            />
+            {!avatar ? (
+               <div className={classes.dromImgBox}>
+                  <img
+                     src={DropImg}
+                     alt="22"
+                     className={classes.uploadedDropZone}
+                  />
+                  <span className={classes.span}>
+                     Нажмите на иконку чтобы загрузить или перетащите фото
+                  </span>
+               </div>
+            ) : (
+               <>
+                  <img
+                     src={avatar?.preview}
+                     alt="33"
+                     className={classes.uploadedBook}
+                  />
+                  <button
+                     type="button"
+                     className={classes.changeBtn}
+                     {...getInputProps}
+                  >
+                     Заменить
+                  </button>
+               </>
+            )}
          </span>
-         {!avatar ? (
-            <img src={DropImg} alt="22" className={classes.uploadedBook} />
-         ) : (
-            <>
-               <img
-                  src={avatar?.preview}
-                  alt="33"
-                  className={classes.uploadedBook}
-               />
-               <button
-                  type="button"
-                  className={classes.changeBtn}
-                  {...getInputProps}
-               >
-                  Заменить
-               </button>
-            </>
-         )}
-      </span>
+      </div>
    )
 }

@@ -1,22 +1,11 @@
 import { useState } from 'react'
+import DropZone from '../../../../components/UI/dropZone/DropZone'
 import classes from './UploadImageCart.module.css'
 
 const UploadImageCart = () => {
    const [mainPicture, setMainPicture] = useState('')
    const [secondPicture, setSecondPicture] = useState('')
    const [thirdPicture, setThirdPicture] = useState('')
-
-   const mainPictureChangeHandler = (e) => {
-      setMainPicture(e.target.files[0])
-   }
-
-   const secondPictureChangeHandler = (e) => {
-      setSecondPicture(e.target.files[0])
-   }
-
-   const thirdPictureChangeHandler = (e) => {
-      setThirdPicture(e.target.files[0])
-   }
 
    const deleteMainPictureHandler = () => {
       setMainPicture('')
@@ -29,95 +18,6 @@ const UploadImageCart = () => {
    const deleteThirdPictureHandler = () => {
       setThirdPicture('')
    }
-
-   const mainImage = !mainPicture ? (
-      <>
-         <input
-            type="file"
-            accept="image/png, image/gif, image/jpeg"
-            onChange={mainPictureChangeHandler}
-            value={mainPicture}
-         />
-         <span className={classes.span}>
-            Нажмите на иконку чтобы загрузить или перетащите фото
-         </span>
-      </>
-   ) : (
-      <>
-         <img
-            className={classes.uploadedBook}
-            src={mainPicture ? URL.createObjectURL(mainPicture) : null}
-            alt=""
-         />
-         <button
-            type="button"
-            className={classes.changeBtn}
-            onClick={deleteMainPictureHandler}
-         >
-            Заменить
-         </button>
-      </>
-   )
-
-   const secondImage = !secondPicture ? (
-      <>
-         <input
-            type="file"
-            alt=""
-            id="canvasElem"
-            accept="image/png, image/gif, image/jpeg"
-            onChange={secondPictureChangeHandler}
-         />
-         <span className={classes.span}>
-            Нажмите на иконку чтобы загрузить или перетащите фото
-         </span>
-      </>
-   ) : (
-      <>
-         <img
-            className={classes.uploadedBook}
-            src={secondPicture ? URL.createObjectURL(secondPicture) : null}
-            alt=""
-         />
-         <button
-            type="button"
-            className={classes.changeBtn}
-            onClick={deleteSecondPictureHandler}
-         >
-            Заменить
-         </button>
-      </>
-   )
-
-   const thirdImage = !thirdPicture ? (
-      <>
-         <input
-            type="file"
-            alt=""
-            id="canvasElem"
-            accept="image/png, image/gif, image/jpeg"
-            onChange={thirdPictureChangeHandler}
-         />
-         <span className={classes.span}>
-            Нажмите на иконку чтобы загрузить или перетащите фото
-         </span>
-      </>
-   ) : (
-      <>
-         <img
-            className={classes.uploadedBook}
-            src={thirdPicture ? URL.createObjectURL(thirdPicture) : null}
-            alt=""
-         />
-         <button
-            type="button"
-            className={classes.changeBtn}
-            onClick={deleteThirdPictureHandler}
-         >
-            Заменить
-         </button>
-      </>
-   )
 
    const firstButton = mainPicture && (
       <button
@@ -153,17 +53,17 @@ const UploadImageCart = () => {
       <section className={classes.uploadImageSection}>
          <div className={classes.imageblog}>
             <div className={classes.labelBlog}>
-               <label className={classes.custom}>{mainImage}</label>
+               <DropZone avatar={mainPicture} setAvatar={setMainPicture} />
                <p className={classes.mainImage}>Главное фото</p>
                {firstButton}
             </div>
             <div className={classes.labelBlog}>
-               <label className={classes.custom}>{secondImage}</label>
+               <DropZone avatar={secondPicture} setAvatar={setSecondPicture} />
                <p className={classes.mainImage}>2</p>
                {secondButton}
             </div>
             <div className={classes.labelBlog}>
-               <label className={classes.custom}>{thirdImage}</label>
+               <DropZone avatar={thirdPicture} setAvatar={setThirdPicture} />
                <p className={classes.mainImage}>3</p>
                {thirdButton}
             </div>

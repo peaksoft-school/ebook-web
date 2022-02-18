@@ -1,15 +1,29 @@
-import { useParams } from 'react-router-dom'
-import { useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { sendRequest } from '../../../utils/helpers'
 import Button from '../../UI/Button/Button'
 import classes from './UserProfile.module.css'
 import ModalForDelete from '../../UI/ModalForDelete/ModalForDelete'
-import { findUserById } from '../../../utils/constants/mock-data'
 
 const UserProfile = () => {
    const [isShowModal, setIsShowModal] = useState(false)
+   const [userById, setUserById] = useState('')
+
+   const navigate = useNavigate()
 
    const params = useParams()
-   const person = findUserById(parseInt(params.userId, 10))
+
+   const getUserById = async () => {
+      const userUrl = {
+         url: `api/clients/getById/${params.userId}`,
+      }
+      const response = await sendRequest(userUrl)
+      await setUserById(response)
+   }
+
+   useEffect(() => {
+      getUserById()
+   }, [])
 
    const onOpenHundler = () => {
       setIsShowModal(true)
@@ -21,6 +35,12 @@ const UserProfile = () => {
 
    const onDeleteHundler = () => {
       setIsShowModal(false)
+      const userUrl = {
+         url: `api/clients/delete/${params.userId}`,
+         method: 'DELETE',
+      }
+      sendRequest(userUrl)
+      navigate(-1)
    }
 
    return (
@@ -28,15 +48,15 @@ const UserProfile = () => {
          <div className={classes.informationContainer}>
             <div className={classes.smallBox}>
                <p className={classes.title}>Имя</p>
-               <p>{person.first_name}</p>
+               <p>{userById.name}</p>
             </div>
             <div className={classes.smallBox}>
                <p className={classes.title}>Email</p>
-               <p>{person.email}</p>
+               <p>{userById.email}</p>
             </div>
             <div className={classes.smallBox}>
                <p className={classes.title}>Дата регистрации</p>
-               <p>{person.data_redistration}</p>
+               <p>{userById.dateOfRegistration}</p>
             </div>
             <div className={classes.smallAutoBox} />
          </div>
@@ -49,8 +69,8 @@ const UserProfile = () => {
             <ModalForDelete
                onClose={onCloseHundler}
                onDelete={onDeleteHundler}
-               full_name={person.first_name}
-               id={person.id}
+               fullName={userById.name}
+               id={userById.id}
             />
          )}
       </div>

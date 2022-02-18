@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { asyncUpdateBreadcrumb } from '../../../../../store/breadCrumbsSlice'
+import { sendRequest } from '../../../../../utils/helpers'
 import classes from './UserItem.module.css'
 import DeleteButton from '../../../../../components/UI/DeleteButton/DeleteButton'
 import ModalForDelete from '../../../../../components/UI/ModalForDelete/ModalForDelete'
-import { breadCrumbsReducerActions } from '../../../../../store/breadCrumbsSlice'
 
 const UserItem = (props) => {
    const { id, firstName, email } = props
@@ -32,11 +33,12 @@ const UserItem = (props) => {
 
    const onDeleteHundler = () => {
       setIsShowModal((isShowModal) => !isShowModal)
-      // there will be dispatch function
+      const userUrl = { url: `api/client/delete/${id}`, method: 'DELETE' }
+      sendRequest(userUrl)
    }
 
-   const senBreadCrumbs = () => {
-      dispatch(breadCrumbsReducerActions.updateBreadCrumbs(breadcrumbs))
+   const sendBreadCrumbs = () => {
+      dispatch(asyncUpdateBreadcrumb(breadcrumbs))
    }
 
    return (
@@ -45,7 +47,7 @@ const UserItem = (props) => {
             <li
                role="presentation"
                className={classes.li}
-               onClick={senBreadCrumbs}
+               onClick={sendBreadCrumbs}
             >
                <p className={classes.mediumBox}>{firstName}</p>
                <p className={classes.mediumBox}>{email}</p>
@@ -54,7 +56,7 @@ const UserItem = (props) => {
          <DeleteButton onClick={onOpenHundler} />
          {isShowModal && (
             <ModalForDelete
-               full_name={firstName}
+               fullName={firstName}
                id={id}
                onClose={onCloseHundler}
                onDelete={onDeleteHundler}

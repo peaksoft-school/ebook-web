@@ -1,18 +1,24 @@
-import './App.css'
-// import { useState } from 'react'
+// import { useEffect } from 'react'
+// import { useDispatch } from 'react-redux'
+// import { asyncUpdateBreadcrumb } from './store/breadCrumbsSlice'
+// import { getFromLocalStorage } from './utils/helpers'
+// import { EBOOK_BREADCRUMBS } from './utils/constants/constants'
 // import AdminLayout from './components/admin/AdminLayot/AdminLayout'
-// import DropZone from './components/UI/dropZone/DropZone'
-// import AuthModal from './components/auth/authModal/AuthModal'
-// import BooksCratLayout from './components/adminsBookCrat/BooksCrat'
+import AddBookForm from './containers/admin/adminAddBook/addBookForm/AddBookForm'
+import './App.css'
 
 function App() {
-   // const [avatar, setAvatar] = useState('')
+   // const dispatch = useDispatch()
+
+   // useEffect(() => {
+   //    const breadcrumbs = getFromLocalStorage(EBOOK_BREADCRUMBS)
+   //    dispatch(asyncUpdateBreadcrumb(breadcrumbs))
+   // }, [])
+
    return (
       <div className="App">
          {/* <AdminLayout /> */}
-         {/* <DropZone setAvatar={setAvatar} avatar={avatar} /> */}
-         {/* <AuthModal /> */}
-         {/* <BooksCratLayout /> */}
+         <AddBookForm />
       </div>
    )
 }
