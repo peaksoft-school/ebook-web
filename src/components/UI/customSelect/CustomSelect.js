@@ -9,6 +9,7 @@ const CustomSelect = forwardRef((props, ref) => {
       initialstate,
       label,
       id,
+      hasError,
       ...rest
    } = props
 
@@ -30,7 +31,7 @@ const CustomSelect = forwardRef((props, ref) => {
             ref={ref}
             {...rest}
             name="customSearch"
-            className={`select ${className}`}
+            className={`selectted ${className} ${hasError ? 'hasError' : ''}`}
             required
             defaultValue=""
          >

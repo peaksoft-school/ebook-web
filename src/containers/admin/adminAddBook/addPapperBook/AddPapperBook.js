@@ -15,10 +15,12 @@ const schema = yup.object().shape({
       .string()
       .required('Publishinghouse should be required please'),
    description: yup.string().required('Description should be required please'),
+   genres: yup.string().required('Description should be required please'),
    fragment: yup.string().required('Fragment should be required please'),
    language: yup.string().required('Language should be required please'),
    pageSize: yup.number().required('Pagesize should be required please'),
-   price: yup.string().required('Price should be required please'),
+   price: yup.number().required('Price should be required please'),
+   discount: yup.number().required('Price should be required please'),
    dataOfIssue: yup
       .number()
       .max(12 > 5)
@@ -31,8 +33,12 @@ const schema = yup.object().shape({
 const Papperbook = (props) => {
    const { onSubmit } = props
 
-   const { register, handleSubmit } = useForm({
-      mode: 'onTouched',
+   const {
+      register,
+      handleSubmit,
+      formState: { errors, isValid },
+   } = useForm({
+      mode: 'all',
       resolver: yupResolver(schema),
    })
 
@@ -63,24 +69,21 @@ const Papperbook = (props) => {
          <div className={classes.rightSection} onSubmit={submitHandler}>
             <Input
                label="Название книги"
-               {...register('nameOfBook', {
-                  required: true,
-                  min: 1,
-               })}
+               {...register('bookName')}
                type="text"
                placeholder="Напишите полное название книги"
                className={classes.rightSectionInput}
                id="name"
+               hasError={errors.bookName}
             />
             <Input
                label="ФИО автора"
                type="text"
                placeholder="Напишите ФИО автора"
-               {...register('FIO', {
-                  required: true,
-               })}
+               {...register('author')}
                className={classes.rightSectionInput}
                id="author"
+               hasError={errors.author}
             />
             <CustomSelect
                label="Выберите жанр"
@@ -89,25 +92,26 @@ const Papperbook = (props) => {
                getOptionValue={getOptionValue}
                className={classes.rightSectionSelect}
                initialstate="Литература, роман, стихи... "
-               {...register('janr', { required: true })}
+               {...register('genres')}
+               hasError={errors.genres}
             />
             <Input
                label="Издательство"
-               {...register('izdatelstvo', {
-                  required: true,
-                  minLength: 3,
-               })}
+               {...register('publishingHouse')}
                type="text"
                placeholder="Напишите название издательства"
                className={classes.rightSectionInput}
                id="izdatelstvo"
+               hasError={errors.publishingHouse}
             />
             <CustomTextarea
                label="O книге"
-               {...register('aboutBook', { required: true })}
+               {...register('description')}
                placeholder="Напишите о книге"
                maxlengthofletters="1234"
                maxLength="1234"
+               className={classes.textAreaClass}
+               hasError={errors.description}
             />
             <CustomTextarea
                label="Фрагмент книги"
@@ -115,12 +119,14 @@ const Papperbook = (props) => {
                placeholder="Напишите фрагмент книги"
                maxlengthofletters="9234"
                maxLength="9234"
+               className={classes.textAreaClass}
+               hasError={errors.fragment}
             />
          </div>
          <div className={classes.leftSection}>
             <div className={classes.settingOfBook}>
                <CustomSelect
-                  {...register('lang')}
+                  {...register('language')}
                   required
                   data={languagesFromApi}
                   getOptionLabel={getOptionLabel}
@@ -131,7 +137,7 @@ const Papperbook = (props) => {
                />
                <Input
                   label="Объем"
-                  {...register('obyom')}
+                  {...register('pageSize')}
                   type="number"
                   placeholder="стр."
                   className={classes.leftSideInput}
@@ -139,11 +145,12 @@ const Papperbook = (props) => {
                />
                <Input
                   label="Стоимость"
-                  {...register('qurent')}
+                  {...register('price')}
                   type="number"
                   placeholder="сом"
                   className={classes.leftSideInput}
                   id="price"
+                  hasError={errors.price}
                />
                <CustomCheckbox
                   label="Бестселлер"
@@ -153,7 +160,7 @@ const Papperbook = (props) => {
             </div>
             <div className={classes.settingOfPrice}>
                <Input
-                  {...register('year')}
+                  {...register('dataOfIssue')}
                   type="number"
                   maxLength="4"
                   step="1"
@@ -161,14 +168,16 @@ const Papperbook = (props) => {
                   label="Год выпуска"
                   className={classes.leftSideDate}
                   id="year"
+                  hasError={errors.dataOfIssue}
                />
                <Input
                   label="Кол-во книг"
-                  {...register('how')}
+                  {...register('quantityOfBooks')}
                   type="number"
                   placeholder="шт."
                   className={classes.leftSideInput}
                   id="number"
+                  hasError={errors.quantityOfBooks}
                />
                <Input
                   label="Скидка"
@@ -178,9 +187,12 @@ const Papperbook = (props) => {
                   className={classes.leftSideInput}
                   id="discount"
                />
-               <button type="submit" className={classes.submitButton}>
+               <button
+                  type="submit"
+                  className={classes.submitButton}
+                  disabled={!isValid}
+               >
                   Отправить
-                  {/* Изменю как возьму custom button  */}
                </button>
             </div>
          </div>

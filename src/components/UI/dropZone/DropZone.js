@@ -27,7 +27,7 @@ export default function DropZone({ avatar, setAvatar }) {
                <div className={classes.dromImgBox}>
                   <img
                      src={DropImg}
-                     alt="22"
+                     alt=""
                      className={classes.uploadedDropZone}
                   />
                   <span className={classes.span}>
@@ -38,7 +38,7 @@ export default function DropZone({ avatar, setAvatar }) {
                <>
                   <img
                      src={avatar?.preview}
-                     alt="33"
+                     alt=""
                      className={classes.uploadedBook}
                   />
                   <button

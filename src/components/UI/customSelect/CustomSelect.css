@@ -1,52 +1,55 @@
-.customBox{
-    margin-bottom: 30px;
+.customBox {
+   margin-bottom: 30px;
 }
 
 .customSelect {
-    font-family: Open Sans, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 130%;
-    text-align: center;
-    color: #222222;
-    display: block;
-    text-align: start;
-    padding-bottom: 10.6px;
+   font-family: Open Sans, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 130%;
+   text-align: center;
+   color: #222222;
+   display: block;
+   text-align: start;
+   padding-bottom: 10.6px;
 }
 
 .selectted {
-    color: #222222;
-	padding: 10px 18px;
-	text-align: start;
-	border: 1px solid #c4c4c4;
-	appearance: none;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	background-image: url('../../../assets/png/arrow.png');
-	background-repeat: no-repeat;
-	background-position: calc(100% - 20px) center;
-	background-size: 20px;
-    outline: none;
-    font-style: normal;
-	font-weight: normal;
-	font-size: 16px;
-	line-height: 130%;
-    color: #222222;
-    background-color: #FAFAFA;
+   color: #222222;
+   padding: 10px 18px;
+   text-align: start;
+   border: 1px solid #c4c4c4;
+   appearance: none;
+   -moz-appearance: none;
+   -webkit-appearance: none;
+   background-image: url('../../../assets/png/arrow.png');
+   background-repeat: no-repeat;
+   background-position: calc(100% - 20px) center;
+   background-size: 20px;
+   outline: none;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 130%;
+   color: #222222;
+   background-color: #fafafa;
 }
-.selectted:invalid{
-    color: #c4c4c4;
+.selectted.hasError {
+   border-color: red;
 }
-
-.selectted:hover{
-    background-color: #FFFFFF;
-    border: 1px solid #C4C4C4;
-    box-sizing: border-box;
+.selectted:invalid {
+   color: #c4c4c4;
 }
 
-.input input:active{
-    background-color: #FFFFFF;
-    border: 1px solid #C4C4C4;
-    box-sizing: border-box;
+.selectted:hover {
+   background-color: #ffffff;
+   border: 1px solid #c4c4c4;
+   box-sizing: border-box;
+}
+
+.input input:active {
+   background-color: #ffffff;
+   border: 1px solid #c4c4c4;
+   box-sizing: border-box;
 }
