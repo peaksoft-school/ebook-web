@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import breadCrumbsReducer from './breadCrumbsSlice'
+import breadCrumbsReducer from './BreadCrumbsSlice'
 import signInSlice from './authReducer/signInSlice'
 
 const store = configureStore({
