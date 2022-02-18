@@ -33,7 +33,7 @@ const UserItem = (props) => {
 
    const onDeleteHundler = () => {
       setIsShowModal((isShowModal) => !isShowModal)
-      const userUrl = { url: `api/client/delete/${id}`, method: 'DELETE' }
+      const userUrl = { url: `api/clients/delete/${id}`, method: 'DELETE' }
       sendRequest(userUrl)
    }
 

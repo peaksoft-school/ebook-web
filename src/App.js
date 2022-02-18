@@ -1,10 +1,11 @@
 import './App.css'
-import AdminLayout from './components/admin/AdminLayot/AdminLayout'
+// import { useSelector } from 'react-redux'
+import AdminRoutes from './routes/AdminRoutes'
 
 function App() {
    return (
       <div className="App">
-         <AdminLayout />
+         <AdminRoutes />
       </div>
    )
 }

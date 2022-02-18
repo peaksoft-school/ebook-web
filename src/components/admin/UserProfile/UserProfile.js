@@ -15,7 +15,7 @@ const UserProfile = () => {
 
    const getUserById = async () => {
       const userUrl = {
-         url: `api/client/getById/${params.userId}`,
+         url: `api/clients/getById/${params.userId}`,
       }
       const response = await sendRequest(userUrl)
       await setUserById(response)

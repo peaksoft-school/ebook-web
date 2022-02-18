@@ -21,6 +21,7 @@ export const ROUTES = {
    BOOK_PAGE: '/vendor/bookpage',
    ADD_BOOK: '/vendor/bookadd',
    PROFILE: '/vendor/profile',
+   CLIENT: '/client',
    SIDE_DRAWER_DATA: [
       {
          route_Activeicon: APPLICATION,

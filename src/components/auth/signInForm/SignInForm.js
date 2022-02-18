@@ -1,17 +1,18 @@
 import { useForm } from 'react-hook-form'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { authFetch } from '../../../store/authReducer/signInSlice'
+import { EMAIL, PASSWORD, ROUTES } from '../../../utils/constants/constants'
 import InputField from '../../UI/inputField/InputField'
 import AuthButton from '../../UI/authButton/AuthButton'
 import eye from '../../../assets/png/eye.png'
 import isEye from '../../../assets/png/isEye.png'
 import classes from './SignInForm.module.css'
-import { authFetch } from '../../../store/authReducer/signInSlice'
-import { EMAIL, PASSWORD } from '../../../utils/constants/constants'
 import LoadingSpinner from '../../UI/modal-window/loadingSpinner/LoadingSpinner'
 
 const SignIn = () => {
-   const { error, status } = useSelector((state) => state.authorization)
+   const { error, status, role } = useSelector((state) => state.authorization)
    const dispatch = useDispatch()
    const authentication = 'api/authentication'
    const {
@@ -19,6 +20,7 @@ const SignIn = () => {
       handleSubmit,
       formState: { errors, isValid },
    } = useForm({ mode: 'all' })
+   const navigate = useNavigate()
 
    const submitHandler = useCallback(
       (ebookUser) => {
@@ -31,6 +33,25 @@ const SignIn = () => {
       },
       [dispatch]
    )
+
+   const navigateToRole = () => {
+      if (status === 'resolved') {
+         if (role === 'ADMIN') {
+            return navigate(ROUTES.APPLICATIONS)
+         }
+         if (role === 'VENDOR') {
+            return navigate(ROUTES.VENDOR_AREA)
+         }
+         if (role === 'CLIENT') {
+            return navigate(ROUTES.CLIENT)
+         }
+      }
+      return navigate('/login')
+   }
+
+   useEffect(() => {
+      navigateToRole()
+   }, [status === 'resolved'])
 
    const getErrorMessage = () => {
       const errorMessage =
@@ -85,6 +106,9 @@ const SignIn = () => {
          <AuthButton type="submit" disabled={!isValid}>
             Войти
          </AuthButton>
+         {/* <button type="button" onClick={navigateToRole}>
+            Join
+         </button> */}
       </form>
    )
 }

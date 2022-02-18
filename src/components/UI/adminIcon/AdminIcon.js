@@ -1,14 +1,27 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { deleteFromLocalStorage } from '../../../utils/helpers'
+import { setAuth } from '../../../store/authReducer/signInSlice'
 import Admin from '../../../assets/icons/Profile.svg'
 import classes from './AdminIcon.module.css'
 import WhiteWrapper from '../WhiteWrapper/WhiteWrapper'
 
 const AdminIcon = () => {
    const [state, setState] = useState(false)
+   const dispatch = useDispatch()
+   const navigate = useNavigate()
 
    const onChangeHandler = () => {
       setState((prevState) => !prevState)
    }
+
+   const logOut = () => {
+      deleteFromLocalStorage('EbookUserToken')
+      dispatch(setAuth.logout())
+      navigate('/login')
+   }
+
    return (
       <div
          className={classes.admin}
@@ -17,7 +30,9 @@ const AdminIcon = () => {
       >
          <div className={classes.modal}>
             {state && (
-               <WhiteWrapper className={classes.logout}>Выйти</WhiteWrapper>
+               <WhiteWrapper onClick={logOut} className={classes.logout}>
+                  Выйти
+               </WhiteWrapper>
             )}
          </div>
          <img className={classes.img} src={Admin} alt="" />
