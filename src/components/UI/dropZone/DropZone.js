@@ -1,7 +1,8 @@
-import React from 'react'
+import { useCallback, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import DropImg from '../../../assets/png/Vector.png'
 import classes from './DropZone.module.css'
+import { sendRequest, getFromLocalStorage } from '../../../utils/helpers'
 
 export default function DropZone({ avatar, setAvatar }) {
    const { getRootProps, getInputProps } = useDropzone({
@@ -14,6 +15,25 @@ export default function DropZone({ avatar, setAvatar }) {
          })
       },
    })
+   const E_BOOK_USER_TOKEN = 'EbookUserToken'
+
+   const amazonBasket3Url = 'static/upload/image'
+   const sendMainImage = useCallback(async () => {
+      if (!avatar) return
+      const userInfo = getFromLocalStorage(E_BOOK_USER_TOKEN) || []
+      const requestConfig = {
+         url: amazonBasket3Url,
+         body: avatar,
+         method: 'POST',
+         headers: userInfo,
+      }
+      const response = await sendRequest(requestConfig)
+      console.log(response)
+   }, [avatar])
+
+   useEffect(() => {
+      sendMainImage()
+   }, [Object.keys(avatar).length !== 0])
 
    return (
       <div className={classes.dropZoneBox}>

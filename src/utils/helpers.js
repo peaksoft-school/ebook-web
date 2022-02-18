@@ -14,7 +14,7 @@ const DEFAULT_URL = 'http://3.123.114.41/'
 const E_BOOK_USER_TOKEN = 'EbookUserToken'
 
 export const sendRequest = async (requestConfig) => {
-   const userInfo = getFromLocalStorage(E_BOOK_USER_TOKEN)
+   const userInfo = getFromLocalStorage(E_BOOK_USER_TOKEN) || []
    const requestOptions = {
       method: requestConfig.method || 'GET',
       headers: {
@@ -25,7 +25,14 @@ export const sendRequest = async (requestConfig) => {
 
    if (requestConfig.method !== 'GET') {
       requestOptions.body = JSON.stringify(requestConfig.body)
+      requestOptions.headers = requestConfig.headers
+         ? { 'Content-Type': 'application/json' }
+         : {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${userInfo.token}`,
+           }
    }
+   console.log(requestOptions)
    const response = await fetch(DEFAULT_URL + requestConfig.url, requestOptions)
 
    if (!response.ok) {

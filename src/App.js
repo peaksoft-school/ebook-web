@@ -4,6 +4,7 @@
 // import { getFromLocalStorage } from './utils/helpers'
 // import { EBOOK_BREADCRUMBS } from './utils/constants/constants'
 // import AdminLayout from './components/admin/AdminLayot/AdminLayout'
+// import AuthModal from './components/auth/authModal/AuthModal'
 import AddBookForm from './containers/admin/adminAddBook/addBookForm/AddBookForm'
 import './App.css'
 
@@ -18,6 +19,7 @@ function App() {
    return (
       <div className="App">
          {/* <AdminLayout /> */}
+         {/* <AuthModal /> */}
          <AddBookForm />
       </div>
    )
