@@ -9,6 +9,7 @@ import BOOK from '../../assets/icons/book.svg'
 import ORANGESEARCH from '../../assets/icons/orangeSearchIcon.svg'
 import SEARCH from '../../assets/icons/searchIcon.svg'
 
+export const EBOOK_BREADCRUMBS = 'EBOOK_BREADCRUMBS'
 export const ROUTES = {
    HOME: '/admin',
    APPLICATIONS: '/admin/applications',

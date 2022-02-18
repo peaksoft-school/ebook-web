@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { breadCrumbsReducerActions } from '../../../../../store/breadCrumbsSlice'
+import { asyncUpdateBreadcrumb } from '../../../../../store/breadCrumbsSlice'
 import { sendRequest } from '../../../../../utils/helpers'
 import classes from './UserItem.module.css'
 import DeleteButton from '../../../../../components/UI/DeleteButton/DeleteButton'
@@ -38,7 +38,7 @@ const UserItem = (props) => {
    }
 
    const sendBreadCrumbs = () => {
-      dispatch(breadCrumbsReducerActions.updateBreadCrumbs(breadcrumbs))
+      dispatch(asyncUpdateBreadcrumb(breadcrumbs))
    }
 
    return (
