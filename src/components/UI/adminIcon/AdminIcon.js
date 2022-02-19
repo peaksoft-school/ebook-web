@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { deleteFromLocalStorage } from '../../../utils/helpers'
 import { setAuth } from '../../../store/authReducer/signInSlice'
+import { ROUTES } from '../../../utils/constants/constants'
 import Admin from '../../../assets/icons/Profile.svg'
 import classes from './AdminIcon.module.css'
 import WhiteWrapper from '../WhiteWrapper/WhiteWrapper'
@@ -19,7 +20,7 @@ const AdminIcon = () => {
    const logOut = () => {
       deleteFromLocalStorage('EbookUserToken')
       dispatch(setAuth.logout())
-      navigate('/login')
+      navigate(ROUTES.LOGIN)
    }
 
    return (

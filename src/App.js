@@ -1,17 +1,24 @@
 import './App.css'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import AdminRoutes from './routes/AdminRoutes'
-import { asyncUpdateBreadcrumb } from './store/breadCrumbsSlice'
 import { getFromLocalStorage } from './utils/helpers'
-import { EBOOK_BREADCRUMBS } from './utils/constants/constants'
+import { asyncUpdateBreadcrumb } from './store/breadCrumbsSlice'
+import {
+   EBOOK_BREADCRUMBS,
+   EBOOKPERSONTOKEN,
+} from './utils/constants/constants'
+import { setAuth } from './store/authReducer/signInSlice'
+
+import AdminRoutes from './routes/AdminRoutes'
 
 function App() {
    const dispatch = useDispatch()
 
    useEffect(() => {
       const breadcrumbs = getFromLocalStorage(EBOOK_BREADCRUMBS)
+      const token = getFromLocalStorage(EBOOKPERSONTOKEN)
       dispatch(asyncUpdateBreadcrumb(breadcrumbs))
+      dispatch(setAuth.authenticateUser(token))
    }, [])
 
    return (

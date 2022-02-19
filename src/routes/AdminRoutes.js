@@ -12,8 +12,8 @@ import PrivateRouteForAdmin from '../components/UI/PrivateRoutes/PrivateRouteFor
 function AdminRoutes() {
    return (
       <Routes>
-         <Route path="*" element={<Navigate to="/login" replace />} />
-         <Route path="/login" element={<AuthModal />} />
+         <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
+         <Route path={ROUTES.LOGIN} element={<AuthModal />} />
          <Route
             path={ROUTES.HOME}
             element={

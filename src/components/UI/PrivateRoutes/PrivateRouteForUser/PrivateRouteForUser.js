@@ -1,14 +1,15 @@
 import { Navigate } from 'react-router-dom'
-import { getFromLocalStorage } from '../../../../utils/helpers'
+import { useSelector } from 'react-redux'
+import { ROUTES } from '../../../../utils/constants/constants'
 
 const PrivateRouteForUser = ({ children }) => {
-   const token = getFromLocalStorage('EbookUserToken')
+   const role = useSelector((state) => state.authorization.role)
 
-   if (getFromLocalStorage('EbookUserToken') === null) {
-      return <Navigate to="/login" replace />
+   if (role === null) {
+      return <Navigate to={ROUTES.LOGIN} replace />
    }
-   if (token.authority !== 'CLIENT') {
-      return <Navigate to="/login" replace />
+   if (role !== 'CLIENT') {
+      return <Navigate to={ROUTES.LOGIN} replace />
    }
 
    return children

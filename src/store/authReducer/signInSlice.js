@@ -49,9 +49,15 @@ const signInSlice = createSlice({
    },
    reducers: {
       authenticateUser(state, action) {
-         const { token, authority } = action.payload
-         state.token = token
-         state.role = authority
+         if (action.payload === null) {
+            state.token = ''
+            state.role = ''
+         }
+         if (action.payload !== null) {
+            const { token, authority } = action.payload
+            state.token = token
+            state.role = authority
+         }
       },
       logout(state) {
          state.token = ''

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { sendRequest } from '../../../../../utils/helpers'
 import { asyncUpdateBreadcrumb } from '../../../../../store/breadCrumbsSlice'
+import { ROUTES } from '../../../../../utils/constants/constants'
 import classes from './SellerItem.module.css'
 import DeleteButton from '../../../../../components/UI/DeleteButton/DeleteButton'
 import ModalForDelete from '../../../../../components/UI/ModalForDelete/ModalForDelete'
@@ -13,7 +14,7 @@ const SellerItem = (props) => {
    const breadcrumbs = [
       {
          route_name: 'Продавцы',
-         route: '/admin/sellers',
+         route: ROUTES.SELLERS,
       },
       {
          route_name: `${firstName} ${lastName}`,

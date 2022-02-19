@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { asyncUpdateBreadcrumb } from '../../../../../store/breadCrumbsSlice'
 import { sendRequest } from '../../../../../utils/helpers'
+import { ROUTES } from '../../../../../utils/constants/constants'
 import classes from './UserItem.module.css'
 import DeleteButton from '../../../../../components/UI/DeleteButton/DeleteButton'
 import ModalForDelete from '../../../../../components/UI/ModalForDelete/ModalForDelete'
@@ -13,7 +14,7 @@ const UserItem = (props) => {
    const breadcrumbs = [
       {
          route_name: 'Пользователи',
-         route: '/admin/users',
+         route: ROUTES.USERS,
       },
       {
          route_name: firstName,
@@ -32,9 +33,9 @@ const UserItem = (props) => {
    }
 
    const onDeleteHundler = () => {
-      setIsShowModal((isShowModal) => !isShowModal)
       const userUrl = { url: `api/clients/delete/${id}`, method: 'DELETE' }
       sendRequest(userUrl)
+      setIsShowModal((isShowModal) => !isShowModal)
    }
 
    const sendBreadCrumbs = () => {

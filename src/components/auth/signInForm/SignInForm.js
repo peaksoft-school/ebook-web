@@ -35,23 +35,21 @@ const SignIn = () => {
    )
 
    const navigateToRole = () => {
-      if (status === 'resolved') {
-         if (role === 'ADMIN') {
-            return navigate(ROUTES.APPLICATIONS)
-         }
-         if (role === 'VENDOR') {
-            return navigate(ROUTES.VENDOR_AREA)
-         }
-         if (role === 'CLIENT') {
-            return navigate(ROUTES.CLIENT)
-         }
+      if (role === 'ADMIN') {
+         return navigate(ROUTES.APPLICATIONS)
       }
-      return navigate('/login')
+      if (role === 'VENDOR') {
+         return navigate(ROUTES.VENDOR_AREA)
+      }
+      if (role === 'CLIENT') {
+         return navigate(ROUTES.CLIENT)
+      }
+      return navigate(ROUTES.LOGIN)
    }
 
    useEffect(() => {
       navigateToRole()
-   }, [status === 'resolved'])
+   }, [role])
 
    const getErrorMessage = () => {
       const errorMessage =
@@ -106,9 +104,6 @@ const SignIn = () => {
          <AuthButton type="submit" disabled={!isValid}>
             Войти
          </AuthButton>
-         {/* <button type="button" onClick={navigateToRole}>
-            Join
-         </button> */}
       </form>
    )
 }
