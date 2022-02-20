@@ -15,6 +15,7 @@ const E_BOOK_USER_TOKEN = 'EbookUserToken'
 
 export const sendRequest = async (requestConfig) => {
    const userInfo = getFromLocalStorage(E_BOOK_USER_TOKEN) || []
+   console.log(userInfo)
    const requestOptions = {
       method: requestConfig.method || 'GET',
       headers: {
@@ -25,16 +26,22 @@ export const sendRequest = async (requestConfig) => {
 
    if (requestConfig.method !== 'GET') {
       requestOptions.body = JSON.stringify(requestConfig.body)
-      requestOptions.headers = requestConfig.headers
-         ? { 'Content-Type': 'application/json' }
-         : {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${userInfo.token}`,
-           }
    }
-   console.log(requestOptions)
    const response = await fetch(DEFAULT_URL + requestConfig.url, requestOptions)
+   console.log(requestOptions)
+   if (!response.ok) {
+      throw new Error(response.message)
+   }
+   const result = await response.json()
+   return result
+}
 
+export const sendImageToApi = async (requestConfig) => {
+   const requestOptions = {
+      method: requestConfig.method,
+      body: requestConfig.body,
+   }
+   const response = await fetch(DEFAULT_URL + requestConfig.url, requestOptions)
    if (!response.ok) {
       throw new Error(response.message)
    }

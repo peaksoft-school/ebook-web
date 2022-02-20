@@ -13,17 +13,32 @@ import {
 
 const AddBookForm = () => {
    const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
-   const [getAllLanguages, setGetAllLanguages] = useState([])
+   const [allLanguages, setGetAllLanguages] = useState([])
+   const [allGenres, setGetAllGenres] = useState([])
 
-   const genresUrl = 'api/books/languages'
+   const languagesUrl = 'api/books/languages'
+   const genresUrl = 'api/genres'
 
    const getAllLanguagesApi = useCallback(async () => {
+      const requestConfig = {
+         url: languagesUrl,
+         method: 'GET',
+      }
+      const response = await sendRequest(requestConfig)
+      return setGetAllLanguages(response)
+   }, [])
+
+   const getAllGenresFromApi = useCallback(async () => {
       const requestConfig = {
          url: genresUrl,
          method: 'GET',
       }
       const response = await sendRequest(requestConfig)
-      return setGetAllLanguages(response)
+      return setGetAllGenres(response)
+   })
+
+   useEffect(() => {
+      getAllGenresFromApi()
    }, [])
 
    useEffect(() => {
@@ -46,11 +61,12 @@ const AddBookForm = () => {
    const audioBook = typeOfBook === IS_AUDIOBOOK
 
    const onPaperBookSubmit = () => {
-      //   console.log(data)
+      // data.preventDefault()
+      // console.log(data)
    }
 
    return (
-      <form onSubmit={onPaperBookSubmit}>
+      <div onSubmit={onPaperBookSubmit}>
          <main className={classes.adminBlog}>
             <p className={classes.uploadthreeBooks}>Загрузите 3 фото *</p>
             <UploadImageCart />
@@ -96,14 +112,15 @@ const AddBookForm = () => {
                {papperBook && (
                   <Papperbook
                      onSubmit={onPaperBookSubmit}
-                     languagesFromApi={getAllLanguages}
+                     languagesFromApi={allLanguages}
+                     genres={allGenres}
                   />
                )}
                {audioBook && <AudioBook />}
                {electroBook && <ElectroBook />}
             </section>
          </main>
-      </form>
+      </div>
    )
 }
 

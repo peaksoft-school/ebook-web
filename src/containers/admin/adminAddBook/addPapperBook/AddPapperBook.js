@@ -1,188 +1,238 @@
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useSelector } from 'react-redux'
+import { useCallback, useState } from 'react'
 import classes from './AddPapperBook.module.css'
 import WrapperOfForms from '../../../../components/admin/wrapperOfAdminBook/WrapperOfForm'
 import Input from '../../../../components/UI/input/Input'
 import CustomSelect from '../../../../components/UI/customSelect/CustomSelect'
 import CustomTextarea from '../../../../components/UI/customTextarea/CustomTextarea'
 import CustomCheckbox from '../../../../components/UI/customCheckbox/CustomCheckbox'
+import GenresSelect from '../../../../components/UI/genresSelect/GenresSelect'
+import { sendRequest } from '../../../../utils/helpers'
 
 const schema = yup.object().shape({
-   bookName: yup.string().required('Book name should be required please'),
-   author: yup.string().required('Author should be required please'),
-   publishingHouse: yup
-      .string()
-      .required('Publishinghouse should be required please'),
-   description: yup.string().required('Description should be required please'),
-   genres: yup.string().required('Description should be required please'),
-   fragment: yup.string().required('Fragment should be required please'),
-   language: yup.string().required('Language should be required please'),
-   pageSize: yup.number().required('Pagesize should be required please'),
-   price: yup.number().required('Price should be required please'),
-   discount: yup.number().required('Price should be required please'),
+   bookName: yup.string().required(),
+   author: yup.string().required(),
+   publishingHouse: yup.string().required(),
+   description: yup.string().required(),
+   fragment: yup.string().required(),
+   pageSize: yup.number().required(),
+   price: yup.number().required(),
+   discount: yup.number().required(),
    dataOfIssue: yup
-      .number()
-      .max(12 > 5)
-      .required('Dataofissue should be required please'),
+      .string()
+      .test((val) => val.length === 4)
+      .required(),
    quantityOfBooks: yup
       .number()
       .required('Quantity of Books should be required please'),
 })
 
 const Papperbook = (props) => {
-   const { onSubmit, languagesFromApi } = props
+   const { languagesFromApi, genres } = props
+   const { imagesId } = useSelector((state) => state.getImageId)
+   console.log(imagesId)
+
+   const [genreId, setGenreId] = useState('')
+   const [typeOfLanguage, setTypeOfLanguage] = useState('')
+   const [bestseller, setBestseller] = useState(false)
+
+   const onChangeLanguagesValue = (lang) => {
+      setTypeOfLanguage(lang)
+   }
+
+   const onChangeGenreValue = (genreId) => {
+      setGenreId(genreId)
+   }
+
+   const onChangeCheckBoxValue = (value) => {
+      setBestseller(value)
+   }
+
    const {
       register,
       handleSubmit,
-      formState: { errors, isValid },
+      formState: { errors },
    } = useForm({
       mode: 'all',
       resolver: yupResolver(schema),
    })
 
-   const submitHandler = (event) => {
-      event.preventDefault()
-
-      handleSubmit(onSubmit)
-   }
-
+   const submitHandler = useCallback(async (data) => {
+      const {
+         bookName,
+         author,
+         description,
+         price,
+         discount,
+         fragment,
+         quantityOfBooks,
+         pageSize,
+         publishingHouse,
+         dataOfIssue,
+      } = data
+      const book = { fragment, quantityOfBooks, pageSize, publishingHouse }
+      const trasformedBook = {
+         bookName,
+         author,
+         description,
+         price,
+         discount,
+         genreId,
+         language: typeOfLanguage,
+         dataOfIssue,
+         bestseller,
+         book,
+         imagesId,
+      }
+      console.log(trasformedBook)
+      const sendPaperBookUrl = 'api/books/save/paper_book'
+      const requestConfig = {
+         method: 'POST',
+         url: sendPaperBookUrl,
+         body: trasformedBook,
+      }
+      const response = await sendRequest(requestConfig)
+      console.log(response)
+   }, [])
    const getOptionLabel = (item) => item
 
    const getOptionValue = (item) => item
 
    return (
-      <WrapperOfForms>
-         <div className={classes.rightSection} onSubmit={submitHandler}>
-            <Input
-               label="Название книги"
-               {...register('bookName')}
-               type="text"
-               placeholder="Напишите полное название книги"
-               className={classes.rightSectionInput}
-               id="name"
-               hasError={errors.bookName}
-            />
-            <Input
-               label="ФИО автора"
-               type="text"
-               placeholder="Напишите ФИО автора"
-               {...register('author')}
-               className={classes.rightSectionInput}
-               id="author"
-               hasError={errors.author}
-            />
-            <CustomSelect
-               label="Выберите жанр"
-               // data={genres}
-               getOptionLabel={getOptionLabel}
-               getOptionValue={getOptionValue}
-               className={classes.rightSectionSelect}
-               initialstate="Литература, роман, стихи... "
-               {...register('genres')}
-            />
-            <Input
-               label="Издательство"
-               {...register('publishingHouse')}
-               type="text"
-               placeholder="Напишите название издательства"
-               className={classes.rightSectionInput}
-               id="izdatelstvo"
-               hasError={errors.publishingHouse}
-            />
-            <CustomTextarea
-               label="O книге"
-               {...register('description')}
-               placeholder="Напишите о книге"
-               maxlengthofletters="1234"
-               maxLength="1234"
-               className={classes.textAreaClass}
-               hasError={errors.description}
-            />
-            <CustomTextarea
-               label="Фрагмент книги"
-               {...register('fragment')}
-               placeholder="Напишите фрагмент книги"
-               maxlengthofletters="9234"
-               maxLength="9234"
-               className={classes.textAreaClass}
-               hasError={errors.fragment}
-            />
-         </div>
-         <div className={classes.leftSection}>
-            <div className={classes.settingOfBook}>
-               <CustomSelect
-                  {...register('language')}
-                  required
-                  data={languagesFromApi}
-                  getOptionLabel={getOptionLabel}
-                  getOptionValue={getOptionValue}
-                  initialstate="Русский"
-                  label="Язык"
-                  className={classes.leftSideSelect}
+      <form
+         onSubmit={handleSubmit(submitHandler)}
+         className={classes.formControl}
+      >
+         <WrapperOfForms>
+            <div className={classes.rightSection}>
+               <Input
+                  label="Название книги"
+                  {...register('bookName')}
+                  type="text"
+                  placeholder="Напишите полное название книги"
+                  className={classes.rightSectionInput}
+                  id="name"
+                  hasError={errors.bookName}
                />
                <Input
-                  label="Объем"
-                  {...register('pageSize')}
-                  type="number"
-                  placeholder="стр."
-                  className={classes.leftSideInput}
-                  id="total"
+                  label="ФИО автора"
+                  type="text"
+                  placeholder="Напишите ФИО автора"
+                  {...register('author')}
+                  className={classes.rightSectionInput}
+                  id="author"
+                  hasError={errors.author}
+               />
+               <GenresSelect
+                  label="Выберите жанр"
+                  data={genres}
+                  className={classes.rightSectionSelect}
+                  initialstate="Литература, роман, стихи... "
+                  onChangeGenreValue={onChangeGenreValue}
                />
                <Input
-                  label="Стоимость"
-                  {...register('price')}
-                  type="number"
-                  placeholder="сом"
-                  className={classes.leftSideInput}
-                  id="price"
-                  hasError={errors.price}
+                  label="Издательство"
+                  {...register('publishingHouse')}
+                  type="text"
+                  placeholder="Напишите название издательства"
+                  className={classes.rightSectionInput}
+                  id="izdatelstvo"
+                  hasError={errors.publishingHouse}
                />
-               <CustomCheckbox
-                  label="Бестселлер"
-                  {...register('bestsellers')}
-                  className={classes.bestsellers}
+               <CustomTextarea
+                  label="O книге"
+                  {...register('description')}
+                  placeholder="Напишите о книге"
+                  maxlengthofletters="1234"
+                  maxLength="1234"
+                  className={classes.textAreaClass}
+                  hasError={errors.description}
+               />
+               <CustomTextarea
+                  label="Фрагмент книги"
+                  {...register('fragment')}
+                  placeholder="Напишите фрагмент книги"
+                  maxlengthofletters="9234"
+                  maxLength="9234"
+                  className={classes.textAreaClass}
+                  hasError={errors.fragment}
                />
             </div>
-            <div className={classes.settingOfPrice}>
-               <Input
-                  {...register('dataOfIssue')}
-                  type="number"
-                  maxLength="4"
-                  step="1"
-                  placeholder="гг"
-                  label="Год выпуска"
-                  className={classes.leftSideDate}
-                  id="year"
-                  hasError={errors.dataOfIssue}
-               />
-               <Input
-                  label="Кол-во книг"
-                  {...register('quantityOfBooks')}
-                  type="number"
-                  placeholder="шт."
-                  className={classes.leftSideInput}
-                  id="number"
-                  hasError={errors.quantityOfBooks}
-               />
-               <Input
-                  label="Скидка"
-                  {...register('discount')}
-                  type="number"
-                  placeholder="%"
-                  className={classes.leftSideInput}
-                  id="discount"
-               />
-               <button
-                  type="submit"
-                  className={classes.submitButton}
-                  disabled={!isValid}
-               >
-                  Отправить
-               </button>
+            <div className={classes.leftSection}>
+               <div className={classes.settingOfBook}>
+                  <CustomSelect
+                     required
+                     data={languagesFromApi}
+                     getOptionLabel={getOptionLabel}
+                     getOptionValue={getOptionValue}
+                     initialstate="Русский"
+                     label="Язык"
+                     className={classes.leftSideSelect}
+                     onChangeLanguagesValue={onChangeLanguagesValue}
+                  />
+                  <Input
+                     label="Объем"
+                     {...register('pageSize')}
+                     type="number"
+                     placeholder="стр."
+                     className={classes.leftSideInput}
+                     id="total"
+                     hasError={errors.pageSize}
+                  />
+                  <Input
+                     label="Стоимость"
+                     {...register('price')}
+                     type="number"
+                     placeholder="сом"
+                     className={classes.leftSideInput}
+                     id="price"
+                     hasError={errors.price}
+                  />
+                  <CustomCheckbox
+                     label="Бестселлер"
+                     className={classes.bestsellers}
+                     onChangeCheckBoxValue={onChangeCheckBoxValue}
+                  />
+               </div>
+               <div className={classes.settingOfPrice}>
+                  <Input
+                     {...register('dataOfIssue')}
+                     type="number"
+                     maxLength="4"
+                     step="1"
+                     placeholder="гг"
+                     label="Год выпуска"
+                     className={classes.leftSideDate}
+                     id="year"
+                     hasError={errors.dataOfIssue}
+                  />
+                  <Input
+                     label="Кол-во книг"
+                     {...register('quantityOfBooks')}
+                     type="number"
+                     placeholder="шт."
+                     className={classes.leftSideInput}
+                     id="number"
+                     hasError={errors.quantityOfBooks}
+                  />
+                  <Input
+                     label="Скидка"
+                     {...register('discount')}
+                     type="number"
+                     placeholder="%"
+                     className={classes.leftSideInput}
+                     id="discount"
+                  />
+                  <button type="submit" className={classes.submitButton}>
+                     Отправить
+                  </button>
+               </div>
             </div>
-         </div>
-      </WrapperOfForms>
+         </WrapperOfForms>
+      </form>
    )
 }
 

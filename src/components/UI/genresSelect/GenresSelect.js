@@ -1,34 +1,31 @@
 import React, { forwardRef } from 'react'
-import './CustomSelect.css'
+import './GenresSelect.css'
 
-const CustomSelect = forwardRef((props, ref) => {
+const GenresSelect = forwardRef((props, ref) => {
    const {
-      getOptionLabel,
-      getOptionValue,
       className,
       initialstate,
       label,
       id,
       data,
-      onChangeLanguagesValue,
+      onChangeGenreValue,
       ...rest
    } = props
 
-   const onChangeLanguageValue = (e) => {
-      onChangeLanguagesValue(e.target.value)
-   }
-
    const options = data
-      ? data.map((item, index) => (
-           <option
-              key={getOptionValue ? getOptionValue(item) : index}
-              id={getOptionValue ? getOptionValue(item) : index}
-              className="languageOption"
-           >
-              {item}
+      ? data.map((item) => (
+           <option key={item.id} id={item.id}>
+              {item.genreName}
            </option>
         ))
       : ''
+
+   const onChangeSelectValue = (e) => {
+      const index = e.target.selectedIndex
+      const el = e.target.childNodes[index]
+      const option = el.getAttribute('id')
+      onChangeGenreValue(option)
+   }
 
    return (
       <div className="customBox">
@@ -36,13 +33,13 @@ const CustomSelect = forwardRef((props, ref) => {
             {label}
          </label>
          <select
-            onChange={onChangeLanguageValue}
-            ref={ref}
             {...rest}
+            ref={ref}
             name="customSearch"
             className={`selectted ${className}`}
             required
             defaultValue=""
+            onChange={onChangeSelectValue}
          >
             <option className="option" value="" disabled hidden>
                {initialstate}
@@ -53,4 +50,4 @@ const CustomSelect = forwardRef((props, ref) => {
    )
 })
 
-export default CustomSelect
+export default GenresSelect

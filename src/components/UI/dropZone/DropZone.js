@@ -1,10 +1,13 @@
 import { useCallback, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { useDropzone } from 'react-dropzone'
+import { fetchImage } from '../../../store/imageUploaderReducer/imageUploaderSlice'
 import DropImg from '../../../assets/png/Vector.png'
 import classes from './DropZone.module.css'
-import { sendRequest, getFromLocalStorage } from '../../../utils/helpers'
 
 export default function DropZone({ avatar, setAvatar }) {
+   const dispatch = useDispatch()
+
    const { getRootProps, getInputProps } = useDropzone({
       accept: 'image/*',
       multiple: false,
@@ -15,20 +18,20 @@ export default function DropZone({ avatar, setAvatar }) {
          })
       },
    })
-   const E_BOOK_USER_TOKEN = 'EbookUserToken'
-
-   const amazonBasket3Url = 'static/upload/image'
+   const amazonImageUploadUrl = 'static/upload/image'
    const sendMainImage = useCallback(async () => {
       if (!avatar) return
-      const userInfo = getFromLocalStorage(E_BOOK_USER_TOKEN) || []
+
+      const formData = new FormData()
+
+      formData.append('file', avatar.avatar)
       const requestConfig = {
-         url: amazonBasket3Url,
-         body: avatar,
          method: 'POST',
-         headers: userInfo,
+         url: amazonImageUploadUrl,
+         body: formData,
       }
-      const response = await sendRequest(requestConfig)
-      console.log(response)
+
+      dispatch(fetchImage(requestConfig))
    }, [avatar])
 
    useEffect(() => {
