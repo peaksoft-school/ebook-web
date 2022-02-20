@@ -10,6 +10,14 @@ export const asyncUpdateBreadcrumb = createAsyncThunk(
    }
 )
 
+export const asyncAutoUpdateBreadcrumb = createAsyncThunk(
+   'breadCrumb/asyncUpdateBreadcrumb',
+   async () => {
+      const breadcrumbs = getFromLocalStorage(EBOOK_BREADCRUMBS)
+      return breadCrumbs
+   }
+)
+
 const breadCrumbsReducer = createSlice({
    name: 'breadCrumbsReducer',
    initialState: {

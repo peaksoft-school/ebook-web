@@ -11,6 +11,7 @@ import SEARCH from '../../assets/icons/searchIcon.svg'
 
 export const EBOOK_BREADCRUMBS = 'EBOOK_BREADCRUMBS'
 export const EBOOKPERSONTOKEN = 'EbookUserToken'
+export const EBOOKUSEROLE = 'EBOOK_USER_ROLE'
 
 export const ROLES = {
    ADMIN: 'ADMIN',
