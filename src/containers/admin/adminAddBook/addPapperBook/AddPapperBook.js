@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useSelector } from 'react-redux'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import classes from './AddPapperBook.module.css'
 import WrapperOfForms from '../../../../components/admin/wrapperOfAdminBook/WrapperOfForm'
 import Input from '../../../../components/UI/input/Input'
@@ -21,10 +21,7 @@ const schema = yup.object().shape({
    pageSize: yup.number().required(),
    price: yup.number().required(),
    discount: yup.number().required(),
-   dataOfIssue: yup
-      .string()
-      .test((val) => val.length === 4)
-      .required(),
+   dataOfIssue: yup.string().required(),
    quantityOfBooks: yup
       .number()
       .required('Quantity of Books should be required please'),
@@ -33,11 +30,10 @@ const schema = yup.object().shape({
 const Papperbook = (props) => {
    const { languagesFromApi, genres } = props
    const { imagesId } = useSelector((state) => state.getImageId)
-   console.log(imagesId)
 
    const [genreId, setGenreId] = useState('')
    const [typeOfLanguage, setTypeOfLanguage] = useState('')
-   const [bestseller, setBestseller] = useState(false)
+   const [bestSeller, setBestseller] = useState(false)
 
    const onChangeLanguagesValue = (lang) => {
       setTypeOfLanguage(lang)
@@ -60,7 +56,7 @@ const Papperbook = (props) => {
       resolver: yupResolver(schema),
    })
 
-   const submitHandler = useCallback(async (data) => {
+   const submitHandler = async (data) => {
       const {
          bookName,
          author,
@@ -73,21 +69,20 @@ const Papperbook = (props) => {
          publishingHouse,
          dataOfIssue,
       } = data
-      const book = { fragment, quantityOfBooks, pageSize, publishingHouse }
       const trasformedBook = {
+         images: imagesId,
          bookName,
          author,
          description,
-         price,
-         discount,
-         genreId,
+         price: `${price}`,
+         discount: `${discount}`,
+         genreId: +genreId,
          language: typeOfLanguage,
          dataOfIssue,
-         bestseller,
-         book,
-         imagesId,
+         bestSeller,
+         book: { fragment, quantityOfBooks, pageSize, publishingHouse },
       }
-      console.log(trasformedBook)
+
       const sendPaperBookUrl = 'api/books/save/paper_book'
       const requestConfig = {
          method: 'POST',
@@ -95,8 +90,8 @@ const Papperbook = (props) => {
          body: trasformedBook,
       }
       const response = await sendRequest(requestConfig)
-      console.log(response)
-   }, [])
+      return response
+   }
    const getOptionLabel = (item) => item
 
    const getOptionValue = (item) => item
@@ -200,10 +195,9 @@ const Papperbook = (props) => {
                <div className={classes.settingOfPrice}>
                   <Input
                      {...register('dataOfIssue')}
-                     type="number"
-                     maxLength="4"
+                     // maxLength="4"
                      step="1"
-                     placeholder="гг"
+                     placeholder="0000-00-00"
                      label="Год выпуска"
                      className={classes.leftSideDate}
                      id="year"

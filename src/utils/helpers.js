@@ -15,7 +15,6 @@ const E_BOOK_USER_TOKEN = 'EbookUserToken'
 
 export const sendRequest = async (requestConfig) => {
    const userInfo = getFromLocalStorage(E_BOOK_USER_TOKEN) || []
-   console.log(userInfo)
    const requestOptions = {
       method: requestConfig.method || 'GET',
       headers: {
@@ -28,7 +27,6 @@ export const sendRequest = async (requestConfig) => {
       requestOptions.body = JSON.stringify(requestConfig.body)
    }
    const response = await fetch(DEFAULT_URL + requestConfig.url, requestOptions)
-   console.log(requestOptions)
    if (!response.ok) {
       throw new Error(response.message)
    }
