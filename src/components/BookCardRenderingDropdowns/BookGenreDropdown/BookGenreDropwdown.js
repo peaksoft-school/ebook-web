@@ -3,7 +3,7 @@ import classes from './BookGenreDropdown.module.css'
 import { ReactComponent as SelectIcon } from '../../../assets/icons/Vector.svg'
 
 const BookGenreDropdown = (props) => {
-   const { onSelectOption, genres, getGenresBooksById, ...rest } = props
+   const { genres, getGenresBooksById, ...rest } = props
    const [isOpen, setIsOpen] = useState(false)
    const toggling = () => setIsOpen(!isOpen)
    const [selectedOption, setSelectedOption] = useState(null)
@@ -32,7 +32,7 @@ const BookGenreDropdown = (props) => {
                            role="presentation"
                            onClick={onOptionClicked(option)}
                            key={option.id}
-                           onSelect={onSelectOption}
+                           // onSelect={onSelectOption}
                         >
                            <div className={classes.items}>
                               <p className={classes.title}>

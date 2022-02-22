@@ -1,29 +1,23 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import DropZone from '../../../../components/UI/dropZone/DropZone'
 import classes from './UploadImageCart.module.css'
 import LoadingSpinner from '../../../../components/UI/modal-window/loadingSpinner/LoadingSpinner'
 
-const UploadImageCart = () => {
+const UploadImageCart = (props) => {
    const { status } = useSelector((state) => state.getImageId)
-
+   const {
+      mainPicture,
+      secondPicture,
+      thirdPicture,
+      onChangeMainPictureHandler,
+      onChangeSecondPictureHandler,
+      onChangeThirdPictureHandler,
+      deleteMainPictureHandler,
+      deleteSecondPictureHandler,
+      deleteThirdPictureHandler,
+   } = props
    const showLoadingSpinner = status === 'loading' && <LoadingSpinner />
-
-   const [mainPicture, setMainPicture] = useState('')
-   const [secondPicture, setSecondPicture] = useState('')
-   const [thirdPicture, setThirdPicture] = useState('')
-
-   const deleteMainPictureHandler = () => {
-      setMainPicture('')
-   }
-
-   const deleteSecondPictureHandler = () => {
-      setSecondPicture('')
-   }
-
-   const deleteThirdPictureHandler = () => {
-      setThirdPicture('')
-   }
 
    const firstButton = mainPicture && (
       <button
@@ -59,17 +53,26 @@ const UploadImageCart = () => {
       <section className={classes.uploadImageSection}>
          <div className={classes.imageblog}>
             <div className={classes.labelBlog}>
-               <DropZone avatar={mainPicture} setAvatar={setMainPicture} />
+               <DropZone
+                  avatar={mainPicture}
+                  setAvatar={onChangeMainPictureHandler}
+               />
                <p className={classes.mainImage}>Главное фото</p>
                {firstButton}
             </div>
             <div className={classes.labelBlog}>
-               <DropZone avatar={secondPicture} setAvatar={setSecondPicture} />
+               <DropZone
+                  avatar={secondPicture}
+                  setAvatar={onChangeSecondPictureHandler}
+               />
                <p className={classes.mainImage}>2</p>
                {secondButton}
             </div>
             <div className={classes.labelBlog}>
-               <DropZone avatar={thirdPicture} setAvatar={setThirdPicture} />
+               <DropZone
+                  avatar={thirdPicture}
+                  setAvatar={onChangeThirdPictureHandler}
+               />
                <p className={classes.mainImage}>3</p>
                {thirdButton}
             </div>

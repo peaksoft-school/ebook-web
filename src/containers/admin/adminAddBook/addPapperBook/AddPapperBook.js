@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import classes from './AddPapperBook.module.css'
 import WrapperOfForms from '../../../../components/admin/wrapperOfAdminBook/WrapperOfForm'
@@ -10,7 +9,8 @@ import CustomSelect from '../../../../components/UI/customSelect/CustomSelect'
 import CustomTextarea from '../../../../components/UI/customTextarea/CustomTextarea'
 import CustomCheckbox from '../../../../components/UI/customCheckbox/CustomCheckbox'
 import GenresSelect from '../../../../components/UI/genresSelect/GenresSelect'
-import { sendRequest } from '../../../../utils/helpers'
+import { sendFileToApi, sendRequest } from '../../../../utils/helpers'
+import { UPLOAD_IMAGE } from '../../../../utils/constants/urls'
 
 const schema = yup.object().shape({
    bookName: yup.string().required(),
@@ -28,8 +28,13 @@ const schema = yup.object().shape({
 })
 
 const Papperbook = (props) => {
-   const { languagesFromApi, genres } = props
-   const { imagesId } = useSelector((state) => state.getImageId)
+   const {
+      languagesFromApi,
+      genres,
+      mainPicture,
+      secondPicture,
+      thirdPicture,
+   } = props
 
    const [genreId, setGenreId] = useState('')
    const [typeOfLanguage, setTypeOfLanguage] = useState('')
@@ -56,7 +61,44 @@ const Papperbook = (props) => {
       resolver: yupResolver(schema),
    })
 
+   const sendMainImageToApi = () => {
+      const formData = new FormData()
+      formData.append('file', mainPicture.avatar)
+      const requestConfig = {
+         method: 'POST',
+         url: UPLOAD_IMAGE,
+         body: formData,
+      }
+      const response = sendFileToApi(requestConfig)
+      return response
+   }
+   const sendSecondImageToApi = () => {
+      const formData = new FormData()
+      formData.append('file', secondPicture.avatar)
+      const requestConfig = {
+         method: 'POST',
+         url: UPLOAD_IMAGE,
+         body: formData,
+      }
+      const response = sendFileToApi(requestConfig)
+      return response
+   }
+   const sendThirdImageToApi = () => {
+      const formData = new FormData()
+      formData.append('file', thirdPicture.avatar)
+      const requestConfig = {
+         method: 'POST',
+         url: UPLOAD_IMAGE,
+         body: formData,
+      }
+      const response = sendFileToApi(requestConfig)
+      return response
+   }
+
    const submitHandler = async (data) => {
+      const idOfMainImage = await sendMainImageToApi()
+      const idOfSecondImage = await sendSecondImageToApi()
+      const idOfThirdImage = await sendThirdImageToApi()
       const {
          bookName,
          author,
@@ -70,7 +112,7 @@ const Papperbook = (props) => {
          dataOfIssue,
       } = data
       const trasformedBook = {
-         images: imagesId,
+         images: [idOfMainImage.id, idOfSecondImage.id, idOfThirdImage.id],
          bookName,
          author,
          description,

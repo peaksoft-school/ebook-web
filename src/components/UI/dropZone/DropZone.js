@@ -1,12 +1,12 @@
-import { useCallback, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+// import { useCallback, useEffect } from 'react'
+// import { useDispatch } from 'react-redux'
 import { useDropzone } from 'react-dropzone'
-import { fetchImage } from '../../../store/imageUploaderReducer/imageUploaderSlice'
+// import { fetchImage } from '../../../store/imageUploaderReducer/imageUploaderSlice'
 import DropImg from '../../../assets/png/Vector.png'
 import classes from './DropZone.module.css'
 
 export default function DropZone({ avatar, setAvatar }) {
-   const dispatch = useDispatch()
+   // const dispatch = useDispatch()
 
    const { getRootProps, getInputProps } = useDropzone({
       accept: 'image/*',
@@ -18,25 +18,24 @@ export default function DropZone({ avatar, setAvatar }) {
          })
       },
    })
-   const amazonImageUploadUrl = 'static/upload/image'
-   const sendMainImage = useCallback(async () => {
-      if (!avatar) return
+   // const amazonImageUploadUrl = 'static/upload/image'
+   // const sendMainImage = useCallback(async () => {
+   //    if (!avatar) return
 
-      const formData = new FormData()
+   //    const formData = new FormData()
+   //    formData.append('file', avatar.avatar)
+   //    const requestConfig = {
+   //       method: 'POST',
+   //       url: amazonImageUploadUrl,
+   //       body: formData,
+   //    }
 
-      formData.append('file', avatar.avatar)
-      const requestConfig = {
-         method: 'POST',
-         url: amazonImageUploadUrl,
-         body: formData,
-      }
+   //    dispatch(fetchImage(requestConfig))
+   // }, [avatar])
 
-      dispatch(fetchImage(requestConfig))
-   }, [avatar])
-
-   useEffect(() => {
-      sendMainImage()
-   }, [Object.keys(avatar).length !== 0])
+   // useEffect(() => {
+   //    sendMainImage()
+   // }, [Object.keys(avatar).length !== 0])
 
    return (
       <div className={classes.dropZoneBox}>

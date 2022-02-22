@@ -34,7 +34,7 @@ export const sendRequest = async (requestConfig) => {
    return result
 }
 
-export const sendImageToApi = async (requestConfig) => {
+export const sendFileToApi = async (requestConfig) => {
    const requestOptions = {
       method: requestConfig.method,
       body: requestConfig.body,
@@ -45,4 +45,9 @@ export const sendImageToApi = async (requestConfig) => {
    }
    const result = await response.json()
    return result
+}
+
+export const getImageUrl = (id) => {
+   const imageSrc = `http://3.123.114.41/static/download/${id}`
+   return imageSrc
 }

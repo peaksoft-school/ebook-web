@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { sendImageToApi } from '../../utils/helpers'
+import { sendFileToApi } from '../../utils/helpers'
 
 export const fetchImage = createAsyncThunk(
    'image/fetchImage',
    async (requestConfig, { rejectWithValue }) => {
       try {
-         const response = await sendImageToApi(requestConfig)
+         const response = await sendFileToApi(requestConfig)
          return response
       } catch (error) {
          return rejectWithValue(error.message || 'Something went wrong')
@@ -42,5 +42,5 @@ const sendImagesSlice = createSlice({
    },
 })
 
-export const setImagesId = sendImagesSlice.actions
+export const setImages = sendImagesSlice.actions
 export default sendImagesSlice.reducer

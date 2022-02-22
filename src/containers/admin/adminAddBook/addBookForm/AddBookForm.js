@@ -60,16 +60,47 @@ const AddBookForm = () => {
    const papperBook = typeOfBook === IS_PAPPERBOOK
    const audioBook = typeOfBook === IS_AUDIOBOOK
 
-   const onPaperBookSubmit = () => {
-      // data.preventDefault()
-      // console.log(data)
+   const [mainPicture, setMainPicture] = useState('')
+   const [secondPicture, setSecondPicture] = useState('')
+   const [thirdPicture, setThirdPicture] = useState('')
+
+   const onChangeMainPictureHandler = (image) => {
+      setMainPicture(image)
+   }
+   const onChangeSecondPictureHandler = (image) => {
+      setSecondPicture(image)
+   }
+   const onChangeThirdPictureHandler = (image) => {
+      setThirdPicture(image)
+   }
+
+   const deleteMainPictureHandler = () => {
+      setMainPicture('')
+   }
+
+   const deleteSecondPictureHandler = () => {
+      setSecondPicture('')
+   }
+
+   const deleteThirdPictureHandler = () => {
+      setThirdPicture('')
    }
 
    return (
-      <div onSubmit={onPaperBookSubmit}>
+      <div>
          <main className={classes.adminBlog}>
             <p className={classes.uploadthreeBooks}>Загрузите 3 фото *</p>
-            <UploadImageCart />
+            <UploadImageCart
+               deleteThirdPictureHandler={deleteThirdPictureHandler}
+               deleteSecondPictureHandler={deleteSecondPictureHandler}
+               deleteMainPictureHandler={deleteMainPictureHandler}
+               onChangeThirdPictureHandler={onChangeThirdPictureHandler}
+               onChangeSecondPictureHandler={onChangeSecondPictureHandler}
+               onChangeMainPictureHandler={onChangeMainPictureHandler}
+               mainPicture={mainPicture}
+               secondPicture={secondPicture}
+               thirdPicture={thirdPicture}
+            />
             <section className={classes.changeTypeofBook}>
                <h2 className={classes.type}>Тип</h2>
                <div className={classes.changeFormSection}>
@@ -111,9 +142,11 @@ const AddBookForm = () => {
             <section>
                {papperBook && (
                   <Papperbook
-                     onSubmit={onPaperBookSubmit}
                      languagesFromApi={allLanguages}
                      genres={allGenres}
+                     mainPicture={mainPicture}
+                     secondPicture={secondPicture}
+                     thirdPicture={thirdPicture}
                   />
                )}
                {audioBook && <AudioBook />}
