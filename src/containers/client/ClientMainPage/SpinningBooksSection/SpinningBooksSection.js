@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import classes from './SpinningBooksSection.module.css'
 import BlackWrapper from '../../../../components/UI/BlackWrapper/BlackWrapper'
 import SpinningBooks from './SpinningBooks/SpinningBooks'
@@ -7,37 +7,20 @@ import { books } from '../../../../utils/constants/books'
 
 const SpinningBooksSection = () => {
    const [counter, setCounter] = useState(0)
-   const [moveBooks, setMoveBooks] = useState('stop')
-
-   // const movingLeft = moveBooks === 'left'
-   const movingRight = moveBooks === 'right'
-
-   useEffect(() => {
-      if (moveBooks === 'right') {
-         setTimeout(() => {
-            setMoveBooks('stop')
-         }, 2250)
-      }
-   }, [movingRight])
 
    const moveImageToRight = () => {
-      if (moveBooks === 'stop') {
-         setMoveBooks('right')
-         if (counter === 0) {
-            setCounter(2)
-         } else if (counter > 0) {
-            setCounter((counter) => counter - 1)
-         }
+      if (counter === 0) {
+         setCounter(2)
+      } else if (counter > 0) {
+         setCounter((counter) => counter - 1)
       }
    }
 
    const moveImageToLeft = () => {
-      if (moveBooks === 'stop') {
-         if (counter < 2) {
-            setCounter((counter) => counter + 1)
-         } else if (counter === 2) {
-            setCounter(0)
-         }
+      if (counter < 2) {
+         setCounter((counter) => counter + 1)
+      } else if (counter === 2) {
+         setCounter(0)
       }
    }
 
@@ -48,7 +31,7 @@ const SpinningBooksSection = () => {
                onClick={moveImageToLeft}
                className={classes.orangeArrowLeft}
             />
-            <SpinningBooks books={books} counter={counter} moving={moveBooks} />
+            <SpinningBooks books={books} counter={counter} />
             <OrangeArrowButton
                onClick={moveImageToRight}
                className={classes.orangeArrowRight}

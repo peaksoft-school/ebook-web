@@ -11,31 +11,11 @@
    background-color: #000;
    margin-bottom: 50px;
    margin-right: 150px;
-   transition: background 0.2s ease;
-}
-
-.firstImageRight {
-   width: 300px;
-   height: 468px;
-   padding-bottom: 63px;
-   padding-right: 440px;
-   padding-left: 440px;
-   transition: width, height, padding-left;
-   transition-duration: 0.45s;
-   position: absolute;
-   z-index: 3;
 }
 
 .secondImage {
    width: 300px;
    height: 468px;
-   transition: background 0.2s ease;
-}
-.secondImageRight {
-   width: 140px;
-   height: 220px;
-   transition: width, height;
-   transition-duration: 0.45s;
 }
 
 .secondImageContainer {
@@ -44,39 +24,14 @@
    position: absolute;
    z-index: 1;
 }
-.secondImageContainerToRight {
-   width: 140px;
-   height: 220px;
-   margin-bottom: 50px;
-   margin-left: 440px;
-   opacity: 0.6;
-   transition: width, height, margin-left, opacity, margin-bottom;
-   transition-duration: 0.45s;
-   position: absolute;
-   z-index: 3;
-}
 
 .thirdImage {
    width: 140px;
    height: 220px;
    opacity: 0.6;
-   transition: background 0.2s ease;
    background-color: #000;
    margin-bottom: 50px;
    margin-left: 150px;
-}
-
-.thirdImageRight {
-   width: 140px;
-   height: 220px;
-   opacity: 0.6;
-   padding-bottom: 48px;
-   padding-right: 990px;
-   padding-left: 550px;
-   transition: padding-right;
-   transition-duration: 2s;
-   position: absolute;
-   z-index: 2;
 }
 
 .aboutBook {
