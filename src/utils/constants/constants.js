@@ -10,6 +10,15 @@ import ORANGESEARCH from '../../assets/icons/orangeSearchIcon.svg'
 import SEARCH from '../../assets/icons/searchIcon.svg'
 
 export const EBOOK_BREADCRUMBS = 'EBOOK_BREADCRUMBS'
+export const EBOOKPERSONTOKEN = 'EbookUserToken'
+export const EBOOKUSEROLE = 'EBOOK_USER_ROLE'
+
+export const ROLES = {
+   ADMIN: 'ADMIN',
+   VENDOR: 'VENDOR',
+   CLIENT: 'CLIENT',
+}
+
 export const ROUTES = {
    HOME: '/admin',
    APPLICATIONS: '/admin/applications',
@@ -22,6 +31,8 @@ export const ROUTES = {
    BOOK_PAGE: '/vendor/bookpage',
    ADD_BOOK: '/vendor/bookadd',
    PROFILE: '/vendor/profile',
+   CLIENT: '/client',
+   LOGIN: '/login',
    SIDE_DRAWER_DATA: [
       {
          route_Activeicon: APPLICATION,
