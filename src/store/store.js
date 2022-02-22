@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { asyncUpdateUserRole } from './asyncUpdateUserRole'
+import userRoleSlice from './userRoleSlice'
 import signInSlice from './authReducer/signInSlice'
 import breadCrumbsReducer from './breadCrumbsSlice'
 
@@ -7,7 +7,7 @@ const store = configureStore({
    reducer: {
       bread: breadCrumbsReducer,
       authorization: signInSlice,
-      userRole: asyncUpdateUserRole,
+      role: userRoleSlice,
    },
 })
 export default store

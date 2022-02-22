@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { saveToLocalStorage } from '../utils/helpers'
+import { saveToLocalStorage, getFromLocalStorage } from '../utils/helpers'
 import { EBOOK_BREADCRUMBS } from '../utils/constants/constants'
 
 export const asyncUpdateBreadcrumb = createAsyncThunk(
@@ -14,7 +14,7 @@ export const asyncAutoUpdateBreadcrumb = createAsyncThunk(
    'breadCrumb/asyncUpdateBreadcrumb',
    async () => {
       const breadcrumbs = getFromLocalStorage(EBOOK_BREADCRUMBS)
-      return breadCrumbs
+      return breadcrumbs
    }
 )
 

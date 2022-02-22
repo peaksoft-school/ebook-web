@@ -3,7 +3,12 @@ import { useState, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { authFetch } from '../../../store/authReducer/signInSlice'
-import { EMAIL, PASSWORD, ROUTES } from '../../../utils/constants/constants'
+import {
+   EMAIL,
+   PASSWORD,
+   ROUTES,
+   ROLES,
+} from '../../../utils/constants/constants'
 import InputField from '../../UI/inputField/InputField'
 import AuthButton from '../../UI/authButton/AuthButton'
 import eye from '../../../assets/png/eye.png'
@@ -12,15 +17,31 @@ import classes from './SignInForm.module.css'
 import LoadingSpinner from '../../UI/modal-window/loadingSpinner/LoadingSpinner'
 
 const SignIn = () => {
-   const { error, status, role } = useSelector((state) => state.authorization)
+   const [isPasswordShown, setIsPasswordShown] = useState(false)
+   const { error, status } = useSelector((state) => state.authorization)
+   const userRole = useSelector((state) => state.role.roleData)
+
+   const navigate = useNavigate()
    const dispatch = useDispatch()
+
    const authentication = 'api/authentication'
    const {
       register,
       handleSubmit,
       formState: { errors, isValid },
    } = useForm({ mode: 'all' })
-   const navigate = useNavigate()
+
+   const getErrorMessage = () => {
+      const errorMessage =
+         ((errors.email || errors.password) &&
+            'Неправильно указан Email и/или пароль') ||
+         (error && `${error}`)
+      return errorMessage
+   }
+
+   const togglePassword = () => {
+      setIsPasswordShown(!isPasswordShown)
+   }
 
    const submitHandler = useCallback(
       (ebookUser) => {
@@ -34,35 +55,21 @@ const SignIn = () => {
       [dispatch]
    )
 
+   useEffect(() => {
+      navigateToRole()
+   }, [userRole])
+
    const navigateToRole = () => {
-      if (role === 'ADMIN') {
+      if (userRole === ROLES.ADMIN) {
          return navigate(ROUTES.APPLICATIONS)
       }
-      if (role === 'VENDOR') {
+      if (userRole === ROLES.VENDOR) {
          return navigate(ROUTES.VENDOR_AREA)
       }
-      if (role === 'CLIENT') {
+      if (userRole === ROLES.CLIENT) {
          return navigate(ROUTES.CLIENT)
       }
       return navigate(ROUTES.LOGIN)
-   }
-
-   useEffect(() => {
-      navigateToRole()
-   }, [role])
-
-   const getErrorMessage = () => {
-      const errorMessage =
-         ((errors.email || errors.password) &&
-            'Неправильно указан Email и/или пароль') ||
-         (error && `${error}`)
-      return errorMessage
-   }
-
-   const [isPasswordShown, setIsPasswordShown] = useState(false)
-
-   const togglePassword = () => {
-      setIsPasswordShown(!isPasswordShown)
    }
 
    return (
@@ -107,4 +114,5 @@ const SignIn = () => {
       </form>
    )
 }
+
 export default SignIn

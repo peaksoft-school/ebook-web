@@ -1,19 +1,16 @@
 import './App.css'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getFromLocalStorage } from './utils/helpers'
-import { asyncUpdateBreadcrumb } from './store/breadCrumbsSlice'
-import { EBOOK_BREADCRUMBS } from './utils/constants/constants'
-
+import { asyncAutoUpdateBreadcrumb } from './store/breadCrumbsSlice'
 import AdminRoutes from './routes/AdminRoutes'
-import { asyncUpdateUserRole } from './store/asyncUpdateUserRole'
+import { asyncUpdateUserRole } from './store/userRoleSlice'
 
 function App() {
    const dispatch = useDispatch()
 
    useEffect(() => {
-      dispatch(asyncAutoUpdateBreadcrumb())
       dispatch(asyncUpdateUserRole())
+      dispatch(asyncAutoUpdateBreadcrumb())
    }, [])
 
    return (

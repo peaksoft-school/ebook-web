@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
-import { ROUTES } from '../../../../utils/constants/constants'
+import { ROUTES, ROLES } from '../../../../utils/constants/constants'
 
 const PrivateRouteForVendor = ({ children }) => {
-   const role = useSelector((state) => state.authorization.role)
+   const role = useSelector((state) => state.role.roleData)
 
    if (role === null) {
       return <Navigate to={ROUTES.LOGIN} replace />
    }
-   if (role !== 'VENDOR') {
+   if (role !== ROLES.VENDOR) {
       return <Navigate to={ROUTES.LOGIN} replace />
    }
 

@@ -44,7 +44,7 @@ const SellerItem = (props) => {
 
    return (
       <div className={classes.containerForLi}>
-         <Link to={`/admin/sellers/${id}`} key={id}>
+         <Link to={`${ROUTES.SELLERS}/${id}`} key={id}>
             <li
                role="presentation"
                className={classes.li}

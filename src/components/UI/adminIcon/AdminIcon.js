@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { deleteFromLocalStorage } from '../../../utils/helpers'
 import { setAuth } from '../../../store/authReducer/signInSlice'
 import { ROUTES } from '../../../utils/constants/constants'
+import { userRoleReducerActions } from '../../../store/userRoleSlice'
 import Admin from '../../../assets/icons/Profile.svg'
 import classes from './AdminIcon.module.css'
 import WhiteWrapper from '../WhiteWrapper/WhiteWrapper'
@@ -20,6 +21,7 @@ const AdminIcon = () => {
    const logOut = () => {
       deleteFromLocalStorage('EbookUserToken')
       dispatch(setAuth.logout())
+      dispatch(userRoleReducerActions.cleanRoleData())
       navigate(ROUTES.LOGIN)
    }
 

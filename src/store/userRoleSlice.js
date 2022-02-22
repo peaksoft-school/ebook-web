@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { saveToLocalStorage, getFromLocalStorage } from '../utils/helpers'
+import {
+   saveToLocalStorage,
+   getFromLocalStorage,
+   deleteFromLocalStorage,
+} from '../utils/helpers'
 import { EBOOKUSEROLE, EBOOKPERSONTOKEN } from '../utils/constants/constants'
 
 export const asyncUpdateUserRole = createAsyncThunk(
@@ -9,6 +13,8 @@ export const asyncUpdateUserRole = createAsyncThunk(
       if (userInfo !== null) {
          const { authority } = userInfo
          saveToLocalStorage(EBOOKUSEROLE, authority)
+         const role = authority
+         return role
       }
       return role
    }
@@ -17,7 +23,16 @@ export const asyncUpdateUserRole = createAsyncThunk(
 const userRoleReducer = createSlice({
    name: 'userRoleReducer',
    initialState: {
-      roleData: [],
+      roleData: {},
+   },
+   reducers: {
+      cleanRoleData(state) {
+         state.roleData = null
+         deleteFromLocalStorage(EBOOKUSEROLE)
+      },
+      updateUserRole(state, action) {
+         state.roleData = action.payload
+      },
    },
    extraReducers: {
       [asyncUpdateUserRole.pending]: (state) => {

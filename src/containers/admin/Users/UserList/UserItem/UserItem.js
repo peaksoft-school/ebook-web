@@ -44,7 +44,7 @@ const UserItem = (props) => {
 
    return (
       <div className={classes.containerLiFor}>
-         <Link to={`/admin/users/${id}`}>
+         <Link to={`${ROUTES.USERS}/${id}`}>
             <li
                role="presentation"
                className={classes.li}

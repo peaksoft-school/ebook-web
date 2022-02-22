@@ -1,14 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { saveToLocalStorage, sendRequest } from '../../utils/helpers'
+import { asyncUpdateUserRole } from '../userRoleSlice'
 
 export const authFetch = createAsyncThunk(
    'EbookUser/signIn',
-   async (ebookUserInfo, { rejectWithValue }) => {
+   async (ebookUserInfo, { rejectWithValue, dispatch }) => {
       try {
          const response = await sendRequest(ebookUserInfo)
          if (response.token) {
             saveToLocalStorage('EbookUserToken', response)
          }
+         dispatch(asyncUpdateUserRole())
          return response
       } catch (error) {
          return rejectWithValue(error.message || 'Something went wrong')

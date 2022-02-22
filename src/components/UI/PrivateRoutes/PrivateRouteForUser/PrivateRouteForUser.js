@@ -1,14 +1,14 @@
 import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { ROUTES } from '../../../../utils/constants/constants'
+import { ROUTES, ROLES } from '../../../../utils/constants/constants'
 
 const PrivateRouteForUser = ({ children }) => {
-   const role = useSelector((state) => state.authorization.role)
+   const role = useSelector((state) => state.role.roleData)
 
    if (role === null) {
       return <Navigate to={ROUTES.LOGIN} replace />
    }
-   if (role !== 'CLIENT') {
+   if (role !== ROLES.CLIENT) {
       return <Navigate to={ROUTES.LOGIN} replace />
    }
 
