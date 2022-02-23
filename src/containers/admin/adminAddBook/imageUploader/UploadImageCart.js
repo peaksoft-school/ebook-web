@@ -1,11 +1,7 @@
-// import { useState } from 'react'
-import { useSelector } from 'react-redux'
 import DropZone from '../../../../components/UI/dropZone/DropZone'
 import classes from './UploadImageCart.module.css'
-import LoadingSpinner from '../../../../components/UI/modal-window/loadingSpinner/LoadingSpinner'
 
 const UploadImageCart = (props) => {
-   const { status } = useSelector((state) => state.getImageId)
    const {
       mainPicture,
       secondPicture,
@@ -17,7 +13,6 @@ const UploadImageCart = (props) => {
       deleteSecondPictureHandler,
       deleteThirdPictureHandler,
    } = props
-   const showLoadingSpinner = status === 'loading' && <LoadingSpinner />
 
    const firstButton = mainPicture && (
       <button
@@ -76,7 +71,6 @@ const UploadImageCart = (props) => {
                <p className={classes.mainImage}>3</p>
                {thirdButton}
             </div>
-            {showLoadingSpinner}
          </div>
          <div className={classes.imageUploadRules}>
             <div className={classes.rullsTextContent}>
