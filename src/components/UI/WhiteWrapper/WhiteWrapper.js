@@ -1,8 +1,14 @@
 import classes from './WhiteWrapper.module.css'
 
-const WhiteWrapper = ({ children, className }) => {
+const WhiteWrapper = ({ children, className, onClick }) => {
    return (
-      <div className={`${classes.WhiteWrapper} ${className}`}>{children}</div>
+      <div
+         role="presentation"
+         onClick={onClick}
+         className={`${classes.WhiteWrapper} ${className}`}
+      >
+         {children}
+      </div>
    )
 }
 export default WhiteWrapper
