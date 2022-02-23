@@ -237,7 +237,6 @@ const Papperbook = (props) => {
                <div className={classes.settingOfPrice}>
                   <Input
                      {...register('dataOfIssue')}
-                     // maxLength="4"
                      step="1"
                      placeholder="0000-00-00"
                      label="Год выпуска"
@@ -258,7 +257,7 @@ const Papperbook = (props) => {
                      label="Скидка"
                      {...register('discount')}
                      type="number"
-                     placeholder="%"
+                     placeholder="1%"
                      className={classes.leftSideInput}
                      id="discount"
                   />
