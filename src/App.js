@@ -1,23 +1,21 @@
 import './App.css'
-// import { useEffect } from 'react'
-// import { useDispatch } from 'react-redux'
-// import { asyncAutoUpdateBreadcrumb } from './store/breadCrumbsSlice'
-// import AdminRoutes from './routes/AdminRoutes'
-import AddBookForm from './containers/admin/adminAddBook/addBookForm/AddBookForm'
-// import { asyncUpdateUserRole } from './store/userRoleSlice'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { asyncAutoUpdateBreadcrumb } from './store/breadCrumbsSlice'
+import AdminRoutes from './routes/AdminRoutes'
+import { asyncUpdateUserRole } from './store/userRoleSlice'
 
 function App() {
-   // const dispatch = useDispatch()
+   const dispatch = useDispatch()
 
-   // useEffect(() => {
-   //    dispatch(asyncUpdateUserRole())
-   //    dispatch(asyncAutoUpdateBreadcrumb())
-   // }, [])
+   useEffect(() => {
+      dispatch(asyncUpdateUserRole())
+      dispatch(asyncAutoUpdateBreadcrumb())
+   }, [])
 
    return (
       <div className="App">
-         {/* <AdminRoutes /> */}
-         <AddBookForm />
+         <AdminRoutes />
       </div>
    )
 }
