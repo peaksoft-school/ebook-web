@@ -1,3 +1,5 @@
+import { UPLOAD_IMAGE } from './constants/urls'
+
 export const saveToLocalStorage = (key, value) => {
    return localStorage.setItem(key, JSON.stringify(value))
 }
@@ -50,4 +52,16 @@ export const sendFileToApi = async (requestConfig) => {
 export const getImageUrl = (id) => {
    const imageSrc = `http://3.123.114.41/static/download/${id}`
    return imageSrc
+}
+
+export const sendImageToApi = (avatar) => {
+   const formData = new FormData()
+   formData.append('file', avatar)
+   const requestConfig = {
+      method: 'POST',
+      url: UPLOAD_IMAGE,
+      body: formData,
+   }
+   const response = sendFileToApi(requestConfig)
+   return response
 }

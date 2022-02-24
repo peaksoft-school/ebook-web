@@ -2,12 +2,9 @@
 .rightSection {
    font-weight: 400;
 }
-/* .sideLabel {
+.formControl {
    display: flex;
-   flex-direction: column;
-   text-align: start;
-   padding-bottom: 30px;
-} */
+}
 
 .leftSection {
    display: flex;
