@@ -1,0 +1,76 @@
+.latestPublicationsSectionContainer {
+   padding: 150px 0px;
+}
+
+.sectionTopPart {
+   width: 1280px;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.bookContent {
+   display: flex;
+   justify-content: space-between;
+   margin-top: 45px;
+}
+
+.containerTitle {
+   color: #ffffff;
+   font-weight: 400;
+}
+
+.image {
+   width: 340px;
+   height: 520px;
+}
+
+.bookDescription {
+   width: 500px;
+   height: 500px;
+   margin-right: 100px;
+   color: #ffffff;
+}
+
+.bookTitle {
+   width: 285px;
+   height: 220px;
+   display: flex;
+   align-items: center;
+   font-weight: 600;
+   font-size: 56px;
+}
+
+.aboutBook {
+   width: 500px;
+   height: 100px;
+   word-wrap: break-word;
+   overflow: scroll;
+   overflow-x: hidden;
+   margin-bottom: 50px;
+}
+
+.aboutBook::-webkit-scrollbar {
+   width: 10px;
+   background-color: #1c1c1c;
+}
+
+.aboutBook::-webkit-scrollbar-thumb {
+   background-color: #ff4c00;
+}
+
+.aboutBook::-webkit-scrollbar-track {
+   border-radius: 10px;
+   background-color: #1c1c1c;
+}
+
+.bottomPartAboutBook {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.price {
+   color: #ff4c00;
+}
