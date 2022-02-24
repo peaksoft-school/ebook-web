@@ -5,7 +5,7 @@
 .languageOption {
    text-transform: lowercase;
 }
-.languageOption::first-letter{
+.languageOption::first-letter {
    font-size: 200px;
 }
 

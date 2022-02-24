@@ -53,6 +53,7 @@ const AudioBook = () => {
                placeholder="Напишите о книге"
                maxlengthofletters="1234"
                maxLength="1234"
+               className={classes.textAreaClasses}
             />
          </section>
          <section className={classes.leftSection}>
@@ -67,12 +68,21 @@ const AudioBook = () => {
                   getOptionLabel={getOptionLabel}
                />
                <Input
+                  type="number"
+                  maxLength="4"
+                  step="1"
+                  placeholder="гг"
+                  label="Год выпуска"
+                  className={classes.leftSideDate}
+                  id="year"
+               />
+               {/* <Input
                   label="Длительность"
                   step="1"
                   placeholder="___ ч ___ мин ___ сек"
                   className={classes.leftSideInput}
                   id="time"
-               />
+               /> */}
 
                <Input
                   label="Стоимость"

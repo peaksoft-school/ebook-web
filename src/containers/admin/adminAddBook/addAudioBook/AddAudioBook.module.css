@@ -1,172 +1,217 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-.rightSection{
-	font-weight: 400;
+.rightSection {
+   font-weight: 400;
 }
 .sideLabel {
-	display: flex;
-	flex-direction: column;
-	text-align: start;
-	padding-bottom: 30px;
+   display: flex;
+   flex-direction: column;
+   text-align: start;
+   padding-bottom: 30px;
 }
 
 .leftSection {
-	display: flex;
-	justify-content: space-between;
+   display: flex;
+   justify-content: space-between;
 }
 
 /* --------------------------------------------- */
 .settingOfBook {
-	padding-left: 42px;
+   padding-left: 42px;
 }
 
 .settingOfBook input {
-	margin-bottom: 30px;
+   margin-bottom: 30px;
 }
 
 .rightSectionControl {
-	padding-left: 39px;
+   padding-left: 39px;
 }
 
 .uploadImageBox {
-	padding: 0;
-	position: relative;
-	top: 0;
-	right: 225px;
-}
-
-.buttonForAdminPage {
-	position: absolute;
-	top: 380px;
-	left: 300px;
-	padding: 10px 24px;
-	width: 137px;
-	height: 42px;
-	background: #f34901;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 22px;
-	color: #ffffff;
+   padding: 0;
+   position: relative;
+   top: 0;
+   right: 225px;
 }
 
 .rightSection {
-	display: flex;
-	flex-direction: column;
-	text-align: start;
-	padding-bottom: 30px;
-	height: 1160px;
+   display: flex;
+   flex-direction: column;
+   text-align: start;
+   padding-bottom: 30px;
+   height: 1160px;
 }
 
 .rightSectionInput input {
-	width: 636px;
+   width: 636px;
+}
+
+.rightSectionTextArea {
+   width: 636px;
+   resize: none;
 }
 
 .rightSectionInput {
-	padding-bottom: 20px;
+   padding-bottom: 20px;
 }
 
 .rightSectionInput label {
-	font-family: 'Open Sans', sans-serif;
+   font-family: 'Open Sans', sans-serif;
 }
 
 .rightSectionSelect {
-	width: 636px;
+   width: 636px;
 }
 
 .leftSideSelect {
-	width: 184px;
+   width: 184px;
 }
 
 .leftSideInput input {
-	width: 184px;
-	text-align: end;
-	margin-bottom: 30px;
+   width: 184px;
+   text-align: end;
+   margin-bottom: 30px;
 }
 
 .leftSideInput {
-	margin-bottom: 30px;
+   margin-bottom: 30px;
+   padding-right: 39px;
+}
+
+.leftSideDate {
+   margin-left: 20px;
 }
 
 .leftSideDate input {
-	width: 184px;
-	text-align: start;
-	margin-bottom: 30px;
-}
-.submitButton {
-	position: relative;
+   width: 184px;
+   text-align: start;
+   margin-bottom: 30px;
 }
 
 .rightSectionControl .leftSideDate {
-	margin-bottom: 70px;
+   margin-bottom: 70px;
 }
 
 .rightSectionControl .bestseller {
-	margin-bottom: 42px;
+   margin-bottom: 42px;
 }
 
 .submitButton {
-	position: relative;
-	right: 15px;
-	top: 400px;
+   position: relative;
+   left: 250px;
+   top: 350px;
+   padding: 10px 24px 10px 24px;
+   background-color: #f34901;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 16px;
+   line-height: 22px;
+   color: #ffffff;
+   border: none;
+   cursor: pointer;
+}
+.submitButton:hover {
+   background-color: #d35924;
 }
 
+.languages {
+   display: flex;
+   flex-direction: row;
+}
+
+.leftSideInputTimeFirst {
+   width: 118px;
+   height: 41px;
+}
+
+.leftSideInputTimeFirst input {
+   text-align: end;
+}
+.leftSideInputTime input {
+   text-align: end;
+}
+
+.leftSideInputTime {
+   width: 118px;
+   height: 41px;
+   padding-left: 29px;
+}
+.timecontrol {
+   display: flex;
+   flex-direction: row;
+}
+.priceControl {
+   display: flex;
+   flex-direction: row;
+}
+.bestsellerControll {
+   margin-top: 60px;
+}
+.leftSideInputTime label {
+   opacity: 0;
+}
 .fix {
-	border: 1px solid #c4c4c4;
-	box-sizing: border-box;
-	cursor: pointer;
-	background-repeat: no-repeat;
-	cursor: pointer;
-	background-size: 15px;
-	text-align: center;
-	padding: 10px 0px 10px 40px;
-	width: 277px;
-	cursor: pointer;
+   border: 1px solid #c4c4c4;
+   box-sizing: border-box;
+   cursor: pointer;
+   background-repeat: no-repeat;
+   cursor: pointer;
+   background-size: 15px;
+   text-align: center;
+   padding: 10px 0px 10px 40px;
+   width: 277px;
+   cursor: pointer;
 }
 
 .fix label {
-	font-family: Open Sans !important;
-	font-style: normal !important;
-	font-weight: 600 !important;
-	font-size: 14px !important;
-	line-height: 120% !important;
-	color: #969696 !important;
-	cursor: pointer;
+   font-family: Open Sans !important;
+   font-style: normal !important;
+   font-weight: 600 !important;
+   font-size: 14px !important;
+   line-height: 120% !important;
+   color: #969696 !important;
+   cursor: pointer;
 }
 
 .uploadFrag {
-	position: absolute;
+   position: absolute;
+   margin-top: 8px;
 }
 
 .uploadFrag .uploadFragText {
-	margin: 0;
-	padding-bottom: 10px;
-	text-align: start;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 16px;
-	line-height: 130%;
-	color: #222222;
+   margin: 0;
+   padding-bottom: 10px;
+   text-align: start;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 130%;
+   color: #222222;
 }
 
 .uploadSvg {
-	position: relative;
-	bottom: 30px;
-	left: 45px;
+   position: relative;
+   bottom: 30px;
+   left: 45px;
 }
 .flexBoxed {
-	display: flex;
-	align-items: center;
+   display: flex;
+   align-items: center;
 }
 .maximumLenght {
-	font-family: Open Sans;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 16px;
-	text-align: center;
-	color: #a3a3a3;
-	padding-left: 14px;
+   font-family: Open Sans;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 16px;
+   text-align: center;
+   color: #a3a3a3;
+   padding-left: 14px;
 }
-.fix:hover{
-	background-color: green;
+.fix:hover {
+   background-color: green;
+}
+
+.textAreaClasses {
+   width: 636px;
 }
