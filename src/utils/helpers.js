@@ -1,5 +1,3 @@
-import { UPLOAD_IMAGE } from './constants/urls'
-
 export const saveToLocalStorage = (key, value) => {
    return localStorage.setItem(key, JSON.stringify(value))
 }
@@ -54,12 +52,12 @@ export const getImageUrl = (id) => {
    return imageSrc
 }
 
-export const sendImageToApi = (avatar) => {
+export const sendWithFormDataToApi = (requestOptions) => {
    const formData = new FormData()
-   formData.append('file', avatar)
+   formData.append('file', requestOptions.file)
    const requestConfig = {
       method: 'POST',
-      url: UPLOAD_IMAGE,
+      url: requestOptions.url,
       body: formData,
    }
    const response = sendFileToApi(requestConfig)
