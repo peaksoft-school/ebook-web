@@ -12,7 +12,7 @@ import {
 } from '../../../../utils/constants/constants'
 
 const AddBookForm = () => {
-   const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
+   const [typeOfBook, setTypeOfBook] = useState(IS_AUDIOBOOK)
    const [allLanguages, setGetAllLanguages] = useState([])
    const [allGenres, setGetAllGenres] = useState([])
 
@@ -149,7 +149,15 @@ const AddBookForm = () => {
                      thirdPicture={thirdPicture}
                   />
                )}
-               {audioBook && <AudioBook />}
+               {audioBook && (
+                  <AudioBook
+                     languagesFromApi={allLanguages}
+                     genres={allGenres}
+                     mainPicture={mainPicture}
+                     secondPicture={secondPicture}
+                     thirdPicture={thirdPicture}
+                  />
+               )}
                {electroBook && <ElectroBook />}
             </section>
          </main>

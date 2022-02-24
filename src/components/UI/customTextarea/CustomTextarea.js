@@ -12,7 +12,10 @@ const CustomTextarea = forwardRef((props, ref) => {
 
    return (
       <div className={`customTextarea ${className}`}>
-         <label htmlFor={id}>{label}</label>
+         <label htmlFor={id}>
+            {label}
+            <span className="redStar">*</span>
+         </label>
          <textarea
             {...rest}
             className={`textarea ${className} ${

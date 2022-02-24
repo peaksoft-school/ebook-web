@@ -44,3 +44,7 @@
 .hasError {
    border-color: red;
 }
+.redStar {
+   color: red;
+   margin-left: 5px;
+}

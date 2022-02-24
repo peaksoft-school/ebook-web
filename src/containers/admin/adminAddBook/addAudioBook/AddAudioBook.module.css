@@ -2,12 +2,12 @@
 .rightSection {
    font-weight: 400;
 }
-.sideLabel {
+/* .sideLabel {
    display: flex;
    flex-direction: column;
    text-align: start;
    padding-bottom: 30px;
-}
+} */
 
 .leftSection {
    display: flex;
@@ -74,12 +74,12 @@
 }
 
 .leftSideInput {
-   margin-bottom: 30px;
+   margin-bottom: 8px;
    padding-right: 39px;
 }
 
 .leftSideDate {
-   margin-left: 20px;
+   margin-left: 39px;
 }
 
 .leftSideDate input {
@@ -90,10 +90,6 @@
 
 .rightSectionControl .leftSideDate {
    margin-bottom: 70px;
-}
-
-.rightSectionControl .bestseller {
-   margin-bottom: 42px;
 }
 
 .submitButton {
@@ -144,9 +140,7 @@
    display: flex;
    flex-direction: row;
 }
-.bestsellerControll {
-   margin-top: 60px;
-}
+
 .leftSideInputTime label {
    opacity: 0;
 }
@@ -214,4 +208,29 @@
 
 .textAreaClasses {
    width: 636px;
+}
+
+.languagesBox {
+   display: flex;
+}
+.timeDuration {
+   display: flex;
+   margin: 0;
+   padding: 0;
+}
+.timeDurationInput input {
+   width: 125px;
+   margin-right: 20px;
+   text-align: end;
+}
+.timeDurationInputSec input {
+   width: 125px;
+   margin-right: 20px;
+   text-align: end;
+}
+.timeDurationInputSec {
+   margin-top: 20px;
+}
+.priceSelection {
+   display: flex;
 }
