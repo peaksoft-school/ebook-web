@@ -1,9 +1,7 @@
-import classes from './LatestPublicationsSection.module.css'
+// import classes from './LatestPublicationsSection.module.css'
 
 const LatestPublicationsSection = () => {
-  return (
-    <div>LatestPublicationsSection</div>
-  )
+   return <div>LatestPublicationsSection</div>
 }
 
 export default LatestPublicationsSection

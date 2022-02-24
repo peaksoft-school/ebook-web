@@ -2,7 +2,7 @@ import classes from './ClientMainPage.module.css'
 import UserHeader from '../../../layout/headers/UserHeader/UserHeader'
 import UserNavMenu from '../../../components/UI/UserNavMenu/UserNavMenu'
 import SpinningBooksSection from './SpinningBooksSection/SpinningBooksSection'
-// import BestsellerBooksSection from './BestsellerBooksSection/BestsellerBooksSection'
+import BestsellerBooksSection from './BestsellerBooksSection/BestsellerBooksSection'
 
 const ClientMainPage = () => {
    return (
@@ -11,6 +11,7 @@ const ClientMainPage = () => {
             <UserHeader />
             <UserNavMenu />
             <SpinningBooksSection />
+            <BestsellerBooksSection />
          </div>
       </div>
    )
