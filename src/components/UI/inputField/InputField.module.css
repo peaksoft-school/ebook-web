@@ -60,3 +60,8 @@
 :focus:-ms-input-placeholder {
 	opacity: 0;
 }
+
+a[href^="tel:"]:before {
+	content: "+996";
+	margin-right: 0.5em;
+}

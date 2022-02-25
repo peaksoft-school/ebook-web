@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import AudioBook from '../addAudioBook/AddAudioBook'
 import ElectroBook from '../addElectroBook/AddElectroBook'
 import Papperbook from '../addPapperBook/AddPapperBook'
 import classes from './AddBookForm.module.css'
 import UploadImageCart from '../imageUploader/UploadImageCart'
+import { sendRequest } from '../../../../utils/helpers'
 import {
    IS_AUDIOBOOK,
    IS_PAPPERBOOK,
@@ -11,7 +12,38 @@ import {
 } from '../../../../utils/constants/constants'
 
 const AddBookForm = () => {
-   const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
+   const [typeOfBook, setTypeOfBook] = useState(IS_AUDIOBOOK)
+   const [allLanguages, setGetAllLanguages] = useState([])
+   const [allGenres, setGetAllGenres] = useState([])
+
+   const languagesUrl = 'api/books/languages'
+   const genresUrl = 'api/genres'
+
+   const getAllLanguagesApi = useCallback(async () => {
+      const requestConfig = {
+         url: languagesUrl,
+         method: 'GET',
+      }
+      const response = await sendRequest(requestConfig)
+      return setGetAllLanguages(response)
+   }, [])
+
+   const getAllGenresFromApi = useCallback(async () => {
+      const requestConfig = {
+         url: genresUrl,
+         method: 'GET',
+      }
+      const response = await sendRequest(requestConfig)
+      return setGetAllGenres(response)
+   })
+
+   useEffect(() => {
+      getAllGenresFromApi()
+   }, [])
+
+   useEffect(() => {
+      getAllLanguagesApi()
+   }, [])
 
    const isAudioChangeHandler = () => {
       setTypeOfBook(IS_AUDIOBOOK)
@@ -28,15 +60,47 @@ const AddBookForm = () => {
    const papperBook = typeOfBook === IS_PAPPERBOOK
    const audioBook = typeOfBook === IS_AUDIOBOOK
 
-   const onPaperBookSubmit = () => {
-      //   console.log(data)
+   const [mainPicture, setMainPicture] = useState('')
+   const [secondPicture, setSecondPicture] = useState('')
+   const [thirdPicture, setThirdPicture] = useState('')
+
+   const onChangeMainPictureHandler = (image) => {
+      setMainPicture(image)
+   }
+   const onChangeSecondPictureHandler = (image) => {
+      setSecondPicture(image)
+   }
+   const onChangeThirdPictureHandler = (image) => {
+      setThirdPicture(image)
+   }
+
+   const deleteMainPictureHandler = () => {
+      setMainPicture('')
+   }
+
+   const deleteSecondPictureHandler = () => {
+      setSecondPicture('')
+   }
+
+   const deleteThirdPictureHandler = () => {
+      setThirdPicture('')
    }
 
    return (
-      <form onSubmit={onPaperBookSubmit}>
+      <div>
          <main className={classes.adminBlog}>
             <p className={classes.uploadthreeBooks}>Загрузите 3 фото *</p>
-            <UploadImageCart />
+            <UploadImageCart
+               deleteThirdPictureHandler={deleteThirdPictureHandler}
+               deleteSecondPictureHandler={deleteSecondPictureHandler}
+               deleteMainPictureHandler={deleteMainPictureHandler}
+               onChangeThirdPictureHandler={onChangeThirdPictureHandler}
+               onChangeSecondPictureHandler={onChangeSecondPictureHandler}
+               onChangeMainPictureHandler={onChangeMainPictureHandler}
+               mainPicture={mainPicture}
+               secondPicture={secondPicture}
+               thirdPicture={thirdPicture}
+            />
             <section className={classes.changeTypeofBook}>
                <h2 className={classes.type}>Тип</h2>
                <div className={classes.changeFormSection}>
@@ -76,12 +140,28 @@ const AddBookForm = () => {
                </div>
             </section>
             <section>
-               {papperBook && <Papperbook onSubmit={onPaperBookSubmit} />}
-               {audioBook && <AudioBook />}
+               {papperBook && (
+                  <Papperbook
+                     languagesFromApi={allLanguages}
+                     genres={allGenres}
+                     mainPicture={mainPicture}
+                     secondPicture={secondPicture}
+                     thirdPicture={thirdPicture}
+                  />
+               )}
+               {audioBook && (
+                  <AudioBook
+                     languagesFromApi={allLanguages}
+                     genres={allGenres}
+                     mainPicture={mainPicture}
+                     secondPicture={secondPicture}
+                     thirdPicture={thirdPicture}
+                  />
+               )}
                {electroBook && <ElectroBook />}
             </section>
          </main>
-      </form>
+      </div>
    )
 }
 

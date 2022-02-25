@@ -3,15 +3,15 @@ import classes from './VendorBookCard.module.css'
 import TopPartInVendorCard from './TopPartInVendorCard/TopPartInVendorCard'
 import PopUp from './PopUp/PopUp'
 import InformationInCardVendorBook from './InformationInCardVendorBook/InformationInCardVendorBook'
+import { getImageUrl } from '../../../utils/helpers'
 
 const VendorBookCard = (props) => {
    const { book, isOpen, className } = props
-
    const [popUpShown, setPopUpShown] = useState(false)
-
    const popUpChangeHandler = () => {
       setPopUpShown((prevState) => !prevState)
    }
+   const imageSrc = getImageUrl(book.image.id)
 
    return (
       <div className={classes.containterVendorBookCard}>
@@ -29,7 +29,7 @@ const VendorBookCard = (props) => {
                {popUpShown && <PopUp />}
                <img
                   className={classes.vedorbookcardimg}
-                  src={book.url}
+                  src={imageSrc}
                   alt=""
                />
                <InformationInCardVendorBook

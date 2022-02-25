@@ -1,7 +1,7 @@
+import { Outlet } from 'react-router-dom'
 import SideDrawer from '../AdminSideDrawer/AdminSideDrawer'
 import HeaderAdmin from '../HeaderAdmin/HeaderAdmin'
 import classes from './AdminLayout.module.css'
-import AdminRoutes from '../../../routes/AdminRoutes'
 
 function AdminLayout() {
    return (
@@ -9,7 +9,7 @@ function AdminLayout() {
          <SideDrawer />
          <div className={classes.box}>
             <HeaderAdmin />
-            <AdminRoutes />
+            <Outlet />
          </div>
       </div>
    )

@@ -1,143 +1,284 @@
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 import classes from './AddAudioBook.module.css'
 import WrapperOfForms from '../../../../components/admin/wrapperOfAdminBook/WrapperOfForm'
 import Input from '../../../../components/UI/input/Input'
 import CustomCheckbox from '../../../../components/UI/customCheckbox/CustomCheckbox'
 import CustomTextarea from '../../../../components/UI/customTextarea/CustomTextarea'
 import CustomSelect from '../../../../components/UI/customSelect/CustomSelect'
-import { ReactComponent as Uploadsvg } from '../../../../assets/icons/upload.svg'
+import GenresSelect from '../../../../components/UI/genresSelect/GenresSelect'
+import { sendRequest, sendWithFormDataToApi } from '../../../../utils/helpers'
+import {
+   UPLOAD_IMAGE,
+   UPLOAD_AUDIO_FRAGMENT,
+   UPLOAD_AUDIO_FILE,
+   SEND_AUDIO_BOOK_URL,
+} from '../../../../utils/constants/urls'
+import AudioDropZone from '../../../../components/UI/audioDropZone/AudioDropZone'
 
-const AudioBook = () => {
-   const genres = [
-      { value: 'chocolate', title: 'Литература' },
-      { value: 'strawberry', title: 'Роман' },
-      { value: 'vanilla', title: 'Трагедия' },
-   ]
+const schema = yup.object().shape({
+   bookName: yup.string().required(),
+   author: yup.string().required(),
+   description: yup.string().required(),
+   price: yup.number().required(),
+   discount: yup.number().required(),
+   dataOfIssue: yup.string().required(),
+})
 
-   const languagesFromApi = [
-      { value: 'f1', title: 'Русский' },
-      { value: 'f2', title: 'Немецкий' },
-      { value: 'f3', title: 'English' },
-   ]
+const AudioBook = (props) => {
+   const {
+      languagesFromApi,
+      genres,
+      mainPicture,
+      secondPicture,
+      thirdPicture,
+   } = props
+   const {
+      register,
+      handleSubmit,
+      formState: { errors },
+   } = useForm({
+      mode: 'all',
+      resolver: yupResolver(schema),
+   })
+   const [genreId, setGenreId] = useState('')
+   const [typeOfLanguage, setTypeOfLanguage] = useState('')
+   const [bestSeller, setBestseller] = useState(false)
 
-   const getOptionLabel = (item) => item.title
+   const [audio, setAudio] = useState({ audio: {} })
 
-   const getOptionValue = (item) => item.value
+   const [fragment, setFragment] = useState({ audio: {} })
 
+   const onChangeLanguagesValue = (lang) => {
+      setTypeOfLanguage(lang)
+   }
+
+   const onChangeGenreValue = (genreId) => {
+      setGenreId(genreId)
+   }
+
+   const onChangeCheckBoxValue = (value) => {
+      setBestseller(value)
+   }
+
+   const mainAvatar = {
+      file: mainPicture.avatar,
+      url: UPLOAD_IMAGE,
+   }
+   const secondAvatar = {
+      file: secondPicture.avatar,
+      url: UPLOAD_IMAGE,
+   }
+   const thirdAvatar = {
+      file: thirdPicture.avatar,
+      url: UPLOAD_IMAGE,
+   }
+
+   const uploadAudioOption = {
+      file: audio.audio,
+      url: UPLOAD_AUDIO_FILE,
+   }
+
+   const uploadFragmentOption = {
+      file: fragment.audio,
+      url: UPLOAD_AUDIO_FRAGMENT,
+   }
+
+   const audioOption = {
+      title: 'Загрузите аудиозапись',
+      timeDuration: '',
+      id: 'f1',
+   }
+   const fragmentOption = {
+      title: 'Загрузите фрагмент аудиозаписи',
+      timeDuration: 'максимум 10 мин.',
+      id: 'f2',
+   }
+   const submitHandler = async (data) => {
+      const idOfMainAvatar = await sendWithFormDataToApi(mainAvatar)
+      const idOfSecondAvatar = await sendWithFormDataToApi(secondAvatar)
+      const idOfThirdAvatar = await sendWithFormDataToApi(thirdAvatar)
+
+      const uploadFragment = await sendWithFormDataToApi(uploadAudioOption)
+      const uploadAudio = await sendWithFormDataToApi(uploadFragmentOption)
+
+      const {
+         author,
+         bookName,
+         dataOfIssue,
+         description,
+         discount,
+         hour,
+         minute,
+         price,
+         second,
+      } = data
+      const transformedData = {
+         images: [idOfMainAvatar.id, idOfSecondAvatar.id, idOfThirdAvatar.id],
+         bookName,
+         author,
+         genreId,
+         description,
+         dataOfIssue,
+         typeOfLanguage,
+         bestSeller,
+         price,
+         discount,
+         book: {
+            id: 1, // Beksultan should know
+            fragmentId: uploadFragment.id,
+            duration: {
+               hour,
+               minute,
+               second,
+            },
+            audioBookId: uploadAudio.id,
+         },
+      }
+      const requestConfig = {
+         method: 'POST',
+         url: SEND_AUDIO_BOOK_URL,
+         body: transformedData,
+      }
+      const response = await sendRequest(requestConfig)
+      return response
+   }
    return (
-      <WrapperOfForms>
-         <section className={classes.rightSection}>
-            <Input
-               label="Название книги"
-               type="text"
-               placeholder="Напишите полное название книги"
-               className={classes.rightSectionInput}
-               id="nameOfBook"
-            />
-            <Input
-               label="ФИО автора"
-               type="text"
-               placeholder="Напишите ФИО автора"
-               className={classes.rightSectionInput}
-               id="author"
-            />
-            <CustomSelect
-               label="Выберите жанр"
-               data={genres}
-               className={classes.rightSectionSelect}
-               initialstate="Литература, роман, стихи... "
-               getOptionValue={getOptionValue}
-               getOptionLabel={getOptionLabel}
-            />
-            <CustomTextarea
-               label="O книге"
-               placeholder="Напишите о книге"
-               maxlengthofletters="1234"
-               maxLength="1234"
-            />
-         </section>
-         <section className={classes.leftSection}>
-            <section className={classes.settingOfBook}>
-               <CustomSelect
-                  required
-                  data={languagesFromApi}
-                  initialstate="Русский"
-                  label="Язык"
-                  className={classes.leftSideSelect}
-                  getOptionValue={getOptionValue}
-                  getOptionLabel={getOptionLabel}
+      <form
+         onSubmit={handleSubmit(submitHandler)}
+         className={classes.formControl}
+      >
+         <WrapperOfForms>
+            <section className={classes.rightSection}>
+               <Input
+                  {...register('bookName')}
+                  label="Название книги"
+                  type="text"
+                  placeholder="Напишите полное название книги"
+                  className={classes.rightSectionInput}
+                  id="nameOfBook"
+                  hasError={errors.bookName}
                />
                <Input
-                  label="Длительность"
-                  step="1"
-                  placeholder="___ ч ___ мин ___ сек"
-                  className={classes.leftSideInput}
-                  id="time"
+                  label="ФИО автора"
+                  type="text"
+                  placeholder="Напишите ФИО автора"
+                  className={classes.rightSectionInput}
+                  id="author"
+                  hasError={errors.author}
+                  {...register('author')}
                />
-
-               <Input
-                  label="Стоимость"
-                  type="number"
-                  placeholder="сом"
-                  className={classes.leftSideInput}
-                  id="price"
+               <GenresSelect
+                  label="Выберите жанр"
+                  data={genres}
+                  className={classes.rightSectionSelect}
+                  initialstate="Литература, роман, стихи... "
+                  onChangeGenreValue={onChangeGenreValue}
                />
-               <div className={classes.uploadFrag}>
-                  <h1 className={classes.uploadFragText}>
-                     Загрузите фрагмент аудиозаписи
-                  </h1>
-                  <div className={classes.flexBoxed}>
-                     <Input
-                        type="file"
-                        label="Загрузите аудиозапись"
-                        className={classes.fix}
-                        accept="audio/mp3"
-                        id="upload"
+               <CustomTextarea
+                  label="O книге"
+                  placeholder="Напишите о книге"
+                  maxlengthofletters="1234"
+                  maxLength="1234"
+                  className={classes.textAreaClasses}
+                  {...register('description')}
+                  hasError={errors.description}
+               />
+            </section>
+            <section className={classes.leftSection}>
+               <section className={classes.settingOfBook}>
+                  <div className={classes.languagesBox}>
+                     <CustomSelect
+                        required
+                        data={languagesFromApi}
+                        initialstate="Русский"
+                        label="Язык"
+                        className={classes.leftSideSelect}
+                        onChangeLanguagesValue={onChangeLanguagesValue}
                      />
-                     <span className={classes.maximumLenght}>
-                        максимум 10 мин.
-                     </span>
+                     <Input
+                        {...register('dataOfIssue')}
+                        placeholder="ГГ/ММ/ДД"
+                        label="Год выпуска"
+                        className={classes.leftSideDate}
+                        step="1"
+                        hasError={errors.dataOfIssue}
+                     />
                   </div>
-                  <Uploadsvg className={classes.uploadSvg} />
-                  <h1 className={classes.uploadFragText}>
-                     Загрузите аудиозапись
-                  </h1>
-                  <Input
-                     type="file"
-                     label="Загрузите аудиозапись"
-                     className={classes.fix}
-                     accept="audio/mp3"
-                     id="uploadBook"
-                  />
-                  <Uploadsvg className={classes.uploadSvg} />
-               </div>
+                  <div className={classes.timeDuration}>
+                     <Input
+                        label="Длительность"
+                        step="1"
+                        placeholder="ч"
+                        className={classes.timeDurationInput}
+                        id="time"
+                        {...register('hour')}
+                        hasError={errors.hour}
+                     />
+                     <Input
+                        step="1"
+                        placeholder="мин"
+                        className={classes.timeDurationInputSec}
+                        id="time"
+                        {...register('minute')}
+                        hasError={errors.minute}
+                     />
+                     <Input
+                        step="1"
+                        placeholder="сек"
+                        className={classes.timeDurationInputSec}
+                        id="time"
+                        {...register('second')}
+                        hasError={errors.second}
+                     />
+                  </div>
+                  <div className={classes.bestSellerBox}>
+                     <CustomCheckbox
+                        label="Бестселлер"
+                        className={classes.bestseller}
+                        onChangeCheckBoxValue={onChangeCheckBoxValue}
+                     />
+                  </div>
+                  <div className={classes.priceSelection}>
+                     <Input
+                        label="Стоимость"
+                        type="number"
+                        placeholder="сом"
+                        className={classes.leftSideInput}
+                        id="price"
+                        {...register('price')}
+                        hasError={errors.price}
+                     />
+                     <Input
+                        label="Скидка"
+                        type="number"
+                        placeholder="%"
+                        className={classes.leftSideInput}
+                        id="discount"
+                        {...register('discount')}
+                     />
+                  </div>
+                  <div className={classes.dropzoneBox}>
+                     <AudioDropZone
+                        audio={fragment}
+                        setAudio={setFragment}
+                        dropZoneOption={fragmentOption}
+                     />
+                     <AudioDropZone
+                        audio={audio}
+                        setAudio={setAudio}
+                        dropZoneOption={audioOption}
+                     />
+                  </div>
+                  <button type="submit" className={classes.submitButton}>
+                     Отправить
+                  </button>
+               </section>
             </section>
-            <section className={classes.rightSectionControl}>
-               <Input
-                  type="number"
-                  maxLength="4"
-                  step="1"
-                  placeholder="гг"
-                  label="Год выпуска"
-                  className={classes.leftSideDate}
-                  id="year"
-               />
-               <CustomCheckbox
-                  label="Бестселлер"
-                  className={classes.bestseller}
-               />
-               <Input
-                  label="Скидка"
-                  type="number"
-                  placeholder="%"
-                  className={classes.leftSideInput}
-                  id="discount"
-               />
-               <button type="button" className={classes.submitButton}>
-                  Отправить
-               </button>
-            </section>
-         </section>
-      </WrapperOfForms>
+         </WrapperOfForms>
+      </form>
    )
 }
 
