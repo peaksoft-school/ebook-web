@@ -1,7 +1,7 @@
 import classes from './HowToBecomeVendorPage.module.css'
 import TopPart from './TopPart/TopPart'
 import BottomPart from './BottomPart/BottomPart'
-import VendorFooter from '../../layout/VendorFooter/VendorFooter'
+import VendorFooter from '../../../layout/VendorFooter/VendorFooter'
 
 const HowToBecomeVendorPage = () => {
    return (
