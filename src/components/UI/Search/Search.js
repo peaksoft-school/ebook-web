@@ -8,10 +8,8 @@ const Search = () => {
    const [searchValue, setSearchValue] = useState('')
    const [filteredData, setFilteredData] = useState()
 
-   // const config = {
-   //    url: 'https://jsonplaceholder.typicode.com/users',
-   // }
    const list = []
+
    function changeColorInput(event) {
       setSearchValue(event.target.value)
       if (event.target.value === '') {

@@ -62,15 +62,15 @@ const ElectroBook = (props) => {
       setBestseller(value)
    }
 
-   const mainAvatar = {
+   const firstImageConfig = {
       file: mainPicture.avatar,
       url: UPLOAD_IMAGE,
    }
-   const secondAvatar = {
+   const secondImageConfig = {
       file: secondPicture.avatar,
       url: UPLOAD_IMAGE,
    }
-   const thirdAvatar = {
+   const thridImageConfig = {
       file: thirdPicture.avatar,
       url: UPLOAD_IMAGE,
    }
@@ -81,9 +81,9 @@ const ElectroBook = (props) => {
    }
 
    const submitHandler = async (data) => {
-      const idOfMainAvatar = await sendWithFormDataToApi(mainAvatar)
-      const idOfSecondAvatar = await sendWithFormDataToApi(secondAvatar)
-      const idOfThirdAvatar = await sendWithFormDataToApi(thirdAvatar)
+      const firstImageId = await sendWithFormDataToApi(firstImageConfig)
+      const secondImageId = await sendWithFormDataToApi(secondImageConfig)
+      const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
 
       const idOfElectronicBook = await sendWithFormDataToApi(pdfFileOption)
       const {
@@ -98,7 +98,7 @@ const ElectroBook = (props) => {
          publishingHouse,
       } = data
       const transformedData = {
-         images: [idOfMainAvatar.id, idOfSecondAvatar.id, idOfThirdAvatar.id],
+         images: [firstImageId.id, secondImageId.id, thirdImageId.id],
          bookName,
          author,
          genreId,
