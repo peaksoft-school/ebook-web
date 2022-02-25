@@ -9,7 +9,7 @@ import CustomSelect from '../../../../components/UI/customSelect/CustomSelect'
 import CustomTextarea from '../../../../components/UI/customTextarea/CustomTextarea'
 import CustomCheckbox from '../../../../components/UI/customCheckbox/CustomCheckbox'
 import GenresSelect from '../../../../components/UI/genresSelect/GenresSelect'
-import { sendFileToApi, sendRequest } from '../../../../utils/helpers'
+import { sendWithFormDataToApi, sendRequest } from '../../../../utils/helpers'
 import { UPLOAD_IMAGE } from '../../../../utils/constants/urls'
 
 const schema = yup.object().shape({
@@ -61,44 +61,23 @@ const Papperbook = (props) => {
       resolver: yupResolver(schema),
    })
 
-   const sendMainImageToApi = () => {
-      const formData = new FormData()
-      formData.append('file', mainPicture.avatar)
-      const requestConfig = {
-         method: 'POST',
-         url: UPLOAD_IMAGE,
-         body: formData,
-      }
-      const response = sendFileToApi(requestConfig)
-      return response
+   const mainAvatar = {
+      file: mainPicture.avatar,
+      url: UPLOAD_IMAGE,
    }
-   const sendSecondImageToApi = () => {
-      const formData = new FormData()
-      formData.append('file', secondPicture.avatar)
-      const requestConfig = {
-         method: 'POST',
-         url: UPLOAD_IMAGE,
-         body: formData,
-      }
-      const response = sendFileToApi(requestConfig)
-      return response
+   const secondAvatar = {
+      file: secondPicture.avatar,
+      url: UPLOAD_IMAGE,
    }
-   const sendThirdImageToApi = () => {
-      const formData = new FormData()
-      formData.append('file', thirdPicture.avatar)
-      const requestConfig = {
-         method: 'POST',
-         url: UPLOAD_IMAGE,
-         body: formData,
-      }
-      const response = sendFileToApi(requestConfig)
-      return response
+   const thirdAvatar = {
+      file: thirdPicture.avatar,
+      url: UPLOAD_IMAGE,
    }
 
    const submitHandler = async (data) => {
-      const idOfMainImage = await sendMainImageToApi()
-      const idOfSecondImage = await sendSecondImageToApi()
-      const idOfThirdImage = await sendThirdImageToApi()
+      const idOfMainAvatar = await sendWithFormDataToApi(mainAvatar)
+      const idOfSecondAvatar = await sendWithFormDataToApi(secondAvatar)
+      const idOfThirdAvatar = await sendWithFormDataToApi(thirdAvatar)
       const {
          bookName,
          author,
@@ -112,7 +91,7 @@ const Papperbook = (props) => {
          dataOfIssue,
       } = data
       const trasformedBook = {
-         images: [idOfMainImage.id, idOfSecondImage.id, idOfThirdImage.id],
+         images: [idOfMainAvatar.id, idOfSecondAvatar.id, idOfThirdAvatar.id],
          bookName,
          author,
          description,
@@ -237,9 +216,8 @@ const Papperbook = (props) => {
                <div className={classes.settingOfPrice}>
                   <Input
                      {...register('dataOfIssue')}
-                     // maxLength="4"
                      step="1"
-                     placeholder="0000-00-00"
+                     placeholder="ГГ/ММ/ДД"
                      label="Год выпуска"
                      className={classes.leftSideDate}
                      id="year"
@@ -258,7 +236,7 @@ const Papperbook = (props) => {
                      label="Скидка"
                      {...register('discount')}
                      type="number"
-                     placeholder="%"
+                     placeholder="1%"
                      className={classes.leftSideInput}
                      id="discount"
                   />
