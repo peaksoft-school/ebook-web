@@ -2,8 +2,11 @@ import './App.css'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { asyncAutoUpdateBreadcrumb } from './store/breadCrumbsSlice'
-import AdminRoutes from './routes/AdminRoutes'
+// import AdminRoutes from './routes/AdminRoutes'
 import { asyncUpdateUserRole } from './store/userRoleSlice'
+import BooksCratLayout from './components/adminsBookCrat/BooksCrat'
+// import BookPage from './components/BookPage/BookPage'
+// import SinglePageLayout from './components/singlePageLayout/SinglePageLayout'
 
 function App() {
    const dispatch = useDispatch()
@@ -15,7 +18,10 @@ function App() {
 
    return (
       <div className="App">
-         <AdminRoutes />
+         {/* <AdminRoutes /> */}
+         <BooksCratLayout />
+         {/* <BookPage /> */}
+         {/* <SinglePageLayout /> */}
       </div>
    )
 }

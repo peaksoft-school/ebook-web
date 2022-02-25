@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-// import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-// import { fetchBooks } from '../../store/cratReducer/bookCratSlice'
 import BooksList from './booksList/BooksList'
 import { ROUTES } from '../../utils/constants/constants'
 import { ReactComponent as Plus } from '../../assets/icons/addBookPlus.svg'

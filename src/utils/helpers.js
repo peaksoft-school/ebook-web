@@ -27,6 +27,7 @@ export const sendRequest = async (requestConfig) => {
       requestOptions.body = JSON.stringify(requestConfig.body)
    }
    const response = await fetch(DEFAULT_URL + requestConfig.url, requestOptions)
+   console.log(requestOptions)
    if (!response.ok) {
       throw new Error(response.message)
    }
