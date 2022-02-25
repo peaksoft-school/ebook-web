@@ -2,27 +2,27 @@ import { useState } from 'react'
 import classes from './Search.module.css'
 import SearchIcon from './Search-icon/SearchIcon'
 import SearchList from './SearchList/SearchList'
-import useHttp from '../../../hooks/use-http'
 
 const Search = () => {
    const [isFocused, setFocused] = useState(false)
    const [searchValue, setSearchValue] = useState('')
    const [filteredData, setFilteredData] = useState()
 
-   const config = {
-      url: 'https://jsonplaceholder.typicode.com/users',
-   }
-
-   const list = useHttp(config)
-
+   // const config = {
+   //    url: 'https://jsonplaceholder.typicode.com/users',
+   // }
+   const list = []
    function changeColorInput(event) {
       setSearchValue(event.target.value)
       if (event.target.value === '') {
          setFilteredData([])
       } else if (event.target.value) {
-         const filterData = list.response.filter((item) =>
-            item.name.includes(event.target.value)
-         )
+         const filterData =
+            list.length !== 0
+               ? list.response.filter((item) =>
+                    item.name.includes(event.target.value)
+                 )
+               : []
          setFilteredData(filterData)
       }
    }
