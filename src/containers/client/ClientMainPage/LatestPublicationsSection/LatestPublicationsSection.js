@@ -2,11 +2,12 @@ import { useState } from 'react'
 import classes from './LatestPublicationsSection.module.css'
 import Button from '../../../../components/UI/Button/Button'
 import BlackWrapper from '../../../../components/UI/BlackWrapper/BlackWrapper'
-import { initionalbetsellerBooks } from '../../../../utils/constants/books'
+import { betsellerBooks } from '../../../../utils/constants/books'
+import Genres from './Genres/Genres'
+import BookDescription from './BookDescription/BookDescription'
 
 const LatestPublicationsSection = () => {
    const [genreCounter, setGengreCounter] = useState(0)
-   console.log(genreCounter, setGengreCounter)
 
    return (
       <BlackWrapper className={classes.latestPublicationsSectionContainer}>
@@ -15,33 +16,18 @@ const LatestPublicationsSection = () => {
             <Button variant="aboutMoreBtn">Смотреть все</Button>
          </div>
          <div className={classes.bookContent}>
-            <div className={classes.genres}>
-               <p className={classes.genre}>Бизнес-литература</p>
-               <p className={classes.genre}>Детские книги</p>
-               <p className={classes.genre}>Хобби и досуг</p>
-               <p className={classes.genre}>Бизнес-литература</p>
-               <p className={classes.genre}>Бизнес-литература</p>
-               <p className={classes.genre}>Бизнес-литература</p>
+            <Genres setGengreCounter={setGengreCounter} />
+            <div className={classes.imageContainer}>
+               <img
+                  className={classes.image}
+                  src={betsellerBooks[genreCounter].book.url}
+                  alt=""
+               />
             </div>
-            <img
-               className={classes.image}
-               src={initionalbetsellerBooks[genreCounter].book.url}
-               alt=""
+            <BookDescription
+               aboutBook={betsellerBooks[genreCounter].book.aboutBook}
+               price={betsellerBooks[genreCounter].book.netPrice}
             />
-            <div className={classes.bookDescription}>
-               <h1 className={classes.bookTitle}>
-                  {initionalbetsellerBooks[genreCounter].book.bookName}
-               </h1>
-               <p className={classes.aboutBook}>
-                  {initionalbetsellerBooks[genreCounter].book.aboutBook}
-               </p>
-               <div className={classes.bottomPartAboutBook}>
-                  <Button variant="aboutMoreBtn">Подробнее</Button>
-                  <p className={classes.price}>
-                     {initionalbetsellerBooks[genreCounter].book.netPrice} C
-                  </p>
-               </div>
-            </div>
          </div>
       </BlackWrapper>
    )

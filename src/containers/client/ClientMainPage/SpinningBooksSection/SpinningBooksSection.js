@@ -6,22 +6,16 @@ import { ReactComponent as OrangeArrowButton } from '../../../../assets/icons/or
 import { books } from '../../../../utils/constants/books'
 
 const SpinningBooksSection = () => {
-   const [counter, setCounter] = useState(0)
+   const [topBooks, setTopBooks] = useState(books)
 
    const moveImageToRight = () => {
-      if (counter === 0) {
-         setCounter(2)
-      } else if (counter > 0) {
-         setCounter((counter) => counter - 1)
-      }
+      const firstbook = topBooks.shift()
+      setTopBooks([...topBooks, firstbook])
    }
 
    const moveImageToLeft = () => {
-      if (counter < 2) {
-         setCounter((counter) => counter + 1)
-      } else if (counter === 2) {
-         setCounter(0)
-      }
+      const lastbook = topBooks.pop()
+      setTopBooks([lastbook, ...topBooks])
    }
 
    return (
@@ -31,7 +25,7 @@ const SpinningBooksSection = () => {
                onClick={moveImageToLeft}
                className={classes.orangeArrowLeft}
             />
-            <SpinningBooks books={books} counter={counter} />
+            <SpinningBooks books={topBooks} />
             <OrangeArrowButton
                onClick={moveImageToRight}
                className={classes.orangeArrowRight}

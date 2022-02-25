@@ -24,7 +24,7 @@ export const books = [
    },
 ]
 
-export const initionalbetsellerBooks = [
+export const betsellerBooks = [
    {
       id: 1,
       book: {
@@ -74,5 +74,43 @@ export const initionalbetsellerBooks = [
             'Город, в котором меня нет» — манга Кэя Самбэ в жанре фантастического триллера, выходившая с 2012 по 2016 год. На её основе в 2016 году были выпущены аниме-сериал и полнометражный игровой фильм. В 2017 году Netflix начали трансляцию игрового сериала. ',
          netPrice: 1000000,
       },
+   },
+   {
+      id: 6,
+      book: {
+         url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/f5a8c0a9-c0d4-4100-8ed0-8ca44d7b0d8c/300x450',
+         bookName: 'ONE PIECE',
+         aboutBook:
+            'fndskjfnkjsdnfkdsmfnksdfngjkdnjdkbsdfkngkjdfgbdsjlfbgjdfskbkj,mdggbsdjfbgkjdfbgjdfskbgfbsdfsfnksjdfnkdjfnsdkjfnskjdfnskjdnfskjnfkjdnfdskjfndskjnfskjdnfkjsdnffdkjsfnkjsdnfkjsdnfkjsdnfkjsndkjnsdknsdnfkjsdfndskjndskjnfkjsdndkjnskjdfnskjdnfsldnfdskjnfdskjnfkjsndfkjdsnskjdnfskjdnfkjnzdnfdskj',
+         netPrice: 1000000,
+      },
+   },
+]
+
+export const audioBooks = [
+   {
+      id: 1,
+      imgUrl:
+         'https://pm1.narvii.com/6436/96738549ac7da2d123cb5af896ede3e8ab46fa5e_hq.jpg',
+      bookName: 'В город в котором меня нет',
+      bookAuthor: 'Кэй Самбэ',
+      bookPrice: 450,
+      duration: '12 ч.6 мин.8 сек',
+   },
+   {
+      id: 2,
+      imgUrl: 'https://cdn1.ozone.ru/s3/multimedia-1/6169008265.jpg',
+      bookName: 'Наруто',
+      bookAuthor: 'Масаси Кисимото',
+      bookPrice: 300,
+      duration: '12ч.6мин.8с',
+   },
+   {
+      id: 3,
+      imgUrl: 'https://nyapi.ru/d/1035641396.jpg',
+      bookName: 'ONE PIECE',
+      bookAuthor: 'Эйтиро Ода',
+      bookPrice: 600,
+      duration: '12ч.6мин.8с',
    },
 ]

@@ -1,50 +1,45 @@
 import { useState } from 'react'
 import { ReactComponent as ArrowButton } from '../../../../assets/icons/orangeArrow.svg'
-import { initionalbetsellerBooks } from '../../../../utils/constants/books'
 import Button from '../../../../components/UI/Button/Button'
-import classes from './BestsellerBooksSection.module.css'
+import classes from './ViewingTheBestBooksSection.module.css'
 
-const BestsellerBooksSection = () => {
-   const [betsellerBooks, setBetsellerBooks] = useState(initionalbetsellerBooks)
+const ViewingTheBestBooksSection = ({ sectionTitle, books }) => {
+   const [topBooks, setTopBooks] = useState(books)
 
    const moveToLeft = () => {
-      const firstbook = betsellerBooks.pop()
-      setBetsellerBooks([firstbook, ...betsellerBooks])
+      const lastbook = topBooks.pop()
+      setTopBooks([lastbook, ...topBooks])
    }
 
    const moveToRight = () => {
-      const lastbook = betsellerBooks.shift()
-      setBetsellerBooks([...betsellerBooks, lastbook])
+      const firstbook = topBooks.shift()
+      setTopBooks([...topBooks, firstbook])
    }
 
    return (
-      <div className={classes.bestsellerBooksSectionContainer}>
+      <div className={classes.viewingTheBestBooksSectionContainer}>
          <div className={classes.sectionTopPart}>
-            <h2>Бестселлеры</h2>
+            <h2>{sectionTitle}</h2>
             <Button variant="aboutMoreBtn">Смотреть все</Button>
          </div>
          <div className={classes.bookContent}>
             <div className={classes.bookDescription}>
                <h1 className={classes.bookTitle}>
-                  {betsellerBooks[0].book.bookName}
+                  {topBooks[0].book.bookName}
                </h1>
-               <p className={classes.aboutBook}>
-                  {betsellerBooks[0].book.aboutBook}
-               </p>
+               <p className={classes.aboutBook}>{topBooks[0].book.aboutBook}</p>
                <div className={classes.bottomPartAboutBook}>
                   <Button variant="aboutMoreBtn">Подробнее</Button>
-                  <p className={classes.price}>
-                     {betsellerBooks[0].book.netPrice} C
-                  </p>
+                  <p className={classes.price}>{topBooks[0].book.netPrice} C</p>
                </div>
             </div>
             <div className={classes.books}>
                <img
                   className={classes.mainImage}
-                  src={betsellerBooks[0].book.url}
+                  src={topBooks[0].book.url}
                   alt=""
                />
-               {betsellerBooks.slice(1).map((book) => {
+               {topBooks.slice(1).map((book) => {
                   return (
                      <img
                         key={book.id}
@@ -70,4 +65,4 @@ const BestsellerBooksSection = () => {
    )
 }
 
-export default BestsellerBooksSection
+export default ViewingTheBestBooksSection
