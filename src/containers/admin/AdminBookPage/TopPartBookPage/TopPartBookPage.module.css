@@ -7,17 +7,7 @@
     width: 505px;
     height: 430px;
 }
-.containerForBtn {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 77px;
-    width:100%;
-}
-.button {
-    width: 240px;
-    height: 40px;
-    cursor: pointer;
-}
+
 .title {
     margin-top: 65px;
 }

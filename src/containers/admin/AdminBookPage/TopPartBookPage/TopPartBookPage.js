@@ -1,7 +1,7 @@
 import classes from './TopPartBookPage.module.css'
 import ContainerForBriefInformation from './ContainerForBriefInformation/ContainerForBriefInformation'
 import SmallContainer from './SmallContainer/SmallContainer'
-import Button from '../../UI/Button/Button'
+import Buttons from './Buttons/Buttons'
 
 const TopPartBookPage = ({ booklist }) => {
    return (
@@ -20,14 +20,7 @@ const TopPartBookPage = ({ booklist }) => {
             <h1 className={classes.title}>{booklist.book_name}</h1>
             <SmallContainer booklist={booklist} />
             <ContainerForBriefInformation booklist={booklist} />
-            <div className={classes.containerForBtn}>
-               <Button variant="light" className={classes.button}>
-                  Отклонить
-               </Button>
-               <Button variant="secondary" className={classes.button}>
-                  Принять
-               </Button>
-            </div>
+            <Buttons bookName={booklist.book_name} />
          </div>
       </div>
    )

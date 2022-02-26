@@ -1,5 +1,5 @@
 import classes from './SmallContainer.module.css'
-import AudioPlayer from '../../../UI/AudioPlayer/AudioPlayer'
+import AudioPlayer from '../../../../../components/UI/AudioPlayer/AudioPlayer'
 
 const SmallContainer = ({ booklist }) => {
    return (

@@ -1,5 +1,5 @@
 import classes from './SwitchButtons.module.css'
-import Button from '../../../UI/Button/Button'
+import Button from '../../../../../components/UI/Button/Button'
 
 const SwitchButtons = (props) => {
    const { booklist, transition, redirectToAbout, redirectToFragment } = props
