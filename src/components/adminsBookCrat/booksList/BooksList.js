@@ -6,14 +6,12 @@ import classes from './BooksList.module.css'
 const BooksList = (props) => {
    const { books } = props
    const getBookId = async (id) => {
-      console.log(id)
       const requestConfig = {
          method: 'GET',
          url: GET_BOOK_BY_ID + id,
       }
       const getSingleBookById = await sendRequest(requestConfig)
-      const book = await console.log(getSingleBookById)
-      console.log(book)
+      return getSingleBookById
    }
    const renderBook =
       books.length !== 0 ? (

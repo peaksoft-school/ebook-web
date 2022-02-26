@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react'
-import classes from './AddPapperBook.module.css'
 import WrapperOfForms from '../../../../components/admin/wrapperOfAdminBook/WrapperOfForm'
 import Input from '../../../../components/UI/input/Input'
 import CustomSelect from '../../../../components/UI/customSelect/CustomSelect'
@@ -11,6 +10,7 @@ import CustomCheckbox from '../../../../components/UI/customCheckbox/CustomCheck
 import GenresSelect from '../../../../components/UI/genresSelect/GenresSelect'
 import { sendWithFormDataToApi, sendRequest } from '../../../../utils/helpers'
 import { UPLOAD_IMAGE } from '../../../../utils/constants/urls'
+import classes from './VednorPaperBookForm.module.css'
 
 const schema = yup.object().shape({
    bookName: yup.string().required(),
@@ -27,7 +27,7 @@ const schema = yup.object().shape({
       .required('Quantity of Books should be required please'),
 })
 
-const Papperbook = (props) => {
+const VednorPaperBookForm = (props) => {
    const {
       languagesFromApi,
       genres,
@@ -128,7 +128,7 @@ const Papperbook = (props) => {
                   {...register('bookName')}
                   type="text"
                   placeholder="Напишите полное название книги"
-                  className={classes.rightSectionInput}
+                  className={classes.rightSectionInputVendor}
                   id="name"
                   hasError={errors.bookName}
                />
@@ -137,14 +137,14 @@ const Papperbook = (props) => {
                   type="text"
                   placeholder="Напишите ФИО автора"
                   {...register('author')}
-                  className={classes.rightSectionInput}
+                  className={classes.rightSectionInputVendor}
                   id="author"
                   hasError={errors.author}
                />
                <GenresSelect
                   label="Выберите жанр"
                   data={genres}
-                  className={classes.rightSectionSelect}
+                  className={classes.rightSectionSelectVendor}
                   initialstate="Литература, роман, стихи... "
                   onChangeGenreValue={onChangeGenreValue}
                />
@@ -153,7 +153,7 @@ const Papperbook = (props) => {
                   {...register('publishingHouse')}
                   type="text"
                   placeholder="Напишите название издательства"
-                  className={classes.rightSectionInput}
+                  className={classes.rightSectionInputVendor}
                   id="izdatelstvo"
                   hasError={errors.publishingHouse}
                />
@@ -163,7 +163,7 @@ const Papperbook = (props) => {
                   placeholder="Напишите о книге"
                   maxlengthofletters="1234"
                   maxLength="1234"
-                  className={classes.textAreaClass}
+                  className={classes.textAreaClassVendor}
                   hasError={errors.description}
                />
                <CustomTextarea
@@ -172,7 +172,7 @@ const Papperbook = (props) => {
                   placeholder="Напишите фрагмент книги"
                   maxlengthofletters="9234"
                   maxLength="9234"
-                  className={classes.textAreaClass}
+                  className={classes.textAreaClassVendor}
                   hasError={errors.fragment}
                />
             </div>
@@ -239,7 +239,7 @@ const Papperbook = (props) => {
                      className={classes.leftSideInput}
                      id="discount"
                   />
-                  <button type="submit" className={classes.submitButton}>
+                  <button type="submit" className={classes.submitButtonVednor}>
                      Отправить
                   </button>
                </div>
@@ -249,4 +249,4 @@ const Papperbook = (props) => {
    )
 }
 
-export default Papperbook
+export default VednorPaperBookForm

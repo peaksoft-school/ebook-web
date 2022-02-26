@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import classes from './AddAudioBook.module.css'
 import WrapperOfForms from '../../../../components/admin/wrapperOfAdminBook/WrapperOfForm'
 import Input from '../../../../components/UI/input/Input'
 import CustomCheckbox from '../../../../components/UI/customCheckbox/CustomCheckbox'
@@ -16,6 +15,7 @@ import {
    UPLOAD_AUDIO_FILE,
    SEND_AUDIO_BOOK_URL,
 } from '../../../../utils/constants/urls'
+import classes from './VendorAudioBookForm.module.css'
 import AudioDropZone from '../../../../components/UI/audioDropZone/AudioDropZone'
 
 const schema = yup.object().shape({
@@ -27,7 +27,7 @@ const schema = yup.object().shape({
    dataOfIssue: yup.string().required(),
 })
 
-const AudioBook = (props) => {
+const VendorAudioBookForm = (props) => {
    const {
       languagesFromApi,
       genres,
@@ -126,7 +126,7 @@ const AudioBook = (props) => {
          price,
          discount,
          book: {
-            id: 1,
+            id: 1, // TODO: id should be deleted later
             fragmentId: uploadFragment.id,
             duration: {
                hour,
@@ -156,7 +156,7 @@ const AudioBook = (props) => {
                   label="Название книги"
                   type="text"
                   placeholder="Напишите полное название книги"
-                  className={classes.rightSectionInput}
+                  className={classes.rightSectionInputVendor}
                   id="nameOfBook"
                   hasError={errors.bookName}
                />
@@ -164,7 +164,7 @@ const AudioBook = (props) => {
                   label="ФИО автора"
                   type="text"
                   placeholder="Напишите ФИО автора"
-                  className={classes.rightSectionInput}
+                  className={classes.rightSectionInputVendor}
                   id="author"
                   hasError={errors.author}
                   {...register('author')}
@@ -172,7 +172,7 @@ const AudioBook = (props) => {
                <GenresSelect
                   label="Выберите жанр"
                   data={genres}
-                  className={classes.rightSectionSelect}
+                  className={classes.rightSectionSelectVendor}
                   initialstate="Литература, роман, стихи... "
                   onChangeGenreValue={onChangeGenreValue}
                />
@@ -181,7 +181,7 @@ const AudioBook = (props) => {
                   placeholder="Напишите о книге"
                   maxlengthofletters="1234"
                   maxLength="1234"
-                  className={classes.textAreaClasses}
+                  className={classes.textAreaClassesVendor}
                   {...register('description')}
                   hasError={errors.description}
                />
@@ -259,7 +259,7 @@ const AudioBook = (props) => {
                         {...register('discount')}
                      />
                   </div>
-                  <div className={classes.dropzoneBox}>
+                  <div className={classes.dropzoneBoxVendor}>
                      <AudioDropZone
                         audio={fragment}
                         setAudio={setFragment}
@@ -271,7 +271,7 @@ const AudioBook = (props) => {
                         dropZoneOption={audioOption}
                      />
                   </div>
-                  <button type="submit" className={classes.submitButton}>
+                  <button type="submit" className={classes.submitButtonVendor}>
                      Отправить
                   </button>
                </section>
@@ -281,4 +281,4 @@ const AudioBook = (props) => {
    )
 }
 
-export default AudioBook
+export default VendorAudioBookForm
