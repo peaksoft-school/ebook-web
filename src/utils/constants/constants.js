@@ -8,6 +8,7 @@ import BOOKS from '../../assets/icons/books.svg'
 import BOOK from '../../assets/icons/book.svg'
 import ORANGESEARCH from '../../assets/icons/orangeSearchIcon.svg'
 import SEARCH from '../../assets/icons/searchIcon.svg'
+import ARRDOWN from '../../assets/icons/arrowdown.svg'
 
 export const EBOOK_BREADCRUMBS = 'EBOOK_BREADCRUMBS'
 export const EBOOKPERSONTOKEN = 'EbookUserToken'
@@ -73,6 +74,7 @@ export const NAVICON = {
    USER,
    BOOKS,
    BOOK,
+   ARRDOWN,
 }
 
 export const SIDE = {

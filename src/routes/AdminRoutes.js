@@ -8,10 +8,12 @@ import AdminLayout from '../components/admin/AdminLayout/AdminLayout'
 import UserDetails from '../containers/admin/UserDetails/UserDetails'
 import AuthModal from '../components/auth/authModal/AuthModal'
 import PrivateRouteForAdmin from '../components/UI/PrivateRoutes/PrivateRouteForAdmin/PrivateRouteForAdmin'
+import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
 
 function AdminRoutes() {
    return (
       <Routes>
+         <Route path="/" element={<Navigate to={ROUTES.LOGIN} />} />
          <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
          <Route path={ROUTES.LOGIN} element={<AuthModal />} />
          <Route
@@ -26,7 +28,7 @@ function AdminRoutes() {
                path={ROUTES.APPLICATIONS}
                element={
                   <PrivateRouteForAdmin>
-                     <h1>App</h1>
+                     <ClientSortPage />
                   </PrivateRouteForAdmin>
                }
             />
