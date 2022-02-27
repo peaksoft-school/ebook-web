@@ -16,6 +16,8 @@ import {
 import classes from './AddElectroBook.module.css'
 import PdfDropZone from '../../../../components/UI/pdfDropZone/PdfDropZone'
 import { sendRequest, sendWithFormDataToApi } from '../../../../utils/helpers'
+import Modal from '../../../../components/UI/modal-window/ModalWindow'
+import SuccessfulMessage from '../../../../components/UI/successMessage/SuccessfulMessage'
 
 const schema = yup.object().shape({
    bookName: yup.string().required(),
@@ -47,6 +49,15 @@ const ElectroBook = (props) => {
    const [genreId, setGenreId] = useState('')
    const [typeOfLanguage, setTypeOfLanguage] = useState('')
    const [bestSeller, setBestseller] = useState(false)
+   const [isModal, setIsModal] = useState(false)
+   const [responseAnswer, setResponseAnswer] = useState({
+      error: null,
+      bookName: '',
+   })
+
+   const onChangeModal = () => {
+      setIsModal((prevState) => !prevState)
+   }
 
    const [pdf, setPdf] = useState({ file: {} })
 
@@ -62,66 +73,85 @@ const ElectroBook = (props) => {
       setBestseller(value)
    }
 
-   const firstImageConfig = {
-      file: mainPicture.avatar,
-      url: UPLOAD_IMAGE,
-   }
-   const secondImageConfig = {
-      file: secondPicture.avatar,
-      url: UPLOAD_IMAGE,
-   }
-   const thridImageConfig = {
-      file: thirdPicture.avatar,
-      url: UPLOAD_IMAGE,
-   }
-
-   const pdfFileOption = {
-      file: pdf.file,
-      url: UPLOAD_AUDIO_FILE,
-   }
-
    const submitHandler = async (data) => {
-      const firstImageId = await sendWithFormDataToApi(firstImageConfig)
-      const secondImageId = await sendWithFormDataToApi(secondImageConfig)
-      const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
+      const firstImageConfig = {
+         file: mainPicture.avatar,
+         url: UPLOAD_IMAGE,
+      }
+      const secondImageConfig = {
+         file: secondPicture.avatar,
+         url: UPLOAD_IMAGE,
+      }
+      const thridImageConfig = {
+         file: thirdPicture.avatar,
+         url: UPLOAD_IMAGE,
+      }
 
-      const idOfElectronicBook = await sendWithFormDataToApi(pdfFileOption)
-      const {
-         author,
-         bookName,
-         dataOfIssue,
-         description,
-         discount,
-         fragment,
-         pageSize,
-         price,
-         publishingHouse,
-      } = data
-      const transformedData = {
-         images: [firstImageId.id, secondImageId.id, thirdImageId.id],
-         bookName,
-         author,
-         genreId,
-         description,
-         typeOfLanguage,
-         dataOfIssue,
-         bestSeller,
-         price,
-         discount,
-         book: {
+      const pdfFileOption = {
+         file: pdf.file,
+         url: UPLOAD_AUDIO_FILE,
+      }
+      try {
+         const firstImageId = await sendWithFormDataToApi(firstImageConfig)
+         const secondImageId = await sendWithFormDataToApi(secondImageConfig)
+         const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
+         const idOfElectronicBook = await sendWithFormDataToApi(pdfFileOption)
+         if (
+            firstImageId.ok &&
+            secondImageId.ok &&
+            thirdImageId.ok &&
+            idOfElectronicBook.ok
+         )
+            await setResponseAnswer({
+               error: firstImageId || secondImageId || thirdImageId,
+            })
+
+         const {
+            author,
+            bookName,
+            dataOfIssue,
+            description,
+            discount,
             fragment,
             pageSize,
+            price,
             publishingHouse,
-            electronicBookId: idOfElectronicBook.id,
-         },
+         } = data
+         const transformedData = {
+            images: [firstImageId.id, secondImageId.id, thirdImageId.id],
+            bookName,
+            author,
+            genreId,
+            description,
+            typeOfLanguage,
+            dataOfIssue,
+            bestSeller,
+            price,
+            discount,
+            book: {
+               fragment,
+               pageSize,
+               publishingHouse,
+               electronicBookId: idOfElectronicBook.id,
+            },
+         }
+         const requestConfig = {
+            method: 'POST',
+            url: SEND_ELECTRONIC_BOOK_URL,
+            body: transformedData,
+         }
+         const response = await sendRequest(requestConfig)
+         setResponseAnswer({
+            bookName: response.bookName,
+            error: null,
+         })
+         return setIsModal(true)
+      } catch (error) {
+         setResponseAnswer({
+            error: error.message || 'Something went wrong !',
+         })
+         return setIsModal(true)
       }
-      const requestConfig = {
-         method: 'POST',
-         url: SEND_ELECTRONIC_BOOK_URL,
-         body: transformedData,
-      }
-      const response = await sendRequest(requestConfig)
-      return response
    }
 
    return (
@@ -130,6 +160,14 @@ const ElectroBook = (props) => {
          className={classes.formControl}
       >
          <WrapperOfForms>
+            {isModal && (
+               <Modal onClose={onChangeModal}>
+                  <SuccessfulMessage
+                     apiAnswer={responseAnswer}
+                     onClose={onChangeModal}
+                  />
+               </Modal>
+            )}
             <div className={classes.rightSection}>
                <Input
                   label="Название книги"
