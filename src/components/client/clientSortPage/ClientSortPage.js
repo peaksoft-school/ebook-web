@@ -9,10 +9,15 @@ import {
    NAVICON,
 } from '../../../utils/constants/constants'
 import PriceInput from '../../UI/PriceInput/PriceInput'
+import { sendRequest } from '../../../utils/helpers'
+import UserHeader from '../../../layout/headers/UserHeader/UserHeader'
+import UserNavMenu from '../../UI/UserNavMenu/UserNavMenu'
 
 const ClientSortPage = () => {
    const [arrow, setArrow] = useState(false)
    const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
+   const [firstPrice, setFirstPrice] = useState(10000)
+   const [secondPrice, setSecondPrice] = useState(0)
 
    const isAudioChangeHandler = () => {
       setTypeOfBook(IS_AUDIOBOOK)
@@ -25,12 +30,32 @@ const ClientSortPage = () => {
       setTypeOfBook(IS_PAPPERBOOK)
    }
 
+   // const onChangeCheckBoxValue = (value) => {
+
+   // }
+
    const electroBook = typeOfBook === IS_ELECTROBOOK
    const papperBook = typeOfBook === IS_PAPPERBOOK
    const audioBook = typeOfBook === IS_AUDIOBOOK
 
-   const submitHandler = (event) => {
+   const sortRequest = {
+      genres: [0],
+      price: {
+         from: secondPrice,
+         before: firstPrice,
+      },
+      languages: 'KYRGYZ',
+      type: typeOfBook,
+   }
+   const submitHandler = async (event) => {
       event.preventDefault()
+      const requestConfig = {
+         method: 'POST',
+         url: 'api/books/sort',
+         body: sortRequest,
+      }
+      const response = await sendRequest(requestConfig)
+      return response
    }
    const ArrowChangeHandler = () => {
       setArrow((prev) => !prev)
@@ -38,6 +63,8 @@ const ClientSortPage = () => {
 
    return (
       <form onSubmit={submitHandler}>
+         <UserHeader />
+         <UserNavMenu />
          <section className={classes.section}>
             <main className={classes.main}>
                <span className={classes.found}>Найдены $ книг</span>
@@ -101,7 +128,12 @@ const ClientSortPage = () => {
                      </div>
                   </div>
                </div>
-               <PriceInput />
+               <PriceInput
+                  firstPrice={firstPrice}
+                  secondPrice={secondPrice}
+                  setFirstPrice={setFirstPrice}
+                  setSecondPrice={setSecondPrice}
+               />
                <div className={classes.lang}>
                   <span className={classes.lan}>
                      Язык издания <img src={NAVICON.ARRDOWN} alt="" />
@@ -110,6 +142,7 @@ const ClientSortPage = () => {
                      <CustomCheckbox
                         label="Кыргызский язык"
                         className={classes.check}
+                        // onChangeCheckBoxValue={onChangeCheckBoxValue}
                      />
                      <CustomCheckbox
                         label="Русский язык"

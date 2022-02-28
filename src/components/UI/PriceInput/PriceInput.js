@@ -1,11 +1,12 @@
-import { useState } from 'react'
 import classes from './PriceInput.module.css'
 import { NAVICON } from '../../../utils/constants/constants'
 
-const PriceInput = () => {
-   const [firstPrice, setFirstPrice] = useState(0)
-   const [secondPrice, setSecondPrice] = useState(0)
-
+const PriceInput = ({
+   firstPrice,
+   secondPrice,
+   setFirstPrice,
+   setSecondPrice,
+}) => {
    const changeFirstHandler = (e) => {
       setFirstPrice(e.target.value)
    }
