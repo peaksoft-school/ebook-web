@@ -2,17 +2,19 @@ import { useState } from 'react'
 import classes from './BookGenreDropdown.module.css'
 import { ReactComponent as SelectIcon } from '../../../assets/icons/Vector.svg'
 
-const BookGenreDropdown = ({ onSelectOption, genre }) => {
+const BookGenreDropdown = (props) => {
+   const { genres, getGenresBooksById, ...rest } = props
    const [isOpen, setIsOpen] = useState(false)
    const toggling = () => setIsOpen(!isOpen)
    const [selectedOption, setSelectedOption] = useState(null)
    const onOptionClicked = (value) => () => {
-      setSelectedOption(value.title)
+      getGenresBooksById(value.id)
+      setSelectedOption(value.genreName)
       setIsOpen(false)
    }
 
    return (
-      <div>
+      <div {...rest}>
          <div
             role="presentation"
             onClick={toggling}
@@ -25,16 +27,20 @@ const BookGenreDropdown = ({ onSelectOption, genre }) => {
             <div className={classes.frame}>
                <div className={`${classes.scroll} ${classes.content}`}>
                   <ul>
-                     {genre.map((option) => (
+                     {genres.map((option) => (
                         <li
                            role="presentation"
                            onClick={onOptionClicked(option)}
                            key={option.id}
-                           onSelect={onSelectOption}
+                           // onSelect={onSelectOption}
                         >
                            <div className={classes.items}>
-                              <p className={classes.title}>{option.title}</p>
-                              <p className={classes.amount}>{option.amount}</p>
+                              <p className={classes.title}>
+                                 {option.genreName}
+                              </p>
+                              <p className={classes.amount}>
+                                 {option.quantityOfBooks}
+                              </p>
                            </div>
                         </li>
                      ))}

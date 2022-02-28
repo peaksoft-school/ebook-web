@@ -9,28 +9,38 @@ const CustomSelect = forwardRef((props, ref) => {
       initialstate,
       label,
       id,
+      data,
+      onChangeLanguagesValue,
       ...rest
    } = props
 
-   const options = props.data.map((item) => (
-      <option
-         key={getOptionValue ? getOptionValue(item) : item.id}
-         id={getOptionValue ? getOptionValue(item) : item.id}
-      >
-         {getOptionLabel ? getOptionLabel(item) : item.name}
-      </option>
-   ))
+   const onChangeLanguageValue = (e) => {
+      onChangeLanguagesValue(e.target.value)
+   }
+
+   const options = data
+      ? data.map((item, index) => (
+           <option
+              key={getOptionValue ? getOptionValue(item) : index}
+              id={getOptionValue ? getOptionValue(item) : index}
+              className="languageOption"
+           >
+              {item}
+           </option>
+        ))
+      : ''
 
    return (
       <div className="customBox">
          <label id={props.id} className="customSelect">
-            {label}
+            {label} <span className="redStar">*</span>
          </label>
          <select
+            onChange={onChangeLanguageValue}
             ref={ref}
             {...rest}
             name="customSearch"
-            className={`select ${className}`}
+            className={`selectted ${className}`}
             required
             defaultValue=""
          >

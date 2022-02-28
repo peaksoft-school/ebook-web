@@ -8,17 +8,24 @@ const CustomTextarea = forwardRef((props, ref) => {
       setLetter(e.target.value.length)
    }
 
+   const { label, className, id, maxlengthofletters, hasError, ...rest } = props
+
    return (
-      <div className={`customTextarea ${props.className}`}>
-         <label htmlFor={props.id}>{props.label}</label>
+      <div className={`customTextarea ${className}`}>
+         <label htmlFor={id}>
+            {label}
+            <span className="redStar">*</span>
+         </label>
          <textarea
-            {...props}
-            className={`textarea ${props.className}`}
+            {...rest}
+            className={`textarea ${className} ${
+               hasError ? 'hasError' : 'textarea'
+            }`}
             onChange={leterCounter}
             ref={ref}
          />
          <p className="letterCss">
-            {letter}/{props.maxlengthofletters}
+            {letter}/{maxlengthofletters}
          </p>
       </div>
    )
