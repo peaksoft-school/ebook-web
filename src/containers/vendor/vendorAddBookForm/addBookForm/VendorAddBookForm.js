@@ -1,27 +1,25 @@
 import { useState, useCallback, useEffect } from 'react'
-import AudioBook from '../addAudioBook/AddAudioBook'
-import ElectroBook from '../addElectroBook/AddElectroBook'
-import Papperbook from '../addPapperBook/AddPapperBook'
-import classes from './AddBookForm.module.css'
-import UploadImageCart from '../imageUploader/UploadImageCart'
 import { sendRequest } from '../../../../utils/helpers'
+import VednorPaperBookForm from '../addPaperBook/VednorPaperBookForm'
+import VendorAudioBookForm from '../addAudioBook/VendorAudioBookForm'
+import VendorElectroBookForm from '../addElectroBook/VendorElectroBookForm'
+import VendorImageSection from '../vendorImageUploader/VendorImageSection'
 import {
    IS_AUDIOBOOK,
    IS_PAPPERBOOK,
    IS_ELECTROBOOK,
 } from '../../../../utils/constants/constants'
+import classes from './VendorAddBookForm.module.css'
+import { GET_ALL_LANGUAGES, GET_GENRES } from '../../../../utils/constants/urls'
 
-const AddBookForm = () => {
+const VendorAddBookForm = () => {
    const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
    const [allLanguages, setGetAllLanguages] = useState([])
    const [allGenres, setGetAllGenres] = useState([])
 
-   const languagesUrl = 'api/books/languages'
-   const genresUrl = 'api/genres'
-
    const getAllLanguagesApi = useCallback(async () => {
       const requestConfig = {
-         url: languagesUrl,
+         url: GET_ALL_LANGUAGES,
          method: 'GET',
       }
       const response = await sendRequest(requestConfig)
@@ -30,7 +28,7 @@ const AddBookForm = () => {
 
    const getAllGenresFromApi = useCallback(async () => {
       const requestConfig = {
-         url: genresUrl,
+         url: GET_GENRES,
          method: 'GET',
       }
       const response = await sendRequest(requestConfig)
@@ -88,9 +86,9 @@ const AddBookForm = () => {
 
    return (
       <div>
-         <main className={classes.adminBlog}>
+         <main className={classes.vendorBlog}>
             <p className={classes.uploadthreeBooks}>Загрузите 3 фото *</p>
-            <UploadImageCart
+            <VendorImageSection
                deleteThirdPictureHandler={deleteThirdPictureHandler}
                deleteSecondPictureHandler={deleteSecondPictureHandler}
                deleteMainPictureHandler={deleteMainPictureHandler}
@@ -141,7 +139,7 @@ const AddBookForm = () => {
             </section>
             <section>
                {papperBook && (
-                  <Papperbook
+                  <VednorPaperBookForm
                      languagesFromApi={allLanguages}
                      genres={allGenres}
                      mainPicture={mainPicture}
@@ -150,7 +148,7 @@ const AddBookForm = () => {
                   />
                )}
                {audioBook && (
-                  <AudioBook
+                  <VendorAudioBookForm
                      languagesFromApi={allLanguages}
                      genres={allGenres}
                      mainPicture={mainPicture}
@@ -159,7 +157,7 @@ const AddBookForm = () => {
                   />
                )}
                {electroBook && (
-                  <ElectroBook
+                  <VendorElectroBookForm
                      languagesFromApi={allLanguages}
                      genres={allGenres}
                      mainPicture={mainPicture}
@@ -173,4 +171,4 @@ const AddBookForm = () => {
    )
 }
 
-export default AddBookForm
+export default VendorAddBookForm

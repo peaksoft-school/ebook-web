@@ -7,7 +7,7 @@
    padding-bottom: 30px;
 }
 .customTextareaBox {
-   width: 636px;
+   width: 753px;
    resize: none;
 }
 
@@ -28,20 +28,20 @@
    height: 1160px;
 }
 
-.rightSectionInput input {
-   width: 636px;
+.rightSectionInputVendor input {
+   width: 753px;
 }
 
-.rightSectionInput {
+.rightSectionInputVendor {
    padding-bottom: 20px;
 }
 
-.rightSectionInput label {
+.rightSectionInputVendor label {
    font-family: 'Open Sans', sans-serif;
 }
 
-.rightSectionSelect {
-   width: 636px;
+.rightSectionSelectVendor {
+   width: 753px;
 }
 
 .leftSideSelect {
@@ -133,6 +133,6 @@
    border: none;
    cursor: pointer;
 }
-.textAreaClass {
-   width: 636px;
+.textAreaClassVendor {
+   width: 753px;
 }
