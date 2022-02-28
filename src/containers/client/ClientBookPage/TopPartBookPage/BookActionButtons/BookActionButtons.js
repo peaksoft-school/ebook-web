@@ -1,7 +1,7 @@
-import classes from './Buttons.module.css'
+import classes from './BookActionButtons.module.css'
 import Button from '../../../../../components/UI/Button/Button'
 
-const Buttons = () => {
+const BookActionButtons = () => {
    return (
       <div className={classes.containerForBtn}>
          <Button variant="light" className={classes.button}>
@@ -14,4 +14,4 @@ const Buttons = () => {
    )
 }
 
-export default Buttons
+export default BookActionButtons

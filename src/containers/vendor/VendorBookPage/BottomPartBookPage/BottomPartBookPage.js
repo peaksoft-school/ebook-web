@@ -3,7 +3,7 @@ import classes from './BottomPartBookPage.module.css'
 import SwitchButtons from './SwitchButtons/SwitchButtons'
 import TextInBottomPart from './TextInBottomPart/TextInBottomPart'
 
-const BottomPartBookPage = ({ booklist }) => {
+const BottomPartBookPage = ({ book }) => {
    const [transition, setTransition] = useState('about')
 
    const redirectToAbout = () => {
@@ -20,14 +20,14 @@ const BottomPartBookPage = ({ booklist }) => {
             <SwitchButtons
                redirectToAbout={redirectToAbout}
                redirectToFragment={redirectToFragment}
-               booklist={booklist}
+               book={book}
                transition={transition}
             />
-            <TextInBottomPart booklist={booklist} transition={transition} />
+            <TextInBottomPart book={book} transition={transition} />
          </div>
          <img
             className={classes.thirdImage}
-            src={booklist.thirdImage}
+            src={book.thirdImage}
             alt="some images"
          />
       </div>

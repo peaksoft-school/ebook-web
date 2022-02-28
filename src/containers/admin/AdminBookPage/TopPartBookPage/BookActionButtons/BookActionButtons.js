@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import classes from './Buttons.module.css'
+import classes from './BookActionButtons.module.css'
 import Button from '../../../../../components/UI/Button/Button'
 import ModalForReject from '../../ModalForReject/ModalForReject'
 import ModalForAccept from '../../ModalForAccept/ModalForAccept'
 
-const Buttons = ({ bookName }) => {
+const BookActionButtons = ({ bookName }) => {
    const [isShowRejectModal, setShowRejectModal] = useState(false)
    const [isShowAcceptModal, setShowAcceptModal] = useState(false)
 
@@ -18,11 +18,13 @@ const Buttons = ({ bookName }) => {
 
    const checkAccepting = isShowAcceptModal === true
    useEffect(() => {
+      const acceptTimer = setTimeout(() => {
+         showAcceptModal()
+      }, 1500)
       if (checkAccepting) {
-         setTimeout(() => {
-            showAcceptModal()
-         }, 2000)
+         return acceptTimer
       }
+      return clearTimeout(acceptTimer)
    }, [checkAccepting])
 
    const sendRejectingBookHundler = (sendingText) => {
@@ -57,4 +59,4 @@ const Buttons = ({ bookName }) => {
    )
 }
 
-export default Buttons
+export default BookActionButtons

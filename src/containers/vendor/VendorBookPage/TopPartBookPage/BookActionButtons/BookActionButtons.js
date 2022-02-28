@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import classes from './Buttons.module.css'
+import classes from './BookActionButtons.module.css'
 import Button from '../../../../../components/UI/Button/Button'
 import DeletingBook from '../../ModalForDeleteBook/ModalForDeleteBook'
 
-const Buttons = ({ bookName }) => {
+const BookActionButtons = ({ bookName }) => {
    const [isShowDeleteModal, setShowDeleteModal] = useState(false)
 
    const showBookHundler = () => {
@@ -42,4 +42,4 @@ const Buttons = ({ bookName }) => {
    )
 }
 
-export default Buttons
+export default BookActionButtons

@@ -1,14 +1,14 @@
 import classes from './TextInBottomPart.module.css'
 
 const TextInBottomPart = (props) => {
-   const { booklist, transition } = props
+   const { book, transition } = props
    return (
       <div>
          {transition === 'about' && (
-            <p className={classes.textAbout}>{booklist.book_about}</p>
+            <p className={classes.textAbout}>{book.book_about}</p>
          )}
          {transition === 'fragment' && (
-            <p className={classes.textFragment}>{booklist.book_fragment}</p>
+            <p className={classes.textFragment}>{book.book_fragment}</p>
          )}
       </div>
    )

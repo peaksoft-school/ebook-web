@@ -1,6 +1,6 @@
 import classes from './ContainerForBriefInformation.module.css'
 
-const ContainerForBriefInformation = ({ booklist }) => {
+const ContainerForBriefInformation = ({ book }) => {
    return (
       <div className={classes.containerForBriefInformation}>
          <div className={classes.smallContainerForBriefInformation}>
@@ -9,19 +9,19 @@ const ContainerForBriefInformation = ({ booklist }) => {
             <p>Язык</p>
             <p>Издательство</p>
             <p>Год выпуска</p>
-            {booklist.book_type === 'electronic' && <p>Обьем</p>}
-            {booklist.book_type === 'audio' && <p>Длительность</p>}
+            {book.book_type === 'electronic' && <p>Обьем</p>}
+            {book.book_type === 'audio' && <p>Длительность</p>}
          </div>
          <div className={classes.smallContainerForBriefInformation}>
-            <p>{booklist.author}</p>
-            <p>{booklist.genre}</p>
-            <p>{booklist.language}</p>
-            <p>{booklist.publishing_house}</p>
-            <p>{booklist.year_of_issue}</p>
-            {booklist.book_type === 'electronic' && (
-               <p>{booklist.volume} стр</p>
+            <p>{book.author}</p>
+            <p>{book.genre}</p>
+            <p>{book.language}</p>
+            <p>{book.publishing_house}</p>
+            <p>{book.year_of_issue}</p>
+            {book.book_type === 'electronic' && (
+               <p>{book.volume} стр</p>
             )}
-            {booklist.book_type === 'audio' && <p>{booklist.duration}</p>}
+            {book.book_type === 'audio' && <p>{book.duration}</p>}
          </div>
       </div>
    )

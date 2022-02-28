@@ -2,7 +2,7 @@ import classes from './SwitchButtons.module.css'
 import Button from '../../../../../components/UI/Button/Button'
 
 const SwitchButtons = (props) => {
-   const { booklist, transition, redirectToAbout, redirectToFragment } = props
+   const { book, transition, redirectToAbout, redirectToFragment } = props
 
    return (
       <div className={classes.containerForSwitch}>
@@ -16,7 +16,7 @@ const SwitchButtons = (props) => {
          >
             О книге
          </Button>
-         {booklist.book_type === 'electronic' && (
+         {book.book_type === 'electronic' && (
             <Button
                variant={
                   transition === 'fragment'

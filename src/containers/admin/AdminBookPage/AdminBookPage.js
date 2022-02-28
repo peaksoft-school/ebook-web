@@ -6,8 +6,8 @@ import { oneElectronicBook } from '../../../utils/constants/books'
 const BookPage = () => {
    return (
       <div className={classes.ContainerForBook}>
-         <TopPartBookPage booklist={oneElectronicBook} />
-         <BottomPartBookPage booklist={oneElectronicBook} />
+         <TopPartBookPage book={oneElectronicBook} />
+         <BottomPartBookPage book={oneElectronicBook} />
       </div>
    )
 }
