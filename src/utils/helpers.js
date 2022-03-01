@@ -51,3 +51,15 @@ export const getImageUrl = (id) => {
    const imageSrc = `http://3.123.114.41/static/download/${id}`
    return imageSrc
 }
+
+export const sendWithFormDataToApi = (requestOptions) => {
+   const formData = new FormData()
+   formData.append('file', requestOptions.file)
+   const requestConfig = {
+      method: 'POST',
+      url: requestOptions.url,
+      body: formData,
+   }
+   const response = sendFileToApi(requestConfig)
+   return response
+}

@@ -2,11 +2,8 @@
 .rightSection {
    font-weight: 400;
 }
-.sideLabel {
+.formControl {
    display: flex;
-   flex-direction: column;
-   text-align: start;
-   padding-bottom: 30px;
 }
 
 .leftSection {
@@ -74,12 +71,12 @@
 }
 
 .leftSideInput {
-   margin-bottom: 30px;
+   margin-bottom: 8px;
    padding-right: 39px;
 }
 
 .leftSideDate {
-   margin-left: 20px;
+   margin-left: 39px;
 }
 
 .leftSideDate input {
@@ -90,10 +87,6 @@
 
 .rightSectionControl .leftSideDate {
    margin-bottom: 70px;
-}
-
-.rightSectionControl .bestseller {
-   margin-bottom: 42px;
 }
 
 .submitButton {
@@ -144,74 +137,48 @@
    display: flex;
    flex-direction: row;
 }
-.bestsellerControll {
-   margin-top: 60px;
-}
+
 .leftSideInputTime label {
    opacity: 0;
-}
-.fix {
-   border: 1px solid #c4c4c4;
-   box-sizing: border-box;
-   cursor: pointer;
-   background-repeat: no-repeat;
-   cursor: pointer;
-   background-size: 15px;
-   text-align: center;
-   padding: 10px 0px 10px 40px;
-   width: 277px;
-   cursor: pointer;
-}
-
-.fix label {
-   font-family: Open Sans !important;
-   font-style: normal !important;
-   font-weight: 600 !important;
-   font-size: 14px !important;
-   line-height: 120% !important;
-   color: #969696 !important;
-   cursor: pointer;
-}
-
-.uploadFrag {
-   position: absolute;
-   margin-top: 8px;
-}
-
-.uploadFrag .uploadFragText {
-   margin: 0;
-   padding-bottom: 10px;
-   text-align: start;
-   font-style: normal;
-   font-weight: normal;
-   font-size: 16px;
-   line-height: 130%;
-   color: #222222;
-}
-
-.uploadSvg {
-   position: relative;
-   bottom: 30px;
-   left: 45px;
-}
-.flexBoxed {
-   display: flex;
-   align-items: center;
-}
-.maximumLenght {
-   font-family: Open Sans;
-   font-style: normal;
-   font-weight: 400;
-   font-size: 12px;
-   line-height: 16px;
-   text-align: center;
-   color: #a3a3a3;
-   padding-left: 14px;
-}
-.fix:hover {
-   background-color: green;
 }
 
 .textAreaClasses {
    width: 636px;
+}
+
+.languagesBox {
+   display: flex;
+}
+.timeDuration {
+   display: flex;
+   margin: 0;
+   padding: 0;
+}
+.timeDurationInput input {
+   width: 118px;
+   margin-right: 20px;
+   text-align: end;
+}
+.timeDurationInputSec input {
+   width: 124px;
+   margin-right: 20px;
+   text-align: end;
+}
+.timeDurationInputSec {
+   margin-top: 21px;
+}
+.priceSelection {
+   display: flex;
+   margin-bottom: 20px;
+}
+.bestSellerBox {
+   margin-top: 20px;
+}
+
+.dropzoneBox {
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   height: 177px;
 }

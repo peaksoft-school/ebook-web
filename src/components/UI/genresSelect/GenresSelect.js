@@ -30,7 +30,7 @@ const GenresSelect = forwardRef((props, ref) => {
    return (
       <div className="customBox">
          <label id={props.id} className="customSelect">
-            {label}
+            {label} <span className="redStar">*</span>
          </label>
          <select
             {...rest}

@@ -5,7 +5,7 @@
 .languageOption {
    text-transform: lowercase;
 }
-.languageOption::first-letter{
+.languageOption::first-letter {
    font-size: 200px;
 }
 
@@ -61,4 +61,8 @@
    background-color: #ffffff;
    border: 1px solid #c4c4c4;
    box-sizing: border-box;
+}
+.redStar {
+   color: red;
+   margin-left: 5px;
 }

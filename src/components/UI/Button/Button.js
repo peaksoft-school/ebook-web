@@ -16,6 +16,7 @@ const STYLES = [
    'btnActive',
    'variantBecomeToSeller',
    'btnActive',
+   'aboutMoreBtn',
 ]
 
 const Button = ({ className, onClick, disabled, children, variant }) => {

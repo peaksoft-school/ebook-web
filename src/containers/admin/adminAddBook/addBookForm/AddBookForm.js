@@ -149,8 +149,24 @@ const AddBookForm = () => {
                      thirdPicture={thirdPicture}
                   />
                )}
-               {audioBook && <AudioBook />}
-               {electroBook && <ElectroBook />}
+               {audioBook && (
+                  <AudioBook
+                     languagesFromApi={allLanguages}
+                     genres={allGenres}
+                     mainPicture={mainPicture}
+                     secondPicture={secondPicture}
+                     thirdPicture={thirdPicture}
+                  />
+               )}
+               {electroBook && (
+                  <ElectroBook
+                     languagesFromApi={allLanguages}
+                     genres={allGenres}
+                     mainPicture={mainPicture}
+                     secondPicture={secondPicture}
+                     thirdPicture={thirdPicture}
+                  />
+               )}
             </section>
          </main>
       </div>

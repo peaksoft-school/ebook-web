@@ -1,0 +1,45 @@
+.userNavMenuContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.genreContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+    cursor: pointer;
+}
+
+.genreIcon {
+    width: 37;
+    height: 12px;
+}
+
+.containerForLinks {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    margin-right: 200px;
+}
+
+.linkText {
+    font-weight: 400;
+    font-size: 14px;
+    color: #222222;
+    cursor: pointer;
+}
+
+.linkActiveText {
+    font-weight: 600;
+    font-size: 14px;
+    color: #FF4C00;
+    cursor: pointer;
+}
+
+.buttonSize {
+    width: 100px;
+    height: 40px;
+}
