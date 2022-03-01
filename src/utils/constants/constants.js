@@ -32,7 +32,15 @@ export const ROUTES = {
    BOOK_PAGE: '/vendor/bookpage',
    ADD_BOOK: '/vendor/bookadd',
    PROFILE: '/vendor/profile',
-   CLIENT: '/client',
+   CLIENT: '/client/mainpage',
+   SORT: '/client/sort',
+   INNER_PAGE: '/client/innerpage',
+   AUDIO_PAGE: '/client/audiopage',
+   CART: '/client/cart',
+   PROMO_CODE: '/client/promocode',
+   USER_PROFILE: '/client/userprofile',
+   PROFILE_HISTORY: '/client/profilehistory',
+   BECOME_VENDOR: '/client/becomevendor',
    LOGIN: '/login',
    SIDE_DRAWER_DATA: [
       {

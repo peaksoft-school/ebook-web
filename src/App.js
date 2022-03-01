@@ -2,7 +2,7 @@ import './App.css'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { asyncAutoUpdateBreadcrumb } from './store/breadCrumbsSlice'
-import AdminRoutes from './routes/AdminRoutes'
+import AppRoutes from './routes/AppRoutes'
 import { asyncUpdateUserRole } from './store/userRoleSlice'
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 
    return (
       <div className="App">
-         <AdminRoutes />
+         <AppRoutes />
       </div>
    )
 }
