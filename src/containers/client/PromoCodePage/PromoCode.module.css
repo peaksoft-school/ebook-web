@@ -1,0 +1,25 @@
+.promo {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   margin-top: 50px;
+   margin: auto;
+}
+
+.activeCode {
+   display: flex;
+   justify-content: center;
+   font-family: Open Sans;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 18px;
+   color: #222222;
+}
+
+.input {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 683px;
+   flex-wrap: wrap;
+}

@@ -8,6 +8,7 @@ import AdminLayout from '../components/admin/AdminLayout/AdminLayout'
 import UserDetails from '../containers/admin/UserDetails/UserDetails'
 import AuthModal from '../components/auth/authModal/AuthModal'
 import PrivateRouteForAdmin from '../components/UI/PrivateRoutes/PrivateRouteForAdmin/PrivateRouteForAdmin'
+import PromoCodePage from '../containers/client/PromoCodePage/PromoCodePage'
 
 function AdminRoutes() {
    return (
@@ -26,7 +27,7 @@ function AdminRoutes() {
                path={ROUTES.APPLICATIONS}
                element={
                   <PrivateRouteForAdmin>
-                     <h1>App</h1>
+                     <PromoCodePage />
                   </PrivateRouteForAdmin>
                }
             />
