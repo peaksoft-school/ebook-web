@@ -20,3 +20,6 @@
    height: 40px;
    cursor: pointer;
 }
+.link {
+   text-decoration: none;
+}

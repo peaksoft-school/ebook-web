@@ -18,9 +18,7 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>{book.language}</p>
             <p>{book.publishing_house}</p>
             <p>{book.year_of_issue}</p>
-            {book.book_type === 'electronic' && (
-               <p>{book.volume} стр</p>
-            )}
+            {book.book_type === 'electronic' && <p>{book.volume} стр</p>}
             {book.book_type === 'audio' && <p>{book.duration}</p>}
          </div>
       </div>

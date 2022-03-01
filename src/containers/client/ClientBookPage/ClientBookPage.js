@@ -4,9 +4,19 @@ import BottomPartBookPage from './BottomPartBookPage/BottomPartBookPage'
 import { oneElectronicBook } from '../../../utils/constants/books'
 
 const BookPage = () => {
+   const sendRequestToFavority = (bookId) => {
+      console.log(bookId)
+   }
+   const sendRequestToBasket = (bookId) => {
+      console.log(bookId)
+   }
    return (
       <div className={classes.ContainerForBook}>
-         <TopPartBookPage book={oneElectronicBook} />
+         <TopPartBookPage
+            sendToBasket={sendRequestToBasket}
+            sendToFavority={sendRequestToFavority}
+            book={oneElectronicBook}
+         />
          <BottomPartBookPage book={oneElectronicBook} />
       </div>
    )

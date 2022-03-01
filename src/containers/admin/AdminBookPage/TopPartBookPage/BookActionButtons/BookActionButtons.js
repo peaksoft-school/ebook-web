@@ -4,7 +4,12 @@ import Button from '../../../../../components/UI/Button/Button'
 import ModalForReject from '../../ModalForReject/ModalForReject'
 import ModalForAccept from '../../ModalForAccept/ModalForAccept'
 
-const BookActionButtons = ({ bookName }) => {
+const BookActionButtons = ({
+   bookName,
+   bookId,
+   sendRequestRejectingBook,
+   sendRequestAcceptingBook,
+}) => {
    const [isShowRejectModal, setShowRejectModal] = useState(false)
    const [isShowAcceptModal, setShowAcceptModal] = useState(false)
 
@@ -14,6 +19,7 @@ const BookActionButtons = ({ bookName }) => {
 
    const showAcceptModal = () => {
       setShowAcceptModal((isShowAcceptModal) => !isShowAcceptModal)
+      sendRequestAcceptingBook(bookId)
    }
 
    const checkAccepting = isShowAcceptModal === true
@@ -29,8 +35,7 @@ const BookActionButtons = ({ bookName }) => {
 
    const sendRejectingBookHundler = (sendingText) => {
       setShowRejectModal((isShowRejectModal) => !isShowRejectModal)
-      // пока нету api отклонения
-      console.log(sendingText)
+      sendRequestRejectingBook(sendingText)
    }
 
    return (

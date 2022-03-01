@@ -1,9 +1,9 @@
 import classes from './TopPartBookPage.module.css'
 import ContainerForBriefInformation from './ContainerForBriefInformation/ContainerForBriefInformation'
 import SmallContainer from './SmallContainer/SmallContainer'
-import Buttons from './BookActionButtons/BookActionButtons'
+import BookActionButtons from './BookActionButtons/BookActionButtons'
 
-const TopPartBookPage = ({ book }) => {
+const TopPartBookPage = ({ book, sendDeletedBook }) => {
    return (
       <div className={classes.meddiumContainer}>
          <img
@@ -20,7 +20,11 @@ const TopPartBookPage = ({ book }) => {
             <h1 className={classes.title}>{book.book_name}</h1>
             <SmallContainer book={book} />
             <ContainerForBriefInformation book={book} />
-            <Buttons bookName={book.book_name} />
+            <BookActionButtons
+               sendDeletedBook={sendDeletedBook}
+               bookName={book.book_name}
+               bookId={book.id}
+            />
          </div>
       </div>
    )

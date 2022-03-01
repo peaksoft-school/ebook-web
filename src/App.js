@@ -4,7 +4,7 @@ import './App.css'
 // import { asyncAutoUpdateBreadcrumb } from './store/breadCrumbsSlice'
 // import AdminRoutes from './routes/AdminRoutes'
 // import { asyncUpdateUserRole } from './store/userRoleSlice'
-import AdminBookPage from './containers/admin/AdminBookPage/AdminBookPage'
+import ClientBookPage from './containers/client/ClientBookPage/ClientBookPage'
 
 function App() {
    // const dispatch = useDispatch()
@@ -17,7 +17,7 @@ function App() {
    return (
       <div className="App">
          {/* <AdminRoutes /> */}
-         <AdminBookPage />
+         <ClientBookPage />
       </div>
    )
 }
