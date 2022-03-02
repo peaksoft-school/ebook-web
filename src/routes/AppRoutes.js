@@ -11,6 +11,7 @@ import PrivateRouteForUser from '../components/UI/PrivateRoutes/PrivateRouteForU
 import PrivatePouteForVendor from '../components/UI/PrivateRoutes/PrivatePouteForVendor/PrivatePouteForVendor'
 import AuthModal from '../components/auth/authModal/AuthModal'
 import ClientMainPage from '../containers/client/ClientMainPage/ClientMainPage'
+import PromoCodePage from '../containers/client/PromoCodePage/PromoCodePage'
 
 function AppRoutes() {
    return (
@@ -118,7 +119,7 @@ function AppRoutes() {
                </PrivateRouteForUser>
             }
          />
-         <Route path={ROUTES.PROMO_CODE} element={<p>PROMO_CODE</p>} />
+         <Route path={ROUTES.PROMO_CODE} element={<PromoCodePage />} />
          <Route
             path={ROUTES.USER_PROFILE}
             element={

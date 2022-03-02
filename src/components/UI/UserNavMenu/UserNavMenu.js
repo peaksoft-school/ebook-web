@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ROUTES } from '../../../utils/constants/constants'
 import classes from './UserNavMenu.module.css'
 import GengreDropDownList from './GengreDropDownList/GengreDropDownList'
 import { ReactComponent as GenreIcon } from '../../../assets/icons/genreIcon.svg'
@@ -23,7 +25,9 @@ const UserNavMenu = () => {
          <div className={classes.containerForLinks}>
             <p className={classes.linkText}>Электронные книги</p>
             <p className={classes.linkText}>Audio books</p>
-            <p className={classes.linkText}>Промокоды</p>
+            <Link to={ROUTES.PROMO_CODE}>
+               <p className={classes.linkText}>Промокоды</p>
+            </Link>
             <p className={classes.linkActiveText}>Начать продавать на eBook</p>
          </div>
          <Button className={classes.buttonSize}>Войти</Button>
