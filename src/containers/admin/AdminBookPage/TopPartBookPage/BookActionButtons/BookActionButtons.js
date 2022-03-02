@@ -30,7 +30,9 @@ const BookActionButtons = ({
       if (checkAccepting) {
          return acceptTimer
       }
-      return clearTimeout(acceptTimer)
+      return () => {
+         clearTimeout(acceptTimer)
+      }
    }, [checkAccepting])
 
    const sendRejectingBookHundler = (sendingText) => {
