@@ -11,6 +11,7 @@ import PrivateRouteForUser from '../components/UI/PrivateRoutes/PrivateRouteForU
 import PrivatePouteForVendor from '../components/UI/PrivateRoutes/PrivatePouteForVendor/PrivatePouteForVendor'
 import AuthModal from '../components/auth/authModal/AuthModal'
 import ClientMainPage from '../containers/client/ClientMainPage/ClientMainPage'
+import Applications from '../containers/admin/Applications/Applications'
 
 function AppRoutes() {
    return (
@@ -25,7 +26,14 @@ function AppRoutes() {
                </PrivateRouteForAdmin>
             }
          >
-            <Route path={ROUTES.APPLICATIONS} element={<h1>APP</h1>} />
+            <Route
+               path={ROUTES.APPLICATIONS}
+               element={
+                  <PrivateRouteForAdmin>
+                     <Applications />
+                  </PrivateRouteForAdmin>
+               }
+            />
             <Route
                path={ROUTES.SELLERS}
                element={
