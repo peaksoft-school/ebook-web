@@ -79,7 +79,7 @@ function AppRoutes() {
             path={ROUTES.VENDOR_AREA}
             element={
                <PrivatePouteForVendor>
-                  <p>VENDOR_AREA</p>
+                  <AddBookForm />
                </PrivatePouteForVendor>
             }
          />
