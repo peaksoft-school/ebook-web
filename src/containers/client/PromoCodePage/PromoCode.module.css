@@ -1,0 +1,65 @@
+.promo {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   margin-top: 50px;
+   margin: auto;
+}
+
+.title {
+   font-family: Open Sans;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 18px;
+   color: #222222;
+   margin-bottom: 26px;
+}
+
+.input {
+   width: 688px;
+   height: 34px;
+   padding-left: 18px;
+}
+
+.button {
+   display: flex;
+   align-items: center;
+   padding: 8px 40px 9px;
+   background: #f34901;
+   color: #ffffff;
+   cursor: pointer;
+   border-color: rgba(0, 0, 0, 0);
+}
+
+.textarea {
+   display: flex;
+}
+.span {
+   font-family: Open Sans;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   color: #222222;
+   margin-top: 26px;
+   margin-bottom: 93px;
+}
+
+.result {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   margin-bottom: 28px;
+   width: 1280px;
+}
+
+.container {
+   margin: auto;
+}
+.foundBook {
+   font-family: Open Sans;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   color: #969696;
+   margin-bottom: 136px;
+}
