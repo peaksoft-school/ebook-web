@@ -42,6 +42,7 @@ export const ROUTES = {
    PROFILE_HISTORY: '/client/profilehistory',
    BECOME_VENDOR: '/client/becomevendor',
    LOGIN: '/login',
+   NO_ACCESS: '/noaccess',
    SIDE_DRAWER_DATA: [
       {
          route_Activeicon: APPLICATION,
