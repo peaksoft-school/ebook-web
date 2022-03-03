@@ -12,6 +12,8 @@ import PrivatePouteForVendor from '../components/UI/PrivateRoutes/PrivatePouteFo
 import AuthModal from '../components/auth/authModal/AuthModal'
 import ClientMainPage from '../containers/client/ClientMainPage/ClientMainPage'
 import PromoCodePage from '../containers/client/PromoCodePage/PromoCodePage'
+import NoAccess from '../containers/NoAccess/NoAccess'
+import HowToBecomeToVendorPage from '../containers/client/HowToBecomeVendorPage/HowToBecomeVendorPage'
 
 function AppRoutes() {
    return (
@@ -136,7 +138,11 @@ function AppRoutes() {
                </PrivateRouteForUser>
             }
          />
-         <Route path={ROUTES.BECOME_VENDOR} element={<p>BECOME_VENDOR</p>} />
+         <Route path={ROUTES.NO_ACCESS} element={<NoAccess />} />
+         <Route
+            path={ROUTES.BECOME_VENDOR}
+            element={<HowToBecomeToVendorPage />}
+         />
       </Routes>
    )
 }

@@ -28,7 +28,11 @@ const UserNavMenu = () => {
             <Link to={ROUTES.PROMO_CODE}>
                <p className={classes.linkText}>Промокоды</p>
             </Link>
-            <p className={classes.linkActiveText}>Начать продавать на eBook</p>
+            <Link to={ROUTES.BECOME_VENDOR}>
+               <p className={classes.linkActiveText}>
+                  Начать продавать на eBook
+               </p>
+            </Link>
          </div>
          <Button className={classes.buttonSize}>Войти</Button>
          {isShowGenres && <GengreDropDownList />}
