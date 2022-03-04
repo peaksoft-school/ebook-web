@@ -5,7 +5,7 @@ const AuthModal = (props) => {
    const { onClose } = props
    return (
       <Modal onClose={onClose}>
-         <AuthForm />
+         <AuthForm onClose={onClose} />
       </Modal>
    )
 }

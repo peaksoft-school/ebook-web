@@ -1,45 +1,82 @@
 .userNavMenuContainer {
-    display: flex;
-    justify-content: space-between;
-    width: 1280px;
-    margin: 0 auto;
+   display: flex;
+   justify-content: space-between;
+   width: 1280px;
+   margin: 0 auto;
+   margin-bottom: 20px;
 }
 
 .genreContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100px;
-    cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 100px;
+   cursor: pointer;
 }
 
 .genreIcon {
-    width: 37;
-    height: 12px;
+   width: 37;
+   height: 12px;
 }
 
 .containerForLinks {
-    display: flex;
-    justify-content: space-between;
-    width: 600px;
-    margin-right: 200px;
+   display: flex;
+   justify-content: space-between;
+   width: 600px;
+   margin-right: 200px;
 }
 
 .linkText {
-    font-weight: 400;
-    font-size: 14px;
-    color: #222222;
-    cursor: pointer;
+   font-weight: 400;
+   font-size: 14px;
+   color: #222222;
+   cursor: pointer;
 }
 
 .linkActiveText {
-    font-weight: 600;
-    font-size: 14px;
-    color: #FF4C00;
-    cursor: pointer;
+   font-weight: 600;
+   font-size: 14px;
+   color: #ff4c00;
+   cursor: pointer;
 }
 
 .buttonSize {
-    width: 100px;
-    height: 40px;
+   width: 100px;
+   height: 40px;
+}
+
+.icon {
+   margin-right: 10px;
+}
+
+.popUp {
+   display: flex;
+   flex-direction: column;
+   background: #e5e5e5;
+   color: #222222;
+   width: 100px;
+   height: 53px;
+   padding: 10px;
+   position: absolute;
+   margin-top: 10px;
+   animation: slide-down 300ms ease-out forwards;
+}
+
+.logout {
+   border-bottom: 3px solid #c4c4c4;
+   padding: 5px;
+   margin: 0;
+}
+.profile {
+   margin: 0;
+}
+@keyframes slide-down {
+   from {
+      opacity: 0;
+      transform: translateY(-3rem);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
 }
