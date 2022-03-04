@@ -10,7 +10,7 @@ import {
    IS_USER,
 } from '../../../utils/constants/constants'
 
-const AuthForm = () => {
+const AuthForm = ({ onClose }) => {
    const [typeOfRegistration, setTypeOfRegistration] = useState(IS_LOGIN)
 
    const showSignInFormRegistration = typeOfRegistration === IS_LOGIN
@@ -67,7 +67,7 @@ const AuthForm = () => {
                Регистрация
             </button>
          </div>
-         {showSignInFormRegistration && <SignInForm />}
+         {showSignInFormRegistration && <SignInForm onClose={onClose} />}
          {showNewUserFormRegistration && (
             <>
                <ClientRegistrationForm />
