@@ -9,15 +9,16 @@ import AdminLayout from '../components/admin/AdminLayout/AdminLayout'
 import PrivateRouteForAdmin from '../components/UI/PrivateRoutes/PrivateRouteForAdmin/PrivateRouteForAdmin'
 import PrivateRouteForUser from '../components/UI/PrivateRoutes/PrivateRouteForUser/PrivateRouteForUser'
 import PrivatePouteForVendor from '../components/UI/PrivateRoutes/PrivatePouteForVendor/PrivatePouteForVendor'
-import AuthModal from '../components/auth/authModal/AuthModal'
 import ClientMainPage from '../containers/client/ClientMainPage/ClientMainPage'
 import Applications from '../containers/admin/Applications/Applications'
+import PromoCodePage from '../containers/client/PromoCodePage/PromoCodePage'
+import NoAccess from '../containers/NoAccess/NoAccess'
+import HowToBecomeToVendorPage from '../containers/client/HowToBecomeVendorPage/HowToBecomeVendorPage'
 
 function AppRoutes() {
    return (
       <Routes>
-         <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
-         <Route path={ROUTES.LOGIN} element={<AuthModal />} />
+         <Route path="*" element={<Navigate to={ROUTES.NO_ACCESS} />} />
          <Route
             path={ROUTES.HOME}
             element={
@@ -107,26 +108,20 @@ function AppRoutes() {
                </PrivatePouteForVendor>
             }
          />
-         <Route
-            path={ROUTES.CLIENT}
-            element={
-               <PrivateRouteForUser>
-                  <ClientMainPage />
-               </PrivateRouteForUser>
-            }
-         />
-         <Route path={ROUTES.SORT} element={<ClientMainPage />} />
+         <Route path={ROUTES.CLIENT} element={<ClientMainPage />} />
+         <Route path={ROUTES.SORT} element={<p>SORT</p>} />
          <Route path={ROUTES.INNER_PAGE} element={<p>INNER PAGE</p>} />
          <Route path={ROUTES.AUDIO_PAGE} element={<p>AUDIO_PAGE</p>} />
          <Route
             path={ROUTES.CART}
             element={
                <PrivateRouteForUser>
-                  <ClientMainPage />
+                  {/* <ClientMainPage /> */}
+                  <h1>Card</h1>
                </PrivateRouteForUser>
             }
          />
-         <Route path={ROUTES.PROMO_CODE} element={<p>PROMO_CODE</p>} />
+         <Route path={ROUTES.PROMO_CODE} element={<PromoCodePage />} />
          <Route
             path={ROUTES.USER_PROFILE}
             element={
@@ -143,7 +138,11 @@ function AppRoutes() {
                </PrivateRouteForUser>
             }
          />
-         <Route path={ROUTES.BECOME_VENDOR} element={<p>BECOME_VENDOR</p>} />
+         <Route path={ROUTES.NO_ACCESS} element={<NoAccess />} />
+         <Route
+            path={ROUTES.BECOME_VENDOR}
+            element={<HowToBecomeToVendorPage />}
+         />
       </Routes>
    )
 }
