@@ -13,6 +13,7 @@ import { sendWithFormDataToApi, sendRequest } from '../../../../utils/helpers'
 import Modal from '../../../../components/UI/modal-window/ModalWindow'
 import { UPLOAD_IMAGE } from '../../../../utils/constants/urls'
 import SuccessfulMessage from '../../../../components/UI/successMessage/SuccessfulMessage'
+import BookSpinner from '../../../../components/UI/loadingSpinner/BookSpinner'
 
 const schema = yup.object().shape({
    bookName: yup.string().required(),
@@ -42,6 +43,7 @@ const Papperbook = (props) => {
    const [typeOfLanguage, setTypeOfLanguage] = useState('')
    const [bestSeller, setBestseller] = useState(false)
    const [isModal, setIsModal] = useState(false)
+   const [isLoading, setIsLoading] = useState(false)
    const [responseAnswer, setResponseAnswer] = useState({
       error: null,
       bookName: '',
@@ -73,6 +75,7 @@ const Papperbook = (props) => {
    })
 
    const submitHandler = async (data) => {
+      setIsLoading(true)
       const firstImageConfig = {
          file: mainPicture.avatar,
          url: UPLOAD_IMAGE,
@@ -110,15 +113,14 @@ const Papperbook = (props) => {
             bookName,
             author,
             description,
-            price: `${price}`,
-            discount: `${discount}`,
+            price,
+            discount,
             genreId: +genreId,
             language: typeOfLanguage,
             dataOfIssue,
             bestSeller,
             book: { fragment, quantityOfBooks, pageSize, publishingHouse },
          }
-
          const sendPaperBookUrl = 'api/books/save/paper_book'
          const requestConfig = {
             method: 'POST',
@@ -126,12 +128,14 @@ const Papperbook = (props) => {
             body: trasformedBook,
          }
          const response = await sendRequest(requestConfig)
+         setIsLoading(false)
          setResponseAnswer({
             bookName: response.bookName,
-            error: null,
+            error: '',
          })
          return setIsModal(true)
       } catch (error) {
+         setIsLoading(false)
          setResponseAnswer({
             error: error.message || 'Something went wrong !',
          })
@@ -156,6 +160,8 @@ const Papperbook = (props) => {
                   />
                </Modal>
             )}
+            {isLoading && <BookSpinner />}
+
             <div className={classes.rightSection}>
                <Input
                   label="Название книги"
