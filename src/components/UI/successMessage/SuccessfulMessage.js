@@ -3,16 +3,15 @@ import { ReactComponent as ErrorIcon } from '../../../assets/icons/error-icon.sv
 import { ReactComponent as Successful } from '../../../assets/icons/successful-icon.svg'
 
 const SuccessfulMessage = (props) => {
-   console.log(props)
    const { apiAnswer, onClose } = props
    const message = apiAnswer.error || apiAnswer.bookName
 
-   const successMessage = apiAnswer.error ? '' : 'успешно добавлен!'
+   const successMessage = apiAnswer.error ? '' : apiAnswer.message
 
    const isSuccessIcon = apiAnswer.error ? (
       <ErrorIcon onClick={onClose} className={classes.successBoxIcon} />
    ) : (
-      <Successful />
+      <Successful onClick={onClose} />
    )
 
    return (

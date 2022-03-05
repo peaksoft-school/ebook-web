@@ -72,6 +72,11 @@ const VendorAddBookForm = () => {
       setThirdPicture(image)
    }
 
+   const deleteAllPictureHandler = () => {
+      setMainPicture('')
+      setSecondPicture('')
+      setThirdPicture('')
+   }
    const deleteMainPictureHandler = () => {
       setMainPicture('')
    }
@@ -145,6 +150,7 @@ const VendorAddBookForm = () => {
                      mainPicture={mainPicture}
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
                {audioBook && (
