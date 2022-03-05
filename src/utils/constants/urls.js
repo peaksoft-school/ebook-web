@@ -36,7 +36,7 @@ const DELETE_GENRES = 'api/genres/delete'
 
 export const APPLICATIONS = {
    REJECT_APLLICATION: 'api/admin/refuse/book/request',
-   ACCEPT_APPLICATION: 'api/admin/accept/book/request/',
+   ACCEPT_APPLICATION: 'api/admin/accept/book/request',
    GET_ALL_APPLICATIONS: 'api/admin/get/books/requests',
    GET_ALL_ACCEPTED_BOOKS: 'api/admin/get/books/accepted',
 }

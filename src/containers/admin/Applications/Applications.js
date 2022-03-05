@@ -1,13 +1,18 @@
 import { useEffect } from 'react'
 import classes from './Applications.module.css'
-import { sendRequest } from '../../../utils/helpers'
+import { getFromLocalStorage, sendRequest } from '../../../utils/helpers'
 import { APPLICATIONS } from '../../../utils/constants/urls'
+import { EBOOKPERSONTOKEN } from '../../../utils/constants/constants'
 
 const Applications = () => {
-   const getApplications = async () => {
-      const configRequest = { url: APPLICATIONS.GET_ALL_APPLICATIONS }
-      const response = await sendRequest(configRequest)
-      await console.log(response)
+   const getApplications = () => {
+      const userInfo = getFromLocalStorage(EBOOKPERSONTOKEN)
+      const configRequest = {
+         url: APPLICATIONS.ACCEPT_APPLICATIONS,
+         body: userInfo.token,
+      }
+      const response = sendRequest(configRequest)
+      console.log(response)
    }
 
    useEffect(() => {
