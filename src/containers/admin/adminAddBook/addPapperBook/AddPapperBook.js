@@ -37,6 +37,7 @@ const Papperbook = (props) => {
       mainPicture,
       secondPicture,
       thirdPicture,
+      deleteAllPictureHandler,
    } = props
 
    const [genreId, setGenreId] = useState('')
@@ -69,6 +70,7 @@ const Papperbook = (props) => {
       register,
       handleSubmit,
       formState: { errors },
+      reset,
    } = useForm({
       mode: 'all',
       resolver: yupResolver(schema),
@@ -132,7 +134,10 @@ const Papperbook = (props) => {
          setResponseAnswer({
             bookName: response.bookName,
             error: '',
+            message: 'успешно добавлен!',
          })
+         deleteAllPictureHandler()
+         reset()
          return setIsModal(true)
       } catch (error) {
          setIsLoading(false)
