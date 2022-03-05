@@ -18,6 +18,7 @@ const STYLES = [
    'btnActive',
    'aboutMoreBtn',
    'goBack',
+   'profile',
 ]
 
 const Button = ({ className, onClick, disabled, children, variant }) => {
