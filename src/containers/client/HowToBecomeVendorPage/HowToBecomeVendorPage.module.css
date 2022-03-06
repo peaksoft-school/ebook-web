@@ -1,8 +1,8 @@
 .howToBecomeVendorPageWrapper {
-    width: 100%;
+   width: 1440px;
+   margin: 0 auto;
 }
 
 .HowToBecomeVendorContainer {
-    width: 1440px;
-    margin: 0 auto;
+   margin: 0 auto;
 }
