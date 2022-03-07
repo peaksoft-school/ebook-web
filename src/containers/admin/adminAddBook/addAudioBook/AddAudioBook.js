@@ -17,6 +17,8 @@ import {
    SEND_AUDIO_BOOK_URL,
 } from '../../../../utils/constants/urls'
 import AudioDropZone from '../../../../components/UI/audioDropZone/AudioDropZone'
+import Modal from '../../../../components/UI/modal-window/ModalWindow'
+import SuccessfulMessage from '../../../../components/UI/successMessage/SuccessfulMessage'
 
 const schema = yup.object().shape({
    bookName: yup.string().required(),
@@ -46,6 +48,11 @@ const AudioBook = (props) => {
    const [genreId, setGenreId] = useState('')
    const [typeOfLanguage, setTypeOfLanguage] = useState('')
    const [bestSeller, setBestseller] = useState(false)
+   const [isModal, setIsModal] = useState(false)
+   const [responseAnswer, setResponseAnswer] = useState({
+      error: null,
+      bookName: '',
+   })
 
    const [audio, setAudio] = useState({ audio: {} })
 
@@ -63,29 +70,9 @@ const AudioBook = (props) => {
       setBestseller(value)
    }
 
-   const mainAvatar = {
-      file: mainPicture.avatar,
-      url: UPLOAD_IMAGE,
+   const onChangeModal = () => {
+      setIsModal((prevState) => !prevState)
    }
-   const secondAvatar = {
-      file: secondPicture.avatar,
-      url: UPLOAD_IMAGE,
-   }
-   const thirdAvatar = {
-      file: thirdPicture.avatar,
-      url: UPLOAD_IMAGE,
-   }
-
-   const uploadAudioOption = {
-      file: audio.audio,
-      url: UPLOAD_AUDIO_FILE,
-   }
-
-   const uploadFragmentOption = {
-      file: fragment.audio,
-      url: UPLOAD_AUDIO_FRAGMENT,
-   }
-
    const audioOption = {
       title: 'Загрузите аудиозапись',
       timeDuration: '',
@@ -97,53 +84,95 @@ const AudioBook = (props) => {
       id: 'f2',
    }
    const submitHandler = async (data) => {
-      const idOfMainAvatar = await sendWithFormDataToApi(mainAvatar)
-      const idOfSecondAvatar = await sendWithFormDataToApi(secondAvatar)
-      const idOfThirdAvatar = await sendWithFormDataToApi(thirdAvatar)
+      const firstImageConfig = {
+         file: mainPicture.avatar,
+         url: UPLOAD_IMAGE,
+      }
+      const secondImageConfig = {
+         file: secondPicture.avatar,
+         url: UPLOAD_IMAGE,
+      }
+      const thridImageConfig = {
+         file: thirdPicture.avatar,
+         url: UPLOAD_IMAGE,
+      }
 
-      const uploadFragment = await sendWithFormDataToApi(uploadAudioOption)
-      const uploadAudio = await sendWithFormDataToApi(uploadFragmentOption)
+      const uploadAudioOption = {
+         file: audio.audio,
+         url: UPLOAD_AUDIO_FILE,
+      }
 
-      const {
-         author,
-         bookName,
-         dataOfIssue,
-         description,
-         discount,
-         hour,
-         minute,
-         price,
-         second,
-      } = data
-      const transformedData = {
-         images: [idOfMainAvatar.id, idOfSecondAvatar.id, idOfThirdAvatar.id],
-         bookName,
-         author,
-         genreId,
-         description,
-         dataOfIssue,
-         typeOfLanguage,
-         bestSeller,
-         price,
-         discount,
-         book: {
-            id: 1, // Beksultan should know
-            fragmentId: uploadFragment.id,
-            duration: {
-               hour,
-               minute,
-               second,
+      const uploadFragmentOption = {
+         file: fragment.audio,
+         url: UPLOAD_AUDIO_FRAGMENT,
+      }
+      try {
+         const firstImageId = await sendWithFormDataToApi(firstImageConfig)
+         const secondImageId = await sendWithFormDataToApi(secondImageConfig)
+         const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
+
+         const uploadFragment = await sendWithFormDataToApi(uploadAudioOption)
+         const uploadAudio = await sendWithFormDataToApi(uploadFragmentOption)
+         if (
+            firstImageId.ok &&
+            secondImageId.ok &&
+            thirdImageId.ok &&
+            uploadFragment.ok &&
+            uploadAudio.ok
+         )
+            await setResponseAnswer({
+               error: firstImageId || secondImageId || thirdImageId,
+            })
+         const {
+            author,
+            bookName,
+            dataOfIssue,
+            description,
+            discount,
+            hour,
+            minute,
+            price,
+            second,
+         } = data
+         const transformedData = {
+            images: [firstImageId.id, secondImageId.id, thirdImageId.id],
+            bookName,
+            author,
+            genreId,
+            description,
+            dataOfIssue,
+            typeOfLanguage,
+            bestSeller,
+            price,
+            discount,
+            book: {
+               id: 1,
+               fragmentId: uploadFragment.id,
+               duration: {
+                  hour,
+                  minute,
+                  second,
+               },
+               audioBookId: uploadAudio.id,
             },
-            audioBookId: uploadAudio.id,
-         },
+         }
+         const requestConfig = {
+            method: 'POST',
+            url: SEND_AUDIO_BOOK_URL,
+            body: transformedData,
+         }
+         const response = await sendRequest(requestConfig)
+         setResponseAnswer({
+            bookName: response.bookName,
+            error: null,
+         })
+         return setIsModal(true)
+      } catch (error) {
+         setResponseAnswer({
+            error: error.message || 'Something went wrong !',
+         })
+         return setIsModal(true)
       }
-      const requestConfig = {
-         method: 'POST',
-         url: SEND_AUDIO_BOOK_URL,
-         body: transformedData,
-      }
-      const response = await sendRequest(requestConfig)
-      return response
    }
    return (
       <form
@@ -151,6 +180,14 @@ const AudioBook = (props) => {
          className={classes.formControl}
       >
          <WrapperOfForms>
+            {isModal && (
+               <Modal onClose={onChangeModal}>
+                  <SuccessfulMessage
+                     apiAnswer={responseAnswer}
+                     onClose={onChangeModal}
+                  />
+               </Modal>
+            )}
             <section className={classes.rightSection}>
                <Input
                   {...register('bookName')}

@@ -22,7 +22,7 @@ const AdminIcon = () => {
       deleteFromLocalStorage('EbookUserToken')
       dispatch(setAuth.logout())
       dispatch(userRoleReducerActions.cleanRoleData())
-      navigate(ROUTES.LOGIN)
+      navigate(ROUTES.CLIENT_MAIN_PAGE)
    }
 
    return (

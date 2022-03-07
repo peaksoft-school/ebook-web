@@ -10,7 +10,10 @@ import CustomTextarea from '../../../../components/UI/customTextarea/CustomTexta
 import CustomCheckbox from '../../../../components/UI/customCheckbox/CustomCheckbox'
 import GenresSelect from '../../../../components/UI/genresSelect/GenresSelect'
 import { sendWithFormDataToApi, sendRequest } from '../../../../utils/helpers'
+import Modal from '../../../../components/UI/modal-window/ModalWindow'
 import { UPLOAD_IMAGE } from '../../../../utils/constants/urls'
+import SuccessfulMessage from '../../../../components/UI/successMessage/SuccessfulMessage'
+import BookSpinner from '../../../../components/UI/loadingSpinner/BookSpinner'
 
 const schema = yup.object().shape({
    bookName: yup.string().required(),
@@ -34,11 +37,22 @@ const Papperbook = (props) => {
       mainPicture,
       secondPicture,
       thirdPicture,
+      deleteAllPictureHandler,
    } = props
 
    const [genreId, setGenreId] = useState('')
    const [typeOfLanguage, setTypeOfLanguage] = useState('')
    const [bestSeller, setBestseller] = useState(false)
+   const [isModal, setIsModal] = useState(false)
+   const [isLoading, setIsLoading] = useState(false)
+   const [responseAnswer, setResponseAnswer] = useState({
+      error: null,
+      bookName: '',
+   })
+
+   const onChangeModal = () => {
+      setIsModal((prevState) => !prevState)
+   }
 
    const onChangeLanguagesValue = (lang) => {
       setTypeOfLanguage(lang)
@@ -56,62 +70,82 @@ const Papperbook = (props) => {
       register,
       handleSubmit,
       formState: { errors },
+      reset,
    } = useForm({
       mode: 'all',
       resolver: yupResolver(schema),
    })
 
-   const mainAvatar = {
-      file: mainPicture.avatar,
-      url: UPLOAD_IMAGE,
-   }
-   const secondAvatar = {
-      file: secondPicture.avatar,
-      url: UPLOAD_IMAGE,
-   }
-   const thirdAvatar = {
-      file: thirdPicture.avatar,
-      url: UPLOAD_IMAGE,
-   }
-
    const submitHandler = async (data) => {
-      const idOfMainAvatar = await sendWithFormDataToApi(mainAvatar)
-      const idOfSecondAvatar = await sendWithFormDataToApi(secondAvatar)
-      const idOfThirdAvatar = await sendWithFormDataToApi(thirdAvatar)
-      const {
-         bookName,
-         author,
-         description,
-         price,
-         discount,
-         fragment,
-         quantityOfBooks,
-         pageSize,
-         publishingHouse,
-         dataOfIssue,
-      } = data
-      const trasformedBook = {
-         images: [idOfMainAvatar.id, idOfSecondAvatar.id, idOfThirdAvatar.id],
-         bookName,
-         author,
-         description,
-         price: `${price}`,
-         discount: `${discount}`,
-         genreId: +genreId,
-         language: typeOfLanguage,
-         dataOfIssue,
-         bestSeller,
-         book: { fragment, quantityOfBooks, pageSize, publishingHouse },
+      setIsLoading(true)
+      const firstImageConfig = {
+         file: mainPicture.avatar,
+         url: UPLOAD_IMAGE,
       }
-
-      const sendPaperBookUrl = 'api/books/save/paper_book'
-      const requestConfig = {
-         method: 'POST',
-         url: sendPaperBookUrl,
-         body: trasformedBook,
+      const secondImageConfig = {
+         file: secondPicture.avatar,
+         url: UPLOAD_IMAGE,
       }
-      const response = await sendRequest(requestConfig)
-      return response
+      const thridImageConfig = {
+         file: thirdPicture.avatar,
+         url: UPLOAD_IMAGE,
+      }
+      try {
+         const firstImageId = await sendWithFormDataToApi(firstImageConfig)
+         const secondImageId = await sendWithFormDataToApi(secondImageConfig)
+         const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
+         if (firstImageId.ok && secondImageId.ok && thirdImageId.ok)
+            await setResponseAnswer({
+               error: firstImageId || secondImageId || thirdImageId,
+            })
+         const {
+            bookName,
+            author,
+            description,
+            price,
+            discount,
+            fragment,
+            quantityOfBooks,
+            pageSize,
+            publishingHouse,
+            dataOfIssue,
+         } = data
+         const trasformedBook = {
+            images: [firstImageId.id, secondImageId.id, thirdImageId.id],
+            bookName,
+            author,
+            description,
+            price,
+            discount,
+            genreId: +genreId,
+            language: typeOfLanguage,
+            dataOfIssue,
+            bestSeller,
+            book: { fragment, quantityOfBooks, pageSize, publishingHouse },
+         }
+         const sendPaperBookUrl = 'api/books/save/paper_book'
+         const requestConfig = {
+            method: 'POST',
+            url: sendPaperBookUrl,
+            body: trasformedBook,
+         }
+         const response = await sendRequest(requestConfig)
+         setIsLoading(false)
+         setResponseAnswer({
+            bookName: response.bookName,
+            error: '',
+            message: 'успешно добавлен!',
+         })
+         deleteAllPictureHandler()
+         reset()
+         return setIsModal(true)
+      } catch (error) {
+         setIsLoading(false)
+         setResponseAnswer({
+            error: error.message || 'Something went wrong !',
+         })
+         return setIsModal(true)
+      }
    }
    const getOptionLabel = (item) => item
 
@@ -123,6 +157,16 @@ const Papperbook = (props) => {
          className={classes.formControl}
       >
          <WrapperOfForms>
+            {isModal && (
+               <Modal onClose={onChangeModal}>
+                  <SuccessfulMessage
+                     apiAnswer={responseAnswer}
+                     onClose={onChangeModal}
+                  />
+               </Modal>
+            )}
+            {isLoading && <BookSpinner />}
+
             <div className={classes.rightSection}>
                <Input
                   label="Название книги"

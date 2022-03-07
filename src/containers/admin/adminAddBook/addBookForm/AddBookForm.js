@@ -12,7 +12,7 @@ import {
 } from '../../../../utils/constants/constants'
 
 const AddBookForm = () => {
-   const [typeOfBook, setTypeOfBook] = useState(IS_AUDIOBOOK)
+   const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
    const [allLanguages, setGetAllLanguages] = useState([])
    const [allGenres, setGetAllGenres] = useState([])
 
@@ -72,6 +72,12 @@ const AddBookForm = () => {
    }
    const onChangeThirdPictureHandler = (image) => {
       setThirdPicture(image)
+   }
+
+   const deleteAllPictureHandler = () => {
+      setMainPicture('')
+      setSecondPicture('')
+      setThirdPicture('')
    }
 
    const deleteMainPictureHandler = () => {
@@ -147,6 +153,7 @@ const AddBookForm = () => {
                      mainPicture={mainPicture}
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
                {audioBook && (
@@ -158,7 +165,15 @@ const AddBookForm = () => {
                      thirdPicture={thirdPicture}
                   />
                )}
-               {electroBook && <ElectroBook />}
+               {electroBook && (
+                  <ElectroBook
+                     languagesFromApi={allLanguages}
+                     genres={allGenres}
+                     mainPicture={mainPicture}
+                     secondPicture={secondPicture}
+                     thirdPicture={thirdPicture}
+                  />
+               )}
             </section>
          </main>
       </div>

@@ -1,7 +1,7 @@
 import classes from './BottomPart.module.css'
 import StartSection from './StartSection/StartSection'
 import Conditions from './Conditions/Conditions'
-import Button from '../../../components/UI/Button/Button'
+import Button from '../../../../components/UI/Button/Button'
 
 const BottomPart = () => {
    return (
