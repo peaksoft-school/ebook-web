@@ -12,7 +12,7 @@ const VendorBookCard = (props) => {
       setPopUpShown((prevState) => !prevState)
    }
    const imageSrc = getImageUrl(book.image.id)
-   console.log(book)
+
    return (
       <div className={classes.containterVendorBookCard}>
          <div className={classes.styles}>
