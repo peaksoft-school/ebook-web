@@ -12,7 +12,7 @@ const VendorBookCard = (props) => {
       setPopUpShown((prevState) => !prevState)
    }
    const imageSrc = getImageUrl(book.image.id)
-
+   console.log(book)
    return (
       <div className={classes.containterVendorBookCard}>
          <div className={classes.styles}>
@@ -21,10 +21,11 @@ const VendorBookCard = (props) => {
                role="presentation"
                className={`${classes.card} ${className}`}
                onClick={isOpen}
+               key={book.bookId}
             >
                <TopPartInVendorCard
-                  numberOfFavorites={book.numberOfFavorites}
-                  numberOfBasket={book.numberOfBasket}
+                  numberOfFavorites={book.likes}
+                  numberOfBasket={book.inBasket}
                   popUpChangeHandler={popUpChangeHandler}
                />
                {popUpShown && <PopUp />}

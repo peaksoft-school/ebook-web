@@ -14,7 +14,7 @@ const TopPartInVendorCard = (props) => {
 
    return (
       <div className={classes.containerForTopPartCardBook}>
-         {numberOfFavorites && (
+         {numberOfFavorites || (
             <div className={classes.heartBox}>
                <HeartIcon
                   onClick={activateHeartHundler}
@@ -25,7 +25,7 @@ const TopPartInVendorCard = (props) => {
                <p className={classes.heartBoxText}>({numberOfFavorites})</p>
             </div>
          )}
-         {numberOfBasket && (
+         {numberOfBasket || (
             <p className={classes.basket}>в корзине({numberOfBasket})</p>
          )}
          <Icon className={classes.vector} onClick={popUpChangeHandler} />
