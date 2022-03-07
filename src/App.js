@@ -2,8 +2,10 @@ import './App.css'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { asyncAutoUpdateBreadcrumb } from './store/breadCrumbsSlice'
-import AppRoutes from './routes/AppRoutes'
+// import AppRoutes from './routes/AppRoutes'
 import { asyncUpdateUserRole } from './store/userRoleSlice'
+import UpdateClientFormAccount from './containers/client/updateClientAccount/UpdateClientAccountForm'
+// import BooksCratLayout from './components/adminsBookCrat/BooksCrat'
 
 function App() {
    const dispatch = useDispatch()
@@ -15,7 +17,11 @@ function App() {
 
    return (
       <div className="App">
-         <AppRoutes />
+         {/* <AppRoutes /> */}
+         {/* <UpdateVendorFormAccount /> */}
+         {/* <UpdateClientFormAccount /> */}
+         {/* <BooksCratLayout /> */}
+         <UpdateClientFormAccount />
       </div>
    )
 }
