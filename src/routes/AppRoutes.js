@@ -15,7 +15,7 @@ import NoAccess from '../containers/NoAccess/NoAccess'
 import HowToBecomeToVendorPage from '../containers/client/HowToBecomeVendorPage/HowToBecomeVendorPage'
 import ClientLayout from '../components/client/ClientLayout/ClientLayout'
 import VendorLayout from '../components/vendor/VendorLayout/VendorLayout'
-import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
+import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
 
 function AppRoutes() {
    return (
@@ -36,7 +36,7 @@ function AppRoutes() {
             <Route path={ROUTES.USERBYID} element={<UserDetails />} />
             <Route
                path={ROUTES.ADMIN_BOOK_PAGE_BY_ID}
-               element={<VendorBookPage />}
+               element={<AdminBookPage />}
             />
             <Route path={ROUTES.BOOKS} element={<AddBookForm />} />
          </Route>

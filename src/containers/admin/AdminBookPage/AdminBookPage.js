@@ -13,6 +13,10 @@ const BookPage = () => {
 
    const sendRequestRejectingHundler = (sendRequest) => {
       console.log(sendRequest)
+      // const configRequest = {
+      //    url:
+      // }
+      // sendRequest()
       // api reject not add yet
    }
    const sendRequestAcceptingHundler = (bookId) => {

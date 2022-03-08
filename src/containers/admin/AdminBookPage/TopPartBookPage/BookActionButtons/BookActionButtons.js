@@ -61,6 +61,7 @@ const BookActionButtons = ({
          </Button>
          {isShowRejectModal && (
             <ModalForReject
+               bookId={bookId}
                sendRejectingBookHundler={sendRejectingBookHundler}
             />
          )}

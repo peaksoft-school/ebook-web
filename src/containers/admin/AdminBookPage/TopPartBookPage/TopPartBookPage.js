@@ -38,7 +38,7 @@ const TopPartBookPage = ({
             <SmallContainer book={book} />
             <ContainerForBriefInformation book={book} />
             <BookActionButtons
-               bookId={book.id}
+               bookId={book.bookId}
                bookName={book.bookName}
                sendRequestRejectingBook={sendRequestRejectingBook}
                sendRequestAcceptingBook={sendRequestAcceptingBook}
