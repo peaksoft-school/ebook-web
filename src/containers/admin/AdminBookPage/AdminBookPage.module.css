@@ -1,6 +1,7 @@
 .ContainerForBook {
-    width: 1194px;
-    margin: auto;
-    padding-right: 130px;
+   width: 1194px;
+   margin: auto;
+   padding-right: 130px;
+   padding-left: 20px;
+   margin-top: 70px;
 }
-

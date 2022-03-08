@@ -16,18 +16,19 @@ const SwitchButtons = (props) => {
          >
             О книге
          </Button>
-         {book.book_type === 'electronic' && (
-            <Button
-               variant={
-                  transition === 'fragment'
-                     ? 'redirectActiveButton'
-                     : 'redirectButton'
-               }
-               onClick={redirectToFragment}
-            >
-               Читать фрагмент
-            </Button>
-         )}
+         {book.typeOfBook === 'ELECTRONIC_BOOK' ||
+            ('PAPER_BOOK' && (
+               <Button
+                  variant={
+                     transition === 'fragment'
+                        ? 'redirectActiveButton'
+                        : 'redirectButton'
+                  }
+                  onClick={redirectToFragment}
+               >
+                  Читать фрагмент
+               </Button>
+            ))}
       </div>
    )
 }

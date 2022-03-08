@@ -24,16 +24,19 @@ const BookActionButtons = ({
 
    const checkAccepting = isShowAcceptModal === true
    useEffect(() => {
-      const acceptTimer = setTimeout(() => {
-         showAcceptModal()
-      }, 1500)
       if (checkAccepting) {
-         return acceptTimer
+         const acceptTimer = setTimeout(() => {
+            showAcceptModal()
+         }, 1500)
+         if (checkAccepting) {
+            return acceptTimer
+         }
+         return () => {
+            clearTimeout(acceptTimer)
+         }
       }
-      return () => {
-         clearTimeout(acceptTimer)
-      }
-   }, [checkAccepting])
+      return ''
+   }, [isShowAcceptModal])
 
    const sendRejectingBookHundler = (sendingText) => {
       setShowRejectModal((isShowRejectModal) => !isShowRejectModal)

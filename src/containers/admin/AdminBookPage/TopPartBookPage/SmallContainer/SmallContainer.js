@@ -5,7 +5,7 @@ const SmallContainer = ({ book }) => {
    return (
       <div className={classes.smallContainer}>
          <p className={classes.price}>{book.price} c</p>
-         {book.book_type === 'audio' && (
+         {book.typeOfBook === 'AUDIO_BOOK' && (
             <AudioPlayer url={book.audio_url} time={book.player_time} />
          )}
       </div>

@@ -1,10 +1,17 @@
 import { useState } from 'react'
+import { notPhoto } from '../../../../utils/constants/books'
+import { getImageUrl } from '../../../../utils/helpers'
+// import { getImageUrl } from '../../../../utils/helpers'
 import classes from './BottomPartBookPage.module.css'
 import SwitchButtons from './SwitchButtons/SwitchButtons'
 import TextInBottomPart from './TextInBottomPart/TextInBottomPart'
 
 const BottomPartBookPage = ({ book }) => {
    const [transition, setTransition] = useState('about')
+   const thirdImage =
+      book?.images[2]?.id === undefined
+         ? notPhoto
+         : getImageUrl(book?.images[2]?.id)
 
    const redirectToAbout = () => {
       setTransition('about')
@@ -27,7 +34,7 @@ const BottomPartBookPage = ({ book }) => {
          </div>
          <img
             className={classes.thirdImage}
-            src={book.thirdImage}
+            src={thirdImage}
             alt="some images"
          />
       </div>
