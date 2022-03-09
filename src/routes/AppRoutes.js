@@ -35,6 +35,7 @@ function AppRoutes() {
                   </PrivateRouteForAdmin>
                }
             />
+            <Route path={ROUTES.APPLICATION_BOOK_BY_ID} />
             <Route
                path={ROUTES.SELLERS}
                element={

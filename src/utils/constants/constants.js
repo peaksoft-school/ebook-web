@@ -43,6 +43,8 @@ export const ROUTES = {
    BECOME_VENDOR: '/client/becomevendor',
    LOGIN: '/login',
    NO_ACCESS: '/noaccess',
+   APPLICATION_BOOK: '/admin/application/book',
+   APPLICATION_BOOK_BY_ID: '/admin/application/book/:bookById',
    SIDE_DRAWER_DATA: [
       {
          route_Activeicon: APPLICATION,
