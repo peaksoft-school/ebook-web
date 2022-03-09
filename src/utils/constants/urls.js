@@ -34,6 +34,13 @@ const GET_GENRES = 'api/genres'
 const GET_GENRE_BY_ID = 'api/genres/get/'
 const DELETE_GENRES = 'api/genres/delete'
 
+export const APPLICATIONS = {
+   REJECT_APLLICATION: 'api/admin/refuse/book/request',
+   ACCEPT_APPLICATION: 'api/admin/accept/book/request',
+   GET_ALL_APPLICATIONS: 'api/admin/get/books/requests',
+   GET_ALL_ACCEPTED_BOOKS: 'api/admin/get/books/accepted',
+}
+
 export {
    DEFAULT_URL,
    SEND_PAPER_BOOK_URL,

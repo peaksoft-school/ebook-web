@@ -12,6 +12,11 @@ const Users = () => {
       await setUsers(response)
    }
 
+   const sendRequestDeleteClient = async (id) => {
+      const userUrl = { url: `api/clients/delete/${id}`, method: 'DELETE' }
+      await sendRequest(userUrl)
+   }
+
    useEffect(() => {
       getAllUsers()
    }, [])
@@ -31,7 +36,10 @@ const Users = () => {
          </div>
          <hr className={classes.line} />
          <div className={classes.containerList}>
-            <UserList userlist={users} />
+            <UserList
+               sendRequestDeleteClient={sendRequestDeleteClient}
+               userlist={users}
+            />
          </div>
       </div>
    )

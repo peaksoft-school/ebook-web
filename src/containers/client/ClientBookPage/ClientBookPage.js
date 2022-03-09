@@ -24,7 +24,6 @@ const BookPage = () => {
          url: GET_BOOK_BY_ID + params.bookById,
       }
       const response = await sendRequest(requestConfig)
-      console.log(response)
       await setBookInfo(response)
    }
 
@@ -33,7 +32,7 @@ const BookPage = () => {
    }, [])
 
    return (
-      <div>
+      <div className={classes.clientBookwrapper}>
          <BreadCrumbs />
          {bookInfo && (
             <div className={classes.ContainerForBook}>

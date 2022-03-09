@@ -22,13 +22,12 @@ const BookActionButtons = ({
       sendRequestAcceptingBook(bookId)
    }
 
-   const checkAccepting = isShowAcceptModal === true
    useEffect(() => {
-      if (checkAccepting) {
+      if (isShowAcceptModal === true) {
          const acceptTimer = setTimeout(() => {
             showAcceptModal()
          }, 1500)
-         if (checkAccepting) {
+         if (isShowAcceptModal === true) {
             return acceptTimer
          }
          return () => {

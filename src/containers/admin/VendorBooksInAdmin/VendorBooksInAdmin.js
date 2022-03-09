@@ -32,7 +32,9 @@ const VendorBooksInAdmin = (props) => {
    return (
       <div className={classes.containerForVendorBookContent}>
          <div className={classes.containerForTopPartInVendorBooks}>
-            <p className={classes.numberOfBooks}>всего 23 книг</p>
+            <p className={classes.numberOfBooks}>
+               всего {vendorBooks.length} книг
+            </p>
             <SellectFilter changeCategory={changeCategory} />
          </div>
          <hr className={classes.lineInVendorBooks} />

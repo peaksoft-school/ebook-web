@@ -12,6 +12,11 @@ const Sellers = () => {
       await setSellers(response)
    }
 
+   const sendRequestDeleteSeller = async (id) => {
+      const sellerUrl = { url: `api/vendor/deleteById/${id}`, method: 'DELETE' }
+      await sendRequest(sellerUrl)
+   }
+
    useEffect(() => {
       getAllSellers()
    }, [])
@@ -37,7 +42,10 @@ const Sellers = () => {
          </div>
          <hr className={classes.line} />
          <div className={classes.containerList}>
-            <SellerList sellerList={sellers} />
+            <SellerList
+               sendRequestDeleteSeller={sendRequestDeleteSeller}
+               sellerList={sellers}
+            />
          </div>
       </div>
    )

@@ -1,6 +1,9 @@
+.vendorBookWrapper {
+   margin: 0 auto;
+}
+
 .ContainerForBook {
-   width: 1194px;
-   margin: auto;
+   width: 1118px;
    padding-right: 130px;
    padding-left: 20px;
    margin-top: 70px;

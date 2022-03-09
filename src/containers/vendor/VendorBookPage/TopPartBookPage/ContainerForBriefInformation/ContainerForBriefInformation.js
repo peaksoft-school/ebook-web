@@ -10,7 +10,7 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>Издательство</p>
             <p>Год выпуска</p>
             {book.typeOfBook === 'ELECTRONIC_BOOK' ||
-               ('PAPRE_BOOK' && <p>Обьем</p>)}
+               ('PAPER_BOOK' && <p>Обьем</p>)}
             {book.typeOfBook === 'AUDIO_BOOK' && <p>Длительность</p>}
          </div>
          <div className={classes.smallContainerForBriefInformation}>
@@ -20,7 +20,7 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>{book.publishingHouse}</p>
             <p>{book.yearOfIssue}</p>
             {book.typeOfBook === 'ELECTRONIC_BOOK' ||
-               ('PAPRE_BOOK' && <p>{book.bookSize} стр</p>)}
+               ('PAPER_BOOK' && <p>{book.bookSize} стр</p>)}
             {book.typeOfBook === 'AUDIO_BOOK' && <p>{book.duration}</p>}
          </div>
       </div>

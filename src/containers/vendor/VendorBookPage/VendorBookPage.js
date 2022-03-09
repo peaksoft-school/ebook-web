@@ -12,7 +12,6 @@ const BookPage = () => {
    const [bookInfo, setBookInfo] = useState()
 
    const getSingleBookById = async () => {
-      console.log('a')
       const requestConfig = {
          method: 'GET',
          url: GET_BOOK_BY_ID + params.bookById,
@@ -32,7 +31,7 @@ const BookPage = () => {
    }
 
    return (
-      <div>
+      <div className={classes.vendorBookWrapper}>
          <BreadCrumbs />
          {bookInfo && (
             <div className={classes.ContainerForBook}>

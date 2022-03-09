@@ -13,6 +13,7 @@ const ContainerForBriefInformation = ({ book }) => {
       }
       return ''
    }
+
    return (
       <div className={classes.containerForBriefInformation}>
          <div className={classes.smallContainerForBriefInformation}>
