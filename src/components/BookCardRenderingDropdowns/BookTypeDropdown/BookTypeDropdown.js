@@ -8,7 +8,7 @@ const options = [
    { title: 'Электронные книги', value: 'EBOOK' },
 ]
 
-const BookTypeDropdown = (onSelectOption) => {
+const BookTypeDropdown = (select) => {
    const [isOpen, setIsOpen] = useState(false)
    const toggling = () => setIsOpen(!isOpen)
    const [selectedOption, setSelectedOption] = useState(null)
@@ -37,7 +37,7 @@ const BookTypeDropdown = (onSelectOption) => {
                            key={option.value}
                            value={option.value}
                            onClick={onOptionClicked(option.title)}
-                           onSelect={onSelectOption}
+                           onSelect={select}
                         >
                            {option.title}
                            {option.title === 'Электронные книги' ? (

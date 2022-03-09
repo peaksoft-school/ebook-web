@@ -49,7 +49,7 @@ const BooksCratLayout = () => {
                />
             </div>
             <div className={classes.linkToNextPage}>
-               <Link to={ROUTES.ADDBOOKS}>
+               <Link to={ROUTES.ADD_BOOKS}>
                   <button className={classes.addBooksButton} type="button">
                      <Plus className={classes.plusforbtn} /> Добавить Книгу
                   </button>

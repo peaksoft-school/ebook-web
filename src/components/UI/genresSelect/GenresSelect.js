@@ -9,6 +9,7 @@ const GenresSelect = forwardRef((props, ref) => {
       id,
       data,
       onChangeGenreValue,
+      defaultValue,
       ...rest
    } = props
 
@@ -38,7 +39,7 @@ const GenresSelect = forwardRef((props, ref) => {
             name="customSearch"
             className={`selectted ${className}`}
             required
-            defaultValue=""
+            defaultValue={defaultValue || ''}
             onChange={onChangeSelectValue}
          >
             <option className="option" value="" disabled hidden>

@@ -34,6 +34,9 @@ const GET_GENRES = 'api/genres'
 const GET_GENRE_BY_ID = 'api/genres/get/'
 const DELETE_GENRES = 'api/genres/delete'
 
+// update books
+const UPDATE_PAPER_BOOK = 'api/books/update/paper_book/'
+
 export {
    DEFAULT_URL,
    SEND_PAPER_BOOK_URL,
@@ -59,4 +62,5 @@ export {
    DELETE_GENRES,
    DELETE_VENDOR_BY_ID,
    ADD_NEW_GENRE_URL,
+   UPDATE_PAPER_BOOK,
 }

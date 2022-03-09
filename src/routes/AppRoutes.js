@@ -13,6 +13,8 @@ import ClientMainPage from '../containers/client/ClientMainPage/ClientMainPage'
 import PromoCodePage from '../containers/client/PromoCodePage/PromoCodePage'
 import NoAccess from '../containers/NoAccess/NoAccess'
 import HowToBecomeToVendorPage from '../containers/client/HowToBecomeVendorPage/HowToBecomeVendorPage'
+import BooksCratLayout from '../components/adminsBookCrat/BooksCrat'
+import AdminUpdateBookForm from '../containers/admin/adminUpdateBookForm/AdminUpdateBookForm'
 
 function AppRoutes() {
    return (
@@ -63,7 +65,23 @@ function AppRoutes() {
                path={ROUTES.BOOKS}
                element={
                   <PrivateRouteForAdmin>
+                     <BooksCratLayout />
+                  </PrivateRouteForAdmin>
+               }
+            />
+            <Route
+               path={ROUTES.ADD_BOOKS}
+               element={
+                  <PrivateRouteForAdmin>
                      <AddBookForm />
+                  </PrivateRouteForAdmin>
+               }
+            />
+            <Route
+               path={ROUTES.ADD_BOOKS_BY_ID}
+               element={
+                  <PrivateRouteForAdmin>
+                     <AdminUpdateBookForm />
                   </PrivateRouteForAdmin>
                }
             />

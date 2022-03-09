@@ -27,7 +27,7 @@ const VendorBookCard = (props) => {
                   numberOfBasket={book.numberOfBasket}
                   popUpChangeHandler={popUpChangeHandler}
                />
-               {popUpShown && <PopUp />}
+               {popUpShown && <PopUp id={book.bookId} />}
                <img
                   className={classes.vedorbookcardimg}
                   src={imageSrc}
