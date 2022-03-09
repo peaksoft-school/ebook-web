@@ -3,11 +3,10 @@ import classes from './GenreCheckBoxItem.module.css'
 import CustomCheckbox from '../../../UI/customCheckbox/CustomCheckbox'
 
 const GenreCheckBoxItem = ({ genre, id, sendRequestGenreById }) => {
-   const onChangeCheckBoxValue = (value) => {
-      if (value) {
-         sendRequestGenreById(id)
-      }
+   const onChangeCheckBoxValue = () => {
+      sendRequestGenreById(id)
    }
+
    return (
       <div className={classes.container}>
          <CustomCheckbox

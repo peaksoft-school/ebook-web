@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react'
 import classes from './ClientSortPage.module.css'
-import { NAVICON } from '../../../utils/constants/constants'
+import {
+   NAVICON,
+   IS_AUDIOBOOK,
+   IS_ELECTROBOOK,
+   IS_PAPPERBOOK,
+} from '../../../utils/constants/constants'
 import PriceInput from '../../UI/PriceInput/PriceInput'
 import { sendRequest } from '../../../utils/helpers'
-import { GET_GENRES } from '../../../utils/constants/urls'
+import { GET_ALL_LANGUAGES, GET_GENRES } from '../../../utils/constants/urls'
 import GenreCheckBoxItem from './GenreCheckBoxItem/GenreCheckBoxItem'
 import TopPart from './TopPart/TopPart'
 import TypeBook from './TypeBook/TypeBook'
@@ -13,39 +18,67 @@ const ClientSortPage = () => {
    const [firstPrice, setFirstPrice] = useState(10000)
    const [secondPrice, setSecondPrice] = useState(0)
    const [genres, setGenres] = useState([])
+   const [genreData, setGenreData] = useState([])
+   const [languages, setLanguages] = useState([])
+   const [languageData, setLanguageData] = useState([])
+   // const [sortData, setSortData] = useState()
 
-   // const sortRequest = {
-   //    genres: [0],
-   //    price: {
-   //       from: secondPrice,
-   //       before: firstPrice,
-   //    },
-   //    languages: 'KYRGYZ',
-   //    type: typeOfBook,
-   // }
-   // const submitHandler = async (event) => {
-   //    event.preventDefault()
-   //    const requestConfig = {
-   //       method: 'POST',
-   //       url: 'api/books/sort',
-   //       body: sortRequest,
+   // const onChangeSortValueHandler = () => {
+   //    const bodyReq = {
+   //       genres: genreData,
+   //       price: {
+   //          from: secondPrice,
+   //          before: firstPrice,
+   //       },
+   //       languages: languageData,
+   //       type: typeOfBook,
    //    }
-   //    const response = await sendRequest(requestConfig)
-   //    return response
+   //    const configRequest = ''
    // }
+
+   const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
+
+   const isAudioChangeHandler = () => {
+      setTypeOfBook(IS_AUDIOBOOK)
+   }
+
+   const isElectroChangeHandler = () => {
+      setTypeOfBook(IS_ELECTROBOOK)
+   }
+   const isBookChangeHandler = () => {
+      setTypeOfBook(IS_PAPPERBOOK)
+   }
 
    const getGenres = async () => {
       const configRequest = { url: GET_GENRES }
       const response = await sendRequest(configRequest)
       setGenres(response)
-      console.log(response)
+   }
+   const sendRequestGenreById = (genre) => {
+      if (genreData.includes(genre)) {
+         const newGenres = genreData.filter((item) => item !== genre)
+         setGenreData(newGenres)
+      } else {
+         setGenreData([...genreData, genre])
+      }
    }
 
-   const sendRequestGenreById = (genreId) => {
-      console.log(genreId)
+   const getLanguages = async () => {
+      const configRequest = { url: GET_ALL_LANGUAGES }
+      const response = await sendRequest(configRequest)
+      setLanguages(response)
+   }
+   const sendRequestLanguagesById = (language) => {
+      if (languageData.includes(language)) {
+         const newGenres = languageData.filter((item) => item !== language)
+         setLanguageData(newGenres)
+      } else {
+         setLanguageData([...languageData, language])
+      }
    }
 
    useEffect(() => {
+      getLanguages()
       getGenres()
    }, [])
    return (
@@ -68,15 +101,44 @@ const ClientSortPage = () => {
                         )
                      })}
                </div>
-               <TypeBook />
+               <div className={classes.typeblock}>
+                  <div className={classes.title}>
+                     Тип <img src={NAVICON.ARRDOWN} alt="" />
+                  </div>
+                  <TypeBook
+                     typeOfBook={typeOfBook}
+                     isAudioChangeHandler={isAudioChangeHandler}
+                     isBookChangeHandler={isBookChangeHandler}
+                     isElectroChangeHandler={isElectroChangeHandler}
+                  />
+               </div>
                <PriceInput
                   firstPrice={firstPrice}
                   secondPrice={secondPrice}
                   setFirstPrice={setFirstPrice}
                   setSecondPrice={setSecondPrice}
                />
-               <LanguagesBook />
+               <div className={classes.lang}>
+                  <span className={classes.lan}>
+                     Язык издания <img src={NAVICON.ARRDOWN} alt="" />
+                  </span>
+                  <div className={classes.lanCheck}>
+                     {languages &&
+                        languages.map((language) => {
+                           return (
+                              <LanguagesBook
+                                 sendRequestLanguagesById={
+                                    sendRequestLanguagesById
+                                 }
+                                 language={language}
+                                 key={language}
+                              />
+                           )
+                        })}
+                  </div>
+               </div>
             </div>
+            <button type="button">FILTER(сказал Байболот)</button>
             <div>2</div>
          </section>
       </form>

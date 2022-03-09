@@ -45,7 +45,7 @@ function AppRoutes() {
                </PrivatePouteForVendor>
             }
          >
-            <Route path={ROUTES.VENDOR_AREA} element={<p>VENDOR_AREA</p>} />
+            <Route path={ROUTES.VENDOR_AREA} element={<AddBookForm />} />
             <Route path={ROUTES.BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
             <Route path={ROUTES.ADD_BOOK} element={<p>ADD_BOOK</p>} />
             <Route path={ROUTES.PROFILE} element={<p>PROFILE</p>} />

@@ -31,6 +31,7 @@ const DELETE_CLIENT_BY_ID = 'api/clients/delete/'
 const ADD_NEW_GENRE_URL = 'api/genres/save'
 const UPDATE_GENRE_BY_ID = 'api/genres/update/'
 const GET_GENRES = 'api/genres'
+const GET_TYPES = 'api/books/types'
 const GET_GENRE_BY_ID = 'api/genres/get/'
 const DELETE_GENRES = 'api/genres/delete'
 
@@ -59,4 +60,5 @@ export {
    DELETE_GENRES,
    DELETE_VENDOR_BY_ID,
    ADD_NEW_GENRE_URL,
+   GET_TYPES,
 }
