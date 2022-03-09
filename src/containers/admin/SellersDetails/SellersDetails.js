@@ -4,7 +4,7 @@ import { Tabs, Tab, TabPanel } from '../../../components/UI/Tabs/Tabs'
 import SellerProfile from '../../../components/admin/SellerProfile/SellerProfile'
 import BreadCrumbs from '../../../components/UI/BreadCrumbs/BreadCrumbs'
 import classes from './SellersDetails.module.css'
-import VendorBooksInAdmin from '../VendorBooksInAdmin/VendorBooksInAdmin'
+import VendorBooks from '../../VendorBooks/VendorBooks'
 import { sendRequest } from '../../../utils/helpers'
 
 const SellerDetails = () => {
@@ -50,7 +50,7 @@ const SellerDetails = () => {
             <SellerProfile sellerById={sellerById} />
          </TabPanel>
          <TabPanel check="books" value={activeTab}>
-            <VendorBooksInAdmin vendorBooks={allVendorsBook} />
+            <VendorBooks vendorBooks={allVendorsBook} />
          </TabPanel>
       </div>
    )

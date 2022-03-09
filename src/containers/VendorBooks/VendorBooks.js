@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { ROUTES } from '../../../utils/constants/constants'
-import classes from './VendorBooksInAdmin.module.css'
-import Button from '../../../components/UI/Button/Button'
-import VendorBookCard from '../../../components/UI/VendorBookCard/VendorBookCard'
+import { ROUTES } from '../../utils/constants/constants'
+import classes from './VendorBooks.module.css'
+import Button from '../../components/UI/Button/Button'
+import VendorBookCard from '../../components/UI/VendorBookCard/VendorBookCard'
 import SellectFilter from './SellectFilter/SellectFilter'
 
-const VendorBooksInAdmin = (props) => {
+const VendorBooks = (props) => {
    const { vendorBooks } = props
    const userRole = useSelector((state) => state.role.roleData)
    const navigate = useNavigate()
@@ -59,4 +59,4 @@ const VendorBooksInAdmin = (props) => {
    )
 }
 
-export default VendorBooksInAdmin
+export default VendorBooks
