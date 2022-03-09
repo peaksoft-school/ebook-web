@@ -19,6 +19,8 @@ const STYLES = [
    'aboutMoreBtn',
    'goBack',
    'profile',
+   'add',
+   'create',
 ]
 
 const Button = ({ className, onClick, disabled, children, variant }) => {
@@ -26,10 +28,10 @@ const Button = ({ className, onClick, disabled, children, variant }) => {
 
    return (
       <button
-         type="button"
          className={`btn ${className} ${checkButtonStyle}`}
          onClick={onClick}
          disabled={disabled}
+         type="button"
       >
          {children}
       </button>

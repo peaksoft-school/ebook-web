@@ -1,3 +1,4 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 .btn {
    display: flex;
    flex-direction: row;
@@ -276,9 +277,58 @@
    display: flex;
    flex-direction: row;
    justify-content: center;
-   background: #FFF5F5;;
+   background: #fff5f5;
    align-items: center;
    padding: 10px 24px;
    border: 1px solid #1c1c1c;
    box-sizing: border-box;
+}
+
+.add {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding: 10px 24px;
+   position: absolute;
+   width: 210px;
+   height: 42px;
+   left: 1150px;
+   top: 125px;
+   background: #f34901;
+   cursor: pointer;
+   color: #ffffff;
+}
+
+.create {
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+   padding: 10px 16px;
+
+   width: 177px;
+   height: 42px;
+   left: 80px;
+   top: 125px;
+
+   border: 1px solid #ff4c00;
+   box-sizing: border-box;
+   background: #ffffff;
+   font-family: Open Sans;
+   color: #ff4c00;
+   cursor: pointer;
+   overflow: hidden;
+}
+
+.create:before {
+   font-family: FontAwesome;
+   content: '\f02c';
+   position: absolute;
+   font-size: 15px;
+   top: 140px;
+   left: -30px;
+   transition: all 250ms ease;
+}
+
+.create:hover:before {
+   left: 8px;
 }
