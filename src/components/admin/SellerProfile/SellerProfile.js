@@ -5,7 +5,8 @@ import Button from '../../UI/Button/Button'
 import classes from './SellerProfile.module.css'
 import ModalForDelete from '../../UI/ModalForDelete/ModalForDelete'
 
-const SellerProfile = () => {
+const SellerProfile = (props) => {
+   const { onChangeVendorBooks } = props
    const [isShowModal, setIsShowModal] = useState(false)
    const [sellerById, setSellerById] = useState('')
 
@@ -18,6 +19,7 @@ const SellerProfile = () => {
          url: `api/vendor/getById/${params.sellerId}`,
       }
       const response = await sendRequest(userUrl)
+      onChangeVendorBooks(response.vendorBooks)
       await setSellerById(response)
    }
 

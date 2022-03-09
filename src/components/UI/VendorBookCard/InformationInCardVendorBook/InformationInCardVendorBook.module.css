@@ -13,6 +13,10 @@
    font-size: 14px;
    /* line-height: 120%; */
    color: #222222;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   width: 120px;
 }
 .date {
    color: #8a8a8a;

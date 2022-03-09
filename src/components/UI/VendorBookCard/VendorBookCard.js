@@ -21,10 +21,11 @@ const VendorBookCard = (props) => {
                role="presentation"
                className={`${classes.card} ${className}`}
                onClick={isOpen}
+               key={book.bookId}
             >
                <TopPartInVendorCard
-                  numberOfFavorites={book.numberOfFavorites}
-                  numberOfBasket={book.numberOfBasket}
+                  numberOfFavorites={book.likes}
+                  numberOfBasket={book.inBasket}
                   popUpChangeHandler={popUpChangeHandler}
                />
                {popUpShown && <PopUp />}
