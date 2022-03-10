@@ -18,7 +18,7 @@ const UPLOAD_PDF_FILE = 'static/upload/pdf'
 const UPLOAD_IMAGE = 'static/upload/image'
 const UPLOAD_AUDIO_FILE = 'static/upload/audio'
 const UPLOAD_AUDIO_FRAGMENT = 'static/upload/audio/fragment'
-
+const SORT = 'api/books/sort'
 // API to use basket only for users with authority CLIENT
 
 const UPDATE_CLIENT_BY_ID = 'api/clients/update/'
@@ -44,6 +44,7 @@ export {
    GET_ALL_VENDORS,
    GET_BOOK_BY_ID,
    GET_CLIENT_BY_ID,
+   SORT,
    GET_GENRES,
    GET_GENRE_BY_ID,
    GET_VENDOR_BY_ID,

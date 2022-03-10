@@ -8,7 +8,11 @@ import {
 } from '../../../utils/constants/constants'
 import PriceInput from '../../UI/PriceInput/PriceInput'
 import { sendRequest } from '../../../utils/helpers'
-import { GET_ALL_LANGUAGES, GET_GENRES } from '../../../utils/constants/urls'
+import {
+   GET_ALL_LANGUAGES,
+   GET_GENRES,
+   SORT,
+} from '../../../utils/constants/urls'
 import GenreCheckBoxItem from './GenreCheckBoxItem/GenreCheckBoxItem'
 import TopPart from './TopPart/TopPart'
 import TypeBook from './TypeBook/TypeBook'
@@ -21,20 +25,26 @@ const ClientSortPage = () => {
    const [genreData, setGenreData] = useState([])
    const [languages, setLanguages] = useState([])
    const [languageData, setLanguageData] = useState([])
-   // const [sortData, setSortData] = useState()
 
-   // const onChangeSortValueHandler = () => {
-   //    const bodyReq = {
-   //       genres: genreData,
-   //       price: {
-   //          from: secondPrice,
-   //          before: firstPrice,
-   //       },
-   //       languages: languageData,
-   //       type: typeOfBook,
-   //    }
-   //    const configRequest = ''
-   // }
+   const onChangeSortValueHandler = async (e) => {
+      e.preventDefault()
+      const bodyReq = {
+         genres: genreData,
+         price: {
+            from: secondPrice,
+            before: firstPrice,
+         },
+         languages: languageData,
+         type: typeOfBook,
+      }
+      const configRequest = {
+         url: SORT,
+         method: 'POST',
+         body: JSON.stringify(bodyReq),
+      }
+      const response = await sendRequest(configRequest)
+      console.log(response)
+   }
 
    const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
 
@@ -77,12 +87,18 @@ const ClientSortPage = () => {
       }
    }
 
+   // const getAllBooks = async () => {
+   //    const configRequest = { url: GET_ALL_BOOKS }
+   //    const response = await sendRequest(configRequest)
+   //    console.log(response)
+   // }
+
    useEffect(() => {
       getLanguages()
       getGenres()
    }, [])
    return (
-      <form>
+      <form onSubmit={onChangeSortValueHandler}>
          <section className={classes.section}>
             <TopPart />
             <div className={classes.janr}>
@@ -96,6 +112,7 @@ const ClientSortPage = () => {
                            <GenreCheckBoxItem
                               sendRequestGenreById={sendRequestGenreById}
                               genre={genre}
+                              key={genre.id}
                               id={genre.id}
                            />
                         )
@@ -138,7 +155,7 @@ const ClientSortPage = () => {
                   </div>
                </div>
             </div>
-            <button type="button">FILTER(сказал Байболот)</button>
+            <button type="submit">FILTER(сказал Байболот)</button>
             <div>2</div>
          </section>
       </form>

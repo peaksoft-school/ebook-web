@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ReactComponent as ArrowButton } from '../../../../assets/icons/orangeArrow.svg'
 import Button from '../../../../components/UI/Button/Button'
+import { ROUTES } from '../../../../utils/constants/constants'
 import classes from './ViewingTheBestBooksSection.module.css'
 
 const ViewingTheBestBooksSection = ({ sectionTitle, books }) => {
@@ -20,7 +22,9 @@ const ViewingTheBestBooksSection = ({ sectionTitle, books }) => {
       <div className={classes.viewingTheBestBooksSectionContainer}>
          <div className={classes.sectionTopPart}>
             <h2>{sectionTitle}</h2>
-            <Button variant="aboutMoreBtn">Смотреть все</Button>
+            <Link to={ROUTES.SORT}>
+               <Button variant="aboutMoreBtn">Смотреть все</Button>
+            </Link>
          </div>
          <div className={classes.bookContent}>
             <div className={classes.bookDescription}>
