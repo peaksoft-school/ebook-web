@@ -47,6 +47,7 @@ const UpdatePaperBook = (props) => {
    const {
       author: uploadedAuthor,
       bookName: uploadedBookName,
+      bookId: uploadedBookid,
       description: uploadedDescription,
       fragment: uploadedFragment,
       language: uploadedLanguage,
@@ -54,13 +55,8 @@ const UpdatePaperBook = (props) => {
       price: uplodedPrice,
       publishingHouse: updloadedPublishingHouse,
       yearOfIssue: uploadedYearOfIssue,
-      genre: {
-         quantityOfBooks: quantity,
-         id: uploadedBookid,
-         genreName: upldoadedGenreName,
-      },
+      genre: { quantityOfBooks: quantity, genreName: upldoadedGenreName },
    } = bookInfo
-
    const [genreId, setGenreId] = useState('')
    const [typeOfLanguage, setTypeOfLanguage] = useState('')
    const [bestSeller, setBestseller] = useState(false)
@@ -98,7 +94,6 @@ const UpdatePaperBook = (props) => {
    })
 
    const submitHandler = async (data) => {
-      console.log(data)
       setIsLoading(true)
       const firstImageConfig = {
          file: mainPicture.avatar,
@@ -112,20 +107,32 @@ const UpdatePaperBook = (props) => {
          file: thirdPicture.avatar,
          url: UPLOAD_IMAGE,
       }
+
       try {
-         const firstImageId = bookInfo.images[0].id
-            ? { id: bookInfo.images[0].id }
-            : await sendWithFormDataToApi(firstImageConfig)
-         const secondImageId = bookInfo.images[1].id
-            ? { id: bookInfo[1].id }
-            : await sendWithFormDataToApi(secondImageConfig)
-         const thirdImageId = bookInfo.images[2].id
-            ? { id: bookInfo.images[2].id }
-            : await sendWithFormDataToApi(thridImageConfig)
+         let firstImageId = null
+         if (bookInfo.images[0].id) {
+            firstImageId = { id: bookInfo.images[0].id }
+         } else {
+            firstImageId = await sendWithFormDataToApi(firstImageConfig)
+         }
+         let secondImageId = null
+         if (bookInfo.images[1].id) {
+            secondImageId = { id: bookInfo.images[1].id }
+         } else {
+            secondImageId = await sendWithFormDataToApi(secondImageConfig)
+         }
+         let thirdImageId = null
+         if (bookInfo.images[2].id) {
+            thirdImageId = { id: bookInfo.images[2].id }
+         } else {
+            thirdImageId = await sendWithFormDataToApi(thridImageConfig)
+         }
+
          if (firstImageId.ok && secondImageId.ok && thirdImageId.ok)
             await setResponseAnswer({
                error: firstImageId || secondImageId || thirdImageId,
             })
+
          const {
             bookName,
             author,
@@ -138,6 +145,7 @@ const UpdatePaperBook = (props) => {
             publishingHouse,
             dataOfIssue,
          } = data
+
          const trasformedBook = {
             images: [firstImageId.id, secondImageId.id, thirdImageId.id],
             bookName,
@@ -161,7 +169,7 @@ const UpdatePaperBook = (props) => {
          setResponseAnswer({
             bookName: response.bookName,
             error: '',
-            message: 'успешно добавлен!',
+            message: 'успешно изменён!',
          })
          deleteAllPictureHandler()
          reset()

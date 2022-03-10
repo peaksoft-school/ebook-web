@@ -38,8 +38,6 @@ const BooksCratLayout = () => {
 
    return (
       <div className={classes.bookCratBox}>
-         {/* {status === 'loading' && <h2>Loading...</h2>}
-			{error && <h2>An error occered: {error}</h2>} */}
          <div className={classes.customselectbox}>
             <div className={classes.booktypedropdown}>
                <BookTypeDropdown />
