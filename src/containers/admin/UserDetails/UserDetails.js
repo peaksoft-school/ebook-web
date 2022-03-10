@@ -13,11 +13,15 @@ const UserDetails = () => {
    const params = useParams()
 
    const getUserById = async () => {
-      const userUrl = {
-         url: `api/clients/getById/${params.userId}`,
+      try {
+         const userUrl = {
+            url: `api/clients/getById/${params.userId}`,
+         }
+         const response = await sendRequest(userUrl)
+         await setUserById(response)
+      } catch (error) {
+         console.log(error.message)
       }
-      const response = await sendRequest(userUrl)
-      await setUserById(response)
    }
 
    useEffect(() => {

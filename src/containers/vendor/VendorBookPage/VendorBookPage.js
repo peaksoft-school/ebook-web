@@ -12,13 +12,17 @@ const BookPage = () => {
    const [bookInfo, setBookInfo] = useState()
 
    const getSingleBookById = async () => {
-      const requestConfig = {
-         method: 'GET',
-         url: GET_BOOK_BY_ID + params.bookById,
+      try {
+         const requestConfig = {
+            method: 'GET',
+            url: GET_BOOK_BY_ID + params.bookById,
+         }
+         const response = await sendRequest(requestConfig)
+         console.log(response)
+         await setBookInfo(response)
+      } catch (error) {
+         console.log(error.message)
       }
-      const response = await sendRequest(requestConfig)
-      console.log(response)
-      await setBookInfo(response)
    }
 
    useEffect(() => {

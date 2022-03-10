@@ -7,14 +7,22 @@ const Users = () => {
    const [users, setUsers] = useState([])
 
    const getAllUsers = async () => {
-      const url = { url: 'api/clients/getAll' }
-      const response = await sendRequest(url)
-      await setUsers(response)
+      try {
+         const url = { url: 'api/clients/getAll' }
+         const response = await sendRequest(url)
+         await setUsers(response)
+      } catch (error) {
+         console.log(error.message)
+      }
    }
 
    const sendRequestDeleteClient = async (id) => {
-      const userUrl = { url: `api/clients/delete/${id}`, method: 'DELETE' }
-      await sendRequest(userUrl)
+      try {
+         const userUrl = { url: `api/clients/delete/${id}`, method: 'DELETE' }
+         await sendRequest(userUrl)
+      } catch (error) {
+         console.log(error.message)
+      }
    }
 
    useEffect(() => {

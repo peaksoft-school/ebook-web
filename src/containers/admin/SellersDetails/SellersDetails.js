@@ -22,12 +22,16 @@ const SellerDetails = () => {
    }
 
    const getSellerById = async () => {
-      const userUrl = {
-         url: `api/vendor/getById/${params.sellerId}`,
+      try {
+         const userUrl = {
+            url: `api/vendor/getById/${params.sellerId}`,
+         }
+         const response = await sendRequest(userUrl)
+         await onChangeVendorBooks(response.vendorBooks)
+         await setSellerById(response)
+      } catch (error) {
+         console.log(error.message)
       }
-      const response = await sendRequest(userUrl)
-      await onChangeVendorBooks(response.vendorBooks)
-      await setSellerById(response)
    }
 
    useEffect(() => {

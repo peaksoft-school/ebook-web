@@ -19,6 +19,18 @@ export const ROLES = {
    CLIENT: 'CLIENT',
 }
 
+export const LANGUAGES = {
+   RUSSIAN: 'RUSSIAN',
+   ENGLISH: 'ENGLISH',
+   KYRGYZ: 'KYRGYZ',
+}
+
+export const TYPEOFBOOK = {
+   ELECTRONICBOOK: 'ELECTRONIC_BOOK',
+   PAPERBOOK: 'PAPER_BOOK',
+   AUDIOBOOK: 'AUDIO_BOOK',
+}
+
 export const ROUTES = {
    HOME: '/admin',
    APPLICATIONS: '/admin/applications',

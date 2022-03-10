@@ -12,28 +12,40 @@ const BookPage = () => {
    const [bookInfo, setBookInfo] = useState()
 
    const sendRequestRejectingHundler = async (sentText) => {
-      const configRequest = {
-         url: APPLICATIONS.REJECT_APLLICATION,
-         method: 'POST',
-         body: sentText,
+      try {
+         const configRequest = {
+            url: APPLICATIONS.REJECT_APLLICATION,
+            method: 'POST',
+            body: sentText,
+         }
+         sendRequest(configRequest)
+      } catch (error) {
+         console.log(error.message)
       }
-      sendRequest(configRequest)
    }
    const sendRequestAcceptingHundler = async (bookId) => {
-      const configRequest = {
-         url: `${APPLICATIONS.ACCEPT_APPLICATION}/${bookId}`,
-         method: 'POST',
+      try {
+         const configRequest = {
+            url: `${APPLICATIONS.ACCEPT_APPLICATION}/${bookId}`,
+            method: 'POST',
+         }
+         await sendRequest(configRequest)
+      } catch (error) {
+         console.log(error.message)
       }
-      await sendRequest(configRequest)
    }
 
    const getSingleBookById = async () => {
-      const requestConfig = {
-         method: 'GET',
-         url: GET_BOOK_BY_ID + params.bookById,
+      try {
+         const requestConfig = {
+            method: 'GET',
+            url: GET_BOOK_BY_ID + params.bookById,
+         }
+         const response = await sendRequest(requestConfig)
+         await setBookInfo(response)
+      } catch (error) {
+         console.log(error.message)
       }
-      const response = await sendRequest(requestConfig)
-      await setBookInfo(response)
    }
 
    useEffect(async () => {

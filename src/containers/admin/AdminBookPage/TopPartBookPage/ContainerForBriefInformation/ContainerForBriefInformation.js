@@ -1,14 +1,15 @@
 import classes from './ContainerForBriefInformation.module.css'
+import { TYPEOFBOOK, LANGUAGES } from '../../../../../utils/constants/constants'
 
 const ContainerForBriefInformation = ({ book }) => {
    const languageTranslate = () => {
-      if (book.language === 'RUSSIAN') {
+      if (book.language === LANGUAGES.RUSSIAN) {
          return 'русский'
       }
-      if (book.language === 'KYRGYZ') {
+      if (book.language === LANGUAGES.KYRGYZ) {
          return 'кыргызский'
       }
-      if (book.language === 'ENGLISH') {
+      if (book.language === LANGUAGES.ENGLISH) {
          return 'английский'
       }
       return ''
@@ -22,9 +23,9 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>Язык</p>
             <p>Издательство</p>
             <p>Год выпуска</p>
-            {book.typeOfBook === 'ELECTRONIC_BOOK' ||
-               ('PAPER_BOOK' && <p>Обьем</p>)}
-            {book.typeOfBook === 'AUDIO_BOOK' && <p>Длительность</p>}
+            {book.typeOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
+               (TYPEOFBOOK.PAPERBOOK && <p>Обьем</p>)}
+            {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>Длительность</p>}
          </div>
          <div className={classes.smallContainerForBriefInformation}>
             <p>{book.author}</p>
@@ -32,9 +33,9 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>{languageTranslate()}</p>
             <p>{book.publishingHouse}</p>
             <p>{book.yearOfIssue}</p>
-            {book.typeOfBook === 'ELECTRONIC_BOOK' ||
-               ('PAPER_BOOK' && <p>{book.pageSize} стр</p>)}
-            {book.typeOfBook === 'AUDIO_BOOK' && <p>{book.duration}</p>}
+            {book.typeOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
+               (TYPEOFBOOK.PAPERBOOK && <p>{book.pageSize} стр</p>)}
+            {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>{book.duration}</p>}
          </div>
       </div>
    )

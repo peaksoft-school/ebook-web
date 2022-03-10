@@ -1,5 +1,6 @@
 import classes from './SwitchButtons.module.css'
 import Button from '../../../../../components/UI/Button/Button'
+import { TYPEOFBOOK } from '../../../../../utils/constants/constants'
 
 const SwitchButtons = (props) => {
    const { book, transition, redirectToAbout, redirectToFragment } = props
@@ -16,8 +17,8 @@ const SwitchButtons = (props) => {
          >
             О книге
          </Button>
-         {book.typrOfBook === 'ELECTRONIC_BOOK' ||
-            ('PAPER_BOOK' && (
+         {book.typrOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
+            (TYPEOFBOOK.PAPERBOOK && (
                <Button
                   variant={
                      transition === 'fragment'
