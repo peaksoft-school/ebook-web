@@ -1,29 +1,14 @@
-import { useParams, useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useState } from 'react'
 import { sendRequest } from '../../../utils/helpers'
 import Button from '../../UI/Button/Button'
 import classes from './SellerProfile.module.css'
 import ModalForDelete from '../../UI/ModalForDelete/ModalForDelete'
 
-const SellerProfile = () => {
+const SellerProfile = ({ sellerById }) => {
    const [isShowModal, setIsShowModal] = useState(false)
-   const [sellerById, setSellerById] = useState('')
-
    const navigate = useNavigate()
-
    const params = useParams()
-
-   const getSellerById = async () => {
-      const userUrl = {
-         url: `api/vendor/getById/${params.sellerId}`,
-      }
-      const response = await sendRequest(userUrl)
-      await setSellerById(response)
-   }
-
-   useEffect(() => {
-      getSellerById()
-   }, [])
 
    const onOpenHundler = () => {
       setIsShowModal(true)

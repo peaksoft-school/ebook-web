@@ -74,6 +74,12 @@ const AddBookForm = () => {
       setThirdPicture(image)
    }
 
+   const deleteAllPictureHandler = () => {
+      setMainPicture('')
+      setSecondPicture('')
+      setThirdPicture('')
+   }
+
    const deleteMainPictureHandler = () => {
       setMainPicture('')
    }
@@ -87,7 +93,7 @@ const AddBookForm = () => {
    }
 
    return (
-      <div>
+      <div className={classes.addBookFormContainer}>
          <main className={classes.adminBlog}>
             <p className={classes.uploadthreeBooks}>Загрузите 3 фото *</p>
             <UploadImageCart
@@ -147,6 +153,7 @@ const AddBookForm = () => {
                      mainPicture={mainPicture}
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
                {audioBook && (

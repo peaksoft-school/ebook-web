@@ -1,7 +1,7 @@
 import classes from './SellerList.module.css'
 import SellerItem from './SellerItem/SellerItem'
 
-const SellerList = ({ sellerList }) => {
+const SellerList = ({ sellerList, sendRequestDeleteSeller }) => {
    return (
       <div>
          <ol className={classes.list}>
@@ -10,6 +10,7 @@ const SellerList = ({ sellerList }) => {
                sellerList.map((seller) => {
                   return (
                      <SellerItem
+                        sendRequestDeleteSeller={sendRequestDeleteSeller}
                         firstName={seller.firstName}
                         lastName={seller.lastName}
                         phoneNumber={seller.phoneNumber}

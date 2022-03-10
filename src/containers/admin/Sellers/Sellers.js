@@ -7,9 +7,25 @@ const Sellers = () => {
    const [sellers, setSellers] = useState([])
 
    const getAllSellers = async () => {
-      const url = { url: 'api/vendor/getAll' }
-      const response = await sendRequest(url)
-      await setSellers(response)
+      try {
+         const url = { url: 'api/vendor/getAll' }
+         const response = await sendRequest(url)
+         await setSellers(response)
+      } catch (error) {
+         console.log(error.message)
+      }
+   }
+
+   const sendRequestDeleteSeller = async (id) => {
+      try {
+         const sellerUrl = {
+            url: `api/vendor/deleteById/${id}`,
+            method: 'DELETE',
+         }
+         await sendRequest(sellerUrl)
+      } catch (error) {
+         console.log(error.messa)
+      }
    }
 
    useEffect(() => {
@@ -37,7 +53,10 @@ const Sellers = () => {
          </div>
          <hr className={classes.line} />
          <div className={classes.containerList}>
-            <SellerList sellerList={sellers} />
+            <SellerList
+               sendRequestDeleteSeller={sendRequestDeleteSeller}
+               sellerList={sellers}
+            />
          </div>
       </div>
    )

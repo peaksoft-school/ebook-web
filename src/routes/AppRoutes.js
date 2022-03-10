@@ -14,6 +14,10 @@ import Applications from '../containers/admin/Applications/Applications'
 import PromoCodePage from '../containers/client/PromoCodePage/PromoCodePage'
 import NoAccess from '../containers/NoAccess/NoAccess'
 import HowToBecomeToVendorPage from '../containers/client/HowToBecomeVendorPage/HowToBecomeVendorPage'
+import ClientLayout from '../components/client/ClientLayout/ClientLayout'
+import VendorLayout from '../components/vendor/VendorLayout/VendorLayout'
+import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
+import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
 
 function AppRoutes() {
    return (
@@ -27,118 +31,66 @@ function AppRoutes() {
                </PrivateRouteForAdmin>
             }
          >
+            <Route path={ROUTES.APPLICATIONS} element={<Applications />} />
+            <Route path={ROUTES.SELLERS} element={<Sellers />} />
+            <Route path={ROUTES.SEllERBYID} element={<SellersDetails />} />
+            <Route path={ROUTES.USERS} element={<Users />} />
+            <Route path={ROUTES.USERBYID} element={<UserDetails />} />
             <Route
-               path={ROUTES.APPLICATIONS}
+               path={ROUTES.ADMIN_BOOK_PAGE_BY_ID}
+               element={<VendorBookPage />}
+            />
+            <Route path={ROUTES.BOOKS} element={<AddBookForm />} />
+         </Route>
+
+         <Route
+            path={ROUTES.VENDOR}
+            element={
+               <PrivatePouteForVendor>
+                  <VendorLayout />
+               </PrivatePouteForVendor>
+            }
+         >
+            <Route path={ROUTES.VENDOR_AREA} element={<AddBookForm />} />
+            <Route path={ROUTES.BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
+            <Route path={ROUTES.ADD_BOOK} element={<p>ADD_BOOK</p>} />
+            <Route path={ROUTES.PROFILE} element={<p>PROFILE</p>} />
+         </Route>
+
+         <Route path={ROUTES.CLIENT} element={<ClientLayout />}>
+            <Route
+               path={ROUTES.CLIENT_MAIN_PAGE}
+               element={<ClientMainPage />}
+            />
+            <Route path={ROUTES.SORT} element={<ClientSortPage />} />
+            <Route path={ROUTES.INNER_PAGE} element={<p>INNER PAGE</p>} />
+            <Route path={ROUTES.AUDIO_PAGE} element={<p>AUDIO_PAGE</p>} />
+            <Route
+               path={ROUTES.CART}
                element={
-                  <PrivateRouteForAdmin>
-                     <Applications />
-                  </PrivateRouteForAdmin>
+                  <PrivateRouteForUser>
+                     <h1>Card</h1>
+                  </PrivateRouteForUser>
                }
             />
-            <Route path={ROUTES.APPLICATION_BOOK_BY_ID} />
+            <Route path={ROUTES.PROMO_CODE} element={<PromoCodePage />} />
             <Route
-               path={ROUTES.SELLERS}
+               path={ROUTES.USER_PROFILE}
                element={
-                  <PrivateRouteForAdmin>
-                     <Sellers />
-                  </PrivateRouteForAdmin>
+                  <PrivateRouteForUser>
+                     <p>USER_PROFILE</p>
+                  </PrivateRouteForUser>
                }
             />
             <Route
-               path={ROUTES.SEllERBYID}
+               path={ROUTES.PROFILE_HISTORY}
                element={
-                  <PrivateRouteForAdmin>
-                     <SellersDetails />
-                  </PrivateRouteForAdmin>
-               }
-            />
-            <Route
-               path={ROUTES.USERS}
-               element={
-                  <PrivateRouteForAdmin>
-                     <Users />
-                  </PrivateRouteForAdmin>
-               }
-            />
-            <Route
-               path={ROUTES.USERBYID}
-               element={
-                  <PrivateRouteForAdmin>
-                     <UserDetails />
-                  </PrivateRouteForAdmin>
-               }
-            />
-            <Route
-               path={ROUTES.BOOKS}
-               element={
-                  <PrivateRouteForAdmin>
-                     <AddBookForm />
-                  </PrivateRouteForAdmin>
+                  <PrivateRouteForUser>
+                     <p>PROFILE_HISTORY</p>
+                  </PrivateRouteForUser>
                }
             />
          </Route>
-         <Route
-            path={ROUTES.VENDOR_AREA}
-            element={
-               <PrivatePouteForVendor>
-                  <AddBookForm />
-               </PrivatePouteForVendor>
-            }
-         />
-         <Route
-            path={ROUTES.BOOK_PAGE}
-            element={
-               <PrivatePouteForVendor>
-                  <p>BOOK_PAGE</p>
-               </PrivatePouteForVendor>
-            }
-         />
-         <Route
-            path={ROUTES.ADD_BOOK}
-            element={
-               <PrivatePouteForVendor>
-                  <p>ADD_BOOK</p>
-               </PrivatePouteForVendor>
-            }
-         />
-         <Route
-            path={ROUTES.PROFILE}
-            element={
-               <PrivatePouteForVendor>
-                  <p>PROFILE</p>
-               </PrivatePouteForVendor>
-            }
-         />
-         <Route path={ROUTES.CLIENT} element={<ClientMainPage />} />
-         <Route path={ROUTES.SORT} element={<p>SORT</p>} />
-         <Route path={ROUTES.INNER_PAGE} element={<p>INNER PAGE</p>} />
-         <Route path={ROUTES.AUDIO_PAGE} element={<p>AUDIO_PAGE</p>} />
-         <Route
-            path={ROUTES.CART}
-            element={
-               <PrivateRouteForUser>
-                  {/* <ClientMainPage /> */}
-                  <h1>Card</h1>
-               </PrivateRouteForUser>
-            }
-         />
-         <Route path={ROUTES.PROMO_CODE} element={<PromoCodePage />} />
-         <Route
-            path={ROUTES.USER_PROFILE}
-            element={
-               <PrivateRouteForUser>
-                  <p>USER_PROFILE</p>
-               </PrivateRouteForUser>
-            }
-         />
-         <Route
-            path={ROUTES.PROFILE_HISTORY}
-            element={
-               <PrivateRouteForUser>
-                  <p>PROFILE_HISTORY</p>
-               </PrivateRouteForUser>
-            }
-         />
          <Route path={ROUTES.NO_ACCESS} element={<NoAccess />} />
          <Route
             path={ROUTES.BECOME_VENDOR}

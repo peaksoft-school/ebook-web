@@ -4,17 +4,24 @@ import { ReactComponent as HeartIcon } from '../../../../assets/icons/heart.svg'
 import { ReactComponent as Icon } from '../../../../assets/icons/Controls Icon.svg'
 
 const TopPartInVendorCard = (props) => {
-   const { numberOfFavorites, numberOfBasket, popUpChangeHandler } = props
+   const {
+      numberOfFavorites,
+      numberOfBasket,
+      popUpChangeHandler,
+      sendRequestLike,
+      id,
+   } = props
 
    const [heartIsActive, setHeartIsActive] = useState(false)
 
    const activateHeartHundler = () => {
       setHeartIsActive((prevState) => !prevState)
+      sendRequestLike(id)
    }
 
    return (
       <div className={classes.containerForTopPartCardBook}>
-         {numberOfFavorites && (
+         {numberOfFavorites || (
             <div className={classes.heartBox}>
                <HeartIcon
                   onClick={activateHeartHundler}
@@ -25,7 +32,7 @@ const TopPartInVendorCard = (props) => {
                <p className={classes.heartBoxText}>({numberOfFavorites})</p>
             </div>
          )}
-         {numberOfBasket && (
+         {numberOfBasket || (
             <p className={classes.basket}>в корзине({numberOfBasket})</p>
          )}
          <Icon className={classes.vector} onClick={popUpChangeHandler} />

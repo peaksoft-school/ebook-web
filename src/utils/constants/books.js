@@ -229,3 +229,6 @@ export const oneAudioBook = {
    thirdImage: 'https://pbs.twimg.com/media/EKvrgoOX0AM1_oz.jpg',
    year_of_issue: 2021,
 }
+
+export const notPhoto =
+   'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg'
