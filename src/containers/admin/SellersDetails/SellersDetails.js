@@ -7,11 +7,14 @@ import VendorBooksInAdmin from '../VendorBooksInAdmin/VendorBooksInAdmin'
 
 const SellerDetails = () => {
    const [activeTab, setActiveTab] = useState('profile')
+   const [allVendorsBook, setAllVendorsBook] = useState([])
 
    const handleChange = (value) => {
       setActiveTab(value)
    }
-
+   const onChangeVendorBooks = (books) => {
+      setAllVendorsBook(books)
+   }
    return (
       <div className={classes.constainerForSellerDetailscontent}>
          <BreadCrumbs />
@@ -25,10 +28,10 @@ const SellerDetails = () => {
          </Tabs>
 
          <TabPanel check="profile" value={activeTab}>
-            <SellerProfile />
+            <SellerProfile onChangeVendorBooks={onChangeVendorBooks} />
          </TabPanel>
          <TabPanel check="books" value={activeTab}>
-            <VendorBooksInAdmin />
+            <VendorBooksInAdmin vendorBooks={allVendorsBook} />
          </TabPanel>
       </div>
    )
