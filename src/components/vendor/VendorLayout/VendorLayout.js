@@ -5,9 +5,11 @@ import classes from './VendorLayout.module.css'
 
 const VendorLayout = () => {
    return (
-      <div className={classes.vendorLayoutContainer}>
+      <div>
          <VendorHeader />
-         <Outlet />
+         <div className={classes.vendorLayoutContainer}>
+            <Outlet />
+         </div>
          <VendorFooter />
       </div>
    )

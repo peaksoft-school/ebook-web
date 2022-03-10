@@ -93,7 +93,7 @@ const AddBookForm = () => {
    }
 
    return (
-      <div>
+      <div className={classes.addBookFormContainer}>
          <main className={classes.adminBlog}>
             <p className={classes.uploadthreeBooks}>Загрузите 3 фото *</p>
             <UploadImageCart

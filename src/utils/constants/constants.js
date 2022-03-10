@@ -20,6 +20,18 @@ export const ROLES = {
    CLIENT: 'CLIENT',
 }
 
+export const LANGUAGES = {
+   RUSSIAN: 'RUSSIAN',
+   ENGLISH: 'ENGLISH',
+   KYRGYZ: 'KYRGYZ',
+}
+
+export const TYPEOFBOOK = {
+   ELECTRONICBOOK: 'ELECTRONIC_BOOK',
+   PAPERBOOK: 'PAPER_BOOK',
+   AUDIOBOOK: 'AUDIO_BOOK',
+}
+
 export const ROUTES = {
    HOME: '/admin',
    APPLICATIONS: '/admin/applications',
@@ -29,16 +41,19 @@ export const ROUTES = {
    USERBYID: '/admin/users/:userId',
    BOOKS: '/admin/books',
    ADDBOOKS: '/admin/books/addBook',
+   ADMIN_BOOK_PAGE_BY_ID: '/admin/bookpage/:bookById',
+   ADMIN_BOOK_PAGE: '/admin/bookpage',
    VENDOR: '/vendor',
    VENDOR_AREA: '/vendor/vendorarea',
-   BOOK_PAGE: '/vendor/bookpage',
+   VENDOR_BOOK_PAGE: '/vendor/bookpage',
+   VENDOR_BOOK_PAGE_BY_ID: '/vendor/bookpage/:bookById',
    ADD_BOOK: '/vendor/bookadd',
    PROFILE: '/vendor/profile',
    CLIENT: '/client',
    CLIENT_MAIN_PAGE: '/client/mainpage',
    SORT: '/client/sort',
-   INNER_PAGE: '/client/innerpage',
-   AUDIO_PAGE: '/client/audiopage',
+   CLIENT_BOOK_PAGE: '/client/bookpage',
+   CLIENT_BOOK_PAGE_BY_ID: '/client/bookpage/:bookById',
    CART: '/client/cart',
    PROMO_CODE: '/client/promocode',
    USER_PROFILE: '/client/userprofile',
