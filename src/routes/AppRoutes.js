@@ -16,6 +16,7 @@ import HowToBecomeToVendorPage from '../containers/client/HowToBecomeVendorPage/
 import ClientLayout from '../components/client/ClientLayout/ClientLayout'
 import VendorLayout from '../components/vendor/VendorLayout/VendorLayout'
 import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
+import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
 
 function AppRoutes() {
    return (
@@ -60,7 +61,7 @@ function AppRoutes() {
                path={ROUTES.CLIENT_MAIN_PAGE}
                element={<ClientMainPage />}
             />
-            <Route path={ROUTES.SORT} element={<p>SORT</p>} />
+            <Route path={ROUTES.SORT} element={<ClientSortPage />} />
             <Route path={ROUTES.INNER_PAGE} element={<p>INNER PAGE</p>} />
             <Route path={ROUTES.AUDIO_PAGE} element={<p>AUDIO_PAGE</p>} />
             <Route
