@@ -67,6 +67,11 @@
    padding: 5px;
    margin: 0;
 }
+
+.link {
+   color: #222222;
+   text-decoration: none;
+}
 .profile {
    margin: 0;
 }
