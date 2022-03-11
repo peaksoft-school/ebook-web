@@ -6,7 +6,15 @@ import InformationInCardApplicationBook from './InformationInCardApplicationBook
 import { getImageUrl } from '../../../../utils/helpers'
 
 const ApplicationBook = (props) => {
-   const { book, isOpen, className, navigateToBookPage } = props
+   const {
+      book,
+      isOpen,
+      className,
+      navigateToBookPage,
+      editBookRedirect,
+      sendRequestRejectingBook,
+   } = props
+
    const [popUpShown, setPopUpShown] = useState(false)
    const [imageSrc, setImgSrc] = useState()
 
@@ -40,7 +48,13 @@ const ApplicationBook = (props) => {
                numberOfBasket={book.numberOfBasket}
                popUpChangeHandler={popUpChangeHandler}
             />
-            {popUpShown && <PopUp />}
+            {popUpShown && (
+               <PopUp
+                  sendRequestRejectingBook={sendRequestRejectingBook}
+                  bookId={book.bookId}
+                  editBookRedirect={editBookRedirect}
+               />
+            )}
             <img
                className={classes.vedorbookcardimg}
                src={imageSrc}

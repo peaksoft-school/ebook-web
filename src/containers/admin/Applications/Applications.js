@@ -39,6 +39,23 @@ const Applications = () => {
       }
    }
 
+   const sendRequestRejectingHundler = async (sentText) => {
+      try {
+         const configRequest = {
+            url: APPLICATIONS.REJECT_APLLICATION,
+            method: 'POST',
+            body: sentText,
+         }
+         sendRequest(configRequest)
+      } catch (error) {
+         console.log(error.message)
+      }
+   }
+
+   const editBookRedirect = (bookId) => {
+      console.log(bookId)
+   }
+
    useEffect(() => {
       getApplications()
    }, [])
@@ -49,12 +66,13 @@ const Applications = () => {
             <p className={classes.totalAmount}>
                Всего заявок: {applications.length}
             </p>
-            {/* <p className={classes.unwatches}>Непосмотренные 234</p> */}
          </div>
          <div className={classes.bookList}>
             {applications.map((book) => {
                return (
                   <ApplicationBook
+                     sendRequestRejectingBook={sendRequestRejectingHundler}
+                     editBookRedirect={editBookRedirect}
                      navigateToBookPage={navigateToBookPage}
                      key={book.bookName}
                      book={book}

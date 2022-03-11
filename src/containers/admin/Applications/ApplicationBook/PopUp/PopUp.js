@@ -1,14 +1,22 @@
-import classes from './PopUp.module.css'
+import { useState } from 'react'
 import { ReactComponent as RubishIcon } from '../../../../../assets/icons/rubish.svg'
 import { ReactComponent as ReductorIcon } from '../../../../../assets/icons/akar-icons_cross.svg'
+import classes from './PopUp.module.css'
+import ModalForReject from '../../../ModalForReject/ModalForReject'
 
-const PopUp = () => {
-   const onEditHundler = () => {
-      // there will be function, which edit book
+const PopUp = ({ editBookRedirect, bookId, sendRequestRejectingBook }) => {
+   const [isShowRejectModal, setShowRejectModal] = useState(false)
+
+   const showRejectModal = () => {
+      setShowRejectModal((isShowRejectModal) => !isShowRejectModal)
    }
 
-   const onDeleteHundler = () => {
-      // there will be function, which delete book
+   const sendRejectingBookHundler = (sendingText) => {
+      sendRequestRejectingBook(sendingText)
+   }
+
+   const onEditHundler = () => {
+      editBookRedirect(bookId)
    }
 
    return (
@@ -23,11 +31,18 @@ const PopUp = () => {
          <hr className={classes.line2} />
          <button
             type="button"
-            onClick={onDeleteHundler}
+            onClick={showRejectModal}
             className={classes.redactor}
          >
-            <ReductorIcon className={classes.icon} /> Удалить
+            <ReductorIcon className={classes.icon} /> Отклонить
          </button>
+         {isShowRejectModal && (
+            <ModalForReject
+               onClose={showRejectModal}
+               bookId={bookId}
+               sendRejectingBookHundler={sendRejectingBookHundler}
+            />
+         )}
       </div>
    )
 }
