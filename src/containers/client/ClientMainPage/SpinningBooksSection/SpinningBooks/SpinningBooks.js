@@ -3,9 +3,9 @@ import classes from './SpinningBooks.module.css'
 const SpinningBooks = ({ books }) => {
    return (
       <div className={classes.spinningBooks}>
-         <img className={classes.firstImage} src={books[0].imgUrl} alt="" />
+         {/* <img className={classes.firstImage} src={books[0].imgUrl} alt="" /> */}
          <div className={classes.secondImageContainer}>
-            <img className={classes.secondImage} src={books[1].imgUrl} alt="" />
+            {/* <img className={classes.secondImage} src={books[1].imgUrl} alt="" /> */}
             <div>
                <p className={classes.bookName}>{books[1].bookName}</p>
                <div className={classes.aboutBook}>
@@ -14,7 +14,7 @@ const SpinningBooks = ({ books }) => {
                </div>
             </div>
          </div>
-         <img className={classes.thirdImage} src={books[2].imgUrl} alt="" />
+         {/* <img className={classes.thirdImage} src={books[2].imgUrl} alt="" /> */}
       </div>
    )
 }

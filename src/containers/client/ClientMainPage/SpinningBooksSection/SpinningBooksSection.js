@@ -1,13 +1,9 @@
-import { useState } from 'react'
 import classes from './SpinningBooksSection.module.css'
 import BlackWrapper from '../../../../components/UI/BlackWrapper/BlackWrapper'
 import SpinningBooks from './SpinningBooks/SpinningBooks'
 import { ReactComponent as OrangeArrowButton } from '../../../../assets/icons/orangeArrow.svg'
-import { books } from '../../../../utils/constants/books'
 
-const SpinningBooksSection = () => {
-   const [topBooks, setTopBooks] = useState(books)
-
+const SpinningBooksSection = ({ topBooks, setTopBooks }) => {
    const moveImageToRight = () => {
       const firstbook = topBooks.shift()
       setTopBooks([...topBooks, firstbook])
@@ -17,6 +13,8 @@ const SpinningBooksSection = () => {
       const lastbook = topBooks.pop()
       setTopBooks([lastbook, ...topBooks])
    }
+
+   console.log(topBooks)
 
    return (
       <BlackWrapper className={classes.spinningBooksSectionContainer}>

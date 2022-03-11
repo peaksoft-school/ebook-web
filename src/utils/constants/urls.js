@@ -43,7 +43,7 @@ export const APPLICATIONS = {
 }
 
 export const CLIENT_MAIN_PAGE_URLS = {
-   GEL_TOP_THREE_BOOKS: 'api/books/getLikes',
+   GET_TOP_THREE_BOOKS: 'api/books/getLikes',
    GET_BETSELLER_BOOKS: 'api/books/getBestseller',
    GET_LAST_PUBLICATIONS: '',
    GET_AUDIO_BOOKS: 'api/books/getAudio',
