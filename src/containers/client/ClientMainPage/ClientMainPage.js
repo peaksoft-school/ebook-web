@@ -7,6 +7,11 @@ import { betsellerBooks } from '../../../utils/constants/books'
 import SendEmailSection from './SendEmailSection/SendEmailSection'
 
 const ClientMainPage = () => {
+   // const getBetsellerBooks = () => {
+   //    const configRequest = {
+   //       url: ',',
+   //    }
+   // }
    return (
       <div className={classes.clientMainPageContainer}>
          <SpinningBooksSection />
