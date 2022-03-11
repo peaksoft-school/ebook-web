@@ -18,6 +18,7 @@ import ClientLayout from '../components/client/ClientLayout/ClientLayout'
 import VendorLayout from '../components/vendor/VendorLayout/VendorLayout'
 import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
 import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
+import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
 
 function AppRoutes() {
    return (
@@ -32,6 +33,10 @@ function AppRoutes() {
             }
          >
             <Route path={ROUTES.APPLICATIONS} element={<Applications />} />
+            <Route
+               path={ROUTES.APPLICATION_BOOK_BY_ID}
+               element={<AdminBookPage />}
+            />
             <Route path={ROUTES.SELLERS} element={<Sellers />} />
             <Route path={ROUTES.SEllERBYID} element={<SellersDetails />} />
             <Route path={ROUTES.USERS} element={<Users />} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './ApplicationBook.module.css'
 import TopPartInApplicationCard from './TopPartInApplicationCard/TopPartInApplicationCard'
 import PopUp from './PopUp/PopUp'
@@ -6,42 +6,54 @@ import InformationInCardApplicationBook from './InformationInCardApplicationBook
 import { getImageUrl } from '../../../../utils/helpers'
 
 const ApplicationBook = (props) => {
-   const { book, isOpen, className, onGetBookId } = props
-   console.log(book)
+   const { book, isOpen, className, navigateToBookPage } = props
    const [popUpShown, setPopUpShown] = useState(false)
+   const [imageSrc, setImgSrc] = useState()
+   console.log(book)
+
    const popUpChangeHandler = () => {
       setPopUpShown((prevState) => !prevState)
    }
-   const imageSrc = getImageUrl(book.image.id)
+
+   const giveBookId = () => {
+      navigateToBookPage(book.bookId)
+   }
+
+   useEffect(async () => {
+      try {
+         const response = await getImageUrl(book.image.id)
+         await setImgSrc(response)
+      } catch (error) {
+         console.log(error.message)
+      }
+   }, [])
 
    return (
-      <div className={classes.containterVendorBookCard}>
-         <div className={classes.styles}>
-            <div
-               id={book.bookId}
+      <div className={classes.styles}>
+         <div
+            id={book.bookId}
+            role="presentation"
+            className={`${classes.card} ${className}`}
+            onClick={isOpen}
+         >
+            <TopPartInApplicationCard
+               numberOfFavorites={book.numberOfFavorites}
+               numberOfBasket={book.numberOfBasket}
+               popUpChangeHandler={popUpChangeHandler}
+            />
+            {popUpShown && <PopUp />}
+            <img
+               className={classes.vedorbookcardimg}
+               src={imageSrc}
+               alt=""
                role="presentation"
-               className={`${classes.card} ${className}`}
-               onClick={isOpen}
-            >
-               <TopPartInApplicationCard
-                  numberOfFavorites={book.numberOfFavorites}
-                  numberOfBasket={book.numberOfBasket}
-                  popUpChangeHandler={popUpChangeHandler}
-               />
-               {popUpShown && <PopUp />}
-               <img
-                  className={classes.vedorbookcardimg}
-                  src={imageSrc}
-                  alt=""
-                  role="presentation"
-                  onClick={() => onGetBookId(book.bookId)}
-               />
-               <InformationInCardApplicationBook
-                  bookName={book.bookName}
-                  date={book.date}
-                  netPrice={book.price}
-               />
-            </div>
+               onClick={giveBookId}
+            />
+            <InformationInCardApplicationBook
+               bookName={book.bookName}
+               date={`${book.storageDate.day} ${book.storageDate.month} ${book.storageDate.year}`}
+               netPrice={book.price}
+            />
          </div>
       </div>
    )

@@ -5,9 +5,9 @@ const InformationInCardApplicationBook = ({ bookName, date, netPrice }) => {
       <div className={classes.info}>
          <div>
             <p className={classes.title}>{bookName}</p>
-            <p className={classes.date}>{date}</p>
          </div>
-         <div className={classes.pricel}>
+         <div className={classes.smallInfoContainer}>
+            <p className={classes.date}>{date}</p>
             <p className={classes.price}>{netPrice} С</p>
          </div>
       </div>

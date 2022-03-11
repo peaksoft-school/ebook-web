@@ -1,6 +1,6 @@
 import classes from './PopUp.module.css'
 import { ReactComponent as RubishIcon } from '../../../../../assets/icons/rubish.svg'
-import { ReactComponent as ReductorIcon } from '../../../../../assets/icons/changeValue.svg'
+import { ReactComponent as ReductorIcon } from '../../../../../assets/icons/akar-icons_cross.svg'
 
 const PopUp = () => {
    const onEditHundler = () => {
@@ -18,7 +18,7 @@ const PopUp = () => {
             onClick={onEditHundler}
             className={classes.redactor}
          >
-            <RubishIcon className={classes.rubishIcon} /> Редактировать{' '}
+            <RubishIcon className={classes.icon} /> Редактировать{' '}
          </button>
          <hr className={classes.line2} />
          <button
@@ -26,7 +26,7 @@ const PopUp = () => {
             onClick={onDeleteHundler}
             className={classes.redactor}
          >
-            <ReductorIcon className={classes.rubishIcon} /> Удалить
+            <ReductorIcon className={classes.icon} /> Удалить
          </button>
       </div>
    )
