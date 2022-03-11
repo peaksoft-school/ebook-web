@@ -42,6 +42,14 @@ export const APPLICATIONS = {
    GET_ALL_ACCEPTED_BOOKS: 'api/admin/get/books/accepted',
 }
 
+export const CLIENT_MAIN_PAGE_URLS = {
+   GEL_TOP_THREE_BOOKS: 'api/books/getLikes',
+   GET_BETSELLER_BOOKS: 'api/books/getBestseller',
+   GET_LAST_PUBLICATIONS: '',
+   GET_AUDIO_BOOKS: 'api/books/getAudio',
+   GET_ELECTROMIC_BOOKS: 'api/books/getElectronic',
+}
+
 export {
    DEFAULT_URL,
    SEND_PAPER_BOOK_URL,
