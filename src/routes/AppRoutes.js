@@ -19,6 +19,7 @@ import VendorLayout from '../components/vendor/VendorLayout/VendorLayout'
 import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
 import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
 import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
+// import VendorBooks from '../containers/VendorBooks/VendorBooks'
 
 function AppRoutes() {
    return (
@@ -56,9 +57,12 @@ function AppRoutes() {
                </PrivatePouteForVendor>
             }
          >
-            <Route path={ROUTES.VENDOR_AREA} element={<AddBookForm />} />
-            <Route path={ROUTES.BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
-            <Route path={ROUTES.ADD_BOOK} element={<p>ADD_BOOK</p>} />
+            <Route
+               path={ROUTES.VENDOR_AREA}
+               element={<h1>bhvdhfbvfbidfb</h1>}
+            />
+            <Route path={ROUTES.VENDOR_BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
+            <Route path={ROUTES.ADD_BOOK} element={<AddBookForm />} />
             <Route path={ROUTES.PROFILE} element={<p>PROFILE</p>} />
          </Route>
 

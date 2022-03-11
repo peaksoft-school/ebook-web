@@ -7,6 +7,7 @@ export const authFetch = createAsyncThunk(
    async (ebookUserInfo, { rejectWithValue, dispatch }) => {
       try {
          const response = await sendRequest(ebookUserInfo)
+         console.log(response)
          if (response.token) {
             saveToLocalStorage('EbookUserToken', response)
          }

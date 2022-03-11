@@ -9,14 +9,13 @@ const ApplicationBook = (props) => {
    const { book, isOpen, className, navigateToBookPage } = props
    const [popUpShown, setPopUpShown] = useState(false)
    const [imageSrc, setImgSrc] = useState()
-   console.log(book)
 
    const popUpChangeHandler = () => {
       setPopUpShown((prevState) => !prevState)
    }
 
    const giveBookId = () => {
-      navigateToBookPage(book.bookId)
+      navigateToBookPage({ bookId: book.bookId, bookName: book.bookName })
    }
 
    useEffect(async () => {
