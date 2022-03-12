@@ -41,7 +41,30 @@ function AppRoutes() {
                path={ROUTES.ADMIN_BOOK_PAGE_BY_ID}
                element={<VendorBookPage />}
             />
-            <Route path={ROUTES.BOOKS} element={<AddBookForm />} />
+            <Route
+               path={ROUTES.ADMIN_BOOK_CRAT}
+               element={
+                  <PrivateRouteForAdmin>
+                     <BooksCratLayout />
+                  </PrivateRouteForAdmin>
+               }
+            />
+            <Route
+               path={ROUTES.ADD_BOOKS}
+               element={
+                  <PrivateRouteForAdmin>
+                     <AddBookForm />
+                  </PrivateRouteForAdmin>
+               }
+            />
+            <Route
+               path={ROUTES.ADD_BOOKS_BY_ID}
+               element={
+                  <PrivateRouteForAdmin>
+                     <AdminUpdateBookForm />
+                  </PrivateRouteForAdmin>
+               }
+            />
          </Route>
 
          <Route
@@ -81,30 +104,6 @@ function AppRoutes() {
                   <PrivateRouteForUser>
                      <p>USER_PROFILE</p>
                   </PrivateRouteForUser>
-               }
-            />
-            <Route
-               path={ROUTES.PROFILE_HISTORY}
-               element={
-                  <PrivateRouteForAdmin>
-                     <BooksCratLayout />
-                  </PrivateRouteForAdmin>
-               }
-            />
-            <Route
-               path={ROUTES.ADD_BOOKS}
-               element={
-                  <PrivateRouteForAdmin>
-                     <AddBookForm />
-                  </PrivateRouteForAdmin>
-               }
-            />
-            <Route
-               path={ROUTES.ADD_BOOKS_BY_ID}
-               element={
-                  <PrivateRouteForAdmin>
-                     <AdminUpdateBookForm />
-                  </PrivateRouteForAdmin>
                }
             />
          </Route>

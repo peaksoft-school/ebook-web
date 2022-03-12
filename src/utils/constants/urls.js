@@ -37,6 +37,9 @@ const DELETE_GENRES = 'api/genres/delete'
 
 // update books
 const UPDATE_PAPER_BOOK = 'api/books/update/paper_book/'
+
+// accepted admin
+const GET_ASSEPTED_BOOKS = 'api/admin/get/books/accepted'
 export const APPLICATIONS = {
    REJECT_APLLICATION: 'api/admin/refuse/book/request',
    ACCEPT_APPLICATION: 'api/admin/accept/book/request',
@@ -72,4 +75,5 @@ export {
    ADD_NEW_GENRE_URL,
    UPDATE_PAPER_BOOK,
    GET_TYPES,
+   GET_ASSEPTED_BOOKS,
 }

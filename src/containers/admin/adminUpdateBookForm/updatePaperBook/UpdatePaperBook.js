@@ -55,8 +55,10 @@ const UpdatePaperBook = (props) => {
       price: uplodedPrice,
       publishingHouse: updloadedPublishingHouse,
       yearOfIssue: uploadedYearOfIssue,
-      genre: { quantityOfBooks: quantity, genreName: upldoadedGenreName },
+      quantityOfBooks: bookQuantity,
+      genre: { id: uploadedGenreId, genreName: upldoadedGenreName },
    } = bookInfo
+
    const [genreId, setGenreId] = useState('')
    const [typeOfLanguage, setTypeOfLanguage] = useState('')
    const [bestSeller, setBestseller] = useState(false)
@@ -146,6 +148,9 @@ const UpdatePaperBook = (props) => {
             dataOfIssue,
          } = data
 
+         const transformedGenreId = !genreId ? uploadedGenreId : genreId
+         const transformedLang = uploadedLanguage || typeOfLanguage
+
          const trasformedBook = {
             images: [firstImageId.id, secondImageId.id, thirdImageId.id],
             bookName,
@@ -153,11 +158,16 @@ const UpdatePaperBook = (props) => {
             description,
             price,
             discount,
-            genreId: +genreId,
-            language: typeOfLanguage,
-            dataOfIssue,
+            genreId: +transformedGenreId,
+            language: transformedLang,
+            yearOfIssue: +dataOfIssue,
             bestSeller,
-            book: { fragment, quantityOfBooks, pageSize, publishingHouse },
+            book: {
+               fragment,
+               quantityOfBooks,
+               pageSize,
+               publishingHouse,
+            },
          }
          const requestConfig = {
             method: 'PUT',
@@ -320,7 +330,7 @@ const UpdatePaperBook = (props) => {
                      className={classes.leftSideInput}
                      id="number"
                      hasError={errors.quantityOfBooks}
-                     defaultValue={quantity}
+                     defaultValue={bookQuantity}
                   />
                   <Input
                      label="Скидка"
