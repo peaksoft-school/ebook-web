@@ -17,6 +17,7 @@ import ClientLayout from '../components/client/ClientLayout/ClientLayout'
 import VendorLayout from '../components/vendor/VendorLayout/VendorLayout'
 import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
 import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
+import ClientBookPage from '../containers/client/ClientBookPage/ClientBookPage'
 
 function AppRoutes() {
    return (
@@ -62,8 +63,24 @@ function AppRoutes() {
                element={<ClientMainPage />}
             />
             <Route path={ROUTES.SORT} element={<ClientSortPage />} />
+            <Route
+               path={ROUTES.SORT_GENRE_BY_GENRE_NAME}
+               element={<ClientSortPage />}
+            />
+            <Route
+               path={ROUTES.SORT_AUTHOR_BY_AUTHORNAME}
+               element={<h1>author</h1>}
+            />
+            <Route
+               path={ROUTES.SORT_PUBLISHING_HOUSE_BY_PUBLISHING_HOUSE_NAME}
+               element={<h1>PublishingName</h1>}
+            />
             <Route path={ROUTES.INNER_PAGE} element={<p>INNER PAGE</p>} />
             <Route path={ROUTES.AUDIO_PAGE} element={<p>AUDIO_PAGE</p>} />
+            <Route
+               path={ROUTES.CLIENT_BOOK_PAGE_BY_ID}
+               element={<ClientBookPage />}
+            />
             <Route
                path={ROUTES.CART}
                element={

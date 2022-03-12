@@ -1,28 +1,35 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { sendRequest } from '../../../utils/helpers'
 import { SEARCH } from '../../../utils/constants/urls'
 import classes from './Search.module.css'
 import SearchIcon from './Search-icon/SearchIcon'
-// import SearchList from './SearchList/SearchList'
+import SearchList from './SearchList/SearchList'
 
 const Search = () => {
    const [isFocused, setFocused] = useState(false)
    const [searchValue, setSearchValue] = useState('')
-   // const [filteredData, setFilteredData] = useState()
+   const [filteredData, setFilteredData] = useState()
 
-   // const list = []
-
-   const changeColorInput = (event) => {
-      setSearchValue(event.target.value)
-   }
-
-   const sendRequestSearchValue = async () => {
-      const configRequest = {
-         url: `${SEARCH}${searchValue}`,
-      }
-      const response = await sendRequest(configRequest)
-      console.log(response)
-   }
+   const sendRequestSearchValue = useCallback(
+      async (event) => {
+         try {
+            setSearchValue(event.target.value)
+            if (event.target.value !== '') {
+               const configRequest = {
+                  url: `${SEARCH}${event.target.value}`,
+               }
+               const response = await sendRequest(configRequest)
+               console.log(response)
+               setFilteredData(response)
+            } else {
+               setFilteredData([])
+            }
+         } catch (error) {
+            console.log(error.message)
+         }
+      },
+      [searchValue]
+   )
 
    function сolorInput() {
       if (isFocused) {
@@ -41,16 +48,12 @@ const Search = () => {
       }
    }
 
-   useEffect(() => {
-      sendRequestSearchValue()
-   }, [searchValue])
-
    return (
       <div className={classes.box}>
          <div>
             <form action="#" className={сolorInput()}>
                <input
-                  onChange={changeColorInput}
+                  onChange={sendRequestSearchValue}
                   onFocus={focusHandler}
                   onBlur={blurHandler}
                   placeholder={
@@ -64,7 +67,7 @@ const Search = () => {
                <SearchIcon isActive={isFocused} />
             </form>
          </div>
-         {/* <SearchList filteredData={filteredData} /> */}
+         <SearchList filteredData={filteredData} />
       </div>
    )
 }

@@ -52,6 +52,13 @@ export const ROUTES = {
    CLIENT: '/client',
    CLIENT_MAIN_PAGE: '/client/mainpage',
    SORT: '/client/sort',
+   SORT_GENRE: '/client/sort/genre',
+   SORT_GENRE_BY_GENRE_NAME: '/client/sort/genre/:genreId',
+   SORT_AUTHOR: '/client/sort/author',
+   SORT_AUTHOR_BY_AUTHORNAME: '/client/sort/author/:authorName',
+   SORT_PUBLISHING_HOUSE: '/client/sort/publishing-house',
+   SORT_PUBLISHING_HOUSE_BY_PUBLISHING_HOUSE_NAME:
+      '/client/sort/publishing-house/:publicationName',
    CLIENT_BOOK_PAGE: '/client/bookpage',
    CLIENT_BOOK_PAGE_BY_ID: '/client/bookpage/:bookById',
    CART: '/client/cart',
