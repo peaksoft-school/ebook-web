@@ -21,10 +21,10 @@ const ClientSortPage = () => {
 
    const onChangeSortValueHandler = async (event) => {
       event.preventDefault()
-      sort()
+      filtration()
    }
 
-   const sort = async () => {
+   const filtration = async () => {
       const bodyReq = {
          genres: genreData,
          price: {
@@ -34,10 +34,10 @@ const ClientSortPage = () => {
          languages: languageData,
          type: typeOfBook,
       }
-      const bodyReqs = JSON.stringify(bodyReq)
+      const filters = JSON.stringify(bodyReq)
       try {
          const configRequest = {
-            url: `api/books/sort?filterBy=${bodyReqs}`,
+            url: `api/books/sort?filterBy=${filters}`,
             method: 'GET',
          }
          const response = await sendRequest(configRequest)
@@ -50,7 +50,6 @@ const ClientSortPage = () => {
    const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
 
    const isAudioChangeHandler = (typeOfBook) => {
-      console.log(typeOfBook)
       setTypeOfBook(typeOfBook)
    }
 
@@ -85,7 +84,7 @@ const ClientSortPage = () => {
    useEffect(() => {
       getLanguages()
       getGenres()
-      sort()
+      filtration()
    }, [])
    return (
       <form onSubmit={onChangeSortValueHandler}>

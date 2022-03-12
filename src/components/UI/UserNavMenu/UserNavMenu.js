@@ -6,30 +6,17 @@ import { ReactComponent as ClientIcon } from '../../../assets/icons/clientProfil
 import classes from './UserNavMenu.module.css'
 import { ReactComponent as GenreIcon } from '../../../assets/icons/genreIcon.svg'
 import AuthModal from '../../auth/authModal/AuthModal'
-// import GengreDropDownList from './GengreDropDownList/GengreDropDownList'
 import Button from '../Button/Button'
 import { deleteFromLocalStorage } from '../../../utils/helpers'
 import { setAuth } from '../../../store/authReducer/signInSlice'
 import { userRoleReducerActions } from '../../../store/userRoleSlice'
-// import { GET_CLIENT_BY_ID } from '../../../utils/constants/urls'
 
 const UserNavMenu = () => {
    const role = useSelector((state) => state.role.roleData)
    const dispatch = useDispatch()
    const navigate = useNavigate()
-   // const [isShowGenres, setIsShowGenres] = useState(false)
    const [isShow, setShow] = useState(false)
    const [isShowPopUp, setShowPopUp] = useState(false)
-
-   // const getClientName = async () => {
-   //    const configRequest = { url: 'api/clients/show/info', method: 'GET' }
-   //    const response = await sendRequest(configRequest)
-   //    console.log(response)
-   // }
-
-   // useEffect(() => {
-   //    getClientName()
-   // }, [])
 
    const logOut = () => {
       deleteFromLocalStorage('EbookUserToken')
@@ -38,9 +25,6 @@ const UserNavMenu = () => {
       navigate(ROUTES.CLIENT_MAIN_PAGE)
    }
 
-   // const showGenres = () => {
-   //    setIsShowGenres((isShowGenres) => !isShowGenres)
-   // }
    const showModalHandler = () => {
       setShow((isShow) => !isShow)
    }
@@ -93,7 +77,6 @@ const UserNavMenu = () => {
          )}
 
          {isShow && <AuthModal onClose={showModalHandler} />}
-         {/* {isShowGenres && <GengreDropDownList />} */}
       </div>
    )
 }
