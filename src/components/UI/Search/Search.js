@@ -8,28 +8,7 @@ import SearchList from './SearchList/SearchList'
 const Search = () => {
    const [isFocused, setFocused] = useState(false)
    const [searchValue, setSearchValue] = useState('')
-   const [filteredData, setFilteredData] = useState()
-
-   const sendRequestSearchValue = useCallback(
-      async (event) => {
-         try {
-            setSearchValue(event.target.value)
-            if (event.target.value !== '') {
-               const configRequest = {
-                  url: `${SEARCH}${event.target.value}`,
-               }
-               const response = await sendRequest(configRequest)
-               console.log(response)
-               setFilteredData(response)
-            } else {
-               setFilteredData([])
-            }
-         } catch (error) {
-            console.log(error.message)
-         }
-      },
-      [searchValue]
-   )
+   const [filteredData, setFilteredData] = useState([])
 
    function сolorInput() {
       if (isFocused) {
@@ -39,14 +18,36 @@ const Search = () => {
    }
 
    const focusHandler = () => {
-      setFocused(true)
+      setFocused((isFocused) => !isFocused)
    }
 
    const blurHandler = () => {
       if (searchValue === '') {
-         setFocused(false)
+         setFocused((isFocused) => !isFocused)
+         setFilteredData([])
       }
    }
+
+   const sendRequestSearchValue = useCallback(
+      async (event) => {
+         try {
+            await setSearchValue(event.target.value)
+            if (event.target.value !== '') {
+               const configRequest = {
+                  url: `${SEARCH}${event.target.value}`,
+               }
+               const response = await sendRequest(configRequest)
+               setFilteredData(response)
+            } else {
+               setFilteredData([])
+            }
+         } catch (error) {
+            setFilteredData([])
+            console.log(error.message)
+         }
+      },
+      [searchValue]
+   )
 
    return (
       <div className={classes.box}>
@@ -56,6 +57,7 @@ const Search = () => {
                   onChange={sendRequestSearchValue}
                   onFocus={focusHandler}
                   onBlur={blurHandler}
+                  value={searchValue}
                   placeholder={
                      isFocused
                         ? ''
@@ -67,7 +69,12 @@ const Search = () => {
                <SearchIcon isActive={isFocused} />
             </form>
          </div>
-         <SearchList filteredData={filteredData} />
+         <SearchList
+            setFilteredData={setFilteredData}
+            filteredData={filteredData}
+            setSearchValue={setSearchValue}
+            setFocused={setFocused}
+         />
       </div>
    )
 }

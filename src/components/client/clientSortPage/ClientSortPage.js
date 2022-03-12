@@ -42,8 +42,7 @@ const ClientSortPage = () => {
          method: 'POST',
          body: JSON.stringify(bodyReq),
       }
-      const response = await sendRequest(configRequest)
-      console.log(response)
+      await sendRequest(configRequest)
    }
 
    const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
@@ -86,12 +85,6 @@ const ClientSortPage = () => {
          setLanguageData([...languageData, language])
       }
    }
-
-   // const getAllBooks = async () => {
-   //    const configRequest = { url: GET_ALL_BOOKS }
-   //    const response = await sendRequest(configRequest)
-   //    console.log(response)
-   // }
 
    useEffect(() => {
       getLanguages()

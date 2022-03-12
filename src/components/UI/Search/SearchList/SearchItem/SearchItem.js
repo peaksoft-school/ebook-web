@@ -1,11 +1,19 @@
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { asyncUpdateBreadcrumb } from '../../../../../store/breadCrumbsSlice'
+import { ROUTES, ROLES } from '../../../../../utils/constants/constants'
 import classes from './SearchItem.module.css'
 import WhiteWrapper from '../../../WhiteWrapper/WhiteWrapper'
-import { ROUTES } from '../../../../../utils/constants/constants'
-import { asyncUpdateBreadcrumb } from '../../../../../store/breadCrumbsSlice'
 
-const SearchItem = ({ name, type, id }) => {
+const SearchItem = ({
+   name,
+   type,
+   id,
+   setFilteredData,
+   setSearchValue,
+   setFocused,
+}) => {
+   const role = useSelector((state) => state.role.roleData)
    const navigate = useNavigate()
    const dispatch = useDispatch()
 
@@ -14,21 +22,40 @@ const SearchItem = ({ name, type, id }) => {
          route_name: name,
       },
    ]
-   // console.log(id)
+
    const navigateToType = () => {
-      if (type === 'GENRE') {
-         navigate(`${ROUTES.SORT_GENRE}/${id}`)
+      switch (type) {
+         case 'GENRE':
+            navigate(`${ROUTES.SORT_GENRE}/${id}`)
+            break
+         case 'AUTHOR':
+            navigate(`${ROUTES.SORT_AUTHOR}/${name}`)
+            break
+         case 'PUBLISHER':
+            navigate(`${ROUTES.SORT_PUBLISHING_HOUSE}/${name}`)
+            break
+
+         case 'BOOK' && role === ROLES.ADMIN:
+            navigate(`${ROUTES.ADMIN_BOOK_PAGE}/${id}`)
+            dispatch(asyncUpdateBreadcrumb(breadCrumbs))
+            break
+
+         case 'BOOK' && role === ROLES.VENDOR:
+            navigate(`${ROUTES.VENDOR_BOOK_PAGE}/${id}`)
+            dispatch(asyncUpdateBreadcrumb(breadCrumbs))
+            break
+
+         case 'BOOK':
+            navigate(`${ROUTES.CLIENT_BOOK_PAGE}/${id}`)
+            dispatch(asyncUpdateBreadcrumb(breadCrumbs))
+            break
+
+         default:
+            break
       }
-      if (type === 'AUTHOR') {
-         navigate(`${ROUTES.SORT_AUTHOR}/${name}`)
-      }
-      if (type === 'PUBLISHER') {
-         navigate(`${ROUTES.SORT_PUBLISHING_HOUSE}/${name}`)
-      }
-      if (type === 'BOOK') {
-         navigate(`${ROUTES.CLIENT_BOOK_PAGE}/${id}`)
-         dispatch(asyncUpdateBreadcrumb(breadCrumbs))
-      }
+      setSearchValue('')
+      setFilteredData([])
+      setFocused((isFocused) => !isFocused)
    }
    return (
       <div role="presentation" onClick={navigateToType}>

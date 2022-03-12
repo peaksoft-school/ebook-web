@@ -8,17 +8,16 @@ import { sendRequest } from '../../../utils/helpers'
 import BreadCrumbs from '../../../components/UI/BreadCrumbs/BreadCrumbs'
 
 const BookPage = () => {
-   const params = useParams()
+   const { bookById } = useParams()
    const [bookInfo, setBookInfo] = useState()
 
    const getSingleBookById = async () => {
       try {
          const requestConfig = {
             method: 'GET',
-            url: GET_BOOK_BY_ID + params.bookById,
+            url: GET_BOOK_BY_ID + bookById,
          }
          const response = await sendRequest(requestConfig)
-         console.log(response)
          await setBookInfo(response)
       } catch (error) {
          console.log(error.message)
@@ -27,7 +26,7 @@ const BookPage = () => {
 
    useEffect(() => {
       getSingleBookById()
-   }, [])
+   }, [bookById])
 
    const sendDeletedBookHundler = (bookId) => {
       console.log(bookId)

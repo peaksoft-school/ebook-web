@@ -11,8 +11,9 @@ const BookPage = () => {
    const [bookInfo, setBookInfo] = useState()
    const [isShowAcceptModal, setShowAcceptModal] = useState(false)
    const [isShowRejectModal, setShowRejectModal] = useState(false)
+
    const navigate = useNavigate()
-   const params = useParams()
+   const { bookById } = useParams()
 
    const sendRequestRejectingHundler = async (sentText) => {
       try {
@@ -46,7 +47,7 @@ const BookPage = () => {
       try {
          const requestConfig = {
             method: 'GET',
-            url: GET_BOOK_BY_ID + params.bookById,
+            url: GET_BOOK_BY_ID + bookById,
          }
          const response = await sendRequest(requestConfig)
          await setBookInfo(response)
@@ -57,7 +58,7 @@ const BookPage = () => {
 
    useEffect(async () => {
       await getSingleBookById()
-   }, [])
+   }, [bookById])
 
    return (
       <div className={classes.adminBookWrapper}>

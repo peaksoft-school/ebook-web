@@ -1,18 +1,25 @@
 import classes from './SearchList.module.css'
 import UserItem from './SearchItem/SearchItem'
 
-const SearchList = ({ filteredData }) => {
+const SearchList = ({
+   filteredData,
+   setFilteredData,
+   setSearchValue,
+   setFocused,
+}) => {
    return (
       <div className={classes.list}>
          {filteredData &&
             filteredData.map((searchItem) => {
-               console.log(searchItem)
                return (
                   <UserItem
-                     key={searchItem.id}
+                     key={searchItem}
                      id={searchItem.id}
                      type={searchItem.type}
                      name={searchItem.search}
+                     setFilteredData={setFilteredData}
+                     setSearchValue={setSearchValue}
+                     setFocused={setFocused}
                   />
                )
             })}
