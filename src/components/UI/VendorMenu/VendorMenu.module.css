@@ -39,3 +39,24 @@
 .addBooksButton:hover {
    background: #e26834;
 }
+
+.succes {
+   display: flex;
+   flex-direction: column;
+}
+
+.succesIcon {
+   margin-left: 207px;
+   margin-right: 207px;
+   margin-top: 20px;
+}
+
+.succesMessage {
+   margin-left: 100px;
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 130%;
+   color: #000000;
+}

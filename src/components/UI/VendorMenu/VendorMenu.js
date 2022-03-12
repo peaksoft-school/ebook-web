@@ -8,20 +8,32 @@ import { ReactComponent as I } from '../../../assets/icons/i.svg'
 import { ReactComponent as Plus } from '../../../assets/icons/addBookPlus.svg'
 import PromoCodeModal from '../PromoCodeModal/PromoCodeModal'
 import { sendRequest } from '../../../utils/helpers'
+import { ReactComponent as Succes } from '../../../assets/icons/successful-icon.svg'
+import Modal from '../modal-window/ModalWindow'
 
 const VendorMenu = () => {
    const [promo, setPromo] = useState(false)
+   const [succes, setSucces] = useState(false)
 
    const PromoCodeChangeHAndler = () => {
       setPromo((promo) => !promo)
    }
 
-   const sendRequestPromoCode = async (data) => {
-      // console.log(data)
-      const confiqRequset = { url: PROMO_CREATE, method: 'POST', body: data }
-      const response = await sendRequest(confiqRequset)
-      console.log(response)
+   const SuccesChangeHAndler = () => {
+      setSucces((succes) => !succes)
    }
+
+   const sendRequestPromoCode = async (data) => {
+      try {
+         const confiqRequset = { url: PROMO_CREATE, method: 'POST', body: data }
+         const response = await sendRequest(confiqRequset)
+         setSucces((succes) => !succes)
+         console.log(response)
+      } catch (error) {
+         console.log(error)
+      }
+   }
+
    return (
       <div className={classes.container}>
          <div className={classes.craete}>
@@ -29,6 +41,16 @@ const VendorMenu = () => {
                Создать промокод
             </Button>
             <I className={classes.icon} />
+            {succes && (
+               <div className={classes.succes}>
+                  <Modal onClose={SuccesChangeHAndler}>
+                     <Succes className={classes.succesIcon} />
+                     <p className={classes.succesMessage}>
+                        Промокод успешно создан!
+                     </p>
+                  </Modal>
+               </div>
+            )}
          </div>
          {promo && (
             <PromoCodeModal
