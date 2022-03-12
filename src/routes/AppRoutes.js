@@ -10,6 +10,7 @@ import PrivateRouteForAdmin from '../components/UI/PrivateRoutes/PrivateRouteFor
 import PrivateRouteForUser from '../components/UI/PrivateRoutes/PrivateRouteForUser/PrivateRouteForUser'
 import PrivatePouteForVendor from '../components/UI/PrivateRoutes/PrivatePouteForVendor/PrivatePouteForVendor'
 import ClientMainPage from '../containers/client/ClientMainPage/ClientMainPage'
+import Applications from '../containers/admin/Applications/Applications'
 import PromoCodePage from '../containers/client/PromoCodePage/PromoCodePage'
 import NoAccess from '../containers/NoAccess/NoAccess'
 import HowToBecomeToVendorPage from '../containers/client/HowToBecomeVendorPage/HowToBecomeVendorPage'
@@ -17,6 +18,8 @@ import ClientLayout from '../components/client/ClientLayout/ClientLayout'
 import VendorLayout from '../components/vendor/VendorLayout/VendorLayout'
 import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
 import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
+import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
+// import VendorBooks from '../containers/VendorBooks/VendorBooks'
 
 function AppRoutes() {
    return (
@@ -30,7 +33,11 @@ function AppRoutes() {
                </PrivateRouteForAdmin>
             }
          >
-            <Route path={ROUTES.APPLICATIONS} element={<h1>APP</h1>} />
+            <Route path={ROUTES.APPLICATIONS} element={<Applications />} />
+            <Route
+               path={ROUTES.APPLICATION_BOOK_BY_ID}
+               element={<AdminBookPage />}
+            />
             <Route path={ROUTES.SELLERS} element={<Sellers />} />
             <Route path={ROUTES.SEllERBYID} element={<SellersDetails />} />
             <Route path={ROUTES.USERS} element={<Users />} />
@@ -51,8 +58,8 @@ function AppRoutes() {
             }
          >
             <Route path={ROUTES.VENDOR_AREA} element={<AddBookForm />} />
-            <Route path={ROUTES.BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
-            <Route path={ROUTES.ADD_BOOK} element={<p>ADD_BOOK</p>} />
+            <Route path={ROUTES.VENDOR_BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
+            <Route path={ROUTES.ADD_BOOK} element={<AddBookForm />} />
             <Route path={ROUTES.PROFILE} element={<p>PROFILE</p>} />
          </Route>
 
@@ -90,7 +97,6 @@ function AppRoutes() {
                }
             />
          </Route>
-
          <Route path={ROUTES.NO_ACCESS} element={<NoAccess />} />
          <Route
             path={ROUTES.BECOME_VENDOR}

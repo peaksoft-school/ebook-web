@@ -10,6 +10,9 @@ const TopPartBookPage = ({
    book,
    sendRequestRejectingBook,
    sendRequestAcceptingBook,
+   isShowAcceptModal,
+   isShowRejectModal,
+   setShowRejectModal,
 }) => {
    const firstImage =
       book?.images[0]?.id === undefined
@@ -40,6 +43,9 @@ const TopPartBookPage = ({
             <BookActionButtons
                bookId={book.bookId}
                bookName={book.bookName}
+               isShowAcceptModal={isShowAcceptModal}
+               isShowRejectModal={isShowRejectModal}
+               setShowRejectModal={setShowRejectModal}
                sendRequestRejectingBook={sendRequestRejectingBook}
                sendRequestAcceptingBook={sendRequestAcceptingBook}
             />

@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import classes from './BookActionButtons.module.css'
 import Button from '../../../../../components/UI/Button/Button'
-import ModalForReject from '../../ModalForReject/ModalForReject'
+import ModalForReject from '../../../ModalForReject/ModalForReject'
 import ModalForAccept from '../../ModalForAccept/ModalForAccept'
 
 const BookActionButtons = ({
@@ -9,16 +10,21 @@ const BookActionButtons = ({
    bookId,
    sendRequestRejectingBook,
    sendRequestAcceptingBook,
+   isShowAcceptModal,
+   isShowRejectModal,
+   setShowRejectModal,
 }) => {
-   const [isShowRejectModal, setShowRejectModal] = useState(false)
-   const [isShowAcceptModal, setShowAcceptModal] = useState(false)
+   const navigate = useNavigate()
 
    const showRejectModal = () => {
       setShowRejectModal((isShowRejectModal) => !isShowRejectModal)
    }
 
+   const sendRejectingBookHundler = (sendingText) => {
+      sendRequestRejectingBook(sendingText)
+   }
+
    const showAcceptModal = () => {
-      setShowAcceptModal((isShowAcceptModal) => !isShowAcceptModal)
       sendRequestAcceptingBook(bookId)
    }
 
@@ -32,15 +38,11 @@ const BookActionButtons = ({
          }
          return () => {
             clearTimeout(acceptTimer)
+            navigate(-1)
          }
       }
       return ''
    }, [isShowAcceptModal])
-
-   const sendRejectingBookHundler = (sendingText) => {
-      setShowRejectModal((isShowRejectModal) => !isShowRejectModal)
-      sendRequestRejectingBook(sendingText)
-   }
 
    return (
       <div className={classes.containerForBtn}>
@@ -60,11 +62,14 @@ const BookActionButtons = ({
          </Button>
          {isShowRejectModal && (
             <ModalForReject
+               onClose={showRejectModal}
                bookId={bookId}
                sendRejectingBookHundler={sendRejectingBookHundler}
             />
          )}
-         {isShowAcceptModal && <ModalForAccept bookName={bookName} />}
+         {isShowAcceptModal && (
+            <ModalForAccept onClose={showAcceptModal} bookName={bookName} />
+         )}
       </div>
    )
 }
