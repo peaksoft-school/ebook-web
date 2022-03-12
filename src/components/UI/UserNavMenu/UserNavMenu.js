@@ -11,7 +11,6 @@ import Button from '../Button/Button'
 import { deleteFromLocalStorage } from '../../../utils/helpers'
 import { setAuth } from '../../../store/authReducer/signInSlice'
 import { userRoleReducerActions } from '../../../store/userRoleSlice'
-// import { sendRequest } from '../../../utils/helpers'
 // import { GET_CLIENT_BY_ID } from '../../../utils/constants/urls'
 
 const UserNavMenu = () => {
@@ -23,7 +22,8 @@ const UserNavMenu = () => {
    const [isShowPopUp, setShowPopUp] = useState(false)
 
    // const getClientName = async () => {
-   //    const response = await sendRequest(GET_CLIENT_BY_ID)
+   //    const configRequest = { url: 'api/clients/show/info', method: 'GET' }
+   //    const response = await sendRequest(configRequest)
    //    console.log(response)
    // }
 
@@ -47,6 +47,7 @@ const UserNavMenu = () => {
    const showPopUpHandler = () => {
       setShowPopUp((isShowPopUp) => !isShowPopUp)
    }
+
    return (
       <div className={classes.userNavMenuContainer}>
          <Link to={ROUTES.SORT} className={classes.link}>

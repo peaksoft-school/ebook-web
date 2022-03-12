@@ -1,22 +1,14 @@
 import { useEffect, useState } from 'react'
 import classes from './ClientSortPage.module.css'
-import {
-   NAVICON,
-   IS_AUDIOBOOK,
-   IS_ELECTROBOOK,
-   IS_PAPPERBOOK,
-} from '../../../utils/constants/constants'
+import { NAVICON, IS_PAPPERBOOK } from '../../../utils/constants/constants'
 import PriceInput from '../../UI/PriceInput/PriceInput'
 import { sendRequest } from '../../../utils/helpers'
-import {
-   GET_ALL_LANGUAGES,
-   GET_GENRES,
-   SORT,
-} from '../../../utils/constants/urls'
+import { GET_GENRES } from '../../../utils/constants/urls'
 import GenreCheckBoxItem from './GenreCheckBoxItem/GenreCheckBoxItem'
 import TopPart from './TopPart/TopPart'
 import TypeBook from './TypeBook/TypeBook'
 import LanguagesBook from './LanguagesBook/LanguagesBook'
+import SortPageCard from '../../UI/SortPageCard/SortPageCard'
 
 const ClientSortPage = () => {
    const [firstPrice, setFirstPrice] = useState(10000)
@@ -25,9 +17,14 @@ const ClientSortPage = () => {
    const [genreData, setGenreData] = useState([])
    const [languages, setLanguages] = useState([])
    const [languageData, setLanguageData] = useState([])
+   const [books, setBooks] = useState([])
 
-   const onChangeSortValueHandler = async (e) => {
-      e.preventDefault()
+   const onChangeSortValueHandler = async (event) => {
+      event.preventDefault()
+      sort()
+   }
+
+   const sort = async () => {
       const bodyReq = {
          genres: genreData,
          price: {
@@ -37,26 +34,24 @@ const ClientSortPage = () => {
          languages: languageData,
          type: typeOfBook,
       }
-      const configRequest = {
-         url: SORT,
-         method: 'POST',
-         body: JSON.stringify(bodyReq),
+      const bodyReqs = JSON.stringify(bodyReq)
+      try {
+         const configRequest = {
+            url: `api/books/sort?filterBy=${bodyReqs}`,
+            method: 'GET',
+         }
+         const response = await sendRequest(configRequest)
+         setBooks(response)
+      } catch (error) {
+         console.log(error.message)
       }
-      const response = await sendRequest(configRequest)
-      console.log(response)
    }
 
    const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
 
-   const isAudioChangeHandler = () => {
-      setTypeOfBook(IS_AUDIOBOOK)
-   }
-
-   const isElectroChangeHandler = () => {
-      setTypeOfBook(IS_ELECTROBOOK)
-   }
-   const isBookChangeHandler = () => {
-      setTypeOfBook(IS_PAPPERBOOK)
+   const isAudioChangeHandler = (typeOfBook) => {
+      console.log(typeOfBook)
+      setTypeOfBook(typeOfBook)
    }
 
    const getGenres = async () => {
@@ -74,7 +69,7 @@ const ClientSortPage = () => {
    }
 
    const getLanguages = async () => {
-      const configRequest = { url: GET_ALL_LANGUAGES }
+      const configRequest = { url: 'api/books/languages', method: 'GET' }
       const response = await sendRequest(configRequest)
       setLanguages(response)
    }
@@ -87,76 +82,86 @@ const ClientSortPage = () => {
       }
    }
 
-   // const getAllBooks = async () => {
-   //    const configRequest = { url: GET_ALL_BOOKS }
-   //    const response = await sendRequest(configRequest)
-   //    console.log(response)
-   // }
-
    useEffect(() => {
       getLanguages()
       getGenres()
+      sort()
    }, [])
    return (
       <form onSubmit={onChangeSortValueHandler}>
          <section className={classes.section}>
-            <TopPart />
-            <div className={classes.janr}>
-               <div className={classes.title}>
-                  Жанры <img src={NAVICON.ARRDOWN} alt="" />
-               </div>
-               <div className={classes.genre}>
-                  {genres &&
-                     genres.map((genre) => {
-                        return (
-                           <GenreCheckBoxItem
-                              sendRequestGenreById={sendRequestGenreById}
-                              genre={genre}
-                              key={genre.id}
-                              id={genre.id}
-                           />
-                        )
-                     })}
-               </div>
-               <div className={classes.typeblock}>
+            <div>
+               <TopPart books={books.length} />
+               <div className={classes.janr}>
                   <div className={classes.title}>
-                     Тип <img src={NAVICON.ARRDOWN} alt="" />
+                     Жанры <img src={NAVICON.ARRDOWN} alt="" />
                   </div>
-                  <TypeBook
-                     typeOfBook={typeOfBook}
-                     isAudioChangeHandler={isAudioChangeHandler}
-                     isBookChangeHandler={isBookChangeHandler}
-                     isElectroChangeHandler={isElectroChangeHandler}
-                  />
-               </div>
-               <PriceInput
-                  firstPrice={firstPrice}
-                  secondPrice={secondPrice}
-                  setFirstPrice={setFirstPrice}
-                  setSecondPrice={setSecondPrice}
-               />
-               <div className={classes.lang}>
-                  <span className={classes.lan}>
-                     Язык издания <img src={NAVICON.ARRDOWN} alt="" />
-                  </span>
-                  <div className={classes.lanCheck}>
-                     {languages &&
-                        languages.map((language) => {
+                  <div className={classes.genre}>
+                     {genres &&
+                        genres.map((genre) => {
                            return (
-                              <LanguagesBook
-                                 sendRequestLanguagesById={
-                                    sendRequestLanguagesById
-                                 }
-                                 language={language}
-                                 key={language}
+                              <GenreCheckBoxItem
+                                 sendRequestGenreById={sendRequestGenreById}
+                                 genre={genre}
+                                 key={genre.id}
+                                 id={genre.id}
                               />
                            )
                         })}
                   </div>
+                  <div className={classes.typeblock}>
+                     <div className={classes.title}>
+                        Тип <img src={NAVICON.ARRDOWN} alt="" />
+                     </div>
+                     <TypeBook
+                        typeOfBook={typeOfBook}
+                        isAudioChangeHandler={isAudioChangeHandler}
+                     />
+                  </div>
+                  <PriceInput
+                     firstPrice={firstPrice}
+                     secondPrice={secondPrice}
+                     setFirstPrice={setFirstPrice}
+                     setSecondPrice={setSecondPrice}
+                  />
+                  <div className={classes.lang}>
+                     <span className={classes.lan}>
+                        Язык издания <img src={NAVICON.ARRDOWN} alt="" />
+                     </span>
+                     <div className={classes.lanCheck}>
+                        {languages &&
+                           languages.map((language) => {
+                              return (
+                                 <LanguagesBook
+                                    sendRequestLanguagesById={
+                                       sendRequestLanguagesById
+                                    }
+                                    language={language}
+                                    key={language}
+                                 />
+                              )
+                           })}
+                     </div>
+                  </div>
+                  <button type="submit" className={classes.button}>
+                     FILTER
+                  </button>
                </div>
             </div>
-            <button type="submit">FILTER(сказал Байболот)</button>
-            <div>2</div>
+            <div className={classes.cards}>
+               {books.map((item) => {
+                  return (
+                     <SortPageCard
+                        id={item.image.id}
+                        img={item.image}
+                        key={item.bookId}
+                        bookName={item.bookName}
+                        author={item.author}
+                        price={item.price}
+                     />
+                  )
+               })}
+            </div>
          </section>
       </form>
    )

@@ -3,14 +3,14 @@ import WhiteWrapper from '../../../UI/WhiteWrapper/WhiteWrapper'
 import { NAVICON } from '../../../../utils/constants/constants'
 import classes from './TopPart.module.css'
 
-const TopPart = () => {
+const TopPart = ({ books }) => {
    const [arrow, setArrow] = useState(false)
    const ArrowChangeHandler = () => {
       setArrow((prev) => !prev)
    }
    return (
       <main className={classes.main}>
-         <span className={classes.found}>Найдены $ книг</span>
+         <span className={classes.found}>Найдены {books} книг</span>
          <span
             className={classes.sort}
             onClick={ArrowChangeHandler}
