@@ -1,28 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { sendRequest } from '../../../utils/helpers'
+import { SEARCH } from '../../../utils/constants/urls'
 import classes from './Search.module.css'
 import SearchIcon from './Search-icon/SearchIcon'
-import SearchList from './SearchList/SearchList'
+// import SearchList from './SearchList/SearchList'
 
 const Search = () => {
    const [isFocused, setFocused] = useState(false)
    const [searchValue, setSearchValue] = useState('')
-   const [filteredData, setFilteredData] = useState()
+   // const [filteredData, setFilteredData] = useState()
 
-   const list = []
+   // const list = []
 
-   function changeColorInput(event) {
+   const changeColorInput = (event) => {
       setSearchValue(event.target.value)
-      if (event.target.value === '') {
-         setFilteredData([])
-      } else if (event.target.value) {
-         const filterData =
-            list.length !== 0
-               ? list.response.filter((item) =>
-                    item.name.includes(event.target.value)
-                 )
-               : []
-         setFilteredData(filterData)
+   }
+
+   const sendRequestSearchValue = async () => {
+      const configRequest = {
+         url: `${SEARCH}${searchValue}`,
       }
+      const response = await sendRequest(configRequest)
+      console.log(response)
    }
 
    function сolorInput() {
@@ -41,6 +40,10 @@ const Search = () => {
          setFocused(false)
       }
    }
+
+   useEffect(() => {
+      sendRequestSearchValue()
+   }, [searchValue])
 
    return (
       <div className={classes.box}>
@@ -61,7 +64,7 @@ const Search = () => {
                <SearchIcon isActive={isFocused} />
             </form>
          </div>
-         <SearchList filteredData={filteredData} />
+         {/* <SearchList filteredData={filteredData} /> */}
       </div>
    )
 }

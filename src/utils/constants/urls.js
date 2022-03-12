@@ -10,7 +10,9 @@ const GET_BOOK_BY_ID = 'api/books/get/'
 const UPDATE_VENDOR_BY_ID = 'api/vendor/update/'
 const GET_VENDOR_BY_ID = 'api/vendor/getById/'
 const GET_ALL_VENDORS = 'api/vendor/getAll'
-const DELETE_VENDOR_BY_ID = '/api/vendor/deleteById/'
+const DELETE_VENDOR_BY_ID = 'api/vendor/deleteById/'
+
+const SEARCH = 'api/search/books?search='
 
 // This API for saving files {images, audios, electronic_books} to amazon S3 bucket
 
@@ -69,4 +71,5 @@ export {
    DELETE_VENDOR_BY_ID,
    ADD_NEW_GENRE_URL,
    GET_TYPES,
+   SEARCH,
 }
