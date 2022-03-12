@@ -37,6 +37,7 @@ const UpdateAudioBook = (props) => {
       secondPicture,
       thirdPicture,
    } = props
+
    const {
       register,
       handleSubmit,

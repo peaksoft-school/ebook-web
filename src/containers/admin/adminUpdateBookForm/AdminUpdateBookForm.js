@@ -172,6 +172,7 @@ const AdminUpdateBookForm = () => {
                      mainPicture={mainPicture}
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
+                     bookInfo={bookInfo}
                   />
                )}
                {electroBook && (
