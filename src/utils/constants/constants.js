@@ -20,6 +20,13 @@ export const ROLES = {
    CLIENT: 'CLIENT',
 }
 
+export const SEARCH_VALUE_TYPE = {
+   BOOK: 'BOOK',
+   PUBLISHING_HOUSE: 'PUBLISHER',
+   GENRE: 'GENRE',
+   AUTHOR: 'AUTHOR',
+}
+
 export const LANGUAGES = {
    RUSSIAN: 'RUSSIAN',
    ENGLISH: 'ENGLISH',

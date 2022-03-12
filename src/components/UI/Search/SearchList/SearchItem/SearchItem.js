@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { asyncUpdateBreadcrumb } from '../../../../../store/breadCrumbsSlice'
-import { ROUTES, ROLES } from '../../../../../utils/constants/constants'
+import {
+   ROUTES,
+   ROLES,
+   SEARCH_VALUE_TYPE,
+} from '../../../../../utils/constants/constants'
 import classes from './SearchItem.module.css'
 import WhiteWrapper from '../../../WhiteWrapper/WhiteWrapper'
 
@@ -24,34 +28,29 @@ const SearchItem = ({
    ]
 
    const navigateToType = () => {
-      switch (type) {
-         case 'GENRE':
-            navigate(`${ROUTES.SORT_GENRE}/${id}`)
-            break
-         case 'AUTHOR':
-            navigate(`${ROUTES.SORT_AUTHOR}/${name}`)
-            break
-         case 'PUBLISHER':
-            navigate(`${ROUTES.SORT_PUBLISHING_HOUSE}/${name}`)
-            break
-
-         case 'BOOK' && role === ROLES.ADMIN:
-            navigate(`${ROUTES.ADMIN_BOOK_PAGE}/${id}`)
-            dispatch(asyncUpdateBreadcrumb(breadCrumbs))
-            break
-
-         case 'BOOK' && role === ROLES.VENDOR:
-            navigate(`${ROUTES.VENDOR_BOOK_PAGE}/${id}`)
-            dispatch(asyncUpdateBreadcrumb(breadCrumbs))
-            break
-
-         case 'BOOK':
-            navigate(`${ROUTES.CLIENT_BOOK_PAGE}/${id}`)
-            dispatch(asyncUpdateBreadcrumb(breadCrumbs))
-            break
-
-         default:
-            break
+      if (type === SEARCH_VALUE_TYPE.GENRE) {
+         navigate(`${ROUTES.SORT_GENRE}/${id}`)
+      }
+      if (type === SEARCH_VALUE_TYPE.AUTHOR) {
+         navigate(`${ROUTES.SORT_AUTHOR}/${name}`)
+      }
+      if (type === SEARCH_VALUE_TYPE.PUBLISHING_HOUSE) {
+         navigate(`${ROUTES.SORT_PUBLISHING_HOUSE}/${name}`)
+      }
+      if (type === SEARCH_VALUE_TYPE.BOOK && role === ROLES.ADMIN) {
+         navigate(`${ROUTES.ADMIN_BOOK_PAGE}/${id}`)
+         dispatch(asyncUpdateBreadcrumb(breadCrumbs))
+      }
+      if (type === SEARCH_VALUE_TYPE.BOOK && role === ROLES.VENDOR) {
+         navigate(`${ROUTES.VENDOR_BOOK_PAGE}/${id}`)
+         dispatch(asyncUpdateBreadcrumb(breadCrumbs))
+      }
+      if (
+         (type === SEARCH_VALUE_TYPE.BOOK && role === null) ||
+         role === ROLES.CLIENT
+      ) {
+         navigate(`${ROUTES.CLIENT_BOOK_PAGE}/${id}`)
+         dispatch(asyncUpdateBreadcrumb(breadCrumbs))
       }
       setSearchValue('')
       setFilteredData([])
