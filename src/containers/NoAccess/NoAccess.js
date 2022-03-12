@@ -17,7 +17,7 @@ const NoAccess = () => {
             variant="goBack"
             className={classes.button}
             onClick={() => {
-               navigate(ROUTES.CLIENT)
+               navigate(ROUTES.CLIENT_MAIN_PAGE)
             }}
          >
             Вернутся на предыдущую страницу

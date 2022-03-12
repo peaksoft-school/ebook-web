@@ -1,20 +1,21 @@
 .containerForLocations {
-    display: flex;
-    margin-left: 20px;
+   display: flex;
+   margin-left: 20px;
+   margin-top: 60px;
 }
 
 .previousLocation {
-    color: #969696;
-    font-size: 14px;
-    cursor: pointer;
-    margin: 0;
+   color: #969696;
+   font-size: 14px;
+   cursor: pointer;
+   margin: 0;
 }
 
 .currentLocation {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-left: 5px;
-    color:black;
+   margin: 0;
+   font-size: 14px;
+   font-weight: 600;
+   cursor: pointer;
+   margin-left: 5px;
+   color: black;
 }

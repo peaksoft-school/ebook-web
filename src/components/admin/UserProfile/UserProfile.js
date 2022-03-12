@@ -1,29 +1,14 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { sendRequest } from '../../../utils/helpers'
 import Button from '../../UI/Button/Button'
 import classes from './UserProfile.module.css'
 import ModalForDelete from '../../UI/ModalForDelete/ModalForDelete'
 
-const UserProfile = () => {
+const UserProfile = ({ userById }) => {
    const [isShowModal, setIsShowModal] = useState(false)
-   const [userById, setUserById] = useState('')
-
    const navigate = useNavigate()
-
    const params = useParams()
-
-   const getUserById = async () => {
-      const userUrl = {
-         url: `api/clients/getById/${params.userId}`,
-      }
-      const response = await sendRequest(userUrl)
-      await setUserById(response)
-   }
-
-   useEffect(() => {
-      getUserById()
-   }, [])
 
    const onOpenHundler = () => {
       setIsShowModal(true)

@@ -3,7 +3,7 @@ import classes from './ModalForReject.module.css'
 import Modal from '../../../../components/UI/modal-window/ModalWindow'
 import Button from '../../../../components/UI/Button/Button'
 
-const ModalForReject = ({ sendRejectingBookHundler }) => {
+const ModalForReject = ({ sendRejectingBookHundler, bookId }) => {
    const [text, setText] = useState('')
 
    const saveTextHundler = (event) => {
@@ -11,7 +11,7 @@ const ModalForReject = ({ sendRejectingBookHundler }) => {
    }
 
    const rejectBookHundler = () => {
-      sendRejectingBookHundler(text)
+      sendRejectingBookHundler({ bookId, reasonForRejection: text })
    }
 
    return (

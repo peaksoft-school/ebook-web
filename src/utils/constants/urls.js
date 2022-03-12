@@ -18,7 +18,7 @@ const UPLOAD_PDF_FILE = 'static/upload/pdf'
 const UPLOAD_IMAGE = 'static/upload/image'
 const UPLOAD_AUDIO_FILE = 'static/upload/audio'
 const UPLOAD_AUDIO_FRAGMENT = 'static/upload/audio/fragment'
-
+const SORT = 'api/books/sort'
 // API to use basket only for users with authority CLIENT
 
 const UPDATE_CLIENT_BY_ID = 'api/clients/update/'
@@ -31,11 +31,18 @@ const DELETE_CLIENT_BY_ID = 'api/clients/delete/'
 const ADD_NEW_GENRE_URL = 'api/genres/save'
 const UPDATE_GENRE_BY_ID = 'api/genres/update/'
 const GET_GENRES = 'api/genres'
+const GET_TYPES = 'api/books/types'
 const GET_GENRE_BY_ID = 'api/genres/get/'
 const DELETE_GENRES = 'api/genres/delete'
 
 // update books
 const UPDATE_PAPER_BOOK = 'api/books/update/paper_book/'
+export const APPLICATIONS = {
+   REJECT_APLLICATION: 'api/admin/refuse/book/request',
+   ACCEPT_APPLICATION: 'api/admin/accept/book/request',
+   GET_ALL_APPLICATIONS: 'api/admin/get/books/requests',
+   GET_ALL_ACCEPTED_BOOKS: 'api/admin/get/books/accepted',
+}
 
 export {
    DEFAULT_URL,
@@ -46,6 +53,7 @@ export {
    GET_ALL_VENDORS,
    GET_BOOK_BY_ID,
    GET_CLIENT_BY_ID,
+   SORT,
    GET_GENRES,
    GET_GENRE_BY_ID,
    GET_VENDOR_BY_ID,
@@ -63,4 +71,5 @@ export {
    DELETE_VENDOR_BY_ID,
    ADD_NEW_GENRE_URL,
    UPDATE_PAPER_BOOK,
+   GET_TYPES,
 }

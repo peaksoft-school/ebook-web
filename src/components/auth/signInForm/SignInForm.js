@@ -69,7 +69,7 @@ const SignIn = ({ onClose }) => {
       if (userRole === ROLES.CLIENT) {
          onClose()
       }
-      return navigate(ROUTES.CLIENT)
+      return navigate(ROUTES.CLIENT_MAIN_PAGE)
    }
 
    return (

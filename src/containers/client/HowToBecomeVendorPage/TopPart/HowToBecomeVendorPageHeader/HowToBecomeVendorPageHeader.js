@@ -8,7 +8,7 @@ const HowToBecomeVendorPageHeader = () => {
    return (
       <div className={classes.howToBecomeVendorPageHeaderContainer}>
          <EBookLogo />
-         <Link to={ROUTES.CLIENT}>
+         <Link to={ROUTES.CLIENT_MAIN_PAGE}>
             <Button className={classes.buttonSize} variant="tertiary">
                Личный кабинет
             </Button>
