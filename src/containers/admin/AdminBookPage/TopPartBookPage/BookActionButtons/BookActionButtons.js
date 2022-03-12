@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import classes from './BookActionButtons.module.css'
 import Button from '../../../../../components/UI/Button/Button'
@@ -10,9 +10,10 @@ const BookActionButtons = ({
    bookId,
    sendRequestRejectingBook,
    sendRequestAcceptingBook,
+   isShowAcceptModal,
+   isShowRejectModal,
+   setShowRejectModal,
 }) => {
-   const [isShowAcceptModal, setShowAcceptModal] = useState(false)
-   const [isShowRejectModal, setShowRejectModal] = useState(false)
    const navigate = useNavigate()
 
    const showRejectModal = () => {
@@ -20,12 +21,10 @@ const BookActionButtons = ({
    }
 
    const sendRejectingBookHundler = (sendingText) => {
-      setShowRejectModal((isShowRejectModal) => !isShowRejectModal)
       sendRequestRejectingBook(sendingText)
    }
 
    const showAcceptModal = () => {
-      setShowAcceptModal((isShowAcceptModal) => !isShowAcceptModal)
       sendRequestAcceptingBook(bookId)
    }
 

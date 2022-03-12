@@ -8,9 +8,11 @@ import { GET_BOOK_BY_ID, APPLICATIONS } from '../../../utils/constants/urls'
 import BreadCrumbs from '../../../components/UI/BreadCrumbs/BreadCrumbs'
 
 const BookPage = () => {
+   const [bookInfo, setBookInfo] = useState()
+   const [isShowAcceptModal, setShowAcceptModal] = useState(false)
+   const [isShowRejectModal, setShowRejectModal] = useState(false)
    const navigate = useNavigate()
    const params = useParams()
-   const [bookInfo, setBookInfo] = useState()
 
    const sendRequestRejectingHundler = async (sentText) => {
       try {
@@ -19,7 +21,8 @@ const BookPage = () => {
             method: 'POST',
             body: sentText,
          }
-         sendRequest(configRequest)
+         await sendRequest(configRequest)
+         setShowRejectModal((isShowRejectModal) => !isShowRejectModal)
          navigate(-1)
       } catch (error) {
          console.log(error.message)
@@ -33,6 +36,7 @@ const BookPage = () => {
             method: 'POST',
          }
          await sendRequest(configRequest)
+         setShowAcceptModal((isShowAcceptModal) => !isShowAcceptModal)
       } catch (error) {
          console.log(error.message)
       }
@@ -62,6 +66,9 @@ const BookPage = () => {
             <div className={classes.ContainerForBook}>
                <TopPartBookPage
                   book={bookInfo}
+                  isShowAcceptModal={isShowAcceptModal}
+                  isShowRejectModal={isShowRejectModal}
+                  setShowRejectModal={setShowRejectModal}
                   sendRequestRejectingBook={sendRequestRejectingHundler}
                   sendRequestAcceptingBook={sendRequestAcceptingHundler}
                />

@@ -1,12 +1,15 @@
-import { useState } from 'react'
 import { ReactComponent as RubishIcon } from '../../../../../assets/icons/rubish.svg'
 import { ReactComponent as ReductorIcon } from '../../../../../assets/icons/akar-icons_cross.svg'
 import classes from './PopUp.module.css'
 import ModalForReject from '../../../ModalForReject/ModalForReject'
 
-const PopUp = ({ editBookRedirect, bookId, sendRequestRejectingBook }) => {
-   const [isShowRejectModal, setShowRejectModal] = useState(false)
-
+const PopUp = ({
+   editBookRedirect,
+   bookId,
+   sendRequestRejectingBook,
+   isShowRejectModal,
+   setShowRejectModal,
+}) => {
    const showRejectModal = () => {
       setShowRejectModal((isShowRejectModal) => !isShowRejectModal)
    }

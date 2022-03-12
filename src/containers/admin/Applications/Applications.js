@@ -10,6 +10,7 @@ import { asyncUpdateBreadcrumb } from '../../../store/breadCrumbsSlice'
 
 const Applications = () => {
    const [applications, setApplication] = useState([])
+   const [isShowRejectModal, setShowRejectModal] = useState(false)
    const navigate = useNavigate()
    const dispatch = useDispatch()
 
@@ -46,14 +47,16 @@ const Applications = () => {
             method: 'POST',
             body: sentText,
          }
-         sendRequest(configRequest)
+         await sendRequest(configRequest)
+         setShowRejectModal((isShowRejectModal) => !isShowRejectModal)
       } catch (error) {
          console.log(error.message)
       }
    }
 
-   const editBookRedirect = (bookId) => {
+   const redirectToEditBook = (bookId) => {
       console.log(bookId)
+      // он будет перенаправлять в страницу изменения книги
    }
 
    useEffect(() => {
@@ -71,8 +74,10 @@ const Applications = () => {
             {applications.map((book) => {
                return (
                   <ApplicationBook
+                     isShowRejectModal={isShowRejectModal}
+                     setShowRejectModal={setShowRejectModal}
                      sendRequestRejectingBook={sendRequestRejectingHundler}
-                     editBookRedirect={editBookRedirect}
+                     editBookRedirect={redirectToEditBook}
                      navigateToBookPage={navigateToBookPage}
                      key={book.bookName}
                      book={book}

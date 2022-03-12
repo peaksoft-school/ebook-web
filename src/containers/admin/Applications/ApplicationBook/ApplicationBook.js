@@ -13,6 +13,8 @@ const ApplicationBook = (props) => {
       navigateToBookPage,
       editBookRedirect,
       sendRequestRejectingBook,
+      isShowRejectModal,
+      setShowRejectModal,
    } = props
 
    const [popUpShown, setPopUpShown] = useState(false)
@@ -50,6 +52,8 @@ const ApplicationBook = (props) => {
             />
             {popUpShown && (
                <PopUp
+                  isShowRejectModal={isShowRejectModal}
+                  setShowRejectModal={setShowRejectModal}
                   sendRequestRejectingBook={sendRequestRejectingBook}
                   bookId={book.bookId}
                   editBookRedirect={editBookRedirect}
