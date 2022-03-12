@@ -1,33 +1,10 @@
-import React from 'react'
 import classes from './TypeBook.module.css'
-import {
-   IS_PAPPERBOOK,
-   IS_AUDIOBOOK,
-   IS_ELECTROBOOK,
-} from '../../../../utils/constants/constants'
 
-const TypeBook = ({
-   typeOfBook,
-   isBookChangeHandler,
-   isAudioChangeHandler,
-   isElectroChangeHandler,
-}) => {
-   // const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
+const TypeBook = ({ isAudioChangeHandler }) => {
+   const isBookChangeHandler = (e) => {
+      isAudioChangeHandler(e.target.value)
+   }
 
-   // const isAudioChangeHandler = () => {
-   //    setTypeOfBook(IS_AUDIOBOOK)
-   // }
-
-   // const isElectroChangeHandler = () => {
-   //    setTypeOfBook(IS_ELECTROBOOK)
-   // }
-   // const isBookChangeHandler = () => {
-   //    setTypeOfBook(IS_PAPPERBOOK)
-   // }
-
-   const electroBook = typeOfBook === IS_ELECTROBOOK
-   const papperBook = typeOfBook === IS_PAPPERBOOK
-   const audioBook = typeOfBook === IS_AUDIOBOOK
    return (
       <div className={classes.e}>
          <div className={classes.changeFormSection}>
@@ -35,8 +12,7 @@ const TypeBook = ({
                <input
                   type="radio"
                   name="type"
-                  defaultChecked={papperBook}
-                  defaultValue={papperBook}
+                  defaultValue="PAPER_BOOK"
                   onChange={isBookChangeHandler}
                   className={classes.radioBtn}
                />
@@ -46,9 +22,8 @@ const TypeBook = ({
                <input
                   type="radio"
                   name="type"
-                  onChange={isAudioChangeHandler}
-                  defaultChecked={audioBook}
-                  defaultValue={audioBook}
+                  onChange={isBookChangeHandler}
+                  defaultValue="AUDIO_BOOK"
                   className={classes.radioBtn}
                />
                Аудиокнига
@@ -57,9 +32,8 @@ const TypeBook = ({
                <input
                   type="radio"
                   name="type"
-                  onChange={isElectroChangeHandler}
-                  defaultChecked={electroBook}
-                  defaultValue={electroBook}
+                  onChange={isBookChangeHandler}
+                  defaultValue="ELECTRONIC_BOOK"
                   className={classes.radioBtn}
                />
                Электонная Книга

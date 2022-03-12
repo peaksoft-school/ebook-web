@@ -8,3 +8,7 @@
    content: '――――――――― ';
    color: #ffffff;
 }
+
+.genre:hover {
+   transition: 5s;
+}

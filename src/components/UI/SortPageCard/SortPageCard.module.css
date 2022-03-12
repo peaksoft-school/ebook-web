@@ -1,0 +1,40 @@
+.card {
+   display: flex;
+   flex-direction: column;
+   margin-left: 20px;
+}
+
+.img {
+   width: 224px;
+   height: 343px;
+   background-image: 100%;
+   background-repeat: no-repeat;
+}
+
+.name {
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-weight: 600;
+   font-size: 14px;
+   line-height: 120%;
+   text-transform: uppercase;
+   color: #222222;
+}
+
+.author {
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 120%;
+   color: #222222;
+}
+
+.price {
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-weight: 600;
+   font-size: 14px;
+   line-height: 120%;
+   color: #F34901
+}
