@@ -15,7 +15,6 @@ const UserNavMenu = () => {
    const role = useSelector((state) => state.role.roleData)
    const dispatch = useDispatch()
    const navigate = useNavigate()
-
    const [isShow, setShow] = useState(false)
    const [isShowPopUp, setShowPopUp] = useState(false)
 
@@ -32,6 +31,7 @@ const UserNavMenu = () => {
    const showPopUpHandler = () => {
       setShowPopUp((isShowPopUp) => !isShowPopUp)
    }
+
    return (
       <div className={classes.userNavMenuContainer}>
          <Link to={ROUTES.SORT} className={classes.link}>
