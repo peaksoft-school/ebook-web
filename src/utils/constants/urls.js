@@ -10,7 +10,7 @@ const GET_BOOK_BY_ID = 'api/books/get/'
 const UPDATE_VENDOR_BY_ID = 'api/vendor/update/'
 const GET_VENDOR_BY_ID = 'api/vendor/getById/'
 const GET_ALL_VENDORS = 'api/vendor/getAll'
-const DELETE_VENDOR_BY_ID = '/api/vendor/deleteById/'
+const DELETE_VENDOR_BY_ID = 'api/vendor/deleteById/'
 
 // This API for saving files {images, audios, electronic_books} to amazon S3 bucket
 
@@ -40,6 +40,10 @@ const UPDATE_PAPER_BOOK = 'api/books/update/paper_book/'
 
 // accepted admin
 const GET_ASSEPTED_BOOKS = 'api/admin/get/books/accepted'
+// get Vendor info by token
+
+const GET_VENDOR_INFO = 'api/vendor/show/info'
+
 export const APPLICATIONS = {
    REJECT_APLLICATION: 'api/admin/refuse/book/request',
    ACCEPT_APPLICATION: 'api/admin/accept/book/request',
@@ -76,4 +80,5 @@ export {
    UPDATE_PAPER_BOOK,
    GET_TYPES,
    GET_ASSEPTED_BOOKS,
+   GET_VENDOR_INFO,
 }

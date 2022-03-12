@@ -1,14 +1,66 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import UpdateInput from '../../../components/UI/vendorUpdateInput/UpdateInput'
 import classes from './UpdateVendorAccount.module.css'
 import { ReactComponent as ShowPassword } from '../../../assets/icons/passwordEye.svg'
 import { ReactComponent as HidePassword } from '../../../assets/icons/hidePassword.svg'
+import { deleteFromLocalStorage, sendRequest } from '../../../utils/helpers'
+import {
+   DELETE_VENDOR_BY_ID,
+   GET_VENDOR_INFO,
+   UPDATE_VENDOR_BY_ID,
+} from '../../../utils/constants/urls'
+import LoadingSpinner from '../../../components/UI/modal-window/loadingSpinner/LoadingSpinner'
+import SuccessfulMessage from '../../../components/UI/successMessage/SuccessfulMessage'
+import Modal from '../../../components/UI/modal-window/ModalWindow'
+import ModalForDelete from '../../../components/UI/ModalForDelete/ModalForDelete'
+import { setAuth } from '../../../store/authReducer/signInSlice'
+import { userRoleReducerActions } from '../../../store/userRoleSlice'
+import { ROUTES } from '../../../utils/constants/constants'
 
 const UpdateVendorFormAccount = () => {
+   const dispatch = useDispatch()
+   const navigate = useNavigate()
+   const [vendorInfo, setVendorInfo] = useState('')
+   const [isLoading, setIsLoading] = useState(null)
+   const getVendorInfo = () => {
+      setIsLoading(true)
+
+      setTimeout(async () => {
+         const requestConfig = {
+            method: 'GET',
+            url: GET_VENDOR_INFO,
+         }
+         const response = await sendRequest(requestConfig)
+         await setVendorInfo(response)
+         setIsLoading(false)
+      }, 2000)
+   }
+   useEffect(() => {
+      getVendorInfo()
+   }, [])
+
+   const [success, setSuccessMessage] = useState({
+      error: null,
+      bookName: '',
+      message: '',
+   })
+   const modalChangeHandler = () => {
+      setIsModal((prevState) => !prevState)
+   }
+
    const [isPasswordShown, setIsPasswordShown] = useState(true)
    const [isConfirmPasswordShown, setisConfirmPasswordShown] = useState(true)
    const [newPassword, setNewPassword] = useState(true)
+   const [isModal, setIsModal] = useState(false)
+
+   const [modalForDelete, setModalForDelete] = useState(false)
+
+   const modalForDeleteChangeHandler = () => {
+      setModalForDelete((prevState) => !prevState)
+   }
 
    const { register, handleSubmit } = useForm({ mode: 'all' })
 
@@ -61,25 +113,59 @@ const UpdateVendorFormAccount = () => {
    const typeOfPasswordInput = isPasswordShown ? 'password' : 'text'
    const typeOfConfirmInput = isConfirmPasswordShown ? 'password' : 'text'
    const typeOfNewPasswordInput = newPassword ? 'password' : 'text'
+   const {
+      email: loadedEmail,
+      firstName: loadedFirstName,
+      lastName: loadedLastName,
+      phoneNumber: loadedPhoneNumber,
+      vendorId,
+   } = vendorInfo
 
-   const submitHandler = (data) => {
-      const {
-         password,
-         phoneNumber,
-         lastName,
-         firstName,
-         email,
-         currentPassword,
-         confirmPassword,
-      } = data
+   const submitHandler = async (data) => {
+      const { password, phoneNumber, lastName, firstName, email } = data
+      const updateEmail = !email ? loadedEmail : email
+      const updateFirstName = !firstName ? loadedFirstName : firstName
+      const updateLastName = !lastName ? loadedLastName : lastName
+      const updatePhoneNumber = !phoneNumber ? loadedPhoneNumber : phoneNumber
       const transformedData = {
-         password,
-         phoneNumber,
-         lastName,
-         email,
-         firstName,
+         password: `${password}`,
+         phoneNumber: `${updatePhoneNumber}`,
+         lastName: updateLastName,
+         email: updateEmail,
+         firstName: updateFirstName,
+         vendorId,
       }
-      console.log(transformedData, data, currentPassword, confirmPassword)
+      try {
+         const responseConfig = {
+            method: 'PUT',
+            url: UPDATE_VENDOR_BY_ID + vendorId,
+            body: transformedData,
+         }
+         await sendRequest(responseConfig)
+         setSuccessMessage({
+            bookName: updateFirstName,
+            error: '',
+            message: 'Ваши данные успешно изменены',
+         })
+         return setIsModal(true)
+      } catch (error) {
+         setSuccessMessage({
+            error: error.message || 'Введите корректный пароль',
+         })
+         return setIsModal(true)
+      }
+   }
+
+   const deleteVendorAccount = async () => {
+      const responseConfig = {
+         method: 'DELETE',
+         url: DELETE_VENDOR_BY_ID + vendorId,
+      }
+      await sendRequest(responseConfig)
+      deleteFromLocalStorage('EbookUserToken')
+      dispatch(setAuth.logout())
+      dispatch(userRoleReducerActions.cleanRoleData())
+      navigate(ROUTES.CLIENT_MAIN_PAGE)
    }
 
    return (
@@ -87,6 +173,15 @@ const UpdateVendorFormAccount = () => {
          className={classes.vendorUpdateForm}
          onSubmit={handleSubmit(submitHandler)}
       >
+         {isModal && (
+            <Modal onClose={modalChangeHandler}>
+               <SuccessfulMessage
+                  apiAnswer={success}
+                  onClose={modalChangeHandler}
+               />
+            </Modal>
+         )}
+         {isLoading && <LoadingSpinner />}
          <div className={classes.vendorUpdateFormFirstBox}>
             <h1 className={classes.vendorUpdateFormh1}>Личная информация</h1>
             <UpdateInput
@@ -96,6 +191,7 @@ const UpdateVendorFormAccount = () => {
                id="name"
                className={classes.updateInputs}
                {...register('firstName')}
+               defaultValue={loadedFirstName}
             />
             <UpdateInput
                label="Ваша фамилиe"
@@ -104,6 +200,7 @@ const UpdateVendorFormAccount = () => {
                type="text"
                className={classes.updateInputs}
                {...register('lastName')}
+               defaultValue={loadedLastName}
             />
             <UpdateInput
                label="Номер телефона"
@@ -112,6 +209,7 @@ const UpdateVendorFormAccount = () => {
                type="phone"
                className={classes.updateInputs}
                {...register('phoneNumber')}
+               defaultValue={loadedPhoneNumber}
             />
             <UpdateInput
                label="Email"
@@ -120,8 +218,20 @@ const UpdateVendorFormAccount = () => {
                type="email"
                className={classes.updateInputs}
                {...register('email')}
+               defaultValue={loadedEmail}
             />
-            <button type="button" className={classes.deleteAccountBtn}>
+            {modalForDelete && (
+               <ModalForDelete
+                  onClose={modalForDeleteChangeHandler}
+                  onDelete={deleteVendorAccount}
+                  fullName={vendorInfo.lastName}
+               />
+            )}
+            <button
+               type="button"
+               className={classes.deleteAccountBtn}
+               onClick={modalForDeleteChangeHandler}
+            >
                Удалить профиль?
             </button>
          </div>
