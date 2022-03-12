@@ -138,15 +138,14 @@ const AudioBook = (props) => {
             images: [firstImageId.id, secondImageId.id, thirdImageId.id],
             bookName,
             author,
-            genreId,
+            genreId: +genreId,
             description,
             dataOfIssue,
-            typeOfLanguage,
+            language: typeOfLanguage,
             bestSeller,
             price,
             discount,
             book: {
-               id: 1,
                fragmentId: uploadFragment.id,
                duration: {
                   hour,
