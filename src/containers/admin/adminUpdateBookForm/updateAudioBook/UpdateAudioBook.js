@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -14,7 +14,7 @@ import {
    UPLOAD_IMAGE,
    UPLOAD_AUDIO_FRAGMENT,
    UPLOAD_AUDIO_FILE,
-   SEND_AUDIO_BOOK_URL,
+   UPDATE_AUDIO_BOOK,
 } from '../../../../utils/constants/urls'
 import AudioDropZone from '../../../../components/UI/audioDropZone/AudioDropZone'
 import Modal from '../../../../components/UI/modal-window/ModalWindow'
@@ -31,12 +31,27 @@ const schema = yup.object().shape({
 
 const UpdateAudioBook = (props) => {
    const {
+      bookInfo,
       languagesFromApi,
       genres,
       mainPicture,
       secondPicture,
       thirdPicture,
    } = props
+
+   const {
+      bookName: uploadedBookName,
+      author: uploadedAuthor,
+      description: uploadedDescription,
+      language: uploadedLanguage,
+      yearOfIssue: uploadedYearOfIssue,
+      price: uploadedPrice,
+      duration,
+      audio: uploadedAudio,
+      audioFragment,
+      discount: uploadedDiscount,
+      genre,
+   } = bookInfo
 
    const {
       register,
@@ -54,10 +69,18 @@ const UpdateAudioBook = (props) => {
       error: null,
       bookName: '',
    })
+   const [audio, setAudio] = useState({
+      audio: { fileName: '', name: '' },
+   })
 
-   const [audio, setAudio] = useState({ audio: {} })
+   const [fragment, setFragment] = useState({
+      audio: { fileName: '', name: '' },
+   })
 
-   const [fragment, setFragment] = useState({ audio: {} })
+   useEffect(() => {
+      setAudio({ audio: { name: uploadedAudio?.fileName } })
+      setFragment({ audio: { name: audioFragment?.fileName } })
+   }, [bookInfo])
 
    const onChangeLanguagesValue = (lang) => {
       setTypeOfLanguage(lang)
@@ -108,12 +131,38 @@ const UpdateAudioBook = (props) => {
          url: UPLOAD_AUDIO_FRAGMENT,
       }
       try {
-         const firstImageId = await sendWithFormDataToApi(firstImageConfig)
-         const secondImageId = await sendWithFormDataToApi(secondImageConfig)
-         const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
+         let firstImageId = null
+         if (bookInfo.images[0].id) {
+            firstImageId = { id: bookInfo.images[0].id }
+         } else {
+            firstImageId = await sendWithFormDataToApi(firstImageConfig)
+         }
+         let secondImageId = null
+         if (bookInfo.images[1].id) {
+            secondImageId = { id: bookInfo.images[1].id }
+         } else {
+            secondImageId = await sendWithFormDataToApi(secondImageConfig)
+         }
+         let thirdImageId = null
+         if (bookInfo.images[2].id) {
+            thirdImageId = { id: bookInfo.images[2].id }
+         } else {
+            thirdImageId = await sendWithFormDataToApi(thridImageConfig)
+         }
 
-         const uploadFragment = await sendWithFormDataToApi(uploadAudioOption)
-         const uploadAudio = await sendWithFormDataToApi(uploadFragmentOption)
+         let uploadFragment = null
+         if (bookInfo.audioFragment.id) {
+            uploadFragment = { id: bookInfo.audioFragment.id }
+         } else {
+            uploadFragment = await sendWithFormDataToApi(uploadFragmentOption)
+         }
+
+         let uploadAudio = null
+         if (bookInfo.audio.id) {
+            uploadAudio = { id: bookInfo.audio.id }
+         } else {
+            uploadAudio = await sendWithFormDataToApi(uploadAudioOption)
+         }
          if (
             firstImageId.ok &&
             secondImageId.ok &&
@@ -135,19 +184,19 @@ const UpdateAudioBook = (props) => {
             price,
             second,
          } = data
+
          const transformedData = {
             images: [firstImageId.id, secondImageId.id, thirdImageId.id],
             bookName,
             author,
-            genreId,
+            genreId: +genreId,
             description,
-            dataOfIssue,
-            typeOfLanguage,
+            yearOfIssue: +dataOfIssue,
+            language: typeOfLanguage,
             bestSeller,
             price,
             discount,
             book: {
-               id: 1,
                fragmentId: uploadFragment.id,
                duration: {
                   hour,
@@ -158,8 +207,8 @@ const UpdateAudioBook = (props) => {
             },
          }
          const requestConfig = {
-            method: 'POST',
-            url: SEND_AUDIO_BOOK_URL,
+            method: 'PUT',
+            url: UPDATE_AUDIO_BOOK + bookInfo.bookId,
             body: transformedData,
          }
          const response = await sendRequest(requestConfig)
@@ -198,6 +247,7 @@ const UpdateAudioBook = (props) => {
                   className={classes.rightSectionInput}
                   id="nameOfBook"
                   hasError={errors.bookName}
+                  defaultValue={uploadedBookName}
                />
                <Input
                   label="ФИО автора"
@@ -207,6 +257,7 @@ const UpdateAudioBook = (props) => {
                   id="author"
                   hasError={errors.author}
                   {...register('author')}
+                  defaultValue={uploadedAuthor}
                />
                <GenresSelect
                   label="Выберите жанр"
@@ -214,6 +265,7 @@ const UpdateAudioBook = (props) => {
                   className={classes.rightSectionSelect}
                   initialstate="Литература, роман, стихи... "
                   onChangeGenreValue={onChangeGenreValue}
+                  defaultValue={genre?.genreName}
                />
                <CustomTextarea
                   label="O книге"
@@ -223,6 +275,7 @@ const UpdateAudioBook = (props) => {
                   className={classes.textAreaClasses}
                   {...register('description')}
                   hasError={errors.description}
+                  defaultValue={uploadedDescription}
                />
             </section>
             <section className={classes.leftSection}>
@@ -235,6 +288,7 @@ const UpdateAudioBook = (props) => {
                         label="Язык"
                         className={classes.leftSideSelect}
                         onChangeLanguagesValue={onChangeLanguagesValue}
+                        defaultValue={uploadedLanguage}
                      />
                      <Input
                         {...register('dataOfIssue')}
@@ -243,6 +297,7 @@ const UpdateAudioBook = (props) => {
                         className={classes.leftSideDate}
                         step="1"
                         hasError={errors.dataOfIssue}
+                        defaultValue={uploadedYearOfIssue}
                      />
                   </div>
                   <div className={classes.timeDuration}>
@@ -254,6 +309,7 @@ const UpdateAudioBook = (props) => {
                         id="time"
                         {...register('hour')}
                         hasError={errors.hour}
+                        defaultValue={duration?.hour}
                      />
                      <Input
                         step="1"
@@ -262,6 +318,7 @@ const UpdateAudioBook = (props) => {
                         id="time"
                         {...register('minute')}
                         hasError={errors.minute}
+                        defaultValue={duration?.minute}
                      />
                      <Input
                         step="1"
@@ -270,6 +327,7 @@ const UpdateAudioBook = (props) => {
                         id="time"
                         {...register('second')}
                         hasError={errors.second}
+                        defaultValue={duration?.second}
                      />
                   </div>
                   <div className={classes.bestSellerBox}>
@@ -288,6 +346,7 @@ const UpdateAudioBook = (props) => {
                         id="price"
                         {...register('price')}
                         hasError={errors.price}
+                        defaultValue={uploadedPrice}
                      />
                      <Input
                         label="Скидка"
@@ -296,6 +355,7 @@ const UpdateAudioBook = (props) => {
                         className={classes.leftSideInput}
                         id="discount"
                         {...register('discount')}
+                        defaultValue={uploadedDiscount}
                      />
                   </div>
                   <div className={classes.dropzoneBox}>

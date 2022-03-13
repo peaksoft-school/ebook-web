@@ -219,7 +219,7 @@ const UpdatePaperBook = (props) => {
                   type="text"
                   placeholder="Напишите полное название книги"
                   className={classes.rightSectionInput}
-                  id="name"
+                  id="nameOfBook"
                   hasError={errors.bookName}
                   defaultValue={uploadedBookName}
                />

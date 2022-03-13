@@ -46,6 +46,8 @@ const GET_ASSEPTED_BOOKS = 'api/admin/get/books/accepted'
 
 const GET_VENDOR_INFO = 'api/vendor/show/info'
 
+const UPDATE_AUDIO_BOOK = 'api/books/update/audio_book/'
+
 export const APPLICATIONS = {
    REJECT_APLLICATION: 'api/admin/refuse/book/request',
    ACCEPT_APPLICATION: 'api/admin/accept/book/request',
@@ -85,4 +87,5 @@ export {
    GET_VENDOR_INFO,
    VENDOR_REGISTRATION,
    AUTHENTICATION_URL,
+   UPDATE_AUDIO_BOOK,
 }
