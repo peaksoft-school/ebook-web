@@ -45,6 +45,8 @@ export const ROUTES = {
    ADMIN_BOOK_PAGE_BY_ID: '/admin/bookpage/:bookById',
    ADMIN_BOOK_PAGE: '/admin/bookpage',
    ADMIN_BOOK_CRAT: '/admin/books',
+   APPLICATION_BOOK: '/admin/application/book',
+   APPLICATION_BOOK_BY_ID: '/admin/application/book/:bookById',
    VENDOR: '/vendor',
    VENDOR_AREA: '/vendor/vendorarea',
    VENDOR_BOOK_PAGE: '/vendor/bookpage',

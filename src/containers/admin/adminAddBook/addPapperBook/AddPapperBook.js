@@ -119,7 +119,7 @@ const Papperbook = (props) => {
             discount,
             genreId: +genreId,
             language: typeOfLanguage,
-            dataOfIssue,
+            yearOfIssue: parseInt(dataOfIssue, 10),
             bestSeller,
             book: { fragment, quantityOfBooks, pageSize, publishingHouse },
          }

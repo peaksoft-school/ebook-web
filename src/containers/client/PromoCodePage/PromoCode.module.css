@@ -63,3 +63,22 @@
    color: #969696;
    margin-bottom: 30px;
 }
+
+.modal {
+   position: absolute;
+}
+
+.text {
+   padding: 65px 60px, 0px, 60px;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+}
+
+.ok {
+   margin-top: 24px;
+   margin-left: 90px;
+   display: flex;
+   width: 139px;
+   height: 42px;
+}
