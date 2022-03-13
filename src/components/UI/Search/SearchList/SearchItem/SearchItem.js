@@ -45,7 +45,7 @@ const SearchItem = ({
          navigate(`${ROUTES.VENDOR_BOOK_PAGE}/${id}`)
          dispatch(asyncUpdateBreadcrumb(breadCrumbs))
       }
-      if ((type === SEARCH_VALUE_TYPE.BOOK && role === null) || ROLES.CLIENT) {
+      if (type === SEARCH_VALUE_TYPE.BOOK && (role === null || ROLES.CLIENT)) {
          navigate(`${ROUTES.CLIENT_BOOK_PAGE}/${id}`)
          dispatch(asyncUpdateBreadcrumb(breadCrumbs))
       }
