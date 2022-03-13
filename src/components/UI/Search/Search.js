@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { sendRequest } from '../../../utils/helpers'
 import { SEARCH } from '../../../utils/constants/urls'
 import classes from './Search.module.css'
@@ -9,6 +10,7 @@ const Search = () => {
    const [isFocused, setFocused] = useState(false)
    const [searchValue, setSearchValue] = useState('')
    const [filteredData, setFilteredData] = useState([])
+   const role = useSelector((state) => state.role.roleData)
 
    function сolorInput() {
       if (isFocused) {
@@ -70,6 +72,7 @@ const Search = () => {
             </form>
          </div>
          <SearchList
+            role={role}
             setFilteredData={setFilteredData}
             filteredData={filteredData}
             setSearchValue={setSearchValue}

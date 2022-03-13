@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { asyncUpdateBreadcrumb } from '../../../../../store/breadCrumbsSlice'
 import {
    ROUTES,
@@ -16,8 +16,8 @@ const SearchItem = ({
    setFilteredData,
    setSearchValue,
    setFocused,
+   role,
 }) => {
-   const role = useSelector((state) => state.role.roleData)
    const navigate = useNavigate()
    const dispatch = useDispatch()
 
@@ -45,7 +45,7 @@ const SearchItem = ({
          navigate(`${ROUTES.VENDOR_BOOK_PAGE}/${id}`)
          dispatch(asyncUpdateBreadcrumb(breadCrumbs))
       }
-      if ((type === SEARCH_VALUE_TYPE.BOOK && role === null) || ROLES.CLIENT) {
+      if (type === SEARCH_VALUE_TYPE.BOOK && (role === null || ROLES.CLIENT)) {
          navigate(`${ROUTES.CLIENT_BOOK_PAGE}/${id}`)
          dispatch(asyncUpdateBreadcrumb(breadCrumbs))
       }
