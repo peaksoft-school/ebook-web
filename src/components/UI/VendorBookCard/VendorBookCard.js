@@ -14,7 +14,7 @@ const VendorBookCard = (props) => {
    const imageSrc = getImageUrl(book.image.id)
 
    const onClickImageHandler = () => {
-      onGetBookId(id)
+      onGetBookId({ id, bookName: book.bookName })
    }
 
    return (
