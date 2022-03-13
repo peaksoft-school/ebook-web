@@ -12,7 +12,7 @@ import {
 } from '../../../../utils/constants/constants'
 
 const AddBookForm = () => {
-   const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
+   const [typeOfBook, setTypeOfBook] = useState(IS_ELECTROBOOK)
    const [allLanguages, setGetAllLanguages] = useState([])
    const [allGenres, setGetAllGenres] = useState([])
 

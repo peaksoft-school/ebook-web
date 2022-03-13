@@ -251,11 +251,13 @@ const Papperbook = (props) => {
                      id="price"
                      hasError={errors.price}
                   />
-                  <CustomCheckbox
-                     label="Бестселлер"
-                     className={classes.bestsellers}
-                     onChangeCheckBoxValue={onChangeCheckBoxValue}
-                  />
+                  <div className={classes.customCheckBoxAdmin}>
+                     <CustomCheckbox
+                        label="Бестселлер"
+                        className={classes.bestsellers}
+                        onChangeCheckBoxValue={onChangeCheckBoxValue}
+                     />
+                  </div>
                </div>
                <div className={classes.settingOfPrice}>
                   <Input
