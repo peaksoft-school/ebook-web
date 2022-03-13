@@ -47,7 +47,7 @@ const signInSlice = createSlice({
       role: '',
       status: null,
       error: null,
-      userRegCredential: {},
+      userRegCredential: '',
    },
    reducers: {
       authenticateUser(state, action) {

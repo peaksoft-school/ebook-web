@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 const PromoCodeModal = ({ onClose, sendRequestPromoCode }) => {
    const createPromoCode = (data) => {
       sendRequestPromoCode({
-         promoName: data.promoName,1
+         promoName: data.promoName,
          startingDay: data.startingDay,
          finishingDay: data.finishingDay,
          percent: data.percent,

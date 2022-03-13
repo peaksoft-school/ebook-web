@@ -1,7 +1,7 @@
 import { ReactComponent as BellIcon } from '../../../assets/icons/ep_bell.svg'
-import AdminIcon from '../../../components/UI/adminIcon/AdminIcon'
 import EBookLogo from '../../../components/UI/EBookLogo/EBookLogo'
 import Search from '../../../components/UI/Search/Search'
+import VendorIcon from '../../../components/UI/VendorIcon/VendorIcon'
 import classes from './VendorHeader.module.css'
 
 const VendorHeader = () => {
@@ -10,7 +10,7 @@ const VendorHeader = () => {
          <EBookLogo />
          <Search />
          <BellIcon className={classes.bellIcon} />
-         <AdminIcon />
+         <VendorIcon />
       </div>
    )
 }
