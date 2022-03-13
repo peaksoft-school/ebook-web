@@ -73,7 +73,7 @@ function AppRoutes() {
             <Route path={ROUTES.SORT} element={<ClientSortPage />} />
             <Route
                path={ROUTES.SORT_GENRE_BY_GENRE_NAME}
-               element={<ClientSortPage />}
+               element={<ShowingBooksByAuthorOrPublishingHouse />}
             />
             <Route
                path={ROUTES.SORT_AUTHOR_BY_AUTHORNAME}
