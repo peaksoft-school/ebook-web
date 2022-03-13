@@ -20,6 +20,7 @@ import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
 import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
 import ClientBookPage from '../containers/client/ClientBookPage/ClientBookPage'
 import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
+import ShowingBooksByAuthorOrPublishingHouse from '../containers/client/ShowingBooksByAuthorOrPublishingHouse/ShowingBooksByAuthorOrPublishingHouse'
 // import VendorBooks from '../containers/VendorBooks/VendorBooks'
 
 function AppRoutes() {
@@ -76,11 +77,11 @@ function AppRoutes() {
             />
             <Route
                path={ROUTES.SORT_AUTHOR_BY_AUTHORNAME}
-               element={<h1>author</h1>}
+               element={<ShowingBooksByAuthorOrPublishingHouse />}
             />
             <Route
                path={ROUTES.SORT_PUBLISHING_HOUSE_BY_PUBLISHING_HOUSE_NAME}
-               element={<h1>PublishingName</h1>}
+               element={<ShowingBooksByAuthorOrPublishingHouse />}
             />
             <Route path={ROUTES.INNER_PAGE} element={<p>INNER PAGE</p>} />
             <Route path={ROUTES.AUDIO_PAGE} element={<p>AUDIO_PAGE</p>} />

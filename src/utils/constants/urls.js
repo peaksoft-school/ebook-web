@@ -28,8 +28,8 @@ const GET_CLIENT_BY_ID = 'api/clients/getById/'
 const GET_ALL_CLIENTS = 'api/clients/getAll'
 const DELETE_CLIENT_BY_ID = 'api/clients/delete/'
 
-const SEARCHBYPUBLISHER = 'api/search/by/publisher='
-const SEARCHBYAUTHORNAME = 'api/search/by/authorName='
+const SEARCHBYPUBLISHER = 'api/search/by?publisher='
+const SEARCHBYAUTHORNAME = 'api/search/by?authorName='
 
 // genre-api
 

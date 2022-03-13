@@ -1,17 +1,31 @@
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import classes from './showingBooksByAuthorOrPublishingHouse.module.css'
-// import {
-//    SEARCHBYPUBLISHER,
-//    SEARCHBYAUTHORNAME,
-// } from '../../../utils/constants/urls'
+import { sendRequest } from '../../../utils/helpers'
+import classes from './ShowingBooksByAuthorOrPublishingHouse.module.css'
+import {
+   SEARCHBYPUBLISHER,
+   SEARCHBYAUTHORNAME,
+} from '../../../utils/constants/urls'
 
-const showingBooksByAuthorOrPublishingHouse = () => {
-   const params = useParams()
-   console.log(params.authorName)
-   //    console.log(authorName, publicationName)
+const ShowingBooksByAuthorOrPublishingHouse = () => {
+   const { authorName, publicationName } = useParams()
+
+   useEffect(async () => {
+      if (authorName !== undefined) {
+         const configRequest = { url: `${SEARCHBYAUTHORNAME}${authorName}` }
+         const response = await sendRequest(configRequest)
+         console.log(response)
+      }
+      if (publicationName !== undefined) {
+         const configRequest = { url: `${SEARCHBYPUBLISHER}${publicationName}` }
+         const response = await sendRequest(configRequest)
+         console.log(response)
+      }
+   }, [authorName, publicationName])
+
    return (
       <div className={classes.contentContainer}>
-         <div>
+         <div className={classes.contentContainerHeader}>
             <h1>Author</h1>
             <h1>Publishing House</h1>
             <h1>количество книг</h1>
@@ -21,4 +35,4 @@ const showingBooksByAuthorOrPublishingHouse = () => {
    )
 }
 
-export default showingBooksByAuthorOrPublishingHouse
+export default ShowingBooksByAuthorOrPublishingHouse
