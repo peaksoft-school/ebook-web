@@ -14,15 +14,35 @@ const BooksCratLayout = () => {
    const [genereBooks, setGenreBooks] = useState([])
    const getGenresUrl = 'api/genres'
 
-   // get accepted
+   const [sortBooks, setSortBooks] = useState({
+      typeOfBook: '',
+      genreId: '',
+   })
    const getAcceptedBooks = async () => {
       const requestConfig = {
          url: GET_ASSEPTED_BOOKS,
          method: 'GET',
       }
       const response = await sendRequest(requestConfig)
-      console.log(response)
+      await setGenreBooks(response)
    }
+   const getRequestOptions = async (requestOptions) => {
+      setSortBooks({
+         ...sortBooks,
+         ...requestOptions,
+      })
+      const stringifaedData = JSON.stringify({
+         ...sortBooks,
+         ...requestOptions,
+      })
+      const requestConfig = {
+         url: `api/admin/get/books/accepted?filterBy=${stringifaedData} `,
+         method: 'GET',
+      }
+      const response = await sendRequest(requestConfig)
+      setGenreBooks(response)
+   }
+
    // get generes
    const getGenres = useCallback(async () => {
       const requestConfig = {
@@ -31,16 +51,6 @@ const BooksCratLayout = () => {
       }
       const response = await sendRequest(requestConfig)
       return setGenres(response)
-   }, [])
-   // get generes by id
-   const getGenresBooksById = useCallback(async (id) => {
-      const getGenresById = `api/genres/get/${id}`
-      const requestConfig = {
-         url: getGenresById,
-         method: 'GET',
-      }
-      const response = await sendRequest(requestConfig)
-      return setGenreBooks(response)
    }, [])
 
    useEffect(() => {
@@ -54,10 +64,10 @@ const BooksCratLayout = () => {
       <div className={classes.bookCratBox}>
          <div className={classes.customselectbox}>
             <div className={classes.booktypedropdown}>
-               <BookTypeDropdown />
+               <BookTypeDropdown getRequestOptions={getRequestOptions} />
                <BookGenreDropdown
                   genres={genres}
-                  getGenresBooksById={getGenresBooksById}
+                  getRequestOptions={getRequestOptions}
                />
             </div>
             <div className={classes.linkToNextPage}>

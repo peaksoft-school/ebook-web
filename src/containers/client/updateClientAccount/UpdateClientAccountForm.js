@@ -9,11 +9,12 @@ import { ReactComponent as HidePassword } from '../../../assets/icons/hidePasswo
 import { sendRequest, deleteFromLocalStorage } from '../../../utils/helpers'
 import SuccessfulMessage from '../../../components/UI/successMessage/SuccessfulMessage'
 import ModalForDelete from '../../../components/UI/ModalForDelete/ModalForDelete'
-import { setAuth } from '../../../store/authReducer/signInSlice'
+import { authFetch, setAuth } from '../../../store/authReducer/signInSlice'
 import { userRoleReducerActions } from '../../../store/userRoleSlice'
 import { ROUTES } from '../../../utils/constants/constants'
 import Modal from '../../../components/UI/modal-window/ModalWindow'
 import {
+   AUTHENTICATION_URL,
    DELETE_CLIENT_BY_ID,
    UPDATE_CLIENT_BY_ID,
 } from '../../../utils/constants/urls'
@@ -122,12 +123,27 @@ const UpdateClientFormAccount = () => {
             url: UPDATE_CLIENT_BY_ID + userInfo.clientId,
             body: transformedData,
          }
-         await sendRequest(responseConfig)
+         const response = await sendRequest(responseConfig)
          setSuccessMessage({
             bookName: userInfo.name,
             error: '',
             message: 'Ваши данные успешно изменены',
          })
+         const { email: newEmail } = response
+
+         const exchangedPassword = !password ? currentPassword : password
+         const getNewToken = {
+            email: newEmail,
+            password: exchangedPassword,
+         }
+         const ebookUserInfo = {
+            url: AUTHENTICATION_URL,
+            method: 'POST',
+            body: getNewToken,
+         }
+         if (response) {
+            await dispatch(authFetch(ebookUserInfo))
+         }
          return setIsModal(true)
       } catch (error) {
          setSuccessMessage({

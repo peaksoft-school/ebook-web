@@ -1,6 +1,3 @@
-// import { useState } from 'react'
-// import { GET_BOOK_BY_ID } from '../../../utils/constants/urls'
-// import { sendRequest } from '../../../utils/helpers'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../../utils/constants/constants'
@@ -9,7 +6,6 @@ import classes from './BooksList.module.css'
 
 const BooksList = (props) => {
    const { books } = props
-   console.log(books)
    const userRole = useSelector((state) => state.role.roleData)
 
    const navigate = useNavigate()
@@ -25,7 +21,7 @@ const BooksList = (props) => {
 
    const renderBook =
       books.length !== 0 ? (
-         books.books.map((book) => (
+         books.map((book) => (
             <VendorBookCard
                book={book}
                key={book.bookId}
@@ -34,7 +30,9 @@ const BooksList = (props) => {
             />
          ))
       ) : (
-         <p>No books</p>
+         <div className={classes.notFoundBox}>
+            <div className={classes.notFoundImage} />
+         </div>
       )
    return <div className={classes.bookslistbox}>{renderBook}</div>
 }
