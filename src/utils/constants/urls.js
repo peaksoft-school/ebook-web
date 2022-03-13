@@ -2,6 +2,7 @@ const DEFAULT_URL = 'http://3.123.114.41/'
 const SEND_PAPER_BOOK_URL = 'api/books/save/paper_book'
 const SEND_ELECTRONIC_BOOK_URL = 'api/books/save/electronic_book'
 const SEND_AUDIO_BOOK_URL = 'api/books/save/audio_book'
+const AUTHENTICATION_URL = 'api/authentication'
 
 const GET_ALL_LANGUAGES = 'api/books/languages'
 const GET_ALL_BOOKS = 'api/books'
@@ -26,6 +27,7 @@ const GET_CLIENT_BY_ID = 'api/clients/getById/'
 const GET_ALL_CLIENTS = 'api/clients/getAll'
 const DELETE_CLIENT_BY_ID = 'api/clients/delete/'
 
+const VENDOR_REGISTRATION = 'api/vendor/signup/vendor'
 // genre-api
 
 const ADD_NEW_GENRE_URL = 'api/genres/save'
@@ -81,4 +83,6 @@ export {
    GET_TYPES,
    GET_ASSEPTED_BOOKS,
    GET_VENDOR_INFO,
+   VENDOR_REGISTRATION,
+   AUTHENTICATION_URL,
 }

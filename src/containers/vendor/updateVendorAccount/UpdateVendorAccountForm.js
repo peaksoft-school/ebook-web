@@ -8,6 +8,7 @@ import { ReactComponent as ShowPassword } from '../../../assets/icons/passwordEy
 import { ReactComponent as HidePassword } from '../../../assets/icons/hidePassword.svg'
 import { deleteFromLocalStorage, sendRequest } from '../../../utils/helpers'
 import {
+   AUTHENTICATION_URL,
    DELETE_VENDOR_BY_ID,
    GET_VENDOR_INFO,
    UPDATE_VENDOR_BY_ID,
@@ -16,7 +17,7 @@ import LoadingSpinner from '../../../components/UI/modal-window/loadingSpinner/L
 import SuccessfulMessage from '../../../components/UI/successMessage/SuccessfulMessage'
 import Modal from '../../../components/UI/modal-window/ModalWindow'
 import ModalForDelete from '../../../components/UI/ModalForDelete/ModalForDelete'
-import { setAuth } from '../../../store/authReducer/signInSlice'
+import { authFetch, setAuth } from '../../../store/authReducer/signInSlice'
 import { userRoleReducerActions } from '../../../store/userRoleSlice'
 import { ROUTES } from '../../../utils/constants/constants'
 
@@ -122,31 +123,53 @@ const UpdateVendorFormAccount = () => {
    } = vendorInfo
 
    const submitHandler = async (data) => {
-      const { password, phoneNumber, lastName, firstName, email } = data
+      const {
+         password,
+         phoneNumber,
+         lastName,
+         firstName,
+         email,
+         currentPassword,
+      } = data
       const updateEmail = !email ? loadedEmail : email
       const updateFirstName = !firstName ? loadedFirstName : firstName
       const updateLastName = !lastName ? loadedLastName : lastName
       const updatePhoneNumber = !phoneNumber ? loadedPhoneNumber : phoneNumber
       const transformedData = {
-         password: `${password}`,
+         currentPassword,
+         newPassword: `${password}`,
          phoneNumber: `${updatePhoneNumber}`,
          lastName: updateLastName,
          email: updateEmail,
          firstName: updateFirstName,
-         vendorId,
       }
       try {
          const responseConfig = {
             method: 'PUT',
-            url: UPDATE_VENDOR_BY_ID + vendorId,
+            url: UPDATE_VENDOR_BY_ID,
             body: transformedData,
          }
-         await sendRequest(responseConfig)
+         const response = await sendRequest(responseConfig)
+
          setSuccessMessage({
             bookName: updateFirstName,
             error: '',
             message: 'Ваши данные успешно изменены',
          })
+         const { email: newEmail } = response
+         const exchangedPassword = !password ? currentPassword : password
+         const getNewToken = {
+            email: newEmail,
+            password: exchangedPassword,
+         }
+         const ebookUserInfo = {
+            url: AUTHENTICATION_URL,
+            method: 'POST',
+            body: getNewToken,
+         }
+         if (response) {
+            await dispatch(authFetch(ebookUserInfo))
+         }
          return setIsModal(true)
       } catch (error) {
          setSuccessMessage({
