@@ -21,6 +21,7 @@ const STYLES = [
    'profile',
    'add',
    'create',
+   'cancel',
 ]
 
 const Button = ({ className, onClick, disabled, children, variant }) => {

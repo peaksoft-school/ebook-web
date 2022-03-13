@@ -52,22 +52,41 @@
 .popUp {
    display: flex;
    flex-direction: column;
-   background: #e5e5e5;
+   background: #fff5f5;
+   box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.1);
    color: #222222;
    width: 100px;
    height: 53px;
    padding: 10px;
    position: absolute;
    margin-top: 10px;
+   cursor: pointer;
    animation: slide-down 300ms ease-out forwards;
+}
+
+.logoutModal {
+   display: flex;
+   flex-direction: column;
+   padding-left: 68px;
+   padding-right: 68px;
+   padding-bottom: 20px;
+}
+
+.buttons {
+   margin-top: 20px;
+   display: flex;
+   justify-content: space-between;
 }
 
 .logout {
    border-bottom: 3px solid #c4c4c4;
    padding: 5px;
    margin: 0;
+   cursor: pointer;
 }
 .profile {
+   cursor: pointer;
+   color: #222222;
    margin: 0;
 }
 @keyframes slide-down {

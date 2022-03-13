@@ -284,6 +284,20 @@
    box-sizing: border-box;
 }
 
+.cancel {
+   border: #969696;
+   width: 130px;
+   height: 42px;
+   right: 232px;
+   bottom: 20px;
+   background: #fff5f5;
+}
+
+.cancel:hover {
+   background: #f3eaea;
+   transition: 0.5s;
+}
+
 .add {
    display: flex;
    flex-direction: row;
