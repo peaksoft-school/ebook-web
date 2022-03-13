@@ -17,8 +17,8 @@ const SwitchButtons = (props) => {
          >
             О книге
          </Button>
-         {book.typrOfBook ===
-            (TYPEOFBOOK.ELECTRONICBOOK || TYPEOFBOOK.PAPERBOOK) && (
+         {(book.typeOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
+            book.typeOfBook === TYPEOFBOOK.PAPERBOOK) && (
             <Button
                variant={
                   transition === 'fragment'
