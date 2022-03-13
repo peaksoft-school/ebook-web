@@ -1,9 +1,11 @@
 import React from 'react'
 import classes from './PromoCodeCard.module.css'
 import InformationInCard from './InformationCard/InformationCard'
+import { getImageUrl } from '../../../../utils/helpers'
 
 const PromoCodeCard = (props) => {
-   const { book, className, onGetBookId } = props
+   const { book, className, onGetBookId, image } = props
+   const imgSrc = getImageUrl(image)
 
    return (
       <div className={classes.containterVendorBookCard}>
@@ -15,17 +17,18 @@ const PromoCodeCard = (props) => {
             >
                <img
                   className={classes.vedorbookcardimg}
-                  src={book.url}
+                  src={imgSrc}
                   alt=""
                   role="presentation"
                   onClick={() => onGetBookId(book.bookId)}
                />
                <InformationInCard
                   bookName={book.bookName}
-                  bookAuthor={book.bookAuthor}
+                  author={book.author}
+                  inBasket={book.inBasket}
                   discount={book.discount}
-                  pastPrice={book.pastPrice}
-                  bookPrice={book.bookPrice}
+                  discountedPrice={book.discountedPrice}
+                  netPrice={book.netPrice}
                />
             </div>
          </div>

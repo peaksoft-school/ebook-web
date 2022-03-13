@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import classes from './AdminBookPage.module.css'
 import TopPartBookPage from './TopPartBookPage/TopPartBookPage'
 import BottomPartBookPage from './BottomPartBookPage/BottomPartBookPage'
@@ -8,8 +8,12 @@ import { GET_BOOK_BY_ID, APPLICATIONS } from '../../../utils/constants/urls'
 import BreadCrumbs from '../../../components/UI/BreadCrumbs/BreadCrumbs'
 
 const BookPage = () => {
-   const params = useParams()
    const [bookInfo, setBookInfo] = useState()
+   const [isShowAcceptModal, setShowAcceptModal] = useState(false)
+   const [isShowRejectModal, setShowRejectModal] = useState(false)
+
+   const navigate = useNavigate()
+   const { bookById } = useParams()
 
    const sendRequestRejectingHundler = async (sentText) => {
       try {
@@ -18,11 +22,14 @@ const BookPage = () => {
             method: 'POST',
             body: sentText,
          }
-         sendRequest(configRequest)
+         await sendRequest(configRequest)
+         setShowRejectModal((isShowRejectModal) => !isShowRejectModal)
+         navigate(-1)
       } catch (error) {
          console.log(error.message)
       }
    }
+
    const sendRequestAcceptingHundler = async (bookId) => {
       try {
          const configRequest = {
@@ -30,6 +37,7 @@ const BookPage = () => {
             method: 'POST',
          }
          await sendRequest(configRequest)
+         setShowAcceptModal((isShowAcceptModal) => !isShowAcceptModal)
       } catch (error) {
          console.log(error.message)
       }
@@ -39,7 +47,7 @@ const BookPage = () => {
       try {
          const requestConfig = {
             method: 'GET',
-            url: GET_BOOK_BY_ID + params.bookById,
+            url: GET_BOOK_BY_ID + bookById,
          }
          const response = await sendRequest(requestConfig)
          await setBookInfo(response)
@@ -50,7 +58,7 @@ const BookPage = () => {
 
    useEffect(async () => {
       await getSingleBookById()
-   }, [])
+   }, [bookById])
 
    return (
       <div className={classes.adminBookWrapper}>
@@ -59,6 +67,9 @@ const BookPage = () => {
             <div className={classes.ContainerForBook}>
                <TopPartBookPage
                   book={bookInfo}
+                  isShowAcceptModal={isShowAcceptModal}
+                  isShowRejectModal={isShowRejectModal}
+                  setShowRejectModal={setShowRejectModal}
                   sendRequestRejectingBook={sendRequestRejectingHundler}
                   sendRequestAcceptingBook={sendRequestAcceptingHundler}
                />

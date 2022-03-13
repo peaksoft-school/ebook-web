@@ -3,7 +3,7 @@ import classes from './BottomPart.module.css'
 import StartSection from './StartSection/StartSection'
 import Conditions from './Conditions/Conditions'
 import Button from '../../../../components/UI/Button/Button'
-import VendorRegistration from '../../../../components/auth/registration/vendorRegistrationForm/VendorRegistrationForm'
+import AuthModal from '../../../../components/auth/authModal/AuthModal'
 
 const BottomPart = () => {
    const [vendor, setVendor] = useState(false)
@@ -23,7 +23,7 @@ const BottomPart = () => {
                Стать продавцом
             </Button>
          </div>
-         {vendor && <VendorRegistration onClose={HowToBecomeVendor} />}
+         {vendor && <AuthModal onClose={HowToBecomeVendor}>_</AuthModal>}
       </div>
    )
 }

@@ -2,21 +2,21 @@ import classes from './InformationInCard.module.css'
 
 const InformationInCard = ({
    bookName,
-   bookAuthor,
+   author,
    discount,
-   pastPrice,
-   bookPrice,
+   netPrice,
+   discountedPrice,
 }) => {
    return (
       <div className={classes.info}>
          <div>
             <span className={classes.title}>{bookName}</span>
-            <p className={classes.bookAuthor}>{bookAuthor}</p>
+            <p className={classes.bookAuthor}>{author}</p>
          </div>
          <div className={classes.price}>
-            <p className={classes.discount}>{discount}</p>
-            <p className={classes.pastPrice}>{pastPrice}</p>
-            <p className={classes.bookPrice}>{bookPrice}</p>
+            <p className={classes.discount}>(-{discount}%)</p>
+            <p className={classes.pastPrice}>{netPrice}</p>
+            <p className={classes.bookPrice}>{discountedPrice}</p>
          </div>
       </div>
    )

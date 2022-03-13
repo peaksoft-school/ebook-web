@@ -6,30 +6,19 @@ import { ReactComponent as ClientIcon } from '../../../assets/icons/clientProfil
 import classes from './UserNavMenu.module.css'
 import { ReactComponent as GenreIcon } from '../../../assets/icons/genreIcon.svg'
 import AuthModal from '../../auth/authModal/AuthModal'
-// import GengreDropDownList from './GengreDropDownList/GengreDropDownList'
 import Button from '../Button/Button'
 import { deleteFromLocalStorage } from '../../../utils/helpers'
 import { setAuth } from '../../../store/authReducer/signInSlice'
 import { userRoleReducerActions } from '../../../store/userRoleSlice'
-// import { sendRequest } from '../../../utils/helpers'
-// import { GET_CLIENT_BY_ID } from '../../../utils/constants/urls'
+import Modal from '../modal-window/ModalWindow'
 
 const UserNavMenu = () => {
    const role = useSelector((state) => state.role.roleData)
    const dispatch = useDispatch()
    const navigate = useNavigate()
-   // const [isShowGenres, setIsShowGenres] = useState(false)
    const [isShow, setShow] = useState(false)
    const [isShowPopUp, setShowPopUp] = useState(false)
-
-   // const getClientName = async () => {
-   //    const response = await sendRequest(GET_CLIENT_BY_ID)
-   //    console.log(response)
-   // }
-
-   // useEffect(() => {
-   //    getClientName()
-   // }, [])
+   const [showModal, setShowModal] = useState(false)
 
    const logOut = () => {
       deleteFromLocalStorage('EbookUserToken')
@@ -38,14 +27,15 @@ const UserNavMenu = () => {
       navigate(ROUTES.CLIENT_MAIN_PAGE)
    }
 
-   // const showGenres = () => {
-   //    setIsShowGenres((isShowGenres) => !isShowGenres)
-   // }
    const showModalHandler = () => {
       setShow((isShow) => !isShow)
    }
    const showPopUpHandler = () => {
       setShowPopUp((isShowPopUp) => !isShowPopUp)
+   }
+
+   const onChangeLogoutHandler = () => {
+      setShowModal((showModal) => !showModal)
    }
    return (
       <div className={classes.userNavMenuContainer}>
@@ -76,13 +66,31 @@ const UserNavMenu = () => {
                   <div className={classes.popUp}>
                      <p
                         role="presentation"
-                        onClick={logOut}
+                        onClick={onChangeLogoutHandler}
                         className={classes.logout}
                      >
                         Выйти
                      </p>
-                     <p className={classes.profile}> Профиль</p>
+                     <Link to={ROUTES.USER_PROFILE}>
+                        <p className={classes.profile}> Профиль</p>
+                     </Link>
                   </div>
+               )}
+               {showModal && (
+                  <Modal onClose={onChangeLogoutHandler}>
+                     <div className={classes.logoutModal}>
+                        Вы уверены что хотите выйти ?
+                        <div className={classes.buttons}>
+                           <Button
+                              onClick={onChangeLogoutHandler}
+                              variant="cancel"
+                           >
+                              Отменить
+                           </Button>
+                           <Button onClick={logOut}>Выйти</Button>
+                        </div>
+                     </div>
+                  </Modal>
                )}
             </div>
          ) : (
@@ -92,7 +100,6 @@ const UserNavMenu = () => {
          )}
 
          {isShow && <AuthModal onClose={showModalHandler} />}
-         {/* {isShowGenres && <GengreDropDownList />} */}
       </div>
    )
 }

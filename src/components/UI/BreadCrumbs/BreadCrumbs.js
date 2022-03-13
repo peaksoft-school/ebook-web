@@ -10,7 +10,11 @@ const BreadCrumbs = () => {
          {breadcrumbs &&
             breadcrumbs.map((breadcrumb) => {
                return breadcrumb.route ? (
-                  <Link key={breadcrumb.route_name} to={breadcrumb.route}>
+                  <Link
+                     className={classes.link}
+                     key={breadcrumb.route_name}
+                     to={breadcrumb.route}
+                  >
                      <p className={classes.previousLocation}>
                         {breadcrumb.route_name} /
                      </p>
