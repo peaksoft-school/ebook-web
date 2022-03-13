@@ -1,12 +1,41 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import UpdateInput from '../../../components/UI/vendorUpdateInput/UpdateInput'
 import classes from './UpdateClientAccount.module.css'
 import { ReactComponent as ShowPassword } from '../../../assets/icons/passwordEye.svg'
 import { ReactComponent as HidePassword } from '../../../assets/icons/hidePassword.svg'
-import { sendRequest } from '../../../utils/helpers'
+import { sendRequest, deleteFromLocalStorage } from '../../../utils/helpers'
+import SuccessfulMessage from '../../../components/UI/successMessage/SuccessfulMessage'
+import ModalForDelete from '../../../components/UI/ModalForDelete/ModalForDelete'
+import { setAuth } from '../../../store/authReducer/signInSlice'
+import { userRoleReducerActions } from '../../../store/userRoleSlice'
+import { ROUTES } from '../../../utils/constants/constants'
+import Modal from '../../../components/UI/modal-window/ModalWindow'
+import {
+   DELETE_CLIENT_BY_ID,
+   UPDATE_CLIENT_BY_ID,
+} from '../../../utils/constants/urls'
 
 const UpdateClientFormAccount = () => {
+   const dispatch = useDispatch()
+   const navigate = useNavigate()
+   const [isModal, setIsModal] = useState(false)
+   const [success, setSuccessMessage] = useState({
+      error: null,
+      bookName: '',
+      message: '',
+   })
+   const [modalForDelete, setModalForDelete] = useState(false)
+
+   const modalForDeleteChangeHandler = () => {
+      setModalForDelete((prevState) => !prevState)
+   }
+   const modalChangeHandler = () => {
+      setIsModal((prevState) => !prevState)
+   }
+
    const [userInfo, setUserInfo] = useState(null)
    const getUserInfo = useCallback(async () => {
       const requestConfig = {
@@ -16,7 +45,7 @@ const UpdateClientFormAccount = () => {
       const response = await sendRequest(requestConfig)
       return setUserInfo(response)
    }, [])
-   console.log(userInfo)
+
    useEffect(() => {
       getUserInfo()
    }, [])
@@ -77,22 +106,47 @@ const UpdateClientFormAccount = () => {
    const typeOfConfirmInput = isConfirmPasswordShown ? 'password' : 'text'
    const typeOfNewPasswordInput = newPassword ? 'password' : 'text'
 
-   const submitHandler = (data) => {
-      const {
-         password,
-         lastName,
-         firstName,
-         email,
-         currentPassword,
-         confirmPassword,
-      } = data
+   const submitHandler = async (data) => {
+      const { password, name, email, currentPassword } = data
+      const updateEmail = !email ? userInfo.email : email
+      const updateName = !name ? userInfo.name : name
       const transformedData = {
-         password,
-         lastName,
-         email,
-         firstName,
+         newPassword: password,
+         currentPassword,
+         email: updateEmail,
+         name: updateName,
       }
-      console.log(transformedData, data, currentPassword, confirmPassword)
+      try {
+         const responseConfig = {
+            method: 'PUT',
+            url: UPDATE_CLIENT_BY_ID + userInfo.clientId,
+            body: transformedData,
+         }
+         await sendRequest(responseConfig)
+         setSuccessMessage({
+            bookName: userInfo.name,
+            error: '',
+            message: 'Ваши данные успешно изменены',
+         })
+         return setIsModal(true)
+      } catch (error) {
+         setSuccessMessage({
+            error: error.message || 'Введите корректный пароль',
+         })
+         return setIsModal(true)
+      }
+   }
+
+   const deleteVendorAccount = async () => {
+      const responseConfig = {
+         method: 'DELETE',
+         url: DELETE_CLIENT_BY_ID + userInfo.clientId,
+      }
+      await sendRequest(responseConfig)
+      deleteFromLocalStorage('EbookUserToken')
+      dispatch(setAuth.logout())
+      dispatch(userRoleReducerActions.cleanRoleData())
+      navigate(ROUTES.CLIENT_MAIN_PAGE)
    }
 
    return (
@@ -100,6 +154,14 @@ const UpdateClientFormAccount = () => {
          className={classes.vendorUpdateForm}
          onSubmit={handleSubmit(submitHandler)}
       >
+         {isModal && (
+            <Modal onClose={modalChangeHandler}>
+               <SuccessfulMessage
+                  apiAnswer={success}
+                  onClose={modalChangeHandler}
+               />
+            </Modal>
+         )}
          <div className={classes.vendorUpdateFormFirstBox}>
             <h1 className={classes.vendorUpdateFormh1}>Личная информация</h1>
             <UpdateInput
@@ -108,7 +170,7 @@ const UpdateClientFormAccount = () => {
                type="text"
                id="name"
                className={classes.updateInputs}
-               {...register('firstName')}
+               {...register('name')}
                defaultValue={userInfo?.name}
             />
             <UpdateInput
@@ -120,9 +182,20 @@ const UpdateClientFormAccount = () => {
                {...register('email')}
                defaultValue={userInfo?.email}
             />
-            <button type="button" className={classes.deleteAccountBtn}>
+            <button
+               type="button"
+               className={classes.deleteAccountBtn}
+               onClick={modalForDeleteChangeHandler}
+            >
                Удалить профиль?
             </button>
+            {modalForDelete && (
+               <ModalForDelete
+                  onClose={modalForDeleteChangeHandler}
+                  onDelete={deleteVendorAccount}
+                  fullName={userInfo.name}
+               />
+            )}
          </div>
          <div>
             <h1 className={classes.vendorUpdateFormh1}>Изменить пароль</h1>
