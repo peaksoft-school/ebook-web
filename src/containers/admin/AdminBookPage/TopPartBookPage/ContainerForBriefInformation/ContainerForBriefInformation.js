@@ -14,6 +14,7 @@ const ContainerForBriefInformation = ({ book }) => {
       }
       return ''
    }
+   console.log(book)
 
    return (
       <div className={classes.containerForBriefInformation}>
@@ -25,7 +26,7 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>Год выпуска</p>
             {book.typeOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
                (TYPEOFBOOK.PAPERBOOK && <p>Обьем</p>)}
-            {/* {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>Длительность</p>} */}
+            {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>Длительность</p>}
          </div>
          <div className={classes.smallContainerForBriefInformation}>
             <p>{book.author}</p>
@@ -35,7 +36,23 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>{book.yearOfIssue}</p>
             {book.typeOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
                (TYPEOFBOOK.PAPERBOOK && <p>{book.pageSize} стр</p>)}
-            {/* {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>{book.duration}</p>} */}
+            {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && (
+               <p>
+                  <span>
+                     {book.duration.hour ? `${book.duration.hour} ч.` : ''}
+                  </span>
+                  <span>
+                     {book.duration.minute
+                        ? `${book.duration.minute} мин.`
+                        : ''}
+                  </span>
+                  <span>
+                     {book.duration.second
+                        ? `${book.duration.second} сек.`
+                        : ''}
+                  </span>
+               </p>
+            )}
          </div>
       </div>
    )

@@ -9,6 +9,7 @@
    height: 343px;
    background-image: 100%;
    background-repeat: no-repeat;
+   cursor: pointer;
 }
 
 .name {
@@ -36,5 +37,5 @@
    font-weight: 600;
    font-size: 14px;
    line-height: 120%;
-   color: #F34901
+   color: #f34901;
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { sendRequest } from '../../../utils/helpers'
-import classes from './ShowingBooksByAuthorOrPublishingHouse.module.css'
+import classes from './showingBooksByAuthorOrPublishingHouse.module.css'
 import {
    SEARCHBYPUBLISHER,
    SEARCHBYAUTHORNAME,
@@ -32,7 +32,6 @@ const ShowingBooksByAuthorOrPublishingHouse = () => {
       }
 
       const response = await sendRequest({ url })
-      console.log(response)
       setData(response)
    }
 

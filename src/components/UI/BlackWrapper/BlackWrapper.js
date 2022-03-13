@@ -1,8 +1,13 @@
 import classes from './BlackWrapper.module.css'
 
-const BlackWrapper = ({ className, size, children }) => {
+const BlackWrapper = ({ onClick, className, size, children }) => {
    return (
-      <div className={`${classes.BlackWrapper} ${className}`} style={size}>
+      <div
+         role="presentation"
+         onClick={onClick}
+         className={`${classes.BlackWrapper} ${className}`}
+         style={size}
+      >
          {children}
       </div>
    )
