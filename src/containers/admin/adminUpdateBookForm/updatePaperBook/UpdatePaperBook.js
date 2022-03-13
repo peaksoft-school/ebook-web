@@ -43,7 +43,6 @@ const UpdatePaperBook = (props) => {
       deleteAllPictureHandler,
       bookInfo,
    } = props
-
    const {
       author: uploadedAuthor,
       bookName: uploadedBookName,
@@ -109,22 +108,21 @@ const UpdatePaperBook = (props) => {
          file: thirdPicture.avatar,
          url: UPLOAD_IMAGE,
       }
-
       try {
          let firstImageId = null
-         if (bookInfo.images[0].id) {
+         if (typeof mainPicture.avatar === 'string') {
             firstImageId = { id: bookInfo.images[0].id }
          } else {
             firstImageId = await sendWithFormDataToApi(firstImageConfig)
          }
          let secondImageId = null
-         if (bookInfo.images[1].id) {
+         if (typeof secondPicture.avatar === 'string') {
             secondImageId = { id: bookInfo.images[1].id }
          } else {
             secondImageId = await sendWithFormDataToApi(secondImageConfig)
          }
          let thirdImageId = null
-         if (bookInfo.images[2].id) {
+         if (typeof thirdPicture.avatar === 'string') {
             thirdImageId = { id: bookInfo.images[2].id }
          } else {
             thirdImageId = await sendWithFormDataToApi(thridImageConfig)

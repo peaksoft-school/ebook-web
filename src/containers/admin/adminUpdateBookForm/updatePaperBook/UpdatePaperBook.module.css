@@ -26,6 +26,9 @@
 .settingOfBook {
    margin-right: 42px;
 }
+.leftSideInput{
+   margin-bottom: 36px;
+}
 
 .settingOfBook .bestsellers {
    font-family: Open Sans;
@@ -58,6 +61,7 @@
    box-sizing: border-box;
    padding: 10px 18px;
    outline: none;
+   margin-bottom: 8px;
 }
 
 .textAreaClass {
@@ -72,6 +76,10 @@
 
 .leftSideInput label {
    padding-top: 20px;
+}
+
+.leftSideDate{
+   margin-bottom: 36px;
 }
 
 .leftSideDate input {

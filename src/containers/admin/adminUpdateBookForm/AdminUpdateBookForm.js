@@ -6,47 +6,31 @@ import UpdateElectroBook from './updateElectroBook/UpdateElectroBook'
 import classes from './AdminUpdateBookForm.module.css'
 import UploadImageCart from '../adminAddBook/imageUploader/UploadImageCart'
 import { sendRequest, getImageUrl } from '../../../utils/helpers'
-import {
-   IS_AUDIOBOOK,
-   IS_PAPPERBOOK,
-   IS_ELECTROBOOK,
-} from '../../../utils/constants/constants'
 import { GET_BOOK_BY_ID } from '../../../utils/constants/urls'
 
 const AdminUpdateBookForm = () => {
    const params = useParams()
    const [bookInfo, setBookInfo] = useState([])
-   const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
+   const getBookById = async () => {
+      const requestConfig = {
+         url: GET_BOOK_BY_ID + params.bookId,
+         method: 'GET',
+      }
+      const response = await sendRequest(requestConfig)
+      await setBookInfo(response)
+
+      const firstImageSrc = getImageUrl(response.images[0].id)
+      const secondImageSrc = getImageUrl(response.images[1].id)
+      const thirdImageSrc = getImageUrl(response.images[2].id)
+      setFirstImage({ avatar: firstImageSrc, preview: firstImageSrc })
+      setSecondImage({ avatar: secondImageSrc, preview: secondImageSrc })
+      setThirdImage({ avatar: thirdImageSrc, preview: thirdImageSrc })
+   }
+
    const [allLanguages, setGetAllLanguages] = useState([])
    const [allGenres, setGetAllGenres] = useState([])
    const languagesUrl = 'api/books/languages'
    const genresUrl = 'api/genres'
-   const getBookById = async () => {
-      try {
-         const requestConfig = {
-            url: GET_BOOK_BY_ID + params.bookId,
-            method: 'GET',
-         }
-         const response = await sendRequest(requestConfig)
-         const typeOfResonseBook = response.typeOfBook
-         if (typeOfResonseBook === 'PAPER_BOOK') setTypeOfBook(IS_PAPPERBOOK)
-         if (typeOfResonseBook === 'AUDIO_BOOK') {
-            setTypeOfBook(IS_AUDIOBOOK)
-         } else {
-            setTypeOfBook(IS_ELECTROBOOK)
-         }
-
-         const firstImageSrc = getImageUrl(response?.images[0].id)
-         const secondImageSrc = getImageUrl(response?.images[1].id)
-         const thirdImageSrc = getImageUrl(response?.images[2].id)
-         setFirstImage({ avatar: firstImageSrc, preview: firstImageSrc })
-         setSecondImage({ avatar: secondImageSrc, preview: secondImageSrc })
-         setThirdImage({ avatar: thirdImageSrc, preview: thirdImageSrc })
-         return setBookInfo(response)
-      } catch (error) {
-         return console.log(error.message)
-      }
-   }
 
    const getAllLanguagesApi = useCallback(async () => {
       const requestConfig = {
@@ -63,20 +47,18 @@ const AdminUpdateBookForm = () => {
          method: 'GET',
       }
       const response = await sendRequest(requestConfig)
-      setGetAllGenres(response)
+      await setGetAllGenres(response)
    }
 
    useEffect(getAllGenresFromApi, [])
 
    useEffect(getAllLanguagesApi, [])
 
-   useEffect(() => {
-      getBookById()
-   }, [])
+   useEffect(getBookById, [])
 
-   const electroBook = typeOfBook === IS_ELECTROBOOK
-   const papperBook = typeOfBook === IS_PAPPERBOOK
-   const audioBook = typeOfBook === IS_AUDIOBOOK
+   const electroBook = bookInfo.typeOfBook === 'ELECTRONIC_BOOK'
+   const papperBook = bookInfo.typeOfBook === 'PAPER_BOOK'
+   const audioBook = bookInfo.typeOfBook === 'AUDIO_BOOK'
 
    const [mainPicture, setFirstImage] = useState('')
    const [secondPicture, setSecondImage] = useState('')

@@ -46,8 +46,11 @@
 
 .leftSideSelect {
    width: 184px;
+   margin-bottom: 9px;
 }
-
+.leftSideInput {
+   margin-bottom: 36px;
+}
 .leftSideInput input {
    width: 184px;
    text-align: end;
@@ -91,9 +94,9 @@
    cursor: pointer;
 }
 
-.uploadFrag {
+.uploadFragAdmin {
    position: absolute;
-   margin-top: -6px;
+   margin-top: -12px;
 }
 .fix:hover {
    background-color: green;
@@ -135,4 +138,8 @@
 }
 .textAreaClass {
    width: 636px;
+}
+.customCheckBoxAdmin{
+   margin-top: 75px;
+   margin-bottom: 52px;
 }

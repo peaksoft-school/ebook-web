@@ -78,8 +78,8 @@ const UpdateAudioBook = (props) => {
    })
 
    useEffect(() => {
-      setAudio({ audio: { name: uploadedAudio?.fileName } })
-      setFragment({ audio: { name: audioFragment?.fileName } })
+      setAudio({ audio: { name: uploadedAudio.fileName } })
+      setFragment({ audio: { name: audioFragment.fileName } })
    }, [bookInfo])
 
    const onChangeLanguagesValue = (lang) => {
@@ -132,33 +132,33 @@ const UpdateAudioBook = (props) => {
       }
       try {
          let firstImageId = null
-         if (bookInfo.images[0].id) {
+         if (typeof mainPicture.avatar === 'string') {
             firstImageId = { id: bookInfo.images[0].id }
          } else {
             firstImageId = await sendWithFormDataToApi(firstImageConfig)
          }
          let secondImageId = null
-         if (bookInfo.images[1].id) {
+         if (typeof secondPicture.avatar === 'string') {
             secondImageId = { id: bookInfo.images[1].id }
          } else {
             secondImageId = await sendWithFormDataToApi(secondImageConfig)
          }
          let thirdImageId = null
-         if (bookInfo.images[2].id) {
+         if (typeof thirdPicture.avatar === 'string') {
             thirdImageId = { id: bookInfo.images[2].id }
          } else {
             thirdImageId = await sendWithFormDataToApi(thridImageConfig)
          }
 
          let uploadFragment = null
-         if (bookInfo.audioFragment.id) {
+         if (!fragment.audio.path) {
             uploadFragment = { id: bookInfo.audioFragment.id }
          } else {
             uploadFragment = await sendWithFormDataToApi(uploadFragmentOption)
          }
 
          let uploadAudio = null
-         if (bookInfo.audio.id) {
+         if (!audio.audio.path) {
             uploadAudio = { id: bookInfo.audio.id }
          } else {
             uploadAudio = await sendWithFormDataToApi(uploadAudioOption)
@@ -184,15 +184,18 @@ const UpdateAudioBook = (props) => {
             price,
             second,
          } = data
-
+         const exchangeLanguage = !typeOfLanguage
+            ? uploadedLanguage
+            : typeOfLanguage
+         const exchangeGenreId = !genreId ? genre.id : genreId
          const transformedData = {
             images: [firstImageId.id, secondImageId.id, thirdImageId.id],
             bookName,
             author,
-            genreId: +genreId,
+            genreId: +exchangeGenreId,
             description,
             yearOfIssue: +dataOfIssue,
-            language: typeOfLanguage,
+            language: exchangeLanguage,
             bestSeller,
             price,
             discount,
@@ -265,7 +268,7 @@ const UpdateAudioBook = (props) => {
                   className={classes.rightSectionSelect}
                   initialstate="Литература, роман, стихи... "
                   onChangeGenreValue={onChangeGenreValue}
-                  defaultValue={genre?.genreName}
+                  defaultValue={genre.genreName}
                />
                <CustomTextarea
                   label="O книге"
@@ -309,7 +312,7 @@ const UpdateAudioBook = (props) => {
                         id="time"
                         {...register('hour')}
                         hasError={errors.hour}
-                        defaultValue={duration?.hour}
+                        defaultValue={duration.hour}
                      />
                      <Input
                         step="1"
@@ -318,7 +321,7 @@ const UpdateAudioBook = (props) => {
                         id="time"
                         {...register('minute')}
                         hasError={errors.minute}
-                        defaultValue={duration?.minute}
+                        defaultValue={duration.minute}
                      />
                      <Input
                         step="1"
