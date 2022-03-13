@@ -39,7 +39,6 @@ const BookActionButtons = ({
          }
          return () => {
             clearTimeout(acceptTimer)
-            navigate(-1)
          }
       }
       return ''

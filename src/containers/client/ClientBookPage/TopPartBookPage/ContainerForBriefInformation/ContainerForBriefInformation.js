@@ -21,11 +21,16 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>Автор</p>
             <p>Жанр</p>
             <p>Язык</p>
-            <p>Издательство</p>
+            {book.typeOfBook ===
+               (TYPEOFBOOK.ELECTRONICBOOK || TYPEOFBOOK.PAPERBOOK) && (
+               <p>Издательство</p>
+            )}
             <p>Год выпуска</p>
-            {book.typeOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
-               (TYPEOFBOOK.PAPERBOOK && <p>Обьем</p>)}
-            {/* {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>Длительность</p>} */}
+            {book.typeOfBook ===
+               (TYPEOFBOOK.ELECTRONICBOOK || TYPEOFBOOK.PAPERBOOK) && (
+               <p>Обьем</p>
+            )}
+            {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>Длительность</p>}
          </div>
          <div className={classes.smallContainerForBriefInformation}>
             <p>{book.author}</p>
@@ -33,9 +38,27 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>{languageTranslate()}</p>
             <p>{book.publishingHouse}</p>
             <p>{book.yearOfIssue}</p>
-            {book.typeOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
-               (TYPEOFBOOK.PAPERBOOK && <p>{book.pageSize} стр</p>)}
-            {/* {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>{book.duration}</p>} */}
+            {book.typeOfBook ===
+               (TYPEOFBOOK.ELECTRONICBOOK || TYPEOFBOOK.PAPERBOOK) && (
+               <p>{book.pageSize} стр</p>
+            )}
+            {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && (
+               <p>
+                  <span>
+                     {book.duration.hour ? `${book.duration.hour} ч.` : ''}
+                  </span>
+                  <span>
+                     {book.duration.minute
+                        ? `${book.duration.minute} мин.`
+                        : ''}
+                  </span>
+                  <span>
+                     {book.duration.second
+                        ? `${book.duration.second} сек.`
+                        : ''}
+                  </span>
+               </p>
+            )}
          </div>
       </div>
    )
