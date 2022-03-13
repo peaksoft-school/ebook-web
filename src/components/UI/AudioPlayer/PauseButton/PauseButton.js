@@ -1,7 +1,7 @@
 import classes from './PauseButton.module.css'
 import pause from '../../../../assets/icons/pause.svg'
 
-const PauseButton = (onClick) => {
+const PauseButton = ({ onClick }) => {
    return (
       <div role="presentation" onClick={onClick}>
          <img

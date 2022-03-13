@@ -3,11 +3,12 @@ import AudioPlayer from '../../../../../components/UI/AudioPlayer/AudioPlayer'
 import { TYPEOFBOOK } from '../../../../../utils/constants/constants'
 
 const SmallContainer = ({ book }) => {
+   console.log(book.audioFragment.id)
    return (
       <div className={classes.smallContainer}>
          <p className={classes.price}>{book.price} c</p>
          {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && (
-            <AudioPlayer url={book.audio_url} time={book.player_time} />
+            <AudioPlayer url={book.audioFragment.id} time={book.player_time} />
          )}
       </div>
    )

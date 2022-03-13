@@ -30,6 +30,7 @@ const PromoCodePage = () => {
             body: activePromo,
          }
          const response = await sendRequest(configRequest)
+         console.log(response)
       } catch (error) {
          onChangeErrorHandler()
       }

@@ -143,7 +143,7 @@ const AudioBook = (props) => {
             author,
             genreId: +genreId,
             description,
-            dataOfIssue,
+            yearOfIssue: +dataOfIssue,
             language: typeOfLanguage,
             bestSeller,
             price,
