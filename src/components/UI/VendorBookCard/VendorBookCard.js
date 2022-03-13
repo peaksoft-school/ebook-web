@@ -6,12 +6,16 @@ import InformationInCardVendorBook from './InformationInCardVendorBook/Informati
 import { getImageUrl } from '../../../utils/helpers'
 
 const VendorBookCard = (props) => {
-   const { book, isOpen, className, onGetBookId } = props
+   const { book, isOpen, className, onGetBookId, sendRequestLike, id } = props
    const [popUpShown, setPopUpShown] = useState(false)
    const popUpChangeHandler = () => {
       setPopUpShown((prevState) => !prevState)
    }
    const imageSrc = getImageUrl(book.image.id)
+
+   const onClickImageHandler = () => {
+      onGetBookId(id)
+   }
 
    return (
       <div className={classes.containterVendorBookCard}>
@@ -24,6 +28,8 @@ const VendorBookCard = (props) => {
                key={book.bookId}
             >
                <TopPartInVendorCard
+                  id={book.bookId}
+                  sendRequestLike={sendRequestLike}
                   numberOfFavorites={book.likes}
                   numberOfBasket={book.inBasket}
                   popUpChangeHandler={popUpChangeHandler}
@@ -34,7 +40,7 @@ const VendorBookCard = (props) => {
                   src={imageSrc}
                   alt=""
                   role="presentation"
-                  onClick={() => onGetBookId(book.bookId)}
+                  onClick={onClickImageHandler}
                />
                <InformationInCardVendorBook
                   bookName={book.bookName}

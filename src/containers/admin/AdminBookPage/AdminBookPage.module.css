@@ -1,6 +1,9 @@
-.ContainerForBook {
-    width: 1194px;
-    margin: auto;
-    padding-right: 130px;
+.adminBookWrapper {
+   margin: 0 auto;
 }
 
+.ContainerForBook {
+   width: 1194px;
+   padding-left: 20px;
+   margin-top: 70px;
+}

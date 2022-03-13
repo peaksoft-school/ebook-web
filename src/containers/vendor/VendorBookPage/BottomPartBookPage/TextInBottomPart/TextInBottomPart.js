@@ -5,10 +5,10 @@ const TextInBottomPart = (props) => {
    return (
       <div>
          {transition === 'about' && (
-            <p className={classes.textAbout}>{book.book_about}</p>
+            <p className={classes.textAbout}>{book.description}</p>
          )}
          {transition === 'fragment' && (
-            <p className={classes.textFragment}>{book.book_fragment}</p>
+            <p className={classes.textFragment}>{book.fragment}</p>
          )}
       </div>
    )

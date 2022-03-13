@@ -2,14 +2,13 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { asyncUpdateBreadcrumb } from '../../../../../store/breadCrumbsSlice'
-import { sendRequest } from '../../../../../utils/helpers'
 import { ROUTES } from '../../../../../utils/constants/constants'
 import classes from './UserItem.module.css'
 import DeleteButton from '../../../../../components/UI/DeleteButton/DeleteButton'
 import ModalForDelete from '../../../../../components/UI/ModalForDelete/ModalForDelete'
 
 const UserItem = (props) => {
-   const { id, firstName, email } = props
+   const { id, firstName, email, sendRequestDeleteClient } = props
 
    const breadcrumbs = [
       {
@@ -33,8 +32,7 @@ const UserItem = (props) => {
    }
 
    const onDeleteHundler = () => {
-      const userUrl = { url: `api/clients/delete/${id}`, method: 'DELETE' }
-      sendRequest(userUrl)
+      sendRequestDeleteClient(id)
       setIsShowModal((isShowModal) => !isShowModal)
    }
 

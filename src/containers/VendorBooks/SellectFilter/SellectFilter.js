@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import classes from './SellectFilter.module.css'
-import { ReactComponent as ArrowIcon } from '../../../../assets/icons/arrow.svg'
+import { ReactComponent as ArrowIcon } from '../../../assets/icons/arrow.svg'
 import Option from './Option/Option'
 
 const SellectFilter = () => {

@@ -1,5 +1,6 @@
 import classes from './SwitchButtons.module.css'
 import Button from '../../../../../components/UI/Button/Button'
+import { TYPEOFBOOK } from '../../../../../utils/constants/constants'
 
 const SwitchButtons = (props) => {
    const { book, transition, redirectToAbout, redirectToFragment } = props
@@ -16,18 +17,19 @@ const SwitchButtons = (props) => {
          >
             О книге
          </Button>
-         {book.book_type === 'electronic' && (
-            <Button
-               variant={
-                  transition === 'fragment'
-                     ? 'redirectActiveButton'
-                     : 'redirectButton'
-               }
-               onClick={redirectToFragment}
-            >
-               Читать фрагмент
-            </Button>
-         )}
+         {book.typrOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
+            (TYPEOFBOOK.PAPERBOOK && (
+               <Button
+                  variant={
+                     transition === 'fragment'
+                        ? 'redirectActiveButton'
+                        : 'redirectButton'
+                  }
+                  onClick={redirectToFragment}
+               >
+                  Читать фрагмент
+               </Button>
+            ))}
       </div>
    )
 }

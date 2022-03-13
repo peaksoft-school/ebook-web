@@ -86,9 +86,7 @@ const PromoCodeModal = ({ onClose, sendRequestPromoCode }) => {
                </div>
             </div>
             <div className={classes.button}>
-               <button type="submit" className={classes.createButton}>
-                  Создать
-               </button>
+               <button type="submit">Создать</button>
             </div>
          </form>
       </Modal>

@@ -1,13 +1,18 @@
-import { useState } from 'react'
-import { Tabs, Tab, TabPanel } from '../../../components/UI/tabs/Tabs'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { Tabs, Tab, TabPanel } from '../../../components/UI/Tabs/Tabs'
 import SellerProfile from '../../../components/admin/SellerProfile/SellerProfile'
 import BreadCrumbs from '../../../components/UI/BreadCrumbs/BreadCrumbs'
 import classes from './SellersDetails.module.css'
-import VendorBooksInAdmin from '../VendorBooksInAdmin/VendorBooksInAdmin'
+import VendorBooks from '../../VendorBooks/VendorBooks'
+import { sendRequest } from '../../../utils/helpers'
 
 const SellerDetails = () => {
    const [activeTab, setActiveTab] = useState('profile')
    const [allVendorsBook, setAllVendorsBook] = useState([])
+   const [sellerById, setSellerById] = useState('')
+
+   const params = useParams()
 
    const handleChange = (value) => {
       setActiveTab(value)
@@ -15,6 +20,24 @@ const SellerDetails = () => {
    const onChangeVendorBooks = (books) => {
       setAllVendorsBook(books)
    }
+
+   const getSellerById = async () => {
+      try {
+         const userUrl = {
+            url: `api/vendor/getById/${params.sellerId}`,
+         }
+         const response = await sendRequest(userUrl)
+         await onChangeVendorBooks(response.vendorBooks)
+         await setSellerById(response)
+      } catch (error) {
+         console.log(error.message)
+      }
+   }
+
+   useEffect(() => {
+      getSellerById()
+   }, [])
+
    return (
       <div className={classes.constainerForSellerDetailscontent}>
          <BreadCrumbs />
@@ -28,10 +51,10 @@ const SellerDetails = () => {
          </Tabs>
 
          <TabPanel check="profile" value={activeTab}>
-            <SellerProfile onChangeVendorBooks={onChangeVendorBooks} />
+            <SellerProfile sellerById={sellerById} />
          </TabPanel>
          <TabPanel check="books" value={activeTab}>
-            <VendorBooksInAdmin vendorBooks={allVendorsBook} />
+            <VendorBooks vendorBooks={allVendorsBook} />
          </TabPanel>
       </div>
    )

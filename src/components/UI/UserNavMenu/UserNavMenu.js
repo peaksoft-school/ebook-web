@@ -6,32 +6,19 @@ import { ReactComponent as ClientIcon } from '../../../assets/icons/clientProfil
 import classes from './UserNavMenu.module.css'
 import { ReactComponent as GenreIcon } from '../../../assets/icons/genreIcon.svg'
 import AuthModal from '../../auth/authModal/AuthModal'
-import GengreDropDownList from './GengreDropDownList/GengreDropDownList'
 import Button from '../Button/Button'
 import { deleteFromLocalStorage } from '../../../utils/helpers'
 import { setAuth } from '../../../store/authReducer/signInSlice'
 import { userRoleReducerActions } from '../../../store/userRoleSlice'
 import Modal from '../modal-window/ModalWindow'
-// import { sendRequest } from '../../../utils/helpers'
-// import { GET_CLIENT_BY_ID } from '../../../utils/constants/urls'
 
 const UserNavMenu = () => {
    const role = useSelector((state) => state.role.roleData)
    const dispatch = useDispatch()
    const navigate = useNavigate()
-   const [isShowGenres, setIsShowGenres] = useState(false)
    const [isShow, setShow] = useState(false)
    const [isShowPopUp, setShowPopUp] = useState(false)
    const [showModal, setShowModal] = useState(false)
-
-   // const getClientName = async () => {
-   //    const response = await sendRequest(GET_CLIENT_BY_ID)
-   //    console.log(response)
-   // }
-
-   // useEffect(() => {
-   //    getClientName()
-   // }, [])
 
    const logOut = () => {
       deleteFromLocalStorage('EbookUserToken')
@@ -40,9 +27,6 @@ const UserNavMenu = () => {
       navigate(ROUTES.CLIENT_MAIN_PAGE)
    }
 
-   const showGenres = () => {
-      setIsShowGenres((isShowGenres) => !isShowGenres)
-   }
    const showModalHandler = () => {
       setShow((isShow) => !isShow)
    }
@@ -55,14 +39,12 @@ const UserNavMenu = () => {
    }
    return (
       <div className={classes.userNavMenuContainer}>
-         <div
-            role="presentation"
-            onClick={showGenres}
-            className={classes.genreContainer}
-         >
-            <GenreIcon className={classes.genreIcon} />
-            <p>Жанры</p>
-         </div>
+         <Link to={ROUTES.SORT} className={classes.link}>
+            <div role="presentation" className={classes.genreContainer}>
+               <GenreIcon className={classes.genreIcon} />
+               <p>Жанры</p>
+            </div>
+         </Link>
          <div className={classes.containerForLinks}>
             <p className={classes.linkText}>Электронные книги</p>
             <p className={classes.linkText}>Audio books</p>
@@ -118,7 +100,6 @@ const UserNavMenu = () => {
          )}
 
          {isShow && <AuthModal onClose={showModalHandler} />}
-         {isShowGenres && <GengreDropDownList />}
       </div>
    )
 }
