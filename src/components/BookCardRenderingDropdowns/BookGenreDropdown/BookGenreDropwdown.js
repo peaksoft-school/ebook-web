@@ -8,7 +8,7 @@ const BookGenreDropdown = (props) => {
    const toggling = () => setIsOpen(!isOpen)
    const [selectedOption, setSelectedOption] = useState(null)
    const onOptionClicked = (value) => () => {
-      getRequestOptions({ genreId: value.id })
+      getRequestOptions({ genreId: +value.id })
       setSelectedOption(value.genreName)
       setIsOpen(false)
    }

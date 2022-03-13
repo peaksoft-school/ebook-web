@@ -16,7 +16,7 @@ const BooksCratLayout = () => {
 
    const [sortBooks, setSortBooks] = useState({
       typeOfBook: '',
-      genreId: '',
+      genreId: 0,
    })
    const getAcceptedBooks = async () => {
       const requestConfig = {
