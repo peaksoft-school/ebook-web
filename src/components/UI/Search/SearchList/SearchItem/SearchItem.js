@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { asyncUpdateBreadcrumb } from '../../../../../store/breadCrumbsSlice'
 import {
    ROUTES,
@@ -16,8 +16,8 @@ const SearchItem = ({
    setFilteredData,
    setSearchValue,
    setFocused,
+   role,
 }) => {
-   const role = useSelector((state) => state.role.roleData)
    const navigate = useNavigate()
    const dispatch = useDispatch()
 

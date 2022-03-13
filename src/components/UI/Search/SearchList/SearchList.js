@@ -6,6 +6,7 @@ const SearchList = ({
    setFilteredData,
    setSearchValue,
    setFocused,
+   role,
 }) => {
    return (
       <div className={classes.list}>
@@ -13,6 +14,7 @@ const SearchList = ({
             filteredData.map((searchItem) => {
                return (
                   <UserItem
+                     role={role}
                      key={searchItem}
                      id={searchItem.id}
                      type={searchItem.type}

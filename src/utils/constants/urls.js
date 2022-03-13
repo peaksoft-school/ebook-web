@@ -6,6 +6,7 @@ const SEND_AUDIO_BOOK_URL = 'api/books/save/audio_book'
 const GET_ALL_LANGUAGES = 'api/books/languages'
 const GET_ALL_BOOKS = 'api/books'
 const GET_BOOK_BY_ID = 'api/books/get/'
+const PROMO_CREATE = 'api/promo/create'
 
 const UPDATE_VENDOR_BY_ID = 'api/vendor/update/'
 const GET_VENDOR_BY_ID = 'api/vendor/getById/'
@@ -49,6 +50,7 @@ export const APPLICATIONS = {
 
 export {
    DEFAULT_URL,
+   PROMO_CREATE,
    SEND_PAPER_BOOK_URL,
    SEND_ELECTRONIC_BOOK_URL,
    SEND_AUDIO_BOOK_URL,

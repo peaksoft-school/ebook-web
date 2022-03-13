@@ -20,7 +20,7 @@ const NoAccess = () => {
                navigate(ROUTES.CLIENT_MAIN_PAGE)
             }}
          >
-            Вернутся на предыдущую страницу
+            Вернутся на главную страницу
          </Button>
       </div>
    )
