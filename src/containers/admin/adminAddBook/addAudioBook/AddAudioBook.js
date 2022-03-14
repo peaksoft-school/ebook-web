@@ -114,8 +114,10 @@ const AudioBook = (props) => {
          const secondImageId = await sendWithFormDataToApi(secondImageConfig)
          const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
 
-         const uploadFragment = await sendWithFormDataToApi(uploadAudioOption)
-         const uploadAudio = await sendWithFormDataToApi(uploadFragmentOption)
+         const uploadFragment = await sendWithFormDataToApi(
+            uploadFragmentOption
+         )
+         const uploadAudio = await sendWithFormDataToApi(uploadAudioOption)
          if (
             firstImageId.ok &&
             secondImageId.ok &&
@@ -146,8 +148,8 @@ const AudioBook = (props) => {
             yearOfIssue: +dataOfIssue,
             language: typeOfLanguage,
             bestSeller,
-            price,
-            discount,
+            price: +price,
+            discount: +discount,
             book: {
                fragmentId: uploadFragment.id,
                duration: {

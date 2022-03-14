@@ -115,13 +115,18 @@ const Papperbook = (props) => {
             bookName,
             author,
             description,
-            price,
-            discount,
+            price: +price,
+            discount: +discount,
             genreId: +genreId,
             language: typeOfLanguage,
             yearOfIssue: parseInt(dataOfIssue, 10),
             bestSeller,
-            book: { fragment, quantityOfBooks, pageSize, publishingHouse },
+            book: {
+               fragment,
+               quantityOfBooks: +quantityOfBooks,
+               pageSize: +pageSize,
+               publishingHouse,
+            },
          }
          const sendPaperBookUrl = 'api/books/save/paper_book'
          const requestConfig = {
