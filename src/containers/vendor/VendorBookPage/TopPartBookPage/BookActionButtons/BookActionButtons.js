@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import classes from './BookActionButtons.module.css'
 import Button from '../../../../../components/UI/Button/Button'
 import DeletingBook from '../../ModalForDeleteBook/ModalForDeleteBook'
+import { ROUTES } from '../../../../../utils/constants/constants'
 
 const BookActionButtons = ({ bookName, bookId, sendDeletedBook }) => {
    const [isShowDeleteModal, setShowDeleteModal] = useState(false)
@@ -14,6 +16,11 @@ const BookActionButtons = ({ bookName, bookId, sendDeletedBook }) => {
       setShowDeleteModal((isShowDeleteModal) => !isShowDeleteModal)
       sendDeletedBook(bookId)
       // there will be deleting
+   }
+   const navigate = useNavigate()
+
+   const redirectToEditPage = () => {
+      navigate(`${ROUTES.ADD_BOOKS}/${bookId}`)
    }
 
    const onCloseHundler = () => {
@@ -29,7 +36,11 @@ const BookActionButtons = ({ bookName, bookId, sendDeletedBook }) => {
          >
             Удалить
          </Button>
-         <Button variant="secondary" className={classes.button}>
+         <Button
+            variant="secondary"
+            className={classes.button}
+            onClick={redirectToEditPage}
+         >
             Редактировать
          </Button>
          {isShowDeleteModal && (

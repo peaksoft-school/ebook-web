@@ -7,11 +7,42 @@ import classes from './BooksCrat.module.css'
 import BookTypeDropdown from '../BookCardRenderingDropdowns/BookTypeDropdown/BookTypeDropdown'
 import BookGenreDropdown from '../BookCardRenderingDropdowns/BookGenreDropdown/BookGenreDropwdown'
 import { sendRequest } from '../../utils/helpers'
+import { GET_ASSEPTED_BOOKS } from '../../utils/constants/urls'
 
 const BooksCratLayout = () => {
    const [genres, setGenres] = useState([])
    const [genereBooks, setGenreBooks] = useState([])
    const getGenresUrl = 'api/genres'
+
+   const [sortBooks, setSortBooks] = useState({
+      typeOfBook: '',
+      genreId: 0,
+   })
+   const getAcceptedBooks = async () => {
+      const requestConfig = {
+         url: GET_ASSEPTED_BOOKS,
+         method: 'GET',
+      }
+      const response = await sendRequest(requestConfig)
+      await setGenreBooks(response)
+   }
+   const getRequestOptions = async (requestOptions) => {
+      setSortBooks({
+         ...sortBooks,
+         ...requestOptions,
+      })
+      const stringifaedData = JSON.stringify({
+         ...sortBooks,
+         ...requestOptions,
+      })
+      const requestConfig = {
+         url: `api/admin/get/books/accepted?filterBy=${stringifaedData} `,
+         method: 'GET',
+      }
+      const response = await sendRequest(requestConfig)
+      setGenreBooks(response)
+   }
+
    // get generes
    const getGenres = useCallback(async () => {
       const requestConfig = {
@@ -21,35 +52,26 @@ const BooksCratLayout = () => {
       const response = await sendRequest(requestConfig)
       return setGenres(response)
    }, [])
-   // get generes by id
-   const getGenresBooksById = useCallback(async (id) => {
-      const getGenresById = `api/genres/get/${id}`
-      const requestConfig = {
-         url: getGenresById,
-         method: 'GET',
-      }
-      const response = await sendRequest(requestConfig)
-      return setGenreBooks(response)
-   }, [])
 
    useEffect(() => {
       getGenres()
    }, [])
 
+   useEffect(() => {
+      getAcceptedBooks()
+   }, [])
    return (
       <div className={classes.bookCratBox}>
-         {/* {status === 'loading' && <h2>Loading...</h2>}
-			{error && <h2>An error occered: {error}</h2>} */}
          <div className={classes.customselectbox}>
             <div className={classes.booktypedropdown}>
-               <BookTypeDropdown />
+               <BookTypeDropdown getRequestOptions={getRequestOptions} />
                <BookGenreDropdown
                   genres={genres}
-                  getGenresBooksById={getGenresBooksById}
+                  getRequestOptions={getRequestOptions}
                />
             </div>
             <div className={classes.linkToNextPage}>
-               <Link to={ROUTES.ADDBOOKS}>
+               <Link to={ROUTES.ADD_BOOKS}>
                   <button className={classes.addBooksButton} type="button">
                      <Plus className={classes.plusforbtn} /> Добавить Книгу
                   </button>

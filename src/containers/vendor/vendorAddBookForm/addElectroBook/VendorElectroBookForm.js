@@ -10,12 +10,15 @@ import CustomCheckbox from '../../../../components/UI/customCheckbox/CustomCheck
 import GenresSelect from '../../../../components/UI/genresSelect/GenresSelect'
 import {
    SEND_ELECTRONIC_BOOK_URL,
-   UPLOAD_AUDIO_FILE,
    UPLOAD_IMAGE,
+   UPLOAD_PDF_FILE,
 } from '../../../../utils/constants/urls'
 import PdfDropZone from '../../../../components/UI/pdfDropZone/PdfDropZone'
 import { sendRequest, sendWithFormDataToApi } from '../../../../utils/helpers'
 import classes from './VendorElectroBook.module.css'
+import Modal from '../../../../components/UI/modal-window/ModalWindow'
+import SuccessfulMessage from '../../../../components/UI/successMessage/SuccessfulMessage'
+import BookSpinner from '../../../../components/UI/loadingSpinner/BookSpinner'
 
 const schema = yup.object().shape({
    bookName: yup.string().required(),
@@ -34,10 +37,12 @@ const VendorElectroBookForm = (props) => {
       mainPicture,
       secondPicture,
       thirdPicture,
+      deleteAllPictureHandler,
    } = props
    const {
       register,
       handleSubmit,
+      reset,
       formState: { errors },
    } = useForm({
       mode: 'all',
@@ -49,7 +54,15 @@ const VendorElectroBookForm = (props) => {
    const [bestSeller, setBestseller] = useState(false)
 
    const [pdf, setPdf] = useState({ file: {} })
-
+   const [isModal, setIsModal] = useState(false)
+   const [isLoading, setIsLoading] = useState(false)
+   const [responseAnswer, setResponseAnswer] = useState({
+      error: null,
+      bookName: '',
+   })
+   const onChangeModal = () => {
+      setIsModal((prevState) => !prevState)
+   }
    const onChangeLanguagesValue = (lang) => {
       setTypeOfLanguage(lang)
    }
@@ -78,49 +91,65 @@ const VendorElectroBookForm = (props) => {
 
       const pdfFileOption = {
          file: pdf.file,
-         url: UPLOAD_AUDIO_FILE,
+         url: UPLOAD_PDF_FILE,
       }
-      const firstImageId = await sendWithFormDataToApi(firstImageConfig)
-      const secondImageId = await sendWithFormDataToApi(secondImageConfig)
-      const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
+      try {
+         const firstImageId = await sendWithFormDataToApi(firstImageConfig)
+         const secondImageId = await sendWithFormDataToApi(secondImageConfig)
+         const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
 
-      const idOfElectronicBook = await sendWithFormDataToApi(pdfFileOption)
-      const {
-         author,
-         bookName,
-         dataOfIssue,
-         description,
-         discount,
-         fragment,
-         pageSize,
-         price,
-         publishingHouse,
-      } = data
-      const transformedData = {
-         images: [firstImageId.id, secondImageId.id, thirdImageId.id],
-         bookName,
-         author,
-         genreId,
-         description,
-         typeOfLanguage,
-         dataOfIssue,
-         bestSeller,
-         price,
-         discount,
-         book: {
+         const idOfElectronicBook = await sendWithFormDataToApi(pdfFileOption)
+         const {
+            author,
+            bookName,
+            dataOfIssue,
+            description,
+            discount,
             fragment,
             pageSize,
+            price,
             publishingHouse,
-            electronicBookId: idOfElectronicBook.id,
-         },
+         } = data
+         const transformedData = {
+            images: [firstImageId.id, secondImageId.id, thirdImageId.id],
+            bookName,
+            author,
+            genreId: +genreId,
+            description,
+            language: typeOfLanguage,
+            yearOfIssue: +dataOfIssue,
+            bestSeller,
+            price: +price,
+            discount: +discount,
+            book: {
+               fragment,
+               pageSize: +pageSize,
+               publishingHouse,
+               electronicBookId: idOfElectronicBook.id,
+            },
+         }
+         const requestConfig = {
+            method: 'POST',
+            url: SEND_ELECTRONIC_BOOK_URL,
+            body: transformedData,
+         }
+         const response = await sendRequest(requestConfig)
+         setIsLoading(false)
+         setResponseAnswer({
+            bookName: response.bookName,
+            error: '',
+            message: 'Ваш запрос был успешно отправлен!',
+         })
+         deleteAllPictureHandler()
+         reset()
+         return setIsModal(true)
+      } catch (error) {
+         setIsLoading(false)
+         setResponseAnswer({
+            error: error.message,
+         })
+         return setIsModal(true)
       }
-      const requestConfig = {
-         method: 'POST',
-         url: SEND_ELECTRONIC_BOOK_URL,
-         body: transformedData,
-      }
-      const response = await sendRequest(requestConfig)
-      return response
    }
 
    return (
@@ -128,6 +157,15 @@ const VendorElectroBookForm = (props) => {
          onSubmit={handleSubmit(submitHandler)}
          className={classes.formControl}
       >
+         {isModal && (
+            <Modal onClose={onChangeModal}>
+               <SuccessfulMessage
+                  apiAnswer={responseAnswer}
+                  onClose={onChangeModal}
+               />
+            </Modal>
+         )}
+         {isLoading && <BookSpinner />}
          <WrapperOfForms>
             <div className={classes.rightSection}>
                <Input

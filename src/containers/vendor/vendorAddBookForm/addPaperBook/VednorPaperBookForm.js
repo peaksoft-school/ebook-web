@@ -113,13 +113,18 @@ const VednorPaperBookForm = (props) => {
             bookName,
             author,
             description,
-            price,
-            discount,
+            price: +price,
+            discount: +discount,
             genreId: +genreId,
             language: typeOfLanguage,
-            dataOfIssue,
+            yearOfIssue: dataOfIssue,
             bestSeller,
-            book: { fragment, quantityOfBooks, pageSize, publishingHouse },
+            book: {
+               fragment,
+               quantityOfBooks: +quantityOfBooks,
+               pageSize: +pageSize,
+               publishingHouse,
+            },
          }
 
          const sendPaperBookUrl = 'api/books/save/paper_book'

@@ -24,10 +24,14 @@ const AudioPlayer = ({ url, time }) => {
    const [volume, setVolume] = useState(0.5)
 
    useEffect(() => {
+      const getSoundFromApi = {
+         url: `http://3.123.114.41/static/download/${url}`,
+      }
       setPlay(false)
       const options = formWaveSurferOptions(waveformPlayerRef.current)
       wavesurfer.current = WaveSurfer.create(options)
-      wavesurfer.current.load(url)
+      wavesurfer.current.load(getSoundFromApi.url)
+      console.log(wavesurfer)
       wavesurfer.current.on('ready', () => {
          if (wavesurfer.current) {
             wavesurfer.current.setVolume(volume)
@@ -38,6 +42,8 @@ const AudioPlayer = ({ url, time }) => {
    }, [url])
 
    const playHundler = () => {
+      console.log('play')
+      console.log(wavesurfer.current)
       setPlay(true)
       wavesurfer.current.playPause()
    }

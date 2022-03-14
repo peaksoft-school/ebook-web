@@ -18,6 +18,7 @@
 
 .leftSideBox {
    padding-right: 42px;
+   position: relative;
 }
 
 .rightSection {
@@ -46,6 +47,15 @@
 
 .leftSideSelect {
    width: 184px;
+   margin-bottom: 8px;
+}
+
+.leftSideInput {
+   margin-bottom: 38px;
+}
+.customcheckboxAdmin{
+   margin-top: 75px;
+   margin-bottom: 53px;
 }
 
 .leftSideInput input {
@@ -93,7 +103,7 @@
 
 .uploadFrag {
    position: absolute;
-   margin-top: -6px;
+   top: 322px;
 }
 .fix:hover {
    background-color: green;

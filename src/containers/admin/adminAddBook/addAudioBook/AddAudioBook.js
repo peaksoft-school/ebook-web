@@ -19,6 +19,7 @@ import {
 import AudioDropZone from '../../../../components/UI/audioDropZone/AudioDropZone'
 import Modal from '../../../../components/UI/modal-window/ModalWindow'
 import SuccessfulMessage from '../../../../components/UI/successMessage/SuccessfulMessage'
+import BookSpinner from '../../../../components/UI/loadingSpinner/BookSpinner'
 
 const schema = yup.object().shape({
    bookName: yup.string().required(),
@@ -49,6 +50,7 @@ const AudioBook = (props) => {
    const [typeOfLanguage, setTypeOfLanguage] = useState('')
    const [bestSeller, setBestseller] = useState(false)
    const [isModal, setIsModal] = useState(false)
+   const [isLoading, setIsLoading] = useState(false)
    const [responseAnswer, setResponseAnswer] = useState({
       error: null,
       bookName: '',
@@ -84,6 +86,7 @@ const AudioBook = (props) => {
       id: 'f2',
    }
    const submitHandler = async (data) => {
+      setIsLoading(true)
       const firstImageConfig = {
          file: mainPicture.avatar,
          url: UPLOAD_IMAGE,
@@ -111,8 +114,10 @@ const AudioBook = (props) => {
          const secondImageId = await sendWithFormDataToApi(secondImageConfig)
          const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
 
-         const uploadFragment = await sendWithFormDataToApi(uploadAudioOption)
-         const uploadAudio = await sendWithFormDataToApi(uploadFragmentOption)
+         const uploadFragment = await sendWithFormDataToApi(
+            uploadFragmentOption
+         )
+         const uploadAudio = await sendWithFormDataToApi(uploadAudioOption)
          if (
             firstImageId.ok &&
             secondImageId.ok &&
@@ -138,15 +143,14 @@ const AudioBook = (props) => {
             images: [firstImageId.id, secondImageId.id, thirdImageId.id],
             bookName,
             author,
-            genreId,
+            genreId: +genreId,
             description,
-            dataOfIssue,
-            typeOfLanguage,
+            yearOfIssue: +dataOfIssue,
+            language: typeOfLanguage,
             bestSeller,
-            price,
-            discount,
+            price: +price,
+            discount: +discount,
             book: {
-               id: 1,
                fragmentId: uploadFragment.id,
                duration: {
                   hour,
@@ -162,12 +166,14 @@ const AudioBook = (props) => {
             body: transformedData,
          }
          const response = await sendRequest(requestConfig)
+         setIsLoading(false)
          setResponseAnswer({
             bookName: response.bookName,
             error: null,
          })
          return setIsModal(true)
       } catch (error) {
+         setIsLoading(false)
          setResponseAnswer({
             error: error.message || 'Something went wrong !',
          })
@@ -188,6 +194,7 @@ const AudioBook = (props) => {
                   />
                </Modal>
             )}
+            {isLoading && <BookSpinner />}
             <section className={classes.rightSection}>
                <Input
                   {...register('bookName')}

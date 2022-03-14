@@ -2,6 +2,7 @@ const DEFAULT_URL = 'http://3.123.114.41/'
 const SEND_PAPER_BOOK_URL = 'api/books/save/paper_book'
 const SEND_ELECTRONIC_BOOK_URL = 'api/books/save/electronic_book'
 const SEND_AUDIO_BOOK_URL = 'api/books/save/audio_book'
+const AUTHENTICATION_URL = 'api/authentication'
 
 const GET_ALL_LANGUAGES = 'api/books/languages'
 const GET_ALL_BOOKS = 'api/books'
@@ -29,6 +30,7 @@ const GET_CLIENT_BY_ID = 'api/clients/getById/'
 const GET_ALL_CLIENTS = 'api/clients/getAll'
 const DELETE_CLIENT_BY_ID = 'api/clients/delete/'
 
+const VENDOR_REGISTRATION = 'api/vendor/signup/vendor'
 const SEARCHBYPUBLISHER = 'api/search/by?publisher='
 const SEARCHBYAUTHORNAME = 'api/search/by?authorName='
 
@@ -40,6 +42,19 @@ const GET_GENRES = 'api/genres'
 const GET_TYPES = 'api/books/types'
 const GET_GENRE_BY_ID = 'api/genres/get/'
 const DELETE_GENRES = 'api/genres/delete'
+
+// update books
+const UPDATE_PAPER_BOOK = 'api/books/update/paper_book/'
+
+// accepted admin
+const GET_ASSEPTED_BOOKS = 'api/admin/get/books/accepted'
+// get Vendor info by token
+
+const GET_VENDOR_INFO = 'api/vendor/show/info'
+
+const UPDATE_AUDIO_BOOK = 'api/books/update/audio_book/'
+
+const UPDATE_ELECTONIC_BOOK = 'api/books/update/electronic_book/'
 
 export const APPLICATIONS = {
    REJECT_APLLICATION: 'api/admin/refuse/book/request',
@@ -75,7 +90,14 @@ export {
    DELETE_GENRES,
    DELETE_VENDOR_BY_ID,
    ADD_NEW_GENRE_URL,
+   UPDATE_PAPER_BOOK,
    GET_TYPES,
+   GET_ASSEPTED_BOOKS,
+   GET_VENDOR_INFO,
+   VENDOR_REGISTRATION,
+   AUTHENTICATION_URL,
+   UPDATE_AUDIO_BOOK,
+   UPDATE_ELECTONIC_BOOK,
    SEARCH,
    SEARCHBYPUBLISHER,
    SEARCHBYAUTHORNAME,

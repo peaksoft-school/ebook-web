@@ -3,18 +3,20 @@ import classes from './BookTypeDropdown.module.css'
 import { ReactComponent as SelectIcon } from '../../../assets/icons/Vector.svg'
 
 const options = [
-   { title: 'Бумажные книги', value: 'PAPER' },
-   { title: 'Аудиокниги', value: 'AUDIO' },
-   { title: 'Электронные книги', value: 'EBOOK' },
+   { title: 'Все книги', value: '' },
+   { title: 'Бумажные книги', value: 'PAPER_BOOK' },
+   { title: 'Аудиокниги', value: 'AUDIO_BOOK' },
+   { title: 'Электронные книги', value: 'ELECTRONIC_BOOK' },
 ]
 
-const BookTypeDropdown = (onSelectOption) => {
+const BookTypeDropdown = ({ select, getRequestOptions }) => {
    const [isOpen, setIsOpen] = useState(false)
    const toggling = () => setIsOpen(!isOpen)
    const [selectedOption, setSelectedOption] = useState(null)
-   const onOptionClicked = (value) => () => {
-      setSelectedOption(value)
+   const onOptionClicked = (option) => () => {
+      setSelectedOption(option.title)
       setIsOpen(false)
+      getRequestOptions({ typeOfBook: option.value })
    }
 
    return (
@@ -24,7 +26,7 @@ const BookTypeDropdown = (onSelectOption) => {
             onClick={toggling}
             className={classes.selected}
          >
-            {selectedOption || 'Аудиокниги'}
+            {selectedOption || 'Все книги'}
             <SelectIcon className={classes.icon} />
          </div>
          {isOpen && (
@@ -36,8 +38,8 @@ const BookTypeDropdown = (onSelectOption) => {
                            role="presentation"
                            key={option.value}
                            value={option.value}
-                           onClick={onOptionClicked(option.title)}
-                           onSelect={onSelectOption}
+                           onClick={onOptionClicked(option)}
+                           onSelect={select}
                         >
                            {option.title}
                            {option.title === 'Электронные книги' ? (

@@ -17,6 +17,9 @@ import {
 } from '../../../../utils/constants/urls'
 import classes from './VendorAudioBookForm.module.css'
 import AudioDropZone from '../../../../components/UI/audioDropZone/AudioDropZone'
+import BookSpinner from '../../../../components/UI/loadingSpinner/BookSpinner'
+import SuccessfulMessage from '../../../../components/UI/successMessage/SuccessfulMessage'
+import Modal from '../../../../components/UI/modal-window/ModalWindow'
 
 const schema = yup.object().shape({
    bookName: yup.string().required(),
@@ -34,11 +37,13 @@ const VendorAudioBookForm = (props) => {
       mainPicture,
       secondPicture,
       thirdPicture,
+      deleteAllPictureHandler,
    } = props
    const {
       register,
       handleSubmit,
       formState: { errors },
+      reset,
    } = useForm({
       mode: 'all',
       resolver: yupResolver(schema),
@@ -46,11 +51,18 @@ const VendorAudioBookForm = (props) => {
    const [genreId, setGenreId] = useState('')
    const [typeOfLanguage, setTypeOfLanguage] = useState('')
    const [bestSeller, setBestseller] = useState(false)
-
    const [audio, setAudio] = useState({ audio: {} })
-
    const [fragment, setFragment] = useState({ audio: {} })
+   const [isModal, setIsModal] = useState(false)
+   const [isLoading, setIsLoading] = useState(false)
+   const [responseAnswer, setResponseAnswer] = useState({
+      error: null,
+      bookName: '',
+   })
 
+   const onChangeModal = () => {
+      setIsModal((prevState) => !prevState)
+   }
    const onChangeLanguagesValue = (lang) => {
       setTypeOfLanguage(lang)
    }
@@ -74,6 +86,7 @@ const VendorAudioBookForm = (props) => {
       id: 'f2',
    }
    const submitHandler = async (data) => {
+      setIsLoading(true)
       const firstImageConfig = {
          file: mainPicture.avatar,
          url: UPLOAD_IMAGE,
@@ -96,59 +109,83 @@ const VendorAudioBookForm = (props) => {
          file: fragment.audio,
          url: UPLOAD_AUDIO_FRAGMENT,
       }
-      const firstImageId = await sendWithFormDataToApi(firstImageConfig)
-      const secondImageId = await sendWithFormDataToApi(secondImageConfig)
-      const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
+      try {
+         const firstImageId = await sendWithFormDataToApi(firstImageConfig)
+         const secondImageId = await sendWithFormDataToApi(secondImageConfig)
+         const thirdImageId = await sendWithFormDataToApi(thridImageConfig)
 
-      const uploadFragment = await sendWithFormDataToApi(uploadAudioOption)
-      const uploadAudio = await sendWithFormDataToApi(uploadFragmentOption)
+         const uploadFragment = await sendWithFormDataToApi(uploadAudioOption)
+         const uploadAudio = await sendWithFormDataToApi(uploadFragmentOption)
 
-      const {
-         author,
-         bookName,
-         dataOfIssue,
-         description,
-         discount,
-         hour,
-         minute,
-         price,
-         second,
-      } = data
-      const transformedData = {
-         images: [firstImageId.id, secondImageId.id, thirdImageId.id],
-         bookName,
-         author,
-         genreId,
-         description,
-         dataOfIssue,
-         typeOfLanguage,
-         bestSeller,
-         price,
-         discount,
-         book: {
-            id: 1, // TODO: id should be deleted later
-            fragmentId: uploadFragment.id,
-            duration: {
-               hour,
-               minute,
-               second,
+         const {
+            author,
+            bookName,
+            dataOfIssue,
+            description,
+            discount,
+            hour,
+            minute,
+            price,
+            second,
+         } = data
+         const transformedData = {
+            images: [firstImageId.id, secondImageId.id, thirdImageId.id],
+            bookName,
+            author,
+            genreId: +genreId,
+            description,
+            yearOfIssue: +dataOfIssue,
+            language: typeOfLanguage,
+            bestSeller,
+            price,
+            discount,
+            book: {
+               fragmentId: uploadFragment.id,
+               duration: {
+                  hour,
+                  minute,
+                  second,
+               },
+               audioBookId: uploadAudio.id,
             },
-            audioBookId: uploadAudio.id,
-         },
+         }
+         const requestConfig = {
+            method: 'POST',
+            url: SEND_AUDIO_BOOK_URL,
+            body: transformedData,
+         }
+         const response = await sendRequest(requestConfig)
+         setIsLoading(false)
+         setResponseAnswer({
+            bookName: response.bookName,
+            error: '',
+            message: 'Ваш запрос был успешно отправлен!',
+         })
+         deleteAllPictureHandler()
+         reset()
+         return setIsModal(true)
+      } catch (error) {
+         setIsLoading(false)
+         setResponseAnswer({
+            error: error.message,
+         })
+         return setIsModal(true)
       }
-      const requestConfig = {
-         method: 'POST',
-         url: SEND_AUDIO_BOOK_URL,
-         body: transformedData,
-      }
-      const response = await sendRequest(requestConfig)
-      return response
    }
    return (
       <form
          onSubmit={handleSubmit(submitHandler)}
          className={classes.formControl}
       >
+         {isModal && (
+            <Modal onClose={onChangeModal}>
+               <SuccessfulMessage
+                  apiAnswer={responseAnswer}
+                  onClose={onChangeModal}
+               />
+            </Modal>
+         )}
+         {isLoading && <BookSpinner />}
          <WrapperOfForms>
             <section className={classes.rightSection}>
                <Input
