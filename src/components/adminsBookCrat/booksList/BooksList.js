@@ -9,12 +9,12 @@ const BooksList = (props) => {
    const userRole = useSelector((state) => state.role.roleData)
 
    const navigate = useNavigate()
-   const onGetBookId = (id) => {
+   const onGetBookId = (bookInfo) => {
       if (userRole === 'ADMIN') {
-         navigate(`${ROUTES.ADMIN_BOOK_PAGE}/${id}`)
+         navigate(`${ROUTES.ADMIN_BOOK_PAGE}/${bookInfo.id}`)
       }
       if (userRole === 'VENDOR') {
-         navigate(`${ROUTES.VENDOR_BOOK_PAGE}/${id}`)
+         navigate(`${ROUTES.VENDOR_BOOK_PAGE}/${bookInfo.id}`)
       }
       return ''
    }

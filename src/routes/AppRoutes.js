@@ -88,7 +88,10 @@ function AppRoutes() {
             <Route path={ROUTES.VENDOR_AREA} element={<p>VENDOR_AREA</p>} />
             <Route path={ROUTES.BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
             <Route path={ROUTES.ADD_BOOK} element={<p>ADD_BOOK</p>} />
-            {/* <Route path={ROUTES.PROFILE} element={<p>PROFILE</p>} /> */}
+            <Route
+               path={ROUTES.PROFILE}
+               element={<UpdateVendorFormAccount />}
+            />
             <Route
                path={ROUTES.PROFILE_UPDATE}
                element={<UpdateVendorFormAccount />}
