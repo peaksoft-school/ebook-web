@@ -13,7 +13,6 @@ import {
    GET_VENDOR_INFO,
    UPDATE_VENDOR_BY_ID,
 } from '../../../utils/constants/urls'
-import LoadingSpinner from '../../../components/UI/modal-window/loadingSpinner/LoadingSpinner'
 import SuccessfulMessage from '../../../components/UI/successMessage/SuccessfulMessage'
 import Modal from '../../../components/UI/modal-window/ModalWindow'
 import ModalForDelete from '../../../components/UI/ModalForDelete/ModalForDelete'
@@ -42,6 +41,10 @@ const UpdateVendorFormAccount = () => {
    useEffect(() => {
       getVendorInfo()
    }, [])
+
+   const naviateToMainPage = () => {
+      navigate(-1)
+   }
 
    const [success, setSuccessMessage] = useState({
       error: null,
@@ -204,9 +207,10 @@ const UpdateVendorFormAccount = () => {
                />
             </Modal>
          )}
-         {isLoading && <LoadingSpinner />}
          <div className={classes.vendorUpdateFormFirstBox}>
-            <h1 className={classes.vendorUpdateFormh1}>Личная информация</h1>
+            <h1 className={classes.vendorUpdateFormh1}>
+               {!isLoading ? 'Личная информация' : 'Получение данных...'}
+            </h1>
             <UpdateInput
                label="Ваше имя"
                placeholder="Напишите ваше имя"
@@ -217,7 +221,7 @@ const UpdateVendorFormAccount = () => {
                defaultValue={loadedFirstName}
             />
             <UpdateInput
-               label="Ваша фамилиe"
+               label="Ваша фамилия"
                placeholder="Введите вашу фамилию"
                id="lastName"
                type="text"
@@ -294,8 +298,14 @@ const UpdateVendorFormAccount = () => {
                />
                <p className={classes.forAbsoluteUpdate3}>{showNewPassword}</p>
             </div>
-            <div>
-               <button type="button" className={classes.vendorUpdateSaveBtn}>
+         </div>
+         <div className={classes.absloluteForBtns}>
+            <div className={classes.absloluteForButtons}>
+               <button
+                  type="button"
+                  className={classes.vendorUpdateSaveBtn}
+                  onClick={naviateToMainPage}
+               >
                   Отменить
                </button>
                <button type="submit" className={classes.vendorUpdateSaveBtn}>
