@@ -8,6 +8,7 @@ import SellectFilter from './SellectFilter/SellectFilter'
 
 const VendorBooks = (props) => {
    const { vendorBooks } = props
+   console.log(vendorBooks)
    const userRole = useSelector((state) => state.role.roleData)
    const navigate = useNavigate()
 

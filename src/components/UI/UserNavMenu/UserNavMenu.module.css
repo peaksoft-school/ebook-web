@@ -95,6 +95,7 @@
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
       'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
    cursor: pointer;
+   color: #222222;
    margin: 0;
    padding: 5px;
 }
