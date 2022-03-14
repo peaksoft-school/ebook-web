@@ -187,6 +187,7 @@ const UpdateElectroBook = (props) => {
          setResponseAnswer({
             bookName: response.bookName,
             error: null,
+            message: 'успешно изменён !',
          })
          return setIsModal(true)
       } catch (error) {

@@ -37,11 +37,13 @@ const AudioBook = (props) => {
       mainPicture,
       secondPicture,
       thirdPicture,
+      deleteAllPictureHandler,
    } = props
    const {
       register,
       handleSubmit,
       formState: { errors },
+      reset,
    } = useForm({
       mode: 'all',
       resolver: yupResolver(schema),
@@ -170,12 +172,15 @@ const AudioBook = (props) => {
          setResponseAnswer({
             bookName: response.bookName,
             error: null,
+            message: 'Успешно добавлен!',
          })
+         reset()
+         deleteAllPictureHandler()
          return setIsModal(true)
       } catch (error) {
          setIsLoading(false)
          setResponseAnswer({
-            error: error.message || 'Something went wrong !',
+            error: error.message || 'Введите корректные данные !',
          })
          return setIsModal(true)
       }

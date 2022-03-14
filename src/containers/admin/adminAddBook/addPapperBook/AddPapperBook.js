@@ -147,7 +147,7 @@ const Papperbook = (props) => {
       } catch (error) {
          setIsLoading(false)
          setResponseAnswer({
-            error: error.message || 'Something went wrong !',
+            error: error.message || 'Введите корректные данные !',
          })
          return setIsModal(true)
       }
