@@ -49,7 +49,7 @@ const VendorIcon = () => {
                   >
                      Выйти
                   </p>
-                  <Link to={ROUTES.PROFILE}>
+                  <Link to={ROUTES.PROFILE_UPDATE}>
                      <p role="presentation" className={classes.prof}>
                         Профиль
                      </p>

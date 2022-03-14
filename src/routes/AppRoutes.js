@@ -22,7 +22,6 @@ import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
 import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
 import ClientBookPage from '../containers/client/ClientBookPage/ClientBookPage'
 import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
-import UpdateVendorsBooksForm from '../containers/vendor/updateVendorBookForm/UpdateVendorsBookForm'
 import ShowingBooksByAuthorOrPublishingHouse from '../containers/client/showingBooksByAuthorOrPublishingHouse/showingBooksByAuthorOrPublishingHouse'
 import UpdateVendorFormAccount from '../containers/vendor/updateVendorAccount/UpdateVendorAccountForm'
 // import VendorBooks from '../containers/VendorBooks/VendorBooks'
@@ -86,20 +85,17 @@ function AppRoutes() {
                </PrivatePouteForVendor>
             }
          >
-            <Route
-               path={ROUTES.VENDOR_AREA}
-               element={<UpdateVendorsBooksForm />}
-            />
+            <Route path={ROUTES.VENDOR_AREA} element={<p>VENDOR_AREA</p>} />
             <Route path={ROUTES.BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
             <Route path={ROUTES.ADD_BOOK} element={<p>ADD_BOOK</p>} />
             <Route
                path={ROUTES.PROFILE}
                element={<UpdateVendorFormAccount />}
             />
-            {/* <Route
+            <Route
                path={ROUTES.PROFILE_UPDATE}
                element={<UpdateVendorFormAccount />}
-            /> */}
+            />
          </Route>
 
          <Route path={ROUTES.CLIENT} element={<ClientLayout />}>
