@@ -11,6 +11,7 @@ const CustomSelect = forwardRef((props, ref) => {
       id,
       data,
       onChangeLanguagesValue,
+      defaultValue,
       ...rest
    } = props
 
@@ -42,7 +43,7 @@ const CustomSelect = forwardRef((props, ref) => {
             name="customSearch"
             className={`selectted ${className}`}
             required
-            defaultValue=""
+            defaultValue={defaultValue || ''}
          >
             <option className="option" value="" disabled hidden>
                {initialstate}

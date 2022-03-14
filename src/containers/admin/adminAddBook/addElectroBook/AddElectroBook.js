@@ -10,8 +10,8 @@ import CustomCheckbox from '../../../../components/UI/customCheckbox/CustomCheck
 import GenresSelect from '../../../../components/UI/genresSelect/GenresSelect'
 import {
    SEND_ELECTRONIC_BOOK_URL,
-   UPLOAD_AUDIO_FILE,
    UPLOAD_IMAGE,
+   UPLOAD_PDF_FILE,
 } from '../../../../utils/constants/urls'
 import classes from './AddElectroBook.module.css'
 import PdfDropZone from '../../../../components/UI/pdfDropZone/PdfDropZone'
@@ -36,11 +36,13 @@ const ElectroBook = (props) => {
       mainPicture,
       secondPicture,
       thirdPicture,
+      deleteAllPictureHandler,
    } = props
    const {
       register,
       handleSubmit,
       formState: { errors },
+      reset,
    } = useForm({
       mode: 'all',
       resolver: yupResolver(schema),
@@ -89,7 +91,7 @@ const ElectroBook = (props) => {
 
       const pdfFileOption = {
          file: pdf.file,
-         url: UPLOAD_AUDIO_FILE,
+         url: UPLOAD_PDF_FILE,
       }
       try {
          const firstImageId = await sendWithFormDataToApi(firstImageConfig)
@@ -121,16 +123,16 @@ const ElectroBook = (props) => {
             images: [firstImageId.id, secondImageId.id, thirdImageId.id],
             bookName,
             author,
-            genreId,
+            genreId: +genreId,
             description,
-            typeOfLanguage,
-            dataOfIssue,
+            language: typeOfLanguage,
+            yearOfIssue: +dataOfIssue,
             bestSeller,
-            price,
-            discount,
+            price: +price,
+            discount: +discount,
             book: {
                fragment,
-               pageSize,
+               pageSize: +pageSize,
                publishingHouse,
                electronicBookId: idOfElectronicBook.id,
             },
@@ -144,11 +146,14 @@ const ElectroBook = (props) => {
          setResponseAnswer({
             bookName: response.bookName,
             error: null,
+            message: 'Успешно добавлен',
          })
+         deleteAllPictureHandler()
+         reset()
          return setIsModal(true)
       } catch (error) {
          setResponseAnswer({
-            error: error.message || 'Something went wrong !',
+            error: error.message || 'Введите корректные данные !',
          })
          return setIsModal(true)
       }
@@ -260,11 +265,13 @@ const ElectroBook = (props) => {
                      {...register('dataOfIssue')}
                      hasError={errors.dataOfIssue}
                   />
-                  <CustomCheckbox
-                     label="Бестселлер"
-                     className={classes.bestseller}
-                     onChangeCheckBoxValue={onChangeCheckBoxValue}
-                  />
+                  <div className={classes.customcheckboxAdmin}>
+                     <CustomCheckbox
+                        label="Бестселлер"
+                        className={classes.bestseller}
+                        onChangeCheckBoxValue={onChangeCheckBoxValue}
+                     />
+                  </div>
                   <Input
                      label="Скидка"
                      type="number"

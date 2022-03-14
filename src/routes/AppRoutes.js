@@ -14,12 +14,15 @@ import Applications from '../containers/admin/Applications/Applications'
 import PromoCodePage from '../containers/client/PromoCodePage/PromoCodePage'
 import NoAccess from '../containers/NoAccess/NoAccess'
 import HowToBecomeToVendorPage from '../containers/client/HowToBecomeVendorPage/HowToBecomeVendorPage'
+import BooksCratLayout from '../components/adminsBookCrat/BooksCrat'
+import AdminUpdateBookForm from '../containers/admin/adminUpdateBookForm/AdminUpdateBookForm'
 import ClientLayout from '../components/client/ClientLayout/ClientLayout'
 import VendorLayout from '../components/vendor/VendorLayout/VendorLayout'
 import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
 import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
 import ClientBookPage from '../containers/client/ClientBookPage/ClientBookPage'
 import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
+import UpdateVendorsBooksForm from '../containers/vendor/updateVendorBookForm/UpdateVendorsBookForm'
 import ShowingBooksByAuthorOrPublishingHouse from '../containers/client/showingBooksByAuthorOrPublishingHouse/showingBooksByAuthorOrPublishingHouse'
 // import VendorBooks from '../containers/VendorBooks/VendorBooks'
 
@@ -48,7 +51,30 @@ function AppRoutes() {
                path={ROUTES.ADMIN_BOOK_PAGE_BY_ID}
                element={<VendorBookPage />}
             />
-            <Route path={ROUTES.BOOKS} element={<AddBookForm />} />
+            <Route
+               path={ROUTES.ADMIN_BOOK_CRAT}
+               element={
+                  <PrivateRouteForAdmin>
+                     <BooksCratLayout />
+                  </PrivateRouteForAdmin>
+               }
+            />
+            <Route
+               path={ROUTES.ADD_BOOKS}
+               element={
+                  <PrivateRouteForAdmin>
+                     <AddBookForm />
+                  </PrivateRouteForAdmin>
+               }
+            />
+            <Route
+               path={ROUTES.ADD_BOOKS_BY_ID}
+               element={
+                  <PrivateRouteForAdmin>
+                     <AdminUpdateBookForm />
+                  </PrivateRouteForAdmin>
+               }
+            />
          </Route>
 
          <Route
@@ -59,10 +85,17 @@ function AppRoutes() {
                </PrivatePouteForVendor>
             }
          >
-            <Route path={ROUTES.VENDOR_AREA} element={<AddBookForm />} />
-            <Route path={ROUTES.VENDOR_BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
-            <Route path={ROUTES.ADD_BOOK} element={<AddBookForm />} />
+            <Route
+               path={ROUTES.VENDOR_AREA}
+               element={<UpdateVendorsBooksForm />}
+            />
+            <Route path={ROUTES.BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
+            <Route path={ROUTES.ADD_BOOK} element={<p>ADD_BOOK</p>} />
             <Route path={ROUTES.PROFILE} element={<p>PROFILE</p>} />
+            {/* <Route
+               path={ROUTES.PROFILE_UPDATE}
+               element={<UpdateVendorFormAccount />}
+            /> */}
          </Route>
 
          <Route path={ROUTES.CLIENT} element={<ClientLayout />}>
@@ -103,14 +136,6 @@ function AppRoutes() {
                element={
                   <PrivateRouteForUser>
                      <p>USER_PROFILE</p>
-                  </PrivateRouteForUser>
-               }
-            />
-            <Route
-               path={ROUTES.PROFILE_HISTORY}
-               element={
-                  <PrivateRouteForUser>
-                     <p>PROFILE_HISTORY</p>
                   </PrivateRouteForUser>
                }
             />

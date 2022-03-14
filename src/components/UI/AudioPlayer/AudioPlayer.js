@@ -25,7 +25,6 @@ const AudioPlayer = ({ url, time }) => {
       const getSoundFromApi = {
          url: `http://3.123.114.41/static/download/${url}`,
       }
-      console.log(url)
       setPlay(false)
       const options = formWaveSurferOptions(waveformPlayerRef.current)
       wavesurfer.current = WaveSurfer.create(options)

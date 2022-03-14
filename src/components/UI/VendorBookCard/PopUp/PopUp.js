@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom'
 import classes from './PopUp.module.css'
 import { ReactComponent as RubishIcon } from '../../../../assets/icons/rubish.svg'
 import { ReactComponent as ReductorIcon } from '../../../../assets/icons/changeValue.svg'
+import { ROUTES } from '../../../../utils/constants/constants'
 
-const PopUp = () => {
+const PopUp = ({ id }) => {
+   const navigate = useNavigate()
    const onEditHundler = () => {
+      navigate(`${ROUTES.ADD_BOOKS}/${id}`)
       // there will be function, which edit book
    }
 

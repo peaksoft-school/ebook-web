@@ -115,13 +115,18 @@ const Papperbook = (props) => {
             bookName,
             author,
             description,
-            price,
-            discount,
+            price: +price,
+            discount: +discount,
             genreId: +genreId,
             language: typeOfLanguage,
             yearOfIssue: parseInt(dataOfIssue, 10),
             bestSeller,
-            book: { fragment, quantityOfBooks, pageSize, publishingHouse },
+            book: {
+               fragment,
+               quantityOfBooks: +quantityOfBooks,
+               pageSize: +pageSize,
+               publishingHouse,
+            },
          }
          const sendPaperBookUrl = 'api/books/save/paper_book'
          const requestConfig = {
@@ -142,7 +147,7 @@ const Papperbook = (props) => {
       } catch (error) {
          setIsLoading(false)
          setResponseAnswer({
-            error: error.message || 'Something went wrong !',
+            error: error.message || 'Введите корректные данные !',
          })
          return setIsModal(true)
       }
@@ -251,11 +256,13 @@ const Papperbook = (props) => {
                      id="price"
                      hasError={errors.price}
                   />
-                  <CustomCheckbox
-                     label="Бестселлер"
-                     className={classes.bestsellers}
-                     onChangeCheckBoxValue={onChangeCheckBoxValue}
-                  />
+                  <div className={classes.customCheckBoxAdmin}>
+                     <CustomCheckbox
+                        label="Бестселлер"
+                        className={classes.bestsellers}
+                        onChangeCheckBoxValue={onChangeCheckBoxValue}
+                     />
+                  </div>
                </div>
                <div className={classes.settingOfPrice}>
                   <Input

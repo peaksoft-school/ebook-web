@@ -19,7 +19,7 @@ export default function AudioDropZone({ audio, setAudio, dropZoneOption }) {
 
    const isEmtyObj = Object.keys(audio.audio).length === 0
 
-   const fileName = audio.audio.name
+   const fileName = audio.audio?.name
       ? audio.audio.name
       : dropZoneOption.timeDuration
 

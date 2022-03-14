@@ -1,29 +1,38 @@
-import { GET_BOOK_BY_ID } from '../../../utils/constants/urls'
-import { sendRequest } from '../../../utils/helpers'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '../../../utils/constants/constants'
 import VendorBookCard from '../../UI/VendorBookCard/VendorBookCard'
 import classes from './BooksList.module.css'
 
 const BooksList = (props) => {
    const { books } = props
-   const getBookId = async (id) => {
-      const requestConfig = {
-         method: 'GET',
-         url: GET_BOOK_BY_ID + id,
+   const userRole = useSelector((state) => state.role.roleData)
+
+   const navigate = useNavigate()
+   const onGetBookId = (id) => {
+      if (userRole === 'ADMIN') {
+         navigate(`${ROUTES.ADMIN_BOOK_PAGE}/${id}`)
       }
-      const getSingleBookById = await sendRequest(requestConfig)
-      return getSingleBookById
+      if (userRole === 'VENDOR') {
+         navigate(`${ROUTES.VENDOR_BOOK_PAGE}/${id}`)
+      }
+      return ''
    }
+
    const renderBook =
       books.length !== 0 ? (
-         books.allBooks.map((item) => (
+         books.map((book) => (
             <VendorBookCard
-               book={item}
-               key={item.bookId}
-               onGetBookId={getBookId}
+               book={book}
+               key={book.bookId}
+               onGetBookId={onGetBookId}
+               id={book.bookId}
             />
          ))
       ) : (
-         <p>No books</p>
+         <div className={classes.notFoundBox}>
+            <div className={classes.notFoundImage} />
+         </div>
       )
    return <div className={classes.bookslistbox}>{renderBook}</div>
 }

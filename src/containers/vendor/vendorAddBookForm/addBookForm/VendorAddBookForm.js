@@ -160,6 +160,7 @@ const VendorAddBookForm = () => {
                      mainPicture={mainPicture}
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
                {electroBook && (
@@ -169,6 +170,7 @@ const VendorAddBookForm = () => {
                      mainPicture={mainPicture}
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
             </section>

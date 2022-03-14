@@ -12,7 +12,7 @@ import {
 } from '../../../../utils/constants/constants'
 
 const AddBookForm = () => {
-   const [typeOfBook, setTypeOfBook] = useState(IS_PAPPERBOOK)
+   const [typeOfBook, setTypeOfBook] = useState(IS_ELECTROBOOK)
    const [allLanguages, setGetAllLanguages] = useState([])
    const [allGenres, setGetAllGenres] = useState([])
 
@@ -163,6 +163,7 @@ const AddBookForm = () => {
                      mainPicture={mainPicture}
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
                {electroBook && (
@@ -172,6 +173,7 @@ const AddBookForm = () => {
                      mainPicture={mainPicture}
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
             </section>
