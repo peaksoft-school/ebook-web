@@ -23,9 +23,9 @@ import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
 import ClientBookPage from '../containers/client/ClientBookPage/ClientBookPage'
 import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
 import ShowingBooksByAuthorOrPublishingHouse from '../containers/client/showingBooksByAuthorOrPublishingHouse/showingBooksByAuthorOrPublishingHouse'
-import VendorArea from '../containers/vendor/VendorArea/VendorArea'
 import UpdateVendorFormAccount from '../containers/vendor/updateVendorAccount/UpdateVendorAccountForm'
 import VendorAddBookForm from '../containers/vendor/vendorAddBookForm/addBookForm/VendorAddBookForm'
+import VendorArea from '../containers/vendor/VendorArea/VendorArea'
 // import VendorBooks from '../containers/VendorBooks/VendorBooks'
 
 function AppRoutes() {

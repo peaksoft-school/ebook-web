@@ -35,6 +35,8 @@ const VENDOR_REGISTRATION = 'api/vendor/signup/vendor'
 const SEARCHBYPUBLISHER = 'api/search/by?publisher='
 const SEARCHBYAUTHORNAME = 'api/search/by?authorName='
 
+const GET_VENDORS_BOOK = 'api/vendor/get/books'
+
 const REQUEST_URL_MAIN_PAGE = 'api/main?request='
 export const MAIN_PAGE_REQUEST_TYPE = {
    THE_MOST_POPULAR_BOOKS: 'THE_MOST_POPULAR',
@@ -113,4 +115,5 @@ export {
    SEARCHBYAUTHORNAME,
    REQUEST_URL_MAIN_PAGE,
    GET_ALL_BOOKS_VENDOR,
+   GET_VENDORS_BOOK,
 }

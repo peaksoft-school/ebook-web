@@ -11,7 +11,6 @@ const VendorArea = () => {
    const getAllBooksVendor = async () => {
       const configRequest = { url: GET_ALL_BOOKS_VENDOR }
       const response = await sendRequest(configRequest)
-      console.log(response)
       setBooks(response)
    }
 
