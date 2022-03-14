@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import classes from './AdminSideDrawer.module.css'
 import { ROUTES } from '../../../utils/constants/constants'
 import { SideDrawerItem } from '../SideDrawerItem/SideDrawer'
 import EBookLogo from '../../UI/EBookLogo/EBookLogo'
 
 const SideDrawer = () => {
-   const [isActive, setIsActive] = useState('application')
-
+   const location = useLocation()
+   const [isActive, setIsActive] = useState(location.pathname)
    const onChangeActiveHandler = (activeKey) => {
       setIsActive(activeKey)
    }
@@ -19,6 +20,7 @@ const SideDrawer = () => {
          <div className={classes.ul}>
             {ROUTES.SIDE_DRAWER_DATA.map((item) => (
                <SideDrawerItem
+                  location={location.pathname}
                   key={item.route_name}
                   activeKey={item.activeKey}
                   isActive={isActive}

@@ -15,8 +15,8 @@ const InformationInCard = ({
          </div>
          <div className={classes.price}>
             <p className={classes.discount}>(-{discount}%)</p>
-            <p className={classes.pastPrice}>{netPrice}</p>
-            <p className={classes.bookPrice}>{discountedPrice}</p>
+            <p className={classes.pastPrice}>{netPrice} c</p>
+            <p className={classes.bookPrice}>{discountedPrice} c </p>
          </div>
       </div>
    )
