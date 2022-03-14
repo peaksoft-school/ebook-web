@@ -25,6 +25,7 @@ import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
 import ShowingBooksByAuthorOrPublishingHouse from '../containers/client/showingBooksByAuthorOrPublishingHouse/showingBooksByAuthorOrPublishingHouse'
 import VendorArea from '../containers/vendor/VendorArea/VendorArea'
 import UpdateVendorFormAccount from '../containers/vendor/updateVendorAccount/UpdateVendorAccountForm'
+import VendorAddBookForm from '../containers/vendor/vendorAddBookForm/addBookForm/VendorAddBookForm'
 // import VendorBooks from '../containers/VendorBooks/VendorBooks'
 
 function AppRoutes() {
@@ -78,6 +79,10 @@ function AppRoutes() {
             <Route
                path={ROUTES.PROFILE}
                element={<UpdateVendorFormAccount />}
+            />
+            <Route
+               path={ROUTES.EDIT_BOOK_BY_ID}
+               element={<VendorAddBookForm />}
             />
             <Route
                path={ROUTES.PROFILE_UPDATE}
