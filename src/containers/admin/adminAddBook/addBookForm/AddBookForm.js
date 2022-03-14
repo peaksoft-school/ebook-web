@@ -163,6 +163,7 @@ const AddBookForm = () => {
                      mainPicture={mainPicture}
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
                {electroBook && (
@@ -172,6 +173,7 @@ const AddBookForm = () => {
                      mainPicture={mainPicture}
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
             </section>

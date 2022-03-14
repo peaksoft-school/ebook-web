@@ -174,13 +174,13 @@ const UpdatePaperBook = (props) => {
          }
          const response = await sendRequest(requestConfig)
          setIsLoading(false)
+         reset()
          setResponseAnswer({
             bookName: response.bookName,
             error: '',
-            message: 'успешно изменён!',
+            message: 'успешно изменён !',
          })
          deleteAllPictureHandler()
-         reset()
          return setIsModal(true)
       } catch (error) {
          setIsLoading(false)

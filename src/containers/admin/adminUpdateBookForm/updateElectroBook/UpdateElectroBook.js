@@ -37,6 +37,7 @@ const UpdateElectroBook = (props) => {
       secondPicture,
       thirdPicture,
       bookInfo,
+      deleteAllPictureHandler,
    } = props
 
    const {
@@ -57,6 +58,7 @@ const UpdateElectroBook = (props) => {
       register,
       handleSubmit,
       formState: { errors },
+      reset,
    } = useForm({
       mode: 'all',
       resolver: yupResolver(schema),
@@ -187,7 +189,10 @@ const UpdateElectroBook = (props) => {
          setResponseAnswer({
             bookName: response.bookName,
             error: null,
+            message: 'успешно изменён !',
          })
+         reset()
+         deleteAllPictureHandler()
          return setIsModal(true)
       } catch (error) {
          setResponseAnswer({

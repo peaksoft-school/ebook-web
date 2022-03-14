@@ -37,6 +37,7 @@ const UpdateAudioBook = (props) => {
       mainPicture,
       secondPicture,
       thirdPicture,
+      deleteAllPictureHandler,
    } = props
 
    const {
@@ -57,6 +58,7 @@ const UpdateAudioBook = (props) => {
       register,
       handleSubmit,
       formState: { errors },
+      reset,
    } = useForm({
       mode: 'all',
       resolver: yupResolver(schema),
@@ -218,7 +220,10 @@ const UpdateAudioBook = (props) => {
          setResponseAnswer({
             bookName: response.bookName,
             error: null,
+            message: 'успешно изменён !',
          })
+         reset()
+         deleteAllPictureHandler()
          return setIsModal(true)
       } catch (error) {
          setResponseAnswer({

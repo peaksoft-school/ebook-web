@@ -36,11 +36,13 @@ const ElectroBook = (props) => {
       mainPicture,
       secondPicture,
       thirdPicture,
+      deleteAllPictureHandler,
    } = props
    const {
       register,
       handleSubmit,
       formState: { errors },
+      reset,
    } = useForm({
       mode: 'all',
       resolver: yupResolver(schema),
@@ -144,11 +146,14 @@ const ElectroBook = (props) => {
          setResponseAnswer({
             bookName: response.bookName,
             error: null,
+            message: 'Успешно добавлен',
          })
+         deleteAllPictureHandler()
+         reset()
          return setIsModal(true)
       } catch (error) {
          setResponseAnswer({
-            error: error.message || 'Something went wrong !',
+            error: error.message || 'Введите корректные данные !',
          })
          return setIsModal(true)
       }

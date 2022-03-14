@@ -165,6 +165,7 @@ const AdminUpdateBookForm = () => {
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
                      bookInfo={bookInfo}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
                {electroBook && (
@@ -175,6 +176,7 @@ const AdminUpdateBookForm = () => {
                      secondPicture={secondPicture}
                      thirdPicture={thirdPicture}
                      bookInfo={bookInfo}
+                     deleteAllPictureHandler={deleteAllPictureHandler}
                   />
                )}
             </section>
