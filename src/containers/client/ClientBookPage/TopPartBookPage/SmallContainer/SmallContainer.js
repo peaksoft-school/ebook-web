@@ -3,6 +3,7 @@ import AudioPlayer from '../../../../../components/UI/AudioPlayer/AudioPlayer'
 import { TYPEOFBOOK } from '../../../../../utils/constants/constants'
 
 const SmallContainer = ({ book }) => {
+   console.log(book)
    return (
       <div className={classes.smallContainer}>
          <p className={classes.price}>{book.price} c</p>
