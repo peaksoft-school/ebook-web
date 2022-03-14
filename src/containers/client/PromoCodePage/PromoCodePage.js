@@ -1,5 +1,9 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { ReactComponent as PromoCode } from '../../../assets/icons/promocode.svg'
+import { asyncUpdateBreadcrumb } from '../../../store/breadCrumbsSlice'
+import { ROUTES } from '../../../utils/constants/constants'
 import { sendRequest } from '../../../utils/helpers'
 import classes from './PromoCode.module.css'
 import PromoCodeCard from './PromoCodeCard/PromoCodeCard'
@@ -7,9 +11,25 @@ import PromoCodeCard from './PromoCodeCard/PromoCodeCard'
 const PromoCodePage = () => {
    const [promo, setPromo] = useState('')
    const [books, setBooks] = useState([])
+   const navigate = useNavigate()
+   const dispatch = useDispatch()
 
    const onChangePromoHandler = (e) => {
       setPromo(e.target.value)
+   }
+
+   const redirectToSingleBookPage = (bookInfo) => {
+      navigate(`${ROUTES.CLIENT_BOOK_PAGE}/${bookInfo.bookId}`)
+      const breadCrumbs = [
+         {
+            route_name: 'Промокоды',
+            route: ROUTES.PROMO_CODE,
+         },
+         {
+            route_name: bookInfo.bookName,
+         },
+      ]
+      dispatch(asyncUpdateBreadcrumb(breadCrumbs))
    }
 
    const render = books.map((item) => {
@@ -19,6 +39,7 @@ const PromoCodePage = () => {
             image={item.image.id}
             key={item.bookId}
             id={item.bookId}
+            redirectToSingleBookPage={redirectToSingleBookPage}
          />
       )
    })

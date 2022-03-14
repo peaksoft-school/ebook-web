@@ -32,7 +32,6 @@ const ShowingBooksByAuthorOrPublishingHouse = () => {
       }
 
       const response = await sendRequest({ url })
-      console.log(response)
       setData(response)
    }
 

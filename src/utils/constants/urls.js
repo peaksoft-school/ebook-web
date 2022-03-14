@@ -34,6 +34,15 @@ const VENDOR_REGISTRATION = 'api/vendor/signup/vendor'
 const SEARCHBYPUBLISHER = 'api/search/by?publisher='
 const SEARCHBYAUTHORNAME = 'api/search/by?authorName='
 
+const REQUEST_URL_MAIN_PAGE = 'api/main?request='
+export const MAIN_PAGE_REQUEST_TYPE = {
+   THE_MOST_POPULAR_BOOKS: 'THE_MOST_POPULAR',
+   BESTSELLER: 'BESTSELLER',
+   ELECTRONIC: 'ELECTRONIC',
+   AUDIO: 'AUDIO',
+   LAST: 'LAST',
+}
+
 // genre-api
 
 const ADD_NEW_GENRE_URL = 'api/genres/save'
@@ -101,4 +110,5 @@ export {
    SEARCH,
    SEARCHBYPUBLISHER,
    SEARCHBYAUTHORNAME,
+   REQUEST_URL_MAIN_PAGE,
 }

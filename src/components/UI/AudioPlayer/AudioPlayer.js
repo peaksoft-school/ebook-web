@@ -16,13 +16,11 @@ const formWaveSurferOptions = (ref) => ({
    normalize: true,
    partialRender: true,
 })
-
 const AudioPlayer = ({ url, time }) => {
    const waveformPlayerRef = useRef(null)
    const wavesurfer = useRef(null)
    const [playing, setPlay] = useState(false)
    const [volume, setVolume] = useState(0.5)
-
    useEffect(() => {
       const getSoundFromApi = {
          url: `http://3.123.114.41/static/download/${url}`,
@@ -31,7 +29,6 @@ const AudioPlayer = ({ url, time }) => {
       const options = formWaveSurferOptions(waveformPlayerRef.current)
       wavesurfer.current = WaveSurfer.create(options)
       wavesurfer.current.load(getSoundFromApi.url)
-      console.log(wavesurfer)
       wavesurfer.current.on('ready', () => {
          if (wavesurfer.current) {
             wavesurfer.current.setVolume(volume)
@@ -40,19 +37,14 @@ const AudioPlayer = ({ url, time }) => {
       })
       return () => wavesurfer.current.destroy()
    }, [url])
-
    const playHundler = () => {
-      console.log('play')
-      console.log(wavesurfer.current)
       setPlay(true)
       wavesurfer.current.playPause()
    }
-
    const pauseHundler = () => {
       setPlay(false)
       wavesurfer.current.playPause()
    }
-
    return (
       <div className={classes.containerForAudioPlayer}>
          <div className="controls">

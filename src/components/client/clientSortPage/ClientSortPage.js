@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import classes from './ClientSortPage.module.css'
-import { NAVICON, IS_PAPPERBOOK } from '../../../utils/constants/constants'
+import {
+   NAVICON,
+   IS_PAPPERBOOK,
+   ROUTES,
+} from '../../../utils/constants/constants'
 import PriceInput from '../../UI/PriceInput/PriceInput'
 import { sendRequest } from '../../../utils/helpers'
 import { GET_GENRES } from '../../../utils/constants/urls'
@@ -9,6 +15,7 @@ import TopPart from './TopPart/TopPart'
 import TypeBook from './TypeBook/TypeBook'
 import LanguagesBook from './LanguagesBook/LanguagesBook'
 import SortPageCard from '../../UI/SortPageCard/SortPageCard'
+import { asyncUpdateBreadcrumb } from '../../../store/breadCrumbsSlice'
 
 const ClientSortPage = () => {
    const [firstPrice, setFirstPrice] = useState(10000)
@@ -18,6 +25,8 @@ const ClientSortPage = () => {
    const [languages, setLanguages] = useState([])
    const [languageData, setLanguageData] = useState([])
    const [books, setBooks] = useState([])
+   const navigate = useNavigate()
+   const dispatch = useDispatch()
 
    const onChangeSortValueHandler = async (event) => {
       event.preventDefault()
@@ -58,6 +67,7 @@ const ClientSortPage = () => {
       const response = await sendRequest(configRequest)
       setGenres(response)
    }
+
    const sendRequestGenreById = (genre) => {
       if (genreData.includes(genre)) {
          const newGenres = genreData.filter((item) => item !== genre)
@@ -65,6 +75,20 @@ const ClientSortPage = () => {
       } else {
          setGenreData([...genreData, genre])
       }
+   }
+
+   const redirectToSingleBookPage = (bookInfo) => {
+      navigate(`${ROUTES.CLIENT_BOOK_PAGE}/${bookInfo.bookId}`)
+      const breadCrumbs = [
+         {
+            route_name: 'Каталог',
+            route: ROUTES.SORT,
+         },
+         {
+            route_name: bookInfo.bookName,
+         },
+      ]
+      dispatch(asyncUpdateBreadcrumb(breadCrumbs))
    }
 
    const getLanguages = async () => {
@@ -103,7 +127,7 @@ const ClientSortPage = () => {
                                  sendRequestGenreById={sendRequestGenreById}
                                  genre={genre}
                                  key={genre.id}
-                                 id={genre.id}
+                                 genreId={genre.id}
                               />
                            )
                         })}
@@ -148,12 +172,13 @@ const ClientSortPage = () => {
                {books.map((item) => {
                   return (
                      <SortPageCard
-                        id={item.image.id}
-                        img={item.image}
+                        bookId={item.bookId}
+                        image={item.image.id}
                         key={item.bookId}
                         bookName={item.bookName}
                         author={item.author}
                         price={item.price}
+                        redirectToSingleBookPage={redirectToSingleBookPage}
                      />
                   )
                })}

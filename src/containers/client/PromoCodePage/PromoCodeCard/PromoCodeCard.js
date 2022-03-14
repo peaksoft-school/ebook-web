@@ -4,7 +4,7 @@ import InformationInCard from './InformationCard/InformationCard'
 import { getImageUrl } from '../../../../utils/helpers'
 
 const PromoCodeCard = (props) => {
-   const { book, className, onGetBookId, image } = props
+   const { book, className, id, image, redirectToSingleBookPage } = props
    const imgSrc = getImageUrl(image)
 
    return (
@@ -20,7 +20,12 @@ const PromoCodeCard = (props) => {
                   src={imgSrc}
                   alt=""
                   role="presentation"
-                  onClick={() => onGetBookId(book.bookId)}
+                  onClick={() =>
+                     redirectToSingleBookPage({
+                        bookId: id,
+                        bookName: book.bookName,
+                     })
+                  }
                />
                <InformationInCard
                   bookName={book.bookName}
