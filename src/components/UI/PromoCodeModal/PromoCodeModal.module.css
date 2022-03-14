@@ -197,3 +197,13 @@
    box-shadow: none;
    transform: translateY(0);
 }
+
+.createButton {
+   width: 114px;
+   height: 42px;
+   left: 389px;
+   top: 196px;
+   font-size: 16px;
+   color: #FFFF;
+   background: #1c1c1c;
+}
