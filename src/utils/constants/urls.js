@@ -12,6 +12,7 @@ const PROMO_CREATE = 'api/promo/create'
 const UPDATE_VENDOR_BY_ID = 'api/vendor/update/'
 const GET_VENDOR_BY_ID = 'api/vendor/getById/'
 const GET_ALL_VENDORS = 'api/vendor/getAll'
+const GET_ALL_BOOKS_VENDOR = 'api/vendor/get/books'
 const DELETE_VENDOR_BY_ID = 'api/vendor/deleteById/'
 
 const SEARCH = 'api/search/books?search='
@@ -111,4 +112,5 @@ export {
    SEARCHBYPUBLISHER,
    SEARCHBYAUTHORNAME,
    REQUEST_URL_MAIN_PAGE,
+   GET_ALL_BOOKS_VENDOR,
 }
