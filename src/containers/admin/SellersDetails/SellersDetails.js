@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Tabs, Tab, TabPanel } from '../../../components/UI/tabs/Tabs'
+import { Tabs, Tab, TabPanel } from '../../../components/UI/Tabs/Tabs'
 import SellerProfile from '../../../components/admin/SellerProfile/SellerProfile'
 import BreadCrumbs from '../../../components/UI/BreadCrumbs/BreadCrumbs'
 import classes from './SellersDetails.module.css'

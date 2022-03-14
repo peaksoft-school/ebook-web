@@ -19,6 +19,7 @@ import ModalForDelete from '../../../components/UI/ModalForDelete/ModalForDelete
 import { authFetch, setAuth } from '../../../store/authReducer/signInSlice'
 import { userRoleReducerActions } from '../../../store/userRoleSlice'
 import { ROUTES } from '../../../utils/constants/constants'
+import BreadCrumbs from '../../../components/UI/BreadCrumbs/BreadCrumbs'
 
 const UpdateVendorFormAccount = () => {
    const dispatch = useDispatch()
@@ -195,125 +196,130 @@ const UpdateVendorFormAccount = () => {
    }
 
    return (
-      <form
-         className={classes.vendorUpdateForm}
-         onSubmit={handleSubmit(submitHandler)}
-      >
-         {isModal && (
-            <Modal onClose={modalChangeHandler}>
-               <SuccessfulMessage
-                  apiAnswer={success}
-                  onClose={modalChangeHandler}
-               />
-            </Modal>
-         )}
-         <div className={classes.vendorUpdateFormFirstBox}>
-            <h1 className={classes.vendorUpdateFormh1}>
-               {!isLoading ? 'Личная информация' : 'Получение данных...'}
-            </h1>
-            <UpdateInput
-               label="Ваше имя"
-               placeholder="Напишите ваше имя"
-               type="text"
-               id="name"
-               className={classes.updateInputs}
-               {...register('firstName')}
-               defaultValue={loadedFirstName}
-            />
-            <UpdateInput
-               label="Ваша фамилия"
-               placeholder="Введите вашу фамилию"
-               id="lastName"
-               type="text"
-               className={classes.updateInputs}
-               {...register('lastName')}
-               defaultValue={loadedLastName}
-            />
-            <UpdateInput
-               label="Номер телефона"
-               placeholder="+996 (___) __ __ __"
-               id="phone"
-               type="phone"
-               className={classes.updateInputs}
-               {...register('phoneNumber')}
-               defaultValue={loadedPhoneNumber}
-            />
-            <UpdateInput
-               label="Email"
-               placeholder="Напишите ваш Email"
-               id="email"
-               type="email"
-               className={classes.updateInputs}
-               {...register('email')}
-               defaultValue={loadedEmail}
-            />
-            {modalForDelete && (
-               <ModalForDelete
-                  onClose={modalForDeleteChangeHandler}
-                  onDelete={deleteVendorAccount}
-                  fullName={vendorInfo.lastName}
-               />
+      <div>
+         <BreadCrumbs />
+         <form
+            className={classes.vendorUpdateForm}
+            onSubmit={handleSubmit(submitHandler)}
+         >
+            {isModal && (
+               <Modal onClose={modalChangeHandler}>
+                  <SuccessfulMessage
+                     apiAnswer={success}
+                     onClose={modalChangeHandler}
+                  />
+               </Modal>
             )}
-            <button
-               type="button"
-               className={classes.deleteAccountBtn}
-               onClick={modalForDeleteChangeHandler}
-            >
-               Удалить профиль?
-            </button>
-         </div>
-         <div>
-            <h1 className={classes.vendorUpdateFormh1}>Изменить пароль</h1>
-            <div className={classes.vendorUpdateFormSecondBox}>
+            <div className={classes.vendorUpdateFormFirstBox}>
+               <h1 className={classes.vendorUpdateFormh1}>
+                  {!isLoading ? 'Личная информация' : 'Получение данных...'}
+               </h1>
                <UpdateInput
-                  label="Текущий пароль"
-                  placeholder="Напишите текущий пароль"
-                  type={typeOfPasswordInput}
-                  id="password"
+                  label="Ваше имя"
+                  placeholder="Напишите ваше имя"
+                  type="text"
+                  id="name"
                   className={classes.updateInputs}
-                  {...register('currentPassword')}
-                  autoComplete="off"
+                  {...register('firstName')}
+                  defaultValue={loadedFirstName}
                />
-               <p className={classes.forAbsoluteUpdate}>{showPassword}</p>
                <UpdateInput
-                  label="Новый пароль"
-                  placeholder="Напишите ваш новый пароль"
-                  type={typeOfConfirmInput}
-                  id="newPassword"
+                  label="Ваша фамилия"
+                  placeholder="Введите вашу фамилию"
+                  id="lastName"
+                  type="text"
                   className={classes.updateInputs}
-                  {...register('password')}
-                  autoComplete="off"
+                  {...register('lastName')}
+                  defaultValue={loadedLastName}
                />
-               <p className={classes.forAbsoluteUpdate2}>
-                  {showConfirmPassword}
-               </p>
                <UpdateInput
-                  label="Подтвердите пароль"
-                  placeholder="Подтвердите пароль"
-                  type={typeOfNewPasswordInput}
-                  id="confirm"
+                  label="Номер телефона"
+                  placeholder="+996 (___) __ __ __"
+                  id="phone"
+                  type="phone"
                   className={classes.updateInputs}
-                  {...register('confirmPassword')}
-                  autoComplete="off"
+                  {...register('phoneNumber')}
+                  defaultValue={loadedPhoneNumber}
                />
-               <p className={classes.forAbsoluteUpdate3}>{showNewPassword}</p>
-            </div>
-         </div>
-         <div className={classes.absloluteForBtns}>
-            <div className={classes.absloluteForButtons}>
+               <UpdateInput
+                  label="Email"
+                  placeholder="Напишите ваш Email"
+                  id="email"
+                  type="email"
+                  className={classes.updateInputs}
+                  {...register('email')}
+                  defaultValue={loadedEmail}
+               />
+               {modalForDelete && (
+                  <ModalForDelete
+                     onClose={modalForDeleteChangeHandler}
+                     onDelete={deleteVendorAccount}
+                     fullName={vendorInfo.lastName}
+                  />
+               )}
                <button
                   type="button"
-                  className={classes.vendorUpdateSaveBtn}
-                  onClick={naviateToMainPage}
+                  className={classes.deleteAccountBtn}
+                  onClick={modalForDeleteChangeHandler}
                >
-                  Отменить
-               </button>
-               <button type="submit" className={classes.vendorUpdateSaveBtn}>
-                  Сохранить
+                  Удалить профиль?
                </button>
             </div>
-         </div>
-      </form>
+            <div>
+               <h1 className={classes.vendorUpdateFormh1}>Изменить пароль</h1>
+               <div className={classes.vendorUpdateFormSecondBox}>
+                  <UpdateInput
+                     label="Текущий пароль"
+                     placeholder="Напишите текущий пароль"
+                     type={typeOfPasswordInput}
+                     id="password"
+                     className={classes.updateInputs}
+                     {...register('currentPassword')}
+                     autoComplete="off"
+                  />
+                  <p className={classes.forAbsoluteUpdate}>{showPassword}</p>
+                  <UpdateInput
+                     label="Новый пароль"
+                     placeholder="Напишите ваш новый пароль"
+                     type={typeOfConfirmInput}
+                     id="newPassword"
+                     className={classes.updateInputs}
+                     {...register('password')}
+                     autoComplete="off"
+                  />
+                  <p className={classes.forAbsoluteUpdate2}>
+                     {showConfirmPassword}
+                  </p>
+                  <UpdateInput
+                     label="Подтвердите пароль"
+                     placeholder="Подтвердите пароль"
+                     type={typeOfNewPasswordInput}
+                     id="confirm"
+                     className={classes.updateInputs}
+                     {...register('confirmPassword')}
+                     autoComplete="off"
+                  />
+                  <p className={classes.forAbsoluteUpdate3}>
+                     {showNewPassword}
+                  </p>
+               </div>
+            </div>
+            <div className={classes.absloluteForBtns}>
+               <div className={classes.absloluteForButtons}>
+                  <button
+                     type="button"
+                     className={classes.vendorUpdateSaveBtn}
+                     onClick={naviateToMainPage}
+                  >
+                     Отменить
+                  </button>
+                  <button type="submit" className={classes.vendorUpdateSaveBtn}>
+                     Сохранить
+                  </button>
+               </div>
+            </div>
+         </form>
+      </div>
    )
 }
 export default UpdateVendorFormAccount

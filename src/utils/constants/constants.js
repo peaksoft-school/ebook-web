@@ -59,6 +59,8 @@ export const ROUTES = {
    VENDOR_BOOK_PAGE: '/vendor/bookpage',
    VENDOR_BOOK_PAGE_BY_ID: '/vendor/bookpage/:bookById',
    PROFILE_UPDATE: '/vendor/account-update',
+   EDIT_BOOK: '/vendor/edit/book',
+   EDIT_BOOK_BY_ID: '/vendor/edit/book/:bookById',
    ADD_BOOK: '/vendor/bookadd',
    PROFILE: '/vendor/profile',
    CLIENT: '/client',

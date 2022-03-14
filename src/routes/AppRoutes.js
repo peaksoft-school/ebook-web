@@ -24,12 +24,14 @@ import ClientBookPage from '../containers/client/ClientBookPage/ClientBookPage'
 import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
 import ShowingBooksByAuthorOrPublishingHouse from '../containers/client/showingBooksByAuthorOrPublishingHouse/showingBooksByAuthorOrPublishingHouse'
 import UpdateVendorFormAccount from '../containers/vendor/updateVendorAccount/UpdateVendorAccountForm'
+import VendorAddBookForm from '../containers/vendor/vendorAddBookForm/addBookForm/VendorAddBookForm'
 import VendorArea from '../containers/vendor/VendorArea/VendorArea'
 // import VendorBooks from '../containers/VendorBooks/VendorBooks'
 
 function AppRoutes() {
    return (
       <Routes>
+         <Route path="/" element={<Navigate to={ROUTES.CLIENT_MAIN_PAGE} />} />
          <Route path="*" element={<Navigate to={ROUTES.NO_ACCESS} />} />
          <Route
             path={ROUTES.HOME}
@@ -54,27 +56,12 @@ function AppRoutes() {
             />
             <Route
                path={ROUTES.ADMIN_BOOK_CRAT}
-               element={
-                  <PrivateRouteForAdmin>
-                     <BooksCratLayout />
-                  </PrivateRouteForAdmin>
-               }
+               element={<BooksCratLayout />}
             />
-            <Route
-               path={ROUTES.ADD_BOOKS}
-               element={
-                  <PrivateRouteForAdmin>
-                     <AddBookForm />
-                  </PrivateRouteForAdmin>
-               }
-            />
+            <Route path={ROUTES.ADD_BOOKS} element={<AddBookForm />} />
             <Route
                path={ROUTES.ADD_BOOKS_BY_ID}
-               element={
-                  <PrivateRouteForAdmin>
-                     <AdminUpdateBookForm />
-                  </PrivateRouteForAdmin>
-               }
+               element={<AdminUpdateBookForm />}
             />
          </Route>
 
@@ -92,6 +79,10 @@ function AppRoutes() {
             <Route
                path={ROUTES.PROFILE}
                element={<UpdateVendorFormAccount />}
+            />
+            <Route
+               path={ROUTES.EDIT_BOOK_BY_ID}
+               element={<VendorAddBookForm />}
             />
             <Route
                path={ROUTES.PROFILE_UPDATE}

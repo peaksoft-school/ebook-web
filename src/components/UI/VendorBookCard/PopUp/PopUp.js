@@ -1,13 +1,21 @@
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import classes from './PopUp.module.css'
 import { ReactComponent as RubishIcon } from '../../../../assets/icons/rubish.svg'
 import { ReactComponent as ReductorIcon } from '../../../../assets/icons/changeValue.svg'
-import { ROUTES } from '../../../../utils/constants/constants'
+import { ROLES, ROUTES } from '../../../../utils/constants/constants'
 
 const PopUp = ({ id }) => {
    const navigate = useNavigate()
+   const userRole = useSelector((state) => state.role.roleData)
+
    const onEditHundler = () => {
-      navigate(`${ROUTES.ADD_BOOKS}/${id}`)
+      if (userRole === ROLES.ADMIN) {
+         navigate(`${ROUTES.ADD_BOOKS}/${id}`)
+      }
+      if (userRole === ROLES.VENDOR) {
+         navigate(`${ROUTES.EDIT_BOOK}/${id}`)
+      }
       // there will be function, which edit book
    }
 
