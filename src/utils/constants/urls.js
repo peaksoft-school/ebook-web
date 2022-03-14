@@ -32,6 +32,15 @@ const DELETE_CLIENT_BY_ID = 'api/clients/delete/'
 const SEARCHBYPUBLISHER = 'api/search/by?publisher='
 const SEARCHBYAUTHORNAME = 'api/search/by?authorName='
 
+const REQUEST_URL_MAIN_PAGE = 'api/main?request='
+export const MAIN_PAGE_REQUEST_TYPE = {
+   THE_MOST_POPULAR_BOOKS: 'THE_MOST_POPULAR',
+   BESTSELLER: 'BESTSELLER',
+   ELECTRONIC: 'ELECTRONIC',
+   AUDIO: 'AUDIO',
+   LAST: 'LAST',
+}
+
 // genre-api
 
 const ADD_NEW_GENRE_URL = 'api/genres/save'
@@ -46,14 +55,6 @@ export const APPLICATIONS = {
    ACCEPT_APPLICATION: 'api/admin/accept/book/request',
    GET_ALL_APPLICATIONS: 'api/admin/get/books/requests',
    GET_ALL_ACCEPTED_BOOKS: 'api/admin/get/books/accepted',
-}
-
-export const CLIENT_MAIN_PAGE_URLS = {
-   GET_TOP_THREE_BOOKS: 'api/books/getLikes',
-   GET_BETSELLER_BOOKS: 'api/books/getBestseller',
-   GET_LAST_PUBLICATIONS: '',
-   GET_AUDIO_BOOKS: 'api/books/getAudio',
-   GET_ELECTROMIC_BOOKS: 'api/books/getElectronic',
 }
 
 export {
@@ -87,4 +88,5 @@ export {
    SEARCH,
    SEARCHBYPUBLISHER,
    SEARCHBYAUTHORNAME,
+   REQUEST_URL_MAIN_PAGE,
 }
