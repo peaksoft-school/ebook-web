@@ -8,7 +8,7 @@ import VendorBooks from '../../VendorBooks/VendorBooks'
 import { sendRequest } from '../../../utils/helpers'
 
 const SellerDetails = () => {
-   const [activeTab, setActiveTab] = useState('profile')
+   const [activeTab, setActiveTab] = useState('Профиль')
    const [allVendorsBook, setAllVendorsBook] = useState([])
    const [sellerById, setSellerById] = useState('')
 
@@ -45,15 +45,15 @@ const SellerDetails = () => {
             <Tab
                changeTab={handleChange}
                isActive={activeTab}
-               label="profile"
+               label="Профиль"
             />
-            <Tab changeTab={handleChange} isActive={activeTab} label="books" />
+            <Tab changeTab={handleChange} isActive={activeTab} label="книги" />
          </Tabs>
 
-         <TabPanel check="profile" value={activeTab}>
+         <TabPanel check="Профиль" value={activeTab}>
             <SellerProfile sellerById={sellerById} />
          </TabPanel>
-         <TabPanel check="books" value={activeTab}>
+         <TabPanel check="книги" value={activeTab}>
             <VendorBooks vendorBooks={allVendorsBook} />
          </TabPanel>
       </div>

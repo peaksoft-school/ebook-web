@@ -24,6 +24,7 @@ import ClientBookPage from '../containers/client/ClientBookPage/ClientBookPage'
 import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
 import ShowingBooksByAuthorOrPublishingHouse from '../containers/client/showingBooksByAuthorOrPublishingHouse/showingBooksByAuthorOrPublishingHouse'
 import UpdateVendorFormAccount from '../containers/vendor/updateVendorAccount/UpdateVendorAccountForm'
+import VendorArea from '../containers/vendor/VendorArea/VendorArea'
 // import VendorBooks from '../containers/VendorBooks/VendorBooks'
 
 function AppRoutes() {
@@ -85,7 +86,7 @@ function AppRoutes() {
                </PrivatePouteForVendor>
             }
          >
-            <Route path={ROUTES.VENDOR_AREA} element={<p>VENDOR_AREA</p>} />
+            <Route path={ROUTES.VENDOR_AREA} element={<VendorArea />} />
             <Route path={ROUTES.BOOK_PAGE} element={<p>BOOK_PAGE</p>} />
             <Route path={ROUTES.ADD_BOOK} element={<p>ADD_BOOK</p>} />
             <Route
