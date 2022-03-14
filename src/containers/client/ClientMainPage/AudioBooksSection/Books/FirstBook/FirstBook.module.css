@@ -8,6 +8,7 @@
    width: 310px;
    height: 310px;
    margin-bottom: 10px;
+   cursor: pointer;
 }
 
 .bookName {
