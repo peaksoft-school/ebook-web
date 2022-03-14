@@ -10,6 +10,7 @@ import Button from '../Button/Button'
 import { deleteFromLocalStorage } from '../../../utils/helpers'
 import { setAuth } from '../../../store/authReducer/signInSlice'
 import { userRoleReducerActions } from '../../../store/userRoleSlice'
+import Modal from '../modal-window/ModalWindow'
 
 const UserNavMenu = () => {
    const role = useSelector((state) => state.role.roleData)
@@ -17,6 +18,7 @@ const UserNavMenu = () => {
    const navigate = useNavigate()
    const [isShow, setShow] = useState(false)
    const [isShowPopUp, setShowPopUp] = useState(false)
+   const [showModal, setShowModal] = useState(false)
 
    const logOut = () => {
       deleteFromLocalStorage('EbookUserToken')
@@ -32,6 +34,9 @@ const UserNavMenu = () => {
       setShowPopUp((isShowPopUp) => !isShowPopUp)
    }
 
+   const onChangeLogoutHandler = () => {
+      setShowModal((showModal) => !showModal)
+   }
    return (
       <div className={classes.userNavMenuContainer}>
          <Link to={ROUTES.SORT} className={classes.link}>
@@ -61,13 +66,31 @@ const UserNavMenu = () => {
                   <div className={classes.popUp}>
                      <p
                         role="presentation"
-                        onClick={logOut}
+                        onClick={onChangeLogoutHandler}
                         className={classes.logout}
                      >
                         Выйти
                      </p>
-                     <p className={classes.profile}> Профиль</p>
+                     <Link to={ROUTES.USER_PROFILE}>
+                        <p className={classes.profile}> Профиль</p>
+                     </Link>
                   </div>
+               )}
+               {showModal && (
+                  <Modal onClose={onChangeLogoutHandler}>
+                     <div className={classes.logoutModal}>
+                        Вы уверены что хотите выйти ?
+                        <div className={classes.buttons}>
+                           <Button
+                              onClick={onChangeLogoutHandler}
+                              variant="cancel"
+                           >
+                              Отменить
+                           </Button>
+                           <Button onClick={logOut}>Выйти</Button>
+                        </div>
+                     </div>
+                  </Modal>
                )}
             </div>
          ) : (

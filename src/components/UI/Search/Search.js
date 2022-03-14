@@ -1,4 +1,7 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { sendRequest } from '../../../utils/helpers'
+import { SEARCH } from '../../../utils/constants/urls'
 import classes from './Search.module.css'
 import SearchIcon from './Search-icon/SearchIcon'
 import SearchList from './SearchList/SearchList'
@@ -6,24 +9,8 @@ import SearchList from './SearchList/SearchList'
 const Search = () => {
    const [isFocused, setFocused] = useState(false)
    const [searchValue, setSearchValue] = useState('')
-   const [filteredData, setFilteredData] = useState()
-
-   const list = []
-
-   function changeColorInput(event) {
-      setSearchValue(event.target.value)
-      if (event.target.value === '') {
-         setFilteredData([])
-      } else if (event.target.value) {
-         const filterData =
-            list.length !== 0
-               ? list.response.filter((item) =>
-                    item.name.includes(event.target.value)
-                 )
-               : []
-         setFilteredData(filterData)
-      }
-   }
+   const [filteredData, setFilteredData] = useState([])
+   const role = useSelector((state) => state.role.roleData)
 
    function сolorInput() {
       if (isFocused) {
@@ -33,23 +20,46 @@ const Search = () => {
    }
 
    const focusHandler = () => {
-      setFocused(true)
+      setFocused((isFocused) => !isFocused)
    }
 
    const blurHandler = () => {
       if (searchValue === '') {
-         setFocused(false)
+         setFocused((isFocused) => !isFocused)
+         setFilteredData([])
       }
    }
+
+   const sendRequestSearchValue = useCallback(
+      async (event) => {
+         try {
+            await setSearchValue(event.target.value)
+            if (event.target.value !== '') {
+               const configRequest = {
+                  url: `${SEARCH}${event.target.value}`,
+               }
+               const response = await sendRequest(configRequest)
+               setFilteredData(response)
+            } else {
+               setFilteredData([])
+            }
+         } catch (error) {
+            setFilteredData([])
+            console.log(error.message)
+         }
+      },
+      [searchValue]
+   )
 
    return (
       <div className={classes.box}>
          <div>
             <form action="#" className={сolorInput()}>
                <input
-                  onChange={changeColorInput}
+                  onChange={sendRequestSearchValue}
                   onFocus={focusHandler}
                   onBlur={blurHandler}
+                  value={searchValue}
                   placeholder={
                      isFocused
                         ? ''
@@ -61,7 +71,13 @@ const Search = () => {
                <SearchIcon isActive={isFocused} />
             </form>
          </div>
-         <SearchList filteredData={filteredData} />
+         <SearchList
+            role={role}
+            setFilteredData={setFilteredData}
+            filteredData={filteredData}
+            setSearchValue={setSearchValue}
+            setFocused={setFocused}
+         />
       </div>
    )
 }

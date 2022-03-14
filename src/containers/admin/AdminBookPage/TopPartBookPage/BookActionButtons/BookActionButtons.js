@@ -32,6 +32,7 @@ const BookActionButtons = ({
       if (isShowAcceptModal === true) {
          const acceptTimer = setTimeout(() => {
             showAcceptModal()
+            navigate(-1)
          }, 1500)
          if (isShowAcceptModal === true) {
             return acceptTimer

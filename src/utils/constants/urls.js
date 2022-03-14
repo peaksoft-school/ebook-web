@@ -7,11 +7,14 @@ const AUTHENTICATION_URL = 'api/authentication'
 const GET_ALL_LANGUAGES = 'api/books/languages'
 const GET_ALL_BOOKS = 'api/books'
 const GET_BOOK_BY_ID = 'api/books/get/'
+const PROMO_CREATE = 'api/promo/create'
 
 const UPDATE_VENDOR_BY_ID = 'api/vendor/update/'
 const GET_VENDOR_BY_ID = 'api/vendor/getById/'
 const GET_ALL_VENDORS = 'api/vendor/getAll'
 const DELETE_VENDOR_BY_ID = 'api/vendor/deleteById/'
+
+const SEARCH = 'api/search/books?search='
 
 // This API for saving files {images, audios, electronic_books} to amazon S3 bucket
 
@@ -28,6 +31,9 @@ const GET_ALL_CLIENTS = 'api/clients/getAll'
 const DELETE_CLIENT_BY_ID = 'api/clients/delete/'
 
 const VENDOR_REGISTRATION = 'api/vendor/signup/vendor'
+const SEARCHBYPUBLISHER = 'api/search/by?publisher='
+const SEARCHBYAUTHORNAME = 'api/search/by?authorName='
+
 // genre-api
 
 const ADD_NEW_GENRE_URL = 'api/genres/save'
@@ -59,6 +65,7 @@ export const APPLICATIONS = {
 
 export {
    DEFAULT_URL,
+   PROMO_CREATE,
    SEND_PAPER_BOOK_URL,
    SEND_ELECTRONIC_BOOK_URL,
    SEND_AUDIO_BOOK_URL,
@@ -91,4 +98,7 @@ export {
    AUTHENTICATION_URL,
    UPDATE_AUDIO_BOOK,
    UPDATE_ELECTONIC_BOOK,
+   SEARCH,
+   SEARCHBYPUBLISHER,
+   SEARCHBYAUTHORNAME,
 }

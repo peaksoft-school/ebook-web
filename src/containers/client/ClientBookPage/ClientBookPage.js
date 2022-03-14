@@ -8,7 +8,7 @@ import { sendRequest } from '../../../utils/helpers'
 import BreadCrumbs from '../../../components/UI/BreadCrumbs/BreadCrumbs'
 
 const BookPage = () => {
-   const params = useParams()
+   const { bookById } = useParams()
    const [bookInfo, setBookInfo] = useState()
 
    const sendRequestToFavority = (bookId) => {
@@ -22,7 +22,7 @@ const BookPage = () => {
       try {
          const requestConfig = {
             method: 'GET',
-            url: GET_BOOK_BY_ID + params.bookById,
+            url: GET_BOOK_BY_ID + bookById,
          }
          const response = await sendRequest(requestConfig)
          await setBookInfo(response)
@@ -33,7 +33,7 @@ const BookPage = () => {
 
    useEffect(async () => {
       await getSingleBookById()
-   }, [])
+   }, [bookById])
 
    return (
       <div className={classes.clientBookwrapper}>

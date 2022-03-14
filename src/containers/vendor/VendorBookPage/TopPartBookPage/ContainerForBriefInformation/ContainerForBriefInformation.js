@@ -23,11 +23,9 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>Язык</p>
             <p>Издательство</p>
             <p>Год выпуска</p>
-            {book.typeOfBook ===
-               (TYPEOFBOOK.ELECTRONICBOOK || TYPEOFBOOK.PAPERBOOK) && (
-               <p>Обьем</p>
-            )}
-            {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>Длительность</p>}
+            {book.typeOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
+               (TYPEOFBOOK.PAPERBOOK && <p>Обьем</p>)}
+            {/* {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>Длительность</p>} */}
          </div>
          <div className={classes.smallContainerForBriefInformation}>
             <p>{book.author}</p>
@@ -35,16 +33,9 @@ const ContainerForBriefInformation = ({ book }) => {
             <p>{languageTranslate()}</p>
             <p>{book.publishingHouse}</p>
             <p>{book.yearOfIssue}</p>
-            {book.typeOfBook ===
-               (TYPEOFBOOK.ELECTRONICBOOK || TYPEOFBOOK.PAPERBOOK) && (
-               <p>{book.pageSize} стр</p>
-            )}
-            {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && (
-               <p>
-                  {book.duration.hour}ч. {book.duration.minute} мин.{' '}
-                  {book.duration.second} сек.
-               </p>
-            )}
+            {book.typeOfBook === TYPEOFBOOK.ELECTRONICBOOK ||
+               (TYPEOFBOOK.PAPERBOOK && <p>{book.pageSize} стр</p>)}
+            {/* {book.typeOfBook === TYPEOFBOOK.AUDIOBOOK && <p>{book.duration}</p>} */}
          </div>
       </div>
    )

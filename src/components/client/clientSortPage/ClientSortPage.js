@@ -21,10 +21,10 @@ const ClientSortPage = () => {
 
    const onChangeSortValueHandler = async (event) => {
       event.preventDefault()
-      filtration()
+      filtr()
    }
 
-   const filtration = async () => {
+   const filtr = async () => {
       const bodyReq = {
          genres: genreData,
          price: {
@@ -84,8 +84,8 @@ const ClientSortPage = () => {
    useEffect(() => {
       getLanguages()
       getGenres()
-      filtration()
-   }, [])
+      filtr()
+   }, [genreData, secondPrice, firstPrice, languageData, typeOfBook])
    return (
       <form onSubmit={onChangeSortValueHandler}>
          <section className={classes.section}>
@@ -142,9 +142,6 @@ const ClientSortPage = () => {
                            })}
                      </div>
                   </div>
-                  <button type="submit" className={classes.button}>
-                     FILTER
-                  </button>
                </div>
             </div>
             <div className={classes.cards}>

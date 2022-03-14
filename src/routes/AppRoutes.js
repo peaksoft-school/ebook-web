@@ -20,8 +20,10 @@ import ClientLayout from '../components/client/ClientLayout/ClientLayout'
 import VendorLayout from '../components/vendor/VendorLayout/VendorLayout'
 import VendorBookPage from '../containers/vendor/VendorBookPage/VendorBookPage'
 import ClientSortPage from '../components/client/clientSortPage/ClientSortPage'
+import ClientBookPage from '../containers/client/ClientBookPage/ClientBookPage'
 import AdminBookPage from '../containers/admin/AdminBookPage/AdminBookPage'
 import UpdateVendorsBooksForm from '../containers/vendor/updateVendorBookForm/UpdateVendorsBookForm'
+import ShowingBooksByAuthorOrPublishingHouse from '../containers/client/showingBooksByAuthorOrPublishingHouse/showingBooksByAuthorOrPublishingHouse'
 // import VendorBooks from '../containers/VendorBooks/VendorBooks'
 
 function AppRoutes() {
@@ -102,8 +104,24 @@ function AppRoutes() {
                element={<ClientMainPage />}
             />
             <Route path={ROUTES.SORT} element={<ClientSortPage />} />
+            <Route
+               path={ROUTES.SORT_GENRE_BY_GENRE_NAME}
+               element={<ShowingBooksByAuthorOrPublishingHouse />}
+            />
+            <Route
+               path={ROUTES.SORT_AUTHOR_BY_AUTHORNAME}
+               element={<ShowingBooksByAuthorOrPublishingHouse />}
+            />
+            <Route
+               path={ROUTES.SORT_PUBLISHING_HOUSE_BY_PUBLISHING_HOUSE_NAME}
+               element={<ShowingBooksByAuthorOrPublishingHouse />}
+            />
             <Route path={ROUTES.INNER_PAGE} element={<p>INNER PAGE</p>} />
             <Route path={ROUTES.AUDIO_PAGE} element={<p>AUDIO_PAGE</p>} />
+            <Route
+               path={ROUTES.CLIENT_BOOK_PAGE_BY_ID}
+               element={<ClientBookPage />}
+            />
             <Route
                path={ROUTES.CART}
                element={

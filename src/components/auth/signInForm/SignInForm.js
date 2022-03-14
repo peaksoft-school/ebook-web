@@ -16,7 +16,7 @@ import isEye from '../../../assets/png/isEye.png'
 import classes from './SignInForm.module.css'
 import LoadingSpinner from '../../UI/modal-window/loadingSpinner/LoadingSpinner'
 
-const SignIn = () => {
+const SignIn = ({ onClose }) => {
    const [isPasswordShown, setIsPasswordShown] = useState(false)
    const { error, status } = useSelector((state) => state.authorization)
    const userRole = useSelector((state) => state.role.roleData)
@@ -65,6 +65,9 @@ const SignIn = () => {
       }
       if (userRole === ROLES.VENDOR) {
          return navigate(ROUTES.VENDOR_AREA)
+      }
+      if (userRole === ROLES.CLIENT) {
+         onClose()
       }
       return ''
    }
